@@ -12,4 +12,6 @@ wp-config.php
 /.well-known/*
 /cgi-bin/*
 
+/.idea/*
+
 
