@@ -1,0 +1,15 @@
+.htaccess
+.htaccess.bk
+wp-config.php
+
+*.conf
+*.txt
+
+/wp-content/*
+!/wp-content/themes
+!/wp-content/plugins
+!/wp-content/uploads
+/.well-known/*
+/cgi-bin/*
+
+
