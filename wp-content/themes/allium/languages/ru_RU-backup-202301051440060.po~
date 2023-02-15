@@ -1,0 +1,370 @@
+# Translation of Themes - Allium in Russian
+# This file is distributed under the same license as the Themes - Allium package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-12-12 12:32:23+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: ru\n"
+"Project-Id-Version: Themes - Allium\n"
+
+#. Description of the theme
+msgid "Allium is a clean and minimalist theme that allows your reader to focus on your content. Allium is designed for news agencies, travel websites, business magazine, food recipes, health magazine, technology sites and all type of publishing or review site. Allium theme is fully compatible with Gutenberg content editor. Easy to use, no coding!"
+msgstr "Allium — чистая и минималистичная тема, которая позволяет вашему читателю сосредотачиваться на содержимом. Allium предназначена для новостных агентств, туристических сайтов, деловых журналов, кулинарных рецептов, журналов о здоровье, технологических сайтов и всех других типов сайтов с публикациями или обзорами. Тема Allium полностью совместима с редактором Gutenberg. Она проста в использовании и не требует написания кодов!"
+
+#. Theme Name of the theme
+msgid "Allium"
+msgstr "Allium"
+
+#. translators: %s: posted in tags
+#: inc/template-tags.php:205
+msgid "Tagged %1$s"
+msgstr "Помеченные %1$s"
+
+#: search.php:17
+msgid "Search Results for:"
+msgstr "Результаты поиска"
+
+#: template-parts/header/site-navigation.php:14
+#: template-parts/header/site-navigation.php:15
+msgid "Menu"
+msgstr "Меню"
+
+#: template-parts/header/site-navigation.php:12
+msgid "Skip to content"
+msgstr "Перейти к содержимому"
+
+#: template-parts/content/content-none.php:38
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Запрошенную информацию найти не удалось. Возможно, будет полезен поиск по сайту."
+
+#: template-parts/content/content-none.php:33
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Извините, по вашему запросу ничего не найдено. Попробуйте другие ключевые слова."
+
+#. translators: 1: link to WP admin new post page.
+#: template-parts/content/content-none.php:20
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Готовы опубликовать свою первую запись? <a href=\"%1$s\">Начните отсюда</a>."
+
+#: template-parts/content/content-image-attachment.php:64
+msgid "Edit"
+msgstr "Изменить"
+
+#: template-parts/content/content-single.php:32
+#: template-parts/content/content-image-attachment.php:54
+#: template-parts/content/content-page.php:29
+msgid "Pages:"
+msgstr "Страницы:"
+
+#: template-parts/content/content-404.php:64
+msgid "Tags"
+msgstr "Метки"
+
+#: template-parts/content/content-404.php:49
+msgid "Archives"
+msgstr "Архивы"
+
+#: template-parts/content/content-404.php:35
+msgid "Recent Posts"
+msgstr "Последние записи"
+
+#: template-parts/content/content-404.php:14
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "Кажется, ничего не найдено. Может быть воспользуетесь ссылками ниже или поиском?"
+
+#. translators: %1$s: post author
+#: template-parts/post/author.php:41
+msgid "View all posts by %1$s"
+msgstr "Смотреть все записи от %1$s"
+
+#. translators: %1$s: post author
+#: template-parts/post/author.php:28
+msgid "Published by %1$s"
+msgstr "Опубликовано %1$s"
+
+#: functions.php:126
+msgid "Add widgets here to appear in your sidebar."
+msgstr "Добавьте сюда виджеты, которые вы хотите разместить в боковой колонке."
+
+#: functions.php:124
+msgid "Main Sidebar"
+msgstr "Главная боковая колонка"
+
+#: functions.php:64
+msgid "Top Menu"
+msgstr "Верхнее меню"
+
+#: functions.php:63
+msgid "Header Menu"
+msgstr "Меню в заголовке"
+
+#: image.php:25
+msgid "Next Image"
+msgstr "Следующее изображение"
+
+#: image.php:24
+msgid "Previous Image"
+msgstr "Предыдущее изображение"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:202
+msgctxt "Used between tag, there is a space after the comma."
+msgid ", "
+msgstr ", "
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:195
+msgctxt "Used between category, there is a space after the comma."
+msgid ", "
+msgstr ", "
+
+#. translators: %s: post edit link label
+#: inc/template-tags.php:130
+msgctxt "post edit link label"
+msgid "Edit"
+msgstr "Изменить"
+
+#. translators: %s: sticky post label
+#: inc/template-tags.php:111
+msgctxt "sticky post label"
+msgid "Featured"
+msgstr "Избранное"
+
+#: inc/template-tags.php:70
+msgctxt "post date"
+msgid "Posted on"
+msgstr "Опубликовано"
+
+#: inc/template-tags.php:39
+msgid "Prev"
+msgstr "Назад"
+
+#: inc/template-tags.php:38
+msgid "Next"
+msgstr "Далее"
+
+#: inc/template-tags.php:22
+msgid "Page"
+msgstr "Страница"
+
+#: inc/template-tags.php:21
+msgid "Next Page"
+msgstr "Следующая страница"
+
+#: inc/template-tags.php:20
+msgid "Previous Page"
+msgstr "Предыдущая страница"
+
+#: inc/customizer/customizer-core.php:22
+msgid "Y"
+msgstr "Y"
+
+#: inc/customizer/customizer-core.php:17
+msgctxt "Read More Label"
+msgid "Read More"
+msgstr "Читать далее"
+
+#: inc/customizer/customizer.php:199
+msgid "Why not leave us a review on WordPress.org? Your review on WordPress will be highly appreciated, as it encourages us to keep updating and supporting the product."
+msgstr "Почему бы вам не оставить о нас отзыв на WordPress.org? Ваш отзыв будет высоко оценён, так как он побуждает нас постоянно обновлять и поддерживать продукт."
+
+#: inc/customizer/customizer.php:214
+msgid "Review on WordPress.org"
+msgstr "Отзыв на WordPress.org"
+
+#: inc/customizer/customizer.php:198
+msgid "Add Your Review"
+msgstr "Добавить отзыв"
+
+#: inc/customizer/customizer.php:182
+msgid "Allium Support"
+msgstr "Поддержка Allium"
+
+#: template-parts/content/content-404.php:21
+msgid "Search"
+msgstr "Поиск"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Roboto, translate this to 'off'. Do not translate into your own language.
+#: inc/template-functions.php:48
+msgctxt "Roboto font: on or off"
+msgid "on"
+msgstr "on"
+
+#. Translators: If there are characters in your language that are not supported
+#. by Nunito Sans, translate this to 'off'. Do not translate into your own
+#. language.
+#: inc/template-functions.php:40
+msgctxt "Nunito Sans font: on or off"
+msgid "on"
+msgstr "off"
+
+#: inc/customizer/customizer.php:167
+msgid "Thanks for your interest in Allium! To share your feedback and for any support query you can reach us at"
+msgstr "Спасибо за интерес к Allium! Чтобы поделиться своим мнением или задать поддержке какой-то вопрос, можно связаться с нами по"
+
+#: inc/customizer/customizer.php:166
+msgid "Support Options"
+msgstr "Настройки поддержки"
+
+#: inc/customizer/customizer.php:142
+msgid "Copyright"
+msgstr "Авторские права"
+
+#: inc/customizer/customizer.php:131
+msgid "Personalize the footer settings of your theme."
+msgstr "Настройте нижнюю часть темы."
+
+#: inc/customizer/customizer.php:128
+msgid "Footer Options"
+msgstr "Настройки нижней части"
+
+#: inc/customizer/customizer.php:120
+msgid "Left"
+msgstr "Слева"
+
+#: inc/customizer/customizer.php:119
+msgid "Right"
+msgstr "Справа"
+
+#: inc/customizer/customizer.php:114
+msgid "Main Sidebar Position (if active)"
+msgstr "Расположение главной боковой панели (если она активирована)"
+
+#: inc/customizer/customizer.php:96
+msgid "Theme Layout"
+msgstr "Разметка темы"
+
+#: inc/customizer/customizer.php:86
+msgid "Personalize the layout settings of your theme."
+msgstr "Настройте разметку темы."
+
+#: inc/customizer/customizer.php:83
+msgid "Layout Options"
+msgstr "Настройки разметки"
+
+#: inc/customizer/customizer.php:32
+msgid "General Options"
+msgstr "Основные настройки"
+
+#: inc/customizer/customizer.php:24
+msgid "Theme Options"
+msgstr "Настройки темы"
+
+#: searchform.php:14
+msgctxt "submit button"
+msgid "Search"
+msgstr "Найти"
+
+#: searchform.php:12
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Поиск&hellip;"
+
+#: searchform.php:11 searchform.php:12
+msgctxt "label"
+msgid "Search for:"
+msgstr "Поиск"
+
+#: 404.php:17
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Ой! Страница не найдена."
+
+#: index.php:24 archive.php:24
+msgid "Nothing Found"
+msgstr "Ничего не найдено"
+
+#: comments.php:102
+msgid "Comments are closed."
+msgstr "Обсуждение закрыто."
+
+#: comments.php:69 comments.php:89
+msgid "Newer Comments"
+msgstr "Следующие комментарии"
+
+#: comments.php:68 comments.php:88
+msgid "Older Comments"
+msgstr "Предыдущие комментарии"
+
+#: comments.php:66 comments.php:86
+msgid "Comment navigation"
+msgstr "Навигация по комментариям"
+
+#. translators: 1: number of comments, 2: comments title
+#: comments.php:49
+msgctxt "comments title"
+msgid "%1$s Reply to &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s Replies to &ldquo;%2$s&rdquo;"
+msgstr[0] "%1$s ответ к «%2$s»"
+msgstr[1] "%1$s ответа к «%2$s»"
+msgstr[2] "%1$s ответов к «%2$s»"
+
+#. translators: %s: post title
+#: comments.php:37
+msgctxt "comments title"
+msgid "One Reply to &ldquo;%s&rdquo;"
+msgstr "Один ответ к «%s»"
+
+#: inc/customizer/customizer.php:35
+msgid "Personalize the general settings of your theme."
+msgstr "Настройте основное в теме."
+
+#: inc/customizer/customizer.php:156
+msgid "Display Designer Credit"
+msgstr "Автор оформления экрана"
+
+#: inc/customizer/customizer.php:97
+msgid "Box layout will be visible at minimum 1200px display"
+msgstr "Разметка коробки будет видна с минимальным разрешением 1200 пикселей"
+
+#: inc/customizer/customizer.php:102
+msgid "Wide"
+msgstr "В ширину"
+
+#: inc/customizer/customizer.php:103
+msgid "Box"
+msgstr "«Коробка»"
+
+#: inc/customizer/customizer.php:73
+msgid "Display Featured Image at Single Posts"
+msgstr "Показывать изображения записей в отдельных записях"
+
+#: inc/customizer/customizer.php:60
+msgid "Zero (0) length will not show the excerpt."
+msgstr "При нулевой (0) длине не будет отрывков."
+
+#: inc/customizer/customizer.php:59
+msgid "Excerpt Length"
+msgstr "Длина отрывка"
+
+#. Translators: To add an additional character subset specific to your
+#. language, * translate this to 'greek', 'cyrillic', 'devanagari' or
+#. 'vietnamese'. * Do not translate into your own language.
+#: inc/template-functions.php:56
+msgctxt "Add new subset (cyrillic, greek, devanagari, vietnamese)"
+msgid "no-subset"
+msgstr "cyrillic"
+
+#: inc/customizer/customizer-core.php:22
+msgid "&copy; Copyright"
+msgstr "&copy; Все права защищены"
+
+#: inc/customizer/customizer.php:46
+msgid "Read More Label"
+msgstr "Этикетка Читать далее"
+
+#. Author URI of the theme
+msgid "https://templatelens.com"
+msgstr "https://templatelens.com"
+
+#. Author of the theme
+msgid "TemplateLens"
+msgstr "TemplateLens"
+
+#. Theme URI of the theme
+msgid "https://templatelens.com/allium/"
+msgstr "https://templatelens.com/allium/"

@@ -1,0 +1,161 @@
+# Translation of Plugins - Syntax Highlighter for Theme/Plugin Editor - Stable (latest release) in Russian
+# This file is distributed under the same license as the Plugins - Syntax Highlighter for Theme/Plugin Editor - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-08-11 13:59:56+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: ru\n"
+"Project-Id-Version: Plugins - Syntax Highlighter for Theme/Plugin Editor - Stable (latest release)\n"
+
+#: inc/php/tabs/support.php:49
+msgid "Thank you for your support!"
+msgstr "Спасибо за вашу поддержку!"
+
+#: inc/php/page.php:47
+msgid "Store"
+msgstr "Магазин"
+
+#: inc/php/sidebar.php:39
+msgid "If you have a question, please read the information in the FAQ section."
+msgstr "Если у вас есть вопрос, пожалуйста ознакомьтесь с информацией в разделе FAQ."
+
+#: inc/php/tabs/usage.php:18
+msgid "Select the desired settings."
+msgstr "Выберите нужные настройки."
+
+#: inc/php/tabs/usage.php:19
+msgid "Click the \"Save changes\" button."
+msgstr "Нажмите кнопку «Сохранить изменения»."
+
+#: inc/php/tabs/faq.php:293
+msgid "My question wasn't answered here."
+msgstr "Моего вопроса здесь нет."
+
+#: inc/php/tabs/faq.php:17
+msgid "If you have a question, please read the Frequently Asked Questions below to see if the answer is here."
+msgstr "Если у вас есть вопрос, пожалуйста, прочтите часто задаваемые вопросы."
+
+#: inc/php/page.php:36
+msgid "Version"
+msgstr "Версия"
+
+#: inc/php/messages.php:90
+msgid "You have installed an old version of this plugin."
+msgstr "Вы установили устаревшую версию этого плагина."
+
+#: inc/php/messages.php:91
+msgid "Please update the plugin to the latest version, and all will be fine."
+msgstr "Пожалуйста, обновите плагин до последней версии и всё будет отлично."
+
+#: inc/php/page.php:44
+msgid "Usage"
+msgstr "Применение"
+
+#: inc/php/page.php:45
+msgid "F.A.Q."
+msgstr "F.A.Q."
+
+#: inc/php/tabs/settings.php:106 inc/php/sidebar.php:46 inc/php/page.php:46
+msgid "Support"
+msgstr "Поддержка"
+
+#: inc/php/tabs/usage.php:15
+msgid "To replace the default Theme/Plugin editor with an enhanced editor that provided by this plugin, simply follow these steps:"
+msgstr "Для того чтобы заменить редактор Тем/Плагинов на расширенный редактор, представленный этим плагином, просто выполните следующие шаги:"
+
+#: inc/php/tabs/faq.php:126 inc/php/tabs/usage.php:20
+msgid "It's that simple!"
+msgstr "Вот так просто!"
+
+#: inc/php/tabs/faq.php:13
+msgid "Frequently Asked Questions"
+msgstr "Часто задаваемые вопросы"
+
+#: inc/php/tabs/faq.php:95
+msgid "Can I use this plugin on my language?"
+msgstr "Можно ли использовать этот плагин на моём языке?"
+
+#: inc/php/tabs/faq.php:121
+msgid "How does it work?"
+msgstr "Как оно работает?"
+
+#: inc/php/tabs/faq.php:143
+msgid "Does this plugin requires any modification of the theme?"
+msgstr "Этот плагин требует изменения темы?"
+
+#: inc/php/tabs/faq.php:151
+msgid "Does this require any knowledge of HTML or CSS?"
+msgstr "Требуются ли какие-либо знания HTML или CSS?"
+
+#: inc/php/tabs/faq.php:194
+msgid "Where to report bug if found?"
+msgstr "Где можно сообщить об ошибке?"
+
+#: inc/php/tabs/faq.php:222
+msgid "Where to share any ideas or suggestions to make the plugin better?"
+msgstr "Где можно поделиться идеями или предложениями, чтобы сделать плагин лучше?"
+
+#: inc/php/tabs/settings.php:74
+msgid "Click the \"Save changes\" button to update this preview."
+msgstr "Нажмите кнопку «Сохранить изменения», чтобы обновить этот пред. просмотр."
+
+#: inc/php/tabs/faq.php:125 inc/php/tabs/usage.php:20
+msgid "Enjoy your fancy Theme/Plugin Editor."
+msgstr "Наслаждайтесь своим модным редактором Темы/Плагина."
+
+#: inc/php/tabs/faq.php:130
+msgid "Does this plugin provide a syntax highlighting for the Post/Page Editor?"
+msgstr "Предоставляет ли этот плагин подсветку синтаксиса для редактора Сообщений/Страниц?"
+
+#: inc/php/tabs/faq.php:175
+msgid "My theme uses a file type that is not supported by this plugin, how can I get it added?"
+msgstr "В моей теме используется тип файла, который не поддерживается этим плагином, как я могу его добавить?"
+
+#: inc/php/tabs/settings.php:113 inc/php/tabs/support.php:21
+#: inc/php/sidebar.php:53
+msgid "Donate with PayPal"
+msgstr "Пожертвовать через PayPal"
+
+#: inc/php/core.php:32 inc/php/page.php:43
+msgid "Settings"
+msgstr "Настройки"
+
+#: inc/php/tabs/settings.php:99
+msgid "This is an example of HTML language."
+msgstr "Это пример HTML языка."
+
+#: inc/php/tabs/settings.php:72
+msgid "Preview"
+msgstr "Предварительный просмотр"
+
+#: inc/php/tabs/settings.php:40
+msgid "Color theme"
+msgstr "Цветовая схема"
+
+#: inc/php/tabs/settings.php:52
+msgid "First line number"
+msgstr "Номер первой строки"
+
+#: inc/php/tabs/settings.php:28 inc/php/tabs/settings.php:67
+msgid "Save changes"
+msgstr "Сохранить изменения"
+
+#: inc/php/tabs/settings.php:115 inc/php/sidebar.php:55
+msgid "Thanks for your support!"
+msgstr "Спасибо за вашу поддержку!"
+
+#: inc/php/core.php:54
+msgid "Donate"
+msgstr "Поддержать"
+
+#: inc/php/sidebar.php:37
+msgid "Help"
+msgstr "Помощь"
+
+#: inc/php/sidebar.php:28
+msgid "About"
+msgstr "О плагине"

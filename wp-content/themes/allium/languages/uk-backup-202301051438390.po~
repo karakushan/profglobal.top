@@ -1,0 +1,450 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10 >= 2 && "
+"n%10<=4 &&(n%100<10||n%100 >= 20)? 1 : 2);\n"
+"Project-Id-Version: Allium\n"
+"POT-Creation-Date: 2020-07-29 17:32+0500\n"
+"PO-Revision-Date: 2023-01-05 19:38+0000\n"
+"Last-Translator: Виталий\n"
+"Language-Team: Ukrainian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: style.css\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+"X-Poedit-SearchPathExcluded-2: vendor\n"
+"X-Poedit-SearchPathExcluded-3: src\n"
+"X-Poedit-SearchPathExcluded-4: dist\n"
+"X-Poedit-SearchPathExcluded-5: js\n"
+"X-Poedit-SearchPathExcluded-6: webfonts\n"
+"X-Poedit-SearchPathExcluded-7: css\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: uk\n"
+"X-Loco-Version: 2.6.3; wp-6.1.1"
+
+#: 404.php:17
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Упс! Ця сторінка не може бути знайдена."
+
+#: archive.php:24 index.php:24
+msgid "Nothing Found"
+msgstr "Нічого не знайдено"
+
+#: comments.php:38
+#, php-format
+msgctxt "comments title"
+msgid "One Reply to &ldquo;%s&rdquo;"
+msgstr "Один відповідь на \"%s\""
+
+#: comments.php:50
+#, php-format
+msgctxt "comments title"
+msgid "%1$s Reply to &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s Replies to &ldquo;%2$s&rdquo;"
+msgstr[0] "%1 $ s Відповідь на \"%2 $ s\""
+msgstr[1] "%1 $s Відповідає на \"%2 $ s\""
+msgstr[2] ""
+
+#: comments.php:66 comments.php:86
+msgid "Comment navigation"
+msgstr "Навігація по коментарям"
+
+#: comments.php:68 comments.php:88
+msgid "Older Comments"
+msgstr "Старі коментарі"
+
+#: comments.php:69 comments.php:89
+msgid "Newer Comments"
+msgstr "Нові коментарі"
+
+#: comments.php:102
+msgid "Comments are closed."
+msgstr "Коментарі закриті."
+
+#: functions.php:63
+msgid "Header Menu"
+msgstr "Меню заголовка"
+
+#: functions.php:64
+msgid "Top Menu"
+msgstr "Верхнє меню"
+
+#: functions.php:124
+msgid "Main Sidebar"
+msgstr "Головна бічна панель"
+
+#: functions.php:126
+msgid "Add widgets here to appear in your sidebar."
+msgstr "Додайте сюди віджети, які будуть відображатися на вашій бічній панелі."
+
+#: image.php:24
+msgid "Previous Image"
+msgstr "Попереднє зображення"
+
+#: image.php:25
+msgid "Next Image"
+msgstr "Наступне Зображення"
+
+#: inc/customizer/customizer-core.php:17
+msgctxt "Read More Label"
+msgid "Read More"
+msgstr "Читати далі"
+
+#: inc/customizer/customizer-core.php:22
+msgid "&copy; Copyright"
+msgstr "© Авторське право"
+
+#: inc/customizer/customizer-core.php:22
+msgid "Y"
+msgstr "Y"
+
+#: inc/customizer/customizer.php:24
+msgid "Theme Options"
+msgstr "Параметри теми"
+
+#: inc/customizer/customizer.php:32
+msgid "General Options"
+msgstr "Загальні параметри"
+
+#: inc/customizer/customizer.php:35
+msgid "Personalize the general settings of your theme."
+msgstr "Налаштуйте загальні налаштування вашої теми."
+
+#: inc/customizer/customizer.php:46
+msgid "Read More Label"
+msgstr "Детальніше Читайте на Етикетці"
+
+#: inc/customizer/customizer.php:59
+msgid "Excerpt Length"
+msgstr "Довжина уривка"
+
+#: inc/customizer/customizer.php:60
+msgid "Zero (0) length will not show the excerpt."
+msgstr "Нульова (0) довжина уривка відображатися не буде."
+
+#: inc/customizer/customizer.php:73
+msgid "Display Featured Image at Single Posts"
+msgstr "Відображення обраного зображення в окремих повідомленнях"
+
+#: inc/customizer/customizer.php:83
+msgid "Layout Options"
+msgstr "Варіанти компонування"
+
+#: inc/customizer/customizer.php:86
+msgid "Personalize the layout settings of your theme."
+msgstr "Персоналізуйте налаштування макета вашої теми."
+
+#: inc/customizer/customizer.php:96
+msgid "Theme Layout"
+msgstr "Тематичний макет"
+
+#: inc/customizer/customizer.php:97
+msgid "Box layout will be visible at minimum 1200px display"
+msgstr ""
+"Макет коробки буде видно на дисплеї з роздільною здатністю не менше 1200 "
+"пікселів"
+
+#: inc/customizer/customizer.php:102
+msgid "Wide"
+msgstr "Широкий"
+
+#: inc/customizer/customizer.php:103
+msgid "Box"
+msgstr "Коробка"
+
+#: inc/customizer/customizer.php:114
+msgid "Main Sidebar Position (if active)"
+msgstr "Положення головної бічній панелі (якщо вона активна)"
+
+#: inc/customizer/customizer.php:119
+msgid "Right"
+msgstr "Правильно"
+
+#: inc/customizer/customizer.php:120
+msgid "Left"
+msgstr "Зліва"
+
+#: inc/customizer/customizer.php:128
+msgid "Footer Options"
+msgstr "Параметри нижнього колонтитула"
+
+#: inc/customizer/customizer.php:131
+msgid "Personalize the footer settings of your theme."
+msgstr "Персоналізуйте налаштування нижнього колонтитула вашої теми."
+
+#: inc/customizer/customizer.php:142
+msgid "Copyright"
+msgstr "Авторські права"
+
+#: inc/customizer/customizer.php:156
+msgid "Display Designer Credit"
+msgstr "Заслуга Дизайнера дисплея"
+
+#: inc/customizer/customizer.php:166
+msgid "Support Options"
+msgstr "Варіанти підтримки"
+
+#: inc/customizer/customizer.php:167
+msgid ""
+"Thanks for your interest in Allium! To share your feedback and for any "
+"support query you can reach us at"
+msgstr ""
+"Спасибі за ваш інтерес до Allium! Щоб поділитися своїми відгуками і задати "
+"будь-який запит в службу підтримки, ви можете зв'язатися з нами за адресою"
+
+#: inc/customizer/customizer.php:182
+msgid "Allium Support"
+msgstr "Підтримка Allium"
+
+#: inc/customizer/customizer.php:198
+msgid "Add Your Review"
+msgstr "Додайте свій відгук"
+
+#: inc/customizer/customizer.php:199
+msgid ""
+"Why not leave us a review on WordPress.org? Your review on WordPress will be "
+"highly appreciated, as it encourages us to keep updating and supporting the "
+"product."
+msgstr ""
+"Чому б не залишити нам відгук на WordPress.org ? Ваш відгук про WordPress "
+"буде високо оцінений, так як він спонукає нас продовжувати оновлювати і "
+"підтримувати продукт."
+
+#: inc/customizer/customizer.php:214
+msgid "Review on WordPress.org"
+msgstr "Огляд на WordPress.org"
+
+#: inc/template-functions.php:40
+msgctxt "Nunito Sans font: on or off"
+msgid "on"
+msgstr "на"
+
+#: inc/template-functions.php:48
+msgctxt "Roboto font: on or off"
+msgid "on"
+msgstr "на"
+
+#: inc/template-functions.php:56
+msgctxt "Add new subset (cyrillic, greek, devanagari, vietnamese)"
+msgid "no-subset"
+msgstr "ні-підмножина"
+
+#: inc/template-functions.php:276
+msgid "Allium Theme by"
+msgstr "Тема Allium від"
+
+#: inc/template-functions.php:278
+msgid "Powered by"
+msgstr "Працює від"
+
+#: inc/template-functions.php:279
+msgid "https://wordpress.org"
+msgstr ""
+
+#: inc/template-tags.php:20
+msgid "Previous Page"
+msgstr "попередня сторінка"
+
+#: inc/template-tags.php:21
+msgid "Next Page"
+msgstr "Наступна сторінка"
+
+#: inc/template-tags.php:22
+msgid "Page"
+msgstr "Сторінка"
+
+#: inc/template-tags.php:38
+msgid "Next"
+msgstr "Далі"
+
+#: inc/template-tags.php:39
+msgid "Prev"
+msgstr "Перед."
+
+#: inc/template-tags.php:70
+msgctxt "post date"
+msgid "Posted on"
+msgstr "Розміщений на"
+
+#. translators: %s: post author
+#: inc/template-tags.php:91
+msgctxt "post author"
+msgid "by"
+msgstr "Автор:"
+
+#. translators: %s: sticky post label
+#: inc/template-tags.php:111
+msgctxt "sticky post label"
+msgid "Featured"
+msgstr "Обране"
+
+#. translators: %s: post edit link label
+#: inc/template-tags.php:130
+msgctxt "post edit link label"
+msgid "Edit"
+msgstr "Редагувати"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:195
+msgctxt "Used between category, there is a space after the comma."
+msgid ", "
+msgstr ", "
+
+#. translators: %s: posted in categories
+#: inc/template-tags.php:198
+#, php-format
+msgid "Posted in %1$s"
+msgstr "Розміщено в %1$s"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:202
+msgctxt "Used between tag, there is a space after the comma."
+msgid ", "
+msgstr ", "
+
+#. translators: %s: posted in tags
+#: inc/template-tags.php:205
+#, php-format
+msgid "Tagged %1$s"
+msgstr "Позначений %1 $s"
+
+#. translators: %s: post title
+#: inc/template-tags.php:210
+#, php-format
+msgid "Edit %1$s"
+msgstr "Редагувати %1$s"
+
+#: search.php:17
+msgid "Search Results for:"
+msgstr "Результати пошуку для:"
+
+#: searchform.php:11 searchform.php:12
+msgctxt "label"
+msgid "Search for:"
+msgstr "Пошук:"
+
+#: searchform.php:12
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Пошук ..."
+
+#: searchform.php:14
+msgctxt "submit button"
+msgid "Search"
+msgstr "Пошук"
+
+#: template-parts/content/content-404.php:14
+msgid ""
+"It looks like nothing was found at this location. Maybe try one of the links "
+"below or a search?"
+msgstr ""
+"Схоже, в цьому місці нічого не було знайдено. Може бути, спробувати "
+"скористатися однією з посилань нижче або пошуком?"
+
+#: template-parts/content/content-404.php:21
+msgid "Search"
+msgstr "Пошук"
+
+#: template-parts/content/content-404.php:35
+msgid "Recent Posts"
+msgstr "Недавні пости"
+
+#: template-parts/content/content-404.php:49
+msgid "Archives"
+msgstr "Архіви"
+
+#: template-parts/content/content-404.php:64
+msgid "Tags"
+msgstr "Теги"
+
+#: template-parts/content/content-image-attachment.php:54
+#: template-parts/content/content-page.php:29
+#: template-parts/content/content-single.php:32
+msgid "Pages:"
+msgstr "Сторінок:"
+
+#: template-parts/content/content-image-attachment.php:64
+msgid "Edit"
+msgstr "Редагувати"
+
+#. translators: 1: link to WP admin new post page.
+#: template-parts/content/content-none.php:20
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: template-parts/content/content-none.php:33
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+"Вибачте, але ніщо не відповідало вашим пошуковим запитам. Будь ласка, "
+"спробуйте ще раз, використовуючи кілька інших слів."
+
+#: template-parts/content/content-none.php:38
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr "Схоже, ми не можемо знайти те, що ви шукаєте. Можливо, пошук допоможе."
+
+#: template-parts/header/site-navigation.php:12
+msgid "Skip to content"
+msgstr "Перейти до вмісту"
+
+#: template-parts/header/site-navigation.php:14
+#: template-parts/header/site-navigation.php:15
+msgid "Menu"
+msgstr "Меню"
+
+#. translators: %1$s: post author
+#: template-parts/post/author.php:28
+#, php-format
+msgid "Published by %1$s"
+msgstr "Опубліковано %1$s"
+
+#. translators: %1$s: post author
+#: template-parts/post/author.php:41
+#, php-format
+msgid "View all posts by %1$s"
+msgstr "Перегляд повідомлень з %1$s"
+
+#. Theme Name of the plugin/theme
+msgid "Allium"
+msgstr "Allium"
+
+#. Theme URI of the plugin/theme
+msgid "https://templatelens.com/allium/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Allium is a clean and minimalist theme that allows your reader to focus on "
+"your content. Allium is designed for news agencies, travel websites, "
+"business magazine, food recipes, health magazine, technology sites and all "
+"type of publishing or review site. Allium theme is fully compatible with "
+"Gutenberg content editor. Easy to use, no coding!"
+msgstr ""
+"Allium - це чиста і мінімалістична тема, яка дозволяє вашому читачеві "
+"зосередитися на вашому контенті. Allium призначений для інформаційних "
+"агентств, туристичних сайтів, ділових журналів, кулінарних рецептів, "
+"журналів про здоров'я, технологічних сайтів і всіх типів публікацій або "
+"оглядових сайтів. Тема Allium повністю сумісна з редактором контенту "
+"Gutenberg. Простота у використанні, ніякого кодування!"
+
+#. Author of the plugin/theme
+msgid "TemplateLens"
+msgstr "TemplateLens ( Шаблон )"
+
+#. Author URI of the plugin/theme
+msgid "https://templatelens.com"
+msgstr ""

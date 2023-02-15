@@ -1,0 +1,9 @@
+PROCESSED on Fri, 14 Aug 2020 11:36:26 +0000
+/wp-includes/css/dist/block-library/style.min.css
+/wp-content/plugins/social-icons-widget-by-wpzoom/block/dist/blocks.style.build.css
+/wp-content/plugins/code-syntax-block/assets/blocks.style.css
+/wp-content/plugins/code-syntax-block/assets/prism/prism.css
+/wp-content/plugins/clearfy/components/comments-plus/assets/css/url-span.css
+/wp-content/plugins/contact-form-7/includes/css/styles.css
+/wp-content/plugins/popularis-extra/assets/css/style.css
+PROCESSED from https://profglobal.top/animacija-vysoty-bloka-js-jquery-primer/

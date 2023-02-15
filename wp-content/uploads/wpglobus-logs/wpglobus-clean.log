@@ -1,0 +1,214 @@
+2020-06-03T10:29:03+00:00
+TABLE: wp_posts
+ID: 1370
+BEFORE: 
+{:ru}Портфолио{:}{:uk}Портфоліо{:}
+AFTER: 
+Портфолио
+=================
+
+2020-06-03T10:29:03+00:00
+TABLE: wp_posts
+ID: 1371
+BEFORE: 
+{:ru}Услуги{:}{:uk}Послуги{:}
+AFTER: 
+Услуги
+=================
+
+2020-06-03T10:29:03+00:00
+TABLE: wp_posts
+ID: 1673
+BEFORE: 
+{
+    "blogname": {
+        "value": "{:ru}ProfGlobal{:}{:uk}ProfGlobal - IT \u043a\u043e\u043c\u043f\u0430\u043d\u0456\u044f{:}",
+        "type": "option",
+        "user_id": 1,
+        "date_modified_gmt": "2020-05-23 13:17:06"
+    },
+    "blogdescription": {
+        "value": "{:ru}IT company{:}{:uk}\u0441\u0442\u0432\u043e\u0440\u0435\u043d\u043d\u044f \u0441\u0430\u0439\u0442\u0456\u0432{:}",
+        "type": "option",
+        "user_id": 1,
+        "date_modified_gmt": "2020-05-23 13:17:06"
+    }
+}
+AFTER: 
+ProfGlobal
+=================
+
+2020-06-03T10:29:03+00:00
+TABLE: wp_posts
+ID: 1690
+BEFORE: 
+{
+    "blogname": {
+        "value": "{:ru}ProfGlobal{:}{:uk}ProfGlobal - IT \u043a\u043e\u043c\u043f\u0430\u043d\u0456\u044f{:}",
+        "type": "option",
+        "user_id": 1,
+        "date_modified_gmt": "2020-06-02 20:46:42"
+    },
+    "blogdescription": {
+        "value": "{:ru}\u043f\u043e\u0440\u0442\u0430\u043b IT \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430{:}{:uk}\u0441\u0442\u0432\u043e\u0440\u0435\u043d\u043d\u044f \u0441\u0430\u0439\u0442\u0456\u0432{:}",
+        "type": "option",
+        "user_id": 1,
+        "date_modified_gmt": "2020-06-02 20:46:42"
+    },
+    "allium::allium_copyright": {
+        "value": "\u00a9 \u0412\u0441\u0435 \u043f\u0440\u0430\u0432\u0430 \u0437\u0430\u0449\u0438\u0449\u0435\u043d\u044b 2020 - <a href=\"http://profglobal.top/\">{:ru}ProfGlobal{:}{:uk}ProfGlobal - IT \u043a\u043e\u043c\u043f\u0430\u043d\u0456\u044f{:}</a>",
+        "type": "theme_mod",
+        "user_id": 1,
+        "date_modified_gmt": "2020-06-02 20:46:42"
+    }
+}
+AFTER: 
+ProfGlobal
+=================
+
+2020-06-03T10:29:03+00:00
+TABLE: wp_posts
+ID: 1691
+BEFORE: 
+{
+    "blogname": {
+        "value": "{:ru}ProfGlobal{:}{:uk}ProfGlobal{:}",
+        "type": "option",
+        "user_id": 1,
+        "date_modified_gmt": "2020-06-02 20:47:09"
+    },
+    "blogdescription": {
+        "value": "{:ru}\u043f\u043e\u0440\u0442\u0430\u043b IT \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430{:}{:uk}\u043f\u043e\u0440\u0442\u0430\u043b IT \u0440\u043e\u0437\u0440\u043e\u0431\u043d\u0438\u043a\u0430{:}",
+        "type": "option",
+        "user_id": 1,
+        "date_modified_gmt": "2020-06-02 20:47:09"
+    }
+}
+AFTER: 
+ProfGlobal
+=================
+
+2020-06-03T10:29:03+00:00
+TABLE: wp_posts
+ID: 1707
+BEFORE: 
+{
+    "allium::allium_copyright": {
+        "value": "{:ru}ProfGlobal - \u043f\u043e\u0440\u0442\u0430\u043b IT \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430{:}{:uk}ProfGlobal - IT \u043a\u043e\u043c\u043f\u0430\u043d\u0456\u044f{:}",
+        "type": "theme_mod",
+        "user_id": 1,
+        "date_modified_gmt": "2020-06-03 09:21:55"
+    }
+}
+AFTER: 
+ProfGlobal - \u043f\u043e\u0440\u0442\u0430\u043b IT \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430
+=================
+
+2020-06-03T10:29:03+00:00
+TABLE: wp_posts
+ID: 1708
+BEFORE: 
+{
+    "allium::allium_copyright": {
+        "value": "{:ru}ProfGlobal - \u043f\u043e\u0440\u0442\u0430\u043b IT \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430{:}{:uk}ProfGlobal - \u043f\u043e\u0440\u0442\u0430\u043b IT \u0440\u0430\u0437\u0440\u043e\u0431\u043d\u0438\u043a\u0430{:}",
+        "type": "theme_mod",
+        "user_id": 1,
+        "date_modified_gmt": "2020-06-03 09:22:19"
+    }
+}
+AFTER: 
+ProfGlobal - \u043f\u043e\u0440\u0442\u0430\u043b IT \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430
+=================
+
+2020-06-03T10:29:03+00:00
+TABLE: wp_posts
+ID: 1709
+BEFORE: 
+{
+    "allium::allium_copyright": {
+        "value": "{:ru}ProfGlobal - \u043f\u043e\u0440\u0442\u0430\u043b IT \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430{:}{:uk}ProfGlobal - \u043f\u043e\u0440\u0442\u0430\u043b IT \u0440\u043e\u0437\u0440\u043e\u0431\u043d\u0438\u043a\u0430{:}",
+        "type": "theme_mod",
+        "user_id": 1,
+        "date_modified_gmt": "2020-06-03 09:22:32"
+    }
+}
+AFTER: 
+ProfGlobal - \u043f\u043e\u0440\u0442\u0430\u043b IT \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430
+=================
+
+2020-06-03T10:29:04+00:00
+TABLE: wp_postmeta
+ID: 10472
+BEFORE: 
+{:uk}a:5:{s:4:"time";i:1590119382;s:5:"fonts";a:0:{}s:5:"icons";a:1:{i:0;s:0:"";}s:6:"status";s:4:"file";i:0;s:0:"";}{:}
+AFTER: 
+(empty)
+=================
+
+2020-06-03T10:29:04+00:00
+TABLE: wp_postmeta
+ID: 10473
+BEFORE: 
+{:uk}a:5:{s:4:"time";i:1590119381;s:5:"fonts";a:0:{}s:5:"icons";a:3:{i:0;s:0:"";i:1;s:8:"fa-solid";i:4;s:9:"fa-brands";}s:6:"status";s:4:"file";i:0;s:0:"";}{:}
+AFTER: 
+(empty)
+=================
+
+2020-06-03T10:29:04+00:00
+TABLE: wp_postmeta
+ID: 10474
+BEFORE: 
+{:uk}a:5:{s:4:"time";i:1590119387;s:5:"fonts";a:0:{}s:5:"icons";a:1:{i:0;s:0:"";}s:6:"status";s:4:"file";i:0;s:0:"";}{:}
+AFTER: 
+(empty)
+=================
+
+2020-06-03T10:29:05+00:00
+TABLE: wp_options
+ID: 3
+BEFORE: 
+{:ru}ProfGlobal{:}{:uk}ProfGlobal{:}
+AFTER: 
+ProfGlobal
+=================
+
+2020-06-03T10:29:05+00:00
+TABLE: wp_options
+ID: 4
+BEFORE: 
+{:ru}портал IT разработчика{:}{:uk}портал IT розробника{:}
+AFTER: 
+портал IT разработчика
+=================
+
+2020-06-03T10:29:05+00:00
+TABLE: wp_options
+ID: 131303
+BEFORE: 
+Array
+(
+    [0] => 
+    [nav_menu_locations] => Array
+        (
+            [header-menu] => 149
+        )
+
+    [custom_css_post_id] => -1
+    [allium_copyright] => {:ru}ProfGlobal - портал IT разработчика{:}{:uk}ProfGlobal - портал IT розробника{:}
+)
+
+AFTER: 
+Array
+(
+    [0] => 
+    [nav_menu_locations] => Array
+        (
+            [header-menu] => 149
+        )
+
+    [custom_css_post_id] => -1
+    [allium_copyright] => ProfGlobal - портал IT разработчика
+)
+
+=================
+

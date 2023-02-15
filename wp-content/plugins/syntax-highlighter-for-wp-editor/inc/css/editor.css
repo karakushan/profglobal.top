@@ -1,0 +1,23 @@
+/*
+ * Style sheet for Plugins/Themes Editor pages
+ *
+ * @package     Syntax Highlighter for Theme/Plugin Editor
+ * @author      Arthur Gareginyan
+ * @link        https://www.spacexchimp.com
+ * @copyright   Copyright (c) 2016-2021 Space X-Chimp. All Rights Reserved.
+ */
+
+
+.CodeMirror {
+    width: calc(100% - 220px) !important;
+    height: 100% !important;
+    border: 1px solid grey;
+}
+
+div.CodeMirror-hscrollbar {
+    min-height: 8px !important;
+}
+
+#template div {
+    margin-right: 0;
+}

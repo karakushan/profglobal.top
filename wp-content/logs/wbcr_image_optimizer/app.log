@@ -1,0 +1,520 @@
+
+25-06-2019 13:30:02.1561469402.121 [176.120.99.211][5d1221][info] Start plugin migration < 1.3.0.
+																	-DB Version: 1
+																	-Plugin Version in DB: 0
+																	-Current Plugin Version: 1.4.0
+25-06-2019 13:30:02.1561469402.123 [176.120.99.211][5d1221][info] Plugin migration was successfull!
+25-06-2019 13:30:02.1561469402.1239 [176.120.99.211][5d1221][info] Start plugin migration < 1.3.6.
+																	-DB Version: 1
+																	-Plugin Version in DB: 0
+																	-Current Plugin Version: 1.4.0
+25-06-2019 13:30:02.1561469402.124 [176.120.99.211][5d1221][info] Plugin migration was successfull!
+25-06-2019 13:30:02.1561469402.1249 [176.120.99.211][5d1221][info] Start plugin migration < 1.3.9.
+																	-DB Version: 1
+																	-Plugin Version in DB: 0
+																	-Current Plugin Version: 1.4.0
+25-06-2019 13:30:02.1561469402.1365 [176.120.99.211][5d1221][info] Plugin migration was successfull!
+25-06-2019 13:59:18.1561471158.0886 [176.120.99.211][5d1228][info] Try to create backup directory. Backup dir: (/home/cg267747/profglobal.top/www/wp-content/uploads/wio_backup/2019/06)
+25-06-2019 13:59:18.1561471158.1448 [176.120.99.211][5d1228][info] Preparing to upload a file (/home/cg267747/profglobal.top/www/wp-content/uploads/2019/06/d3c54d2ed0d8c109e7792108ab9f0b68.jpg) to a remote server (server_1).
+25-06-2019 13:59:18.1561471158.3795 [176.120.99.211][5d1228][info] File successfully uploaded to remote server (server_1).
+25-06-2019 13:59:18.1561471158.5861 [176.120.99.211][5d1228][info] Preparing to upload a file (/home/cg267747/profglobal.top/www/wp-content/uploads/2019/06/d3c54d2ed0d8c109e7792108ab9f0b68-250x250.jpg) to a remote server (server_1).
+25-06-2019 13:59:18.1561471158.7897 [176.120.99.211][5d1228][info] File successfully uploaded to remote server (server_1).
+25-06-2019 13:59:18.1561471158.8802 [176.120.99.211][5d1228][info] Preparing to upload a file (/home/cg267747/profglobal.top/www/wp-content/uploads/2019/06/d3c54d2ed0d8c109e7792108ab9f0b68-300x300.jpg) to a remote server (server_1).
+25-06-2019 13:59:19.1561471159.041 [176.120.99.211][5d1228][info] File successfully uploaded to remote server (server_1).
+27-03-2020 11:37:27.1585309047.7132 [185.25.116.236][5e7de5][info] Start plugin migration < 1.4.2.
+																	-DB Version: 1
+																	-Plugin Version in DB: 1.4.0
+																	-Current Plugin Version: 1.4.2
+27-03-2020 11:37:27.1585309047.7133 [185.25.116.236][5e7de5][info] Plugin migration was successfull!
+27-03-2020 11:45:59.1585309559.685 [185.25.116.236][5e7de7][info] Try to create backup directory. Backup dir: (/home/admin/web/profglobal.top/public_html/wp-content/uploads/wio_backup/2020/01)
+27-03-2020 11:45:59.1585309559.6953 [185.25.116.236][5e7de7][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/01/neve-web-design-studio-01.jpg) to a remote server (server_1).
+27-03-2020 11:46:11.1585309571.0568 [185.25.116.236][5e7de7][info] File successfully uploaded to remote server (server_1).
+27-03-2020 11:46:12.1585309572.3265 [185.25.116.236][5e7de7][debug] New queue created #2, attributes values: {"server_id":null,"object_id":1606,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":25853,"final_size":25853,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":25853,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1585309572}
+27-03-2020 11:46:12.1585309572.5667 [185.25.116.236][5e7de7][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/01/neve-web-design-studio-02.jpg) to a remote server (server_1).
+27-03-2020 11:46:12.1585309572.7906 [185.25.116.236][5e7de7][info] File successfully uploaded to remote server (server_1).
+27-03-2020 11:46:12.1585309572.9473 [185.25.116.236][5e7de7][debug] New queue created #3, attributes values: {"server_id":null,"object_id":1607,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":65127,"final_size":41352,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":65127,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1585309572}
+27-03-2020 11:46:13.1585309573.1752 [185.25.116.236][5e7de7][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/01/neve-web-design-studio-03.jpg) to a remote server (server_1).
+27-03-2020 11:46:13.1585309573.4104 [185.25.116.236][5e7de7][info] File successfully uploaded to remote server (server_1).
+27-03-2020 11:46:13.1585309573.5359 [185.25.116.236][5e7de7][debug] New queue created #4, attributes values: {"server_id":null,"object_id":1608,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":78662,"final_size":43255,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":78662,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1585309573}
+27-03-2020 11:46:13.1585309573.8939 [185.25.116.236][5e7de7][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/01/neve-web-design-studio-04.jpg) to a remote server (server_1).
+27-03-2020 11:46:14.1585309574.1319 [185.25.116.236][5e7de7][info] File successfully uploaded to remote server (server_1).
+27-03-2020 11:46:14.1585309574.2646 [185.25.116.236][5e7de7][debug] New queue created #5, attributes values: {"server_id":null,"object_id":1609,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":48870,"final_size":28929,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":48870,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1585309574}
+27-03-2020 11:46:14.1585309574.4588 [185.25.116.236][5e7de7][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/01/neve-web-design-studio-05.jpg) to a remote server (server_1).
+27-03-2020 11:46:14.1585309574.7062 [185.25.116.236][5e7de7][info] File successfully uploaded to remote server (server_1).
+27-03-2020 11:46:14.1585309574.8638 [185.25.116.236][5e7de7][debug] New queue created #6, attributes values: {"server_id":null,"object_id":1610,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":85435,"final_size":77565,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":85435,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1585309574}
+27-03-2020 11:46:15.1585309575.0463 [185.25.116.236][5e7de7][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/01/neve-web-design-studio-06.jpg) to a remote server (server_1).
+27-03-2020 11:46:20.1585309580.5405 [185.25.116.236][5e7de7][info] File successfully uploaded to remote server (server_1).
+27-03-2020 11:46:21.1585309581.0267 [185.25.116.236][5e7de7][debug] New queue created #7, attributes values: {"server_id":null,"object_id":1611,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":67105,"final_size":63589,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":67105,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1585309581}
+27-03-2020 11:46:21.1585309581.2174 [185.25.116.236][5e7de7][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/01/neve-web-design-studio-07.jpg) to a remote server (server_1).
+27-03-2020 11:46:21.1585309581.4564 [185.25.116.236][5e7de7][info] File successfully uploaded to remote server (server_1).
+27-03-2020 11:46:21.1585309581.6152 [185.25.116.236][5e7de7][debug] New queue created #8, attributes values: {"server_id":null,"object_id":1612,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":65678,"final_size":65674,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":65678,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1585309581}
+27-03-2020 11:46:21.1585309581.8033 [185.25.116.236][5e7de7][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/01/neve-web-design-studio-08.jpg) to a remote server (server_1).
+27-03-2020 11:46:22.1585309582.0593 [185.25.116.236][5e7de7][info] File successfully uploaded to remote server (server_1).
+27-03-2020 11:46:22.1585309582.2248 [185.25.116.236][5e7de7][debug] New queue created #9, attributes values: {"server_id":null,"object_id":1613,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":68781,"final_size":63362,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":68781,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1585309582}
+27-03-2020 11:46:22.1585309582.4025 [185.25.116.236][5e7de7][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/01/neve-web-design-studio-09.jpg) to a remote server (server_1).
+27-03-2020 11:46:22.1585309582.7807 [185.25.116.236][5e7de7][info] File successfully uploaded to remote server (server_1).
+27-03-2020 11:46:22.1585309582.9875 [185.25.116.236][5e7de7][debug] New queue created #10, attributes values: {"server_id":null,"object_id":1614,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":63434,"final_size":62876,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":63434,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1585309582}
+27-03-2020 11:46:23.1585309583.154 [185.25.116.236][5e7de7][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/01/neve-web-design-studio-10.jpg) to a remote server (server_1).
+27-03-2020 11:46:23.1585309583.3545 [185.25.116.236][5e7de7][info] File successfully uploaded to remote server (server_1).
+27-03-2020 11:46:23.1585309583.4826 [185.25.116.236][5e7de7][debug] New queue created #11, attributes values: {"server_id":null,"object_id":22,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":42153,"final_size":38581,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":42153,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1585309583}
+27-03-2020 11:46:23.1585309583.6654 [185.25.116.236][5e7de7][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/01/neve-web-design-studio-11.jpg) to a remote server (server_1).
+27-03-2020 11:46:23.1585309583.9063 [185.25.116.236][5e7de7][info] File successfully uploaded to remote server (server_1).
+27-03-2020 11:46:24.1585309584.0769 [185.25.116.236][5e7de7][debug] New queue created #12, attributes values: {"server_id":null,"object_id":23,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":74432,"final_size":57901,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":74432,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1585309584}
+27-03-2020 11:46:24.1585309584.2316 [185.25.116.236][5e7de7][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/01/logo-webdesign-neve.png) to a remote server (server_1).
+27-03-2020 11:46:26.1585309586.7183 [185.25.116.236][5e7de7][info] File successfully uploaded to remote server (server_1).
+27-03-2020 11:46:27.1585309587.257 [185.25.116.236][5e7de7][debug] New queue created #13, attributes values: {"server_id":null,"object_id":24,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":1183,"final_size":1183,"original_mime_type":"image\/png","final_mime_type":"image\/png","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":1183,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1585309587}
+27-03-2020 13:32:23.1585315943.3647 [185.25.116.236][5e7e00][info] Parent plugin start deactivation!
+27-03-2020 13:32:23.1585315943.3648 [185.25.116.236][5e7e00][info] Parent plugin deactivation complete!
+02-06-2020 20:54:40.1591131280.8231 [185.25.116.236][5ed6bc][info] Parent plugin start installation!
+02-06-2020 20:54:40.1591131280.8335 [185.25.116.236][5ed6bc][info] Plugin installation: try create plugin tables.
+																	-DB Version: 1
+																	-Plugin Version in DB: 1.4.2
+																	-Current Plugin Version: 1.4.2
+02-06-2020 20:54:40.1591131280.8338 [185.25.116.236][5ed6bc][info] Parent plugin installation complete!
+02-06-2020 21:16:47.1591132607.8321 [185.25.116.236][5ed6c1][info] Start meta migration. Limit 150
+02-06-2020 21:16:47.1591132607.8321 [185.25.116.236][5ed6c1][info] Memory: 128M (avail) / 16.00M (used) / 16.00M (peak)
+02-06-2020 21:16:47.1591132607.835 [185.25.116.236][5ed6c1][info] Finded 57 attachments for migration.
+02-06-2020 21:16:47.1591132607.835 [185.25.116.236][5ed6c1][info] Memory: 256M (avail) / 16.00M (used) / 16.00M (peak)
+02-06-2020 21:16:48.1591132608.172 [185.25.116.236][5ed6c1][info] Succefull migrated 57 items.
+02-06-2020 21:16:48.1591132608.172 [185.25.116.236][5ed6c1][info] Memory: 256M (avail) / 16.00M (used) / 16.00M (peak)
+02-06-2020 21:16:48.1591132608.4009 [185.25.116.236][5ed6c1][info] Start meta migration. Limit 150
+02-06-2020 21:16:48.1591132608.401 [185.25.116.236][5ed6c1][info] Memory: 128M (avail) / 6.00M (used) / 6.00M (peak)
+02-06-2020 21:16:48.1591132608.402 [185.25.116.236][5ed6c1][info] Succefull migrated all items. Finishing-up...
+02-06-2020 21:16:48.1591132608.4094 [185.25.116.236][5ed6c1][info] Memory: 128M (avail) / 6.00M (used) / 6.00M (peak)
+03-06-2020 15:09:13.1591196953.692 [185.25.116.236][5ed7bd][info] Try to create backup directory. Backup dir: (/home/admin/web/profglobal.top/public_html/wp-content/uploads/wio_backup/2020/06)
+03-06-2020 15:09:13.1591196953.6981 [185.25.116.236][5ed7bd][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/1.jpg) to a remote server (server_1).
+03-06-2020 15:09:14.1591196954.0315 [185.25.116.236][5ed7bd][info] File successfully uploaded to remote server (server_1).
+03-06-2020 15:09:14.1591196954.2275 [185.25.116.236][5ed7bd][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/1-250x250.jpg) to a remote server (server_1).
+03-06-2020 15:09:14.1591196954.4252 [185.25.116.236][5ed7bd][info] File successfully uploaded to remote server (server_1).
+03-06-2020 15:09:14.1591196954.5146 [185.25.116.236][5ed7bd][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/1-300x169.jpg) to a remote server (server_1).
+03-06-2020 15:09:14.1591196954.6593 [185.25.116.236][5ed7bd][info] File successfully uploaded to remote server (server_1).
+03-06-2020 15:09:14.1591196954.7785 [185.25.116.236][5ed7bd][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/1-768x432.jpg) to a remote server (server_1).
+03-06-2020 15:09:15.1591196955.1011 [185.25.116.236][5ed7bd][info] File successfully uploaded to remote server (server_1).
+03-06-2020 15:09:16.1591196956.2646 [185.25.116.236][5ed7bd][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/1-1024x576.jpg) to a remote server (server_1).
+03-06-2020 15:09:16.1591196956.5858 [185.25.116.236][5ed7bd][info] File successfully uploaded to remote server (server_1).
+03-06-2020 15:09:16.1591196956.7997 [185.25.116.236][5ed7bd][debug] New queue created #71, attributes values: {"server_id":null,"object_id":1719,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":175307,"final_size":165772,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":4,\"original_main_size\":63359,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1591196956}
+04-06-2020 07:27:11.1591255631.0939 [185.25.116.236][5ed8a2][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/istock-937862596.jpg) to a remote server (server_1).
+04-06-2020 07:27:11.1591255631.5053 [185.25.116.236][5ed8a2][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:27:11.1591255631.73 [185.25.116.236][5ed8a2][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/istock-937862596-250x250.jpg) to a remote server (server_1).
+04-06-2020 07:27:11.1591255631.872 [185.25.116.236][5ed8a2][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:27:11.1591255631.9638 [185.25.116.236][5ed8a2][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/istock-937862596-300x188.jpg) to a remote server (server_1).
+04-06-2020 07:27:12.1591255632.1171 [185.25.116.236][5ed8a2][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:27:12.1591255632.2107 [185.25.116.236][5ed8a2][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/istock-937862596-768x480.jpg) to a remote server (server_1).
+04-06-2020 07:27:12.1591255632.4323 [185.25.116.236][5ed8a2][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:27:12.1591255632.5664 [185.25.116.236][5ed8a2][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/istock-937862596-1024x640.jpg) to a remote server (server_1).
+04-06-2020 07:27:12.1591255632.7945 [185.25.116.236][5ed8a2][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:27:12.1591255632.9386 [185.25.116.236][5ed8a2][debug] New queue created #72, attributes values: {"server_id":null,"object_id":1724,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":511236,"final_size":191148,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":4,\"original_main_size\":432154,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1591255632}
+04-06-2020 07:33:53.1591256033.4524 [185.25.116.236][5ed8a3][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/27095e13d90c1d9898b9f75329594629.jpg) to a remote server (server_1).
+04-06-2020 07:33:53.1591256033.6851 [185.25.116.236][5ed8a3][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:33:53.1591256033.8301 [185.25.116.236][5ed8a3][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/27095e13d90c1d9898b9f75329594629-250x250.jpg) to a remote server (server_1).
+04-06-2020 07:33:53.1591256033.989 [185.25.116.236][5ed8a3][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:33:54.1591256034.0785 [185.25.116.236][5ed8a3][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/27095e13d90c1d9898b9f75329594629-300x300.jpg) to a remote server (server_1).
+04-06-2020 07:33:54.1591256034.2209 [185.25.116.236][5ed8a3][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:33:54.1591256034.3207 [185.25.116.236][5ed8a3][debug] New queue created #73, attributes values: {"server_id":null,"object_id":1728,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":51936,"final_size":45348,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":2,\"original_main_size\":34942,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1591256034}
+04-06-2020 07:47:10.1591256830.6476 [185.25.116.236][5ed8a6][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/seose.jpg) to a remote server (server_1).
+04-06-2020 07:47:10.1591256830.8707 [185.25.116.236][5ed8a6][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:47:11.1591256831.0155 [185.25.116.236][5ed8a6][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/seose-250x250.jpg) to a remote server (server_1).
+04-06-2020 07:47:11.1591256831.1684 [185.25.116.236][5ed8a6][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:47:11.1591256831.2535 [185.25.116.236][5ed8a6][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/seose-300x176.jpg) to a remote server (server_1).
+04-06-2020 07:47:11.1591256831.3948 [185.25.116.236][5ed8a6][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:47:11.1591256831.4904 [185.25.116.236][5ed8a6][debug] New queue created #74, attributes values: {"server_id":null,"object_id":1736,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":38822,"final_size":36406,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":2,\"original_main_size\":23647,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1591256831}
+04-06-2020 07:54:04.1591257244.1419 [185.25.116.236][5ed8a8][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/picture2_poiskovik-google-_361796_p0.jpg) to a remote server (server_1).
+04-06-2020 07:54:04.1591257244.4737 [185.25.116.236][5ed8a8][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:54:04.1591257244.6428 [185.25.116.236][5ed8a8][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/picture2_poiskovik-google-_361796_p0-250x250.jpg) to a remote server (server_1).
+04-06-2020 07:54:04.1591257244.7959 [185.25.116.236][5ed8a8][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:54:04.1591257244.895 [185.25.116.236][5ed8a8][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/picture2_poiskovik-google-_361796_p0-300x199.jpg) to a remote server (server_1).
+04-06-2020 07:54:05.1591257245.0332 [185.25.116.236][5ed8a8][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:54:05.1591257245.14 [185.25.116.236][5ed8a8][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/picture2_poiskovik-google-_361796_p0-768x508.jpg) to a remote server (server_1).
+04-06-2020 07:54:05.1591257245.3813 [185.25.116.236][5ed8a8][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:54:05.1591257245.5057 [185.25.116.236][5ed8a8][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/picture2_poiskovik-google-_361796_p0-1024x678.jpg) to a remote server (server_1).
+04-06-2020 07:54:05.1591257245.7439 [185.25.116.236][5ed8a8][info] File successfully uploaded to remote server (server_1).
+04-06-2020 07:54:05.1591257245.8769 [185.25.116.236][5ed8a8][debug] New queue created #75, attributes values: {"server_id":null,"object_id":1739,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":144311,"final_size":136365,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":4,\"original_main_size\":57720,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1591257245}
+11-06-2020 09:17:08.1591867028.3304 [185.25.116.236][5ee1f6][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/prodvizenie-v-yandex.jpg) to a remote server (server_1).
+11-06-2020 09:17:08.1591867028.603 [185.25.116.236][5ee1f6][info] File successfully uploaded to remote server (server_1).
+11-06-2020 09:17:08.1591867028.7744 [185.25.116.236][5ee1f6][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/prodvizenie-v-yandex-250x250.jpg) to a remote server (server_1).
+11-06-2020 09:17:08.1591867028.9455 [185.25.116.236][5ee1f6][info] File successfully uploaded to remote server (server_1).
+11-06-2020 09:17:10.1591867030.071 [185.25.116.236][5ee1f6][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/prodvizenie-v-yandex-300x220.jpg) to a remote server (server_1).
+11-06-2020 09:17:10.1591867030.2216 [185.25.116.236][5ee1f6][info] File successfully uploaded to remote server (server_1).
+11-06-2020 09:17:10.1591867030.3094 [185.25.116.236][5ee1f6][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/prodvizenie-v-yandex-768x562.jpg) to a remote server (server_1).
+11-06-2020 09:17:10.1591867030.538 [185.25.116.236][5ee1f6][info] File successfully uploaded to remote server (server_1).
+11-06-2020 09:17:10.1591867030.6759 [185.25.116.236][5ee1f6][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/prodvizenie-v-yandex-1024x750.jpg) to a remote server (server_1).
+11-06-2020 09:17:10.1591867030.9585 [185.25.116.236][5ee1f6][info] File successfully uploaded to remote server (server_1).
+11-06-2020 09:17:11.1591867031.0929 [185.25.116.236][5ee1f6][debug] New queue created #76, attributes values: {"server_id":null,"object_id":1759,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":172904,"final_size":147064,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":4,\"original_main_size\":84951,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1591867031}
+16-06-2020 09:05:09.1592298309.759 [185.25.116.236][5ee88b][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/laravel-logo.png) to a remote server (server_1).
+16-06-2020 09:05:09.1592298309.9679 [185.25.116.236][5ee88b][info] File successfully uploaded to remote server (server_1).
+16-06-2020 09:05:10.1592298310.0572 [185.25.116.236][5ee88b][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/laravel-logo-250x250.png) to a remote server (server_1).
+16-06-2020 09:05:10.1592298310.2234 [185.25.116.236][5ee88b][info] File successfully uploaded to remote server (server_1).
+16-06-2020 09:05:10.1592298310.3339 [185.25.116.236][5ee88b][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/laravel-logo-300x300.png) to a remote server (server_1).
+16-06-2020 09:05:10.1592298310.5619 [185.25.116.236][5ee88b][info] File successfully uploaded to remote server (server_1).
+16-06-2020 09:05:10.1592298310.6642 [185.25.116.236][5ee88b][debug] New queue created #77, attributes values: {"server_id":null,"object_id":1768,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":36756,"final_size":18052,"original_mime_type":"image\/png","final_mime_type":"image\/png","extra_data":"{\"thumbnails_count\":2,\"original_main_size\":6977,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1592298310}
+20-06-2020 10:08:58.1592647738.0532 [185.25.116.236][5eede0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/sozdaniye-internet-magazina-i-prodvizheniye-poshagovaya-instruktsiya.jpg) to a remote server (server_1).
+20-06-2020 10:08:58.1592647738.4272 [185.25.116.236][5eede0][info] File successfully uploaded to remote server (server_1).
+20-06-2020 10:08:58.1592647738.8536 [185.25.116.236][5eede0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/sozdaniye-internet-magazina-i-prodvizheniye-poshagovaya-instruktsiya-250x250.jpg) to a remote server (server_1).
+20-06-2020 10:08:59.1592647739.0122 [185.25.116.236][5eede0][info] File successfully uploaded to remote server (server_1).
+20-06-2020 10:08:59.1592647739.1136 [185.25.116.236][5eede0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/sozdaniye-internet-magazina-i-prodvizheniye-poshagovaya-instruktsiya-300x208.jpg) to a remote server (server_1).
+20-06-2020 10:08:59.1592647739.302 [185.25.116.236][5eede0][info] File successfully uploaded to remote server (server_1).
+20-06-2020 10:08:59.1592647739.3971 [185.25.116.236][5eede0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/06/sozdaniye-internet-magazina-i-prodvizheniye-poshagovaya-instruktsiya-768x532.jpg) to a remote server (server_1).
+20-06-2020 10:08:59.1592647739.6693 [185.25.116.236][5eede0][info] File successfully uploaded to remote server (server_1).
+20-06-2020 10:08:59.1592647739.8562 [185.25.116.236][5eede0][debug] New queue created #78, attributes values: {"server_id":null,"object_id":1819,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":318328,"final_size":172348,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":3,\"original_main_size\":240723,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1592647739}
+19-07-2020 13:06:46.1595164006.7054 [185.25.116.236][5f1445][info] Try to create backup directory. Backup dir: (/home/admin/web/profglobal.top/public_html/wp-content/uploads/wio_backup/2020/07)
+19-07-2020 13:06:46.1595164006.7087 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1881-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:06:46.1595164006.9064 [185.25.116.236][5f1445][error] Error to optimize attachment (ID: #1882). Message: "Cannot copy from uploaded file"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 480x360
+	-> Relative path: 2020/07/p1881-youtube-thumbnail.jpg
+	-> Server used: server_1
+	->  Additional sizes:
+		-> Type: medium, size: 300x225, MIME type: image/jpeg
+		-> Type: thumbnail, size: 250x250, MIME type: image/jpeg
+
+19-07-2020 13:06:46.1595164006.9074 [185.25.116.236][5f1445][debug] New queue created #79, attributes values: {"server_id":null,"object_id":1882,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Cannot copy from uploaded file\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164006}
+19-07-2020 13:06:46.1595164006.9076 [185.25.116.236][5f1445][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/p1881-youtube-thumbnail.jpg, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1881-youtube-thumbnail.jpg, quality: 90) as error was returned: Cannot copy from uploaded file
+19-07-2020 13:06:47.1595164007.4589 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1883-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:06:47.1595164007.8158 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:06:48.1595164008.0717 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1883-youtube-thumbnail-250x250.jpg) to a remote server (server_1).
+19-07-2020 13:06:48.1595164008.2538 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1883-youtube-thumbnail-300x169.jpg) to a remote server (server_1).
+19-07-2020 13:06:48.1595164008.4058 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:06:48.1595164008.4949 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1883-youtube-thumbnail-768x432.jpg) to a remote server (server_1).
+19-07-2020 13:06:48.1595164008.7534 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:06:48.1595164008.9359 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1883-youtube-thumbnail-1024x576.jpg) to a remote server (server_1).
+19-07-2020 13:06:49.1595164009.2077 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:06:49.1595164009.3911 [185.25.116.236][5f1445][debug] New queue created #80, attributes values: {"server_id":null,"object_id":1884,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":297892,"final_size":286396,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":3,\"original_main_size\":137708,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164009}
+19-07-2020 13:06:49.1595164009.9627 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1885-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:06:50.1595164010.3164 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:06:50.1595164010.5312 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1885-youtube-thumbnail-250x250.jpg) to a remote server (server_1).
+19-07-2020 13:06:50.1595164010.7069 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1885-youtube-thumbnail-300x169.jpg) to a remote server (server_1).
+19-07-2020 13:06:50.1595164010.8801 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1885-youtube-thumbnail-768x432.jpg) to a remote server (server_1).
+19-07-2020 13:06:51.1595164011.1038 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1885-youtube-thumbnail-1024x576.jpg) to a remote server (server_1).
+19-07-2020 13:06:51.1595164011.4305 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:06:51.1595164011.6046 [185.25.116.236][5f1445][debug] New queue created #81, attributes values: {"server_id":null,"object_id":1886,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":258319,"final_size":246742,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":1,\"original_main_size\":161006,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164011}
+19-07-2020 13:06:52.1595164012.1761 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1887-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:06:52.1595164012.5248 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:06:52.1595164012.7276 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1887-youtube-thumbnail-250x250.jpg) to a remote server (server_1).
+19-07-2020 13:06:52.1595164012.9356 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:06:53.1595164013.0587 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1887-youtube-thumbnail-300x169.jpg) to a remote server (server_1).
+19-07-2020 13:06:53.1595164013.248 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:06:53.1595164013.342 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1887-youtube-thumbnail-768x432.jpg) to a remote server (server_1).
+19-07-2020 13:06:53.1595164013.5663 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1887-youtube-thumbnail-1024x576.jpg) to a remote server (server_1).
+19-07-2020 13:06:53.1595164013.7808 [185.25.116.236][5f1445][debug] New queue created #82, attributes values: {"server_id":null,"object_id":1888,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":159986,"final_size":156176,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":2,\"original_main_size\":128285,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164013}
+19-07-2020 13:06:54.1595164014.3557 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1889-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:06:54.1595164014.6383 [185.25.116.236][5f1445][error] Error to optimize attachment (ID: #1890). Message: "Cannot copy from uploaded file"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 1280x720
+	-> Relative path: 2020/07/p1889-youtube-thumbnail.jpg
+	-> Server used: server_1
+	->  Additional sizes:
+		-> Type: medium, size: 300x169, MIME type: image/jpeg
+		-> Type: large, size: 1024x576, MIME type: image/jpeg
+		-> Type: thumbnail, size: 250x250, MIME type: image/jpeg
+		-> Type: medium_large, size: 768x432, MIME type: image/jpeg
+		-> Type: allium-featured, size: 700x525, MIME type: image/jpeg
+		-> Type: allium-featured-single, size: 769x433, MIME type: image/jpeg
+
+19-07-2020 13:06:54.1595164014.6387 [185.25.116.236][5f1445][debug] New queue created #83, attributes values: {"server_id":null,"object_id":1890,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Cannot copy from uploaded file\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164014}
+19-07-2020 13:06:54.1595164014.6389 [185.25.116.236][5f1445][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/p1889-youtube-thumbnail.jpg, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1889-youtube-thumbnail.jpg, quality: 90) as error was returned: Cannot copy from uploaded file
+19-07-2020 13:06:55.1595164015.1802 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1891-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:06:55.1595164015.5285 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:06:55.1595164015.7441 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1891-youtube-thumbnail-250x250.jpg) to a remote server (server_1).
+19-07-2020 13:06:55.1595164015.9276 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1891-youtube-thumbnail-300x169.jpg) to a remote server (server_1).
+19-07-2020 13:06:56.1595164016.1007 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1891-youtube-thumbnail-768x432.jpg) to a remote server (server_1).
+19-07-2020 13:06:56.1595164016.3153 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1891-youtube-thumbnail-1024x576.jpg) to a remote server (server_1).
+19-07-2020 13:06:56.1595164016.5436 [185.25.116.236][5f1445][debug] New queue created #84, attributes values: {"server_id":null,"object_id":1892,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":132504,"final_size":129145,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":132504,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164016}
+19-07-2020 13:06:57.1595164017.107 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1893-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:06:57.1595164017.3776 [185.25.116.236][5f1445][error] Error to optimize attachment (ID: #1894). Message: "Cannot copy from uploaded file"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 1280x720
+	-> Relative path: 2020/07/p1893-youtube-thumbnail.jpg
+	-> Server used: server_1
+	->  Additional sizes:
+		-> Type: medium, size: 300x169, MIME type: image/jpeg
+		-> Type: large, size: 1024x576, MIME type: image/jpeg
+		-> Type: thumbnail, size: 250x250, MIME type: image/jpeg
+		-> Type: medium_large, size: 768x432, MIME type: image/jpeg
+		-> Type: allium-featured, size: 700x525, MIME type: image/jpeg
+		-> Type: allium-featured-single, size: 769x433, MIME type: image/jpeg
+
+19-07-2020 13:06:57.1595164017.3781 [185.25.116.236][5f1445][debug] New queue created #85, attributes values: {"server_id":null,"object_id":1894,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Cannot copy from uploaded file\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164017}
+19-07-2020 13:06:57.1595164017.3782 [185.25.116.236][5f1445][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/p1893-youtube-thumbnail.jpg, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1893-youtube-thumbnail.jpg, quality: 90) as error was returned: Cannot copy from uploaded file
+19-07-2020 13:06:57.1595164017.9232 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1895-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:06:58.1595164018.206 [185.25.116.236][5f1445][error] Error to optimize attachment (ID: #1896). Message: "Cannot copy from uploaded file"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 1280x720
+	-> Relative path: 2020/07/p1895-youtube-thumbnail.jpg
+	-> Server used: server_1
+	->  Additional sizes:
+		-> Type: medium, size: 300x169, MIME type: image/jpeg
+		-> Type: large, size: 1024x576, MIME type: image/jpeg
+		-> Type: thumbnail, size: 250x250, MIME type: image/jpeg
+		-> Type: medium_large, size: 768x432, MIME type: image/jpeg
+		-> Type: allium-featured, size: 700x525, MIME type: image/jpeg
+		-> Type: allium-featured-single, size: 769x433, MIME type: image/jpeg
+
+19-07-2020 13:06:58.1595164018.2065 [185.25.116.236][5f1445][debug] New queue created #86, attributes values: {"server_id":null,"object_id":1896,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Cannot copy from uploaded file\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164018}
+19-07-2020 13:06:58.1595164018.2067 [185.25.116.236][5f1445][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/p1895-youtube-thumbnail.jpg, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1895-youtube-thumbnail.jpg, quality: 90) as error was returned: Cannot copy from uploaded file
+19-07-2020 13:06:58.1595164018.7514 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1897-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:06:59.1595164019.0255 [185.25.116.236][5f1445][error] Error to optimize attachment (ID: #1898). Message: "Cannot copy from uploaded file"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 1280x720
+	-> Relative path: 2020/07/p1897-youtube-thumbnail.jpg
+	-> Server used: server_1
+	->  Additional sizes:
+		-> Type: medium, size: 300x169, MIME type: image/jpeg
+		-> Type: large, size: 1024x576, MIME type: image/jpeg
+		-> Type: thumbnail, size: 250x250, MIME type: image/jpeg
+		-> Type: medium_large, size: 768x432, MIME type: image/jpeg
+		-> Type: allium-featured, size: 700x525, MIME type: image/jpeg
+		-> Type: allium-featured-single, size: 769x433, MIME type: image/jpeg
+
+19-07-2020 13:06:59.1595164019.026 [185.25.116.236][5f1445][debug] New queue created #87, attributes values: {"server_id":null,"object_id":1898,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Cannot copy from uploaded file\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164019}
+19-07-2020 13:06:59.1595164019.0261 [185.25.116.236][5f1445][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/p1897-youtube-thumbnail.jpg, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1897-youtube-thumbnail.jpg, quality: 90) as error was returned: Cannot copy from uploaded file
+19-07-2020 13:06:59.1595164019.7618 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1899-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:07:00.1595164020.0339 [185.25.116.236][5f1445][error] Error to optimize attachment (ID: #1900). Message: "Cannot copy from uploaded file"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 1280x720
+	-> Relative path: 2020/07/p1899-youtube-thumbnail.jpg
+	-> Server used: server_1
+	->  Additional sizes:
+		-> Type: medium, size: 300x169, MIME type: image/jpeg
+		-> Type: large, size: 1024x576, MIME type: image/jpeg
+		-> Type: thumbnail, size: 250x250, MIME type: image/jpeg
+		-> Type: medium_large, size: 768x432, MIME type: image/jpeg
+		-> Type: allium-featured, size: 700x525, MIME type: image/jpeg
+		-> Type: allium-featured-single, size: 769x433, MIME type: image/jpeg
+
+19-07-2020 13:07:00.1595164020.0344 [185.25.116.236][5f1445][debug] New queue created #88, attributes values: {"server_id":null,"object_id":1900,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Cannot copy from uploaded file\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164020}
+19-07-2020 13:07:00.1595164020.0346 [185.25.116.236][5f1445][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/p1899-youtube-thumbnail.jpg, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1899-youtube-thumbnail.jpg, quality: 90) as error was returned: Cannot copy from uploaded file
+19-07-2020 13:07:00.1595164020.5933 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1901-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:07:00.1595164020.8862 [185.25.116.236][5f1445][error] Error to optimize attachment (ID: #1902). Message: "Cannot copy from uploaded file"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 1280x720
+	-> Relative path: 2020/07/p1901-youtube-thumbnail.jpg
+	-> Server used: server_1
+	->  Additional sizes:
+		-> Type: medium, size: 300x169, MIME type: image/jpeg
+		-> Type: large, size: 1024x576, MIME type: image/jpeg
+		-> Type: thumbnail, size: 250x250, MIME type: image/jpeg
+		-> Type: medium_large, size: 768x432, MIME type: image/jpeg
+		-> Type: allium-featured, size: 700x525, MIME type: image/jpeg
+		-> Type: allium-featured-single, size: 769x433, MIME type: image/jpeg
+
+19-07-2020 13:07:00.1595164020.8867 [185.25.116.236][5f1445][debug] New queue created #89, attributes values: {"server_id":null,"object_id":1902,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Cannot copy from uploaded file\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164020}
+19-07-2020 13:07:00.1595164020.8869 [185.25.116.236][5f1445][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/p1901-youtube-thumbnail.jpg, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1901-youtube-thumbnail.jpg, quality: 90) as error was returned: Cannot copy from uploaded file
+19-07-2020 13:07:01.1595164021.6307 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1903-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:07:01.1595164021.9016 [185.25.116.236][5f1445][error] Error to optimize attachment (ID: #1904). Message: "Cannot copy from uploaded file"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 1280x720
+	-> Relative path: 2020/07/p1903-youtube-thumbnail.jpg
+	-> Server used: server_1
+	->  Additional sizes:
+		-> Type: medium, size: 300x169, MIME type: image/jpeg
+		-> Type: large, size: 1024x576, MIME type: image/jpeg
+		-> Type: thumbnail, size: 250x250, MIME type: image/jpeg
+		-> Type: medium_large, size: 768x432, MIME type: image/jpeg
+		-> Type: allium-featured, size: 700x525, MIME type: image/jpeg
+		-> Type: allium-featured-single, size: 769x433, MIME type: image/jpeg
+
+19-07-2020 13:07:01.1595164021.9021 [185.25.116.236][5f1445][debug] New queue created #90, attributes values: {"server_id":null,"object_id":1904,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Cannot copy from uploaded file\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164021}
+19-07-2020 13:07:01.1595164021.9023 [185.25.116.236][5f1445][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/p1903-youtube-thumbnail.jpg, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1903-youtube-thumbnail.jpg, quality: 90) as error was returned: Cannot copy from uploaded file
+19-07-2020 13:07:02.1595164022.4649 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1905-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:07:02.1595164022.7341 [185.25.116.236][5f1445][error] Error to optimize attachment (ID: #1906). Message: "Cannot copy from uploaded file"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 1280x720
+	-> Relative path: 2020/07/p1905-youtube-thumbnail.jpg
+	-> Server used: server_1
+	->  Additional sizes:
+		-> Type: medium, size: 300x169, MIME type: image/jpeg
+		-> Type: large, size: 1024x576, MIME type: image/jpeg
+		-> Type: thumbnail, size: 250x250, MIME type: image/jpeg
+		-> Type: medium_large, size: 768x432, MIME type: image/jpeg
+		-> Type: allium-featured, size: 700x525, MIME type: image/jpeg
+		-> Type: allium-featured-single, size: 769x433, MIME type: image/jpeg
+
+19-07-2020 13:07:02.1595164022.7347 [185.25.116.236][5f1445][debug] New queue created #91, attributes values: {"server_id":null,"object_id":1906,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Cannot copy from uploaded file\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164022}
+19-07-2020 13:07:02.1595164022.7349 [185.25.116.236][5f1445][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/p1905-youtube-thumbnail.jpg, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1905-youtube-thumbnail.jpg, quality: 90) as error was returned: Cannot copy from uploaded file
+19-07-2020 13:07:06.1595164026.574 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1907-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:07:06.1595164026.8653 [185.25.116.236][5f1445][error] Error to optimize attachment (ID: #1915). Message: "Cannot copy from uploaded file"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 1280x720
+	-> Relative path: 2020/07/p1907-youtube-thumbnail.jpg
+	-> Server used: server_1
+	->  Additional sizes:
+		-> Type: medium, size: 300x169, MIME type: image/jpeg
+		-> Type: large, size: 1024x576, MIME type: image/jpeg
+		-> Type: thumbnail, size: 250x250, MIME type: image/jpeg
+		-> Type: medium_large, size: 768x432, MIME type: image/jpeg
+		-> Type: allium-featured, size: 700x525, MIME type: image/jpeg
+		-> Type: allium-featured-single, size: 769x433, MIME type: image/jpeg
+
+19-07-2020 13:07:06.1595164026.8659 [185.25.116.236][5f1445][debug] New queue created #92, attributes values: {"server_id":null,"object_id":1915,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Cannot copy from uploaded file\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164026}
+19-07-2020 13:07:06.1595164026.8661 [185.25.116.236][5f1445][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/p1907-youtube-thumbnail.jpg, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1907-youtube-thumbnail.jpg, quality: 90) as error was returned: Cannot copy from uploaded file
+19-07-2020 13:07:09.1595164029.3183 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1916-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:07:09.1595164029.5886 [185.25.116.236][5f1445][error] Error to optimize attachment (ID: #1922). Message: "Cannot copy from uploaded file"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 1280x720
+	-> Relative path: 2020/07/p1916-youtube-thumbnail.jpg
+	-> Server used: server_1
+	->  Additional sizes:
+		-> Type: medium, size: 300x169, MIME type: image/jpeg
+		-> Type: large, size: 1024x576, MIME type: image/jpeg
+		-> Type: thumbnail, size: 250x250, MIME type: image/jpeg
+		-> Type: medium_large, size: 768x432, MIME type: image/jpeg
+		-> Type: allium-featured, size: 700x525, MIME type: image/jpeg
+		-> Type: allium-featured-single, size: 769x433, MIME type: image/jpeg
+
+19-07-2020 13:07:09.1595164029.5891 [185.25.116.236][5f1445][debug] New queue created #93, attributes values: {"server_id":null,"object_id":1922,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Cannot copy from uploaded file\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164029}
+19-07-2020 13:07:09.1595164029.5893 [185.25.116.236][5f1445][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/p1916-youtube-thumbnail.jpg, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1916-youtube-thumbnail.jpg, quality: 90) as error was returned: Cannot copy from uploaded file
+19-07-2020 13:07:10.1595164030.1889 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1923-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:07:10.1595164030.5845 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:07:10.1595164030.7992 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1923-youtube-thumbnail-250x250.jpg) to a remote server (server_1).
+19-07-2020 13:07:10.1595164030.9917 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1923-youtube-thumbnail-300x169.jpg) to a remote server (server_1).
+19-07-2020 13:07:11.1595164031.1642 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1923-youtube-thumbnail-768x432.jpg) to a remote server (server_1).
+19-07-2020 13:07:11.1595164031.4129 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:07:11.1595164031.585 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1923-youtube-thumbnail-1024x576.jpg) to a remote server (server_1).
+19-07-2020 13:07:11.1595164031.8644 [185.25.116.236][5f1445][debug] New queue created #94, attributes values: {"server_id":null,"object_id":1924,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":276893,"final_size":266529,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":1,\"original_main_size\":197138,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164031}
+19-07-2020 13:07:20.1595164040.7577 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1925-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:07:21.1595164041.0781 [185.25.116.236][5f1445][error] Error to optimize attachment (ID: #1931). Message: "Cannot copy from uploaded file"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 1280x720
+	-> Relative path: 2020/07/p1925-youtube-thumbnail.jpg
+	-> Server used: server_1
+	->  Additional sizes:
+		-> Type: medium, size: 300x169, MIME type: image/jpeg
+		-> Type: large, size: 1024x576, MIME type: image/jpeg
+		-> Type: thumbnail, size: 250x250, MIME type: image/jpeg
+		-> Type: medium_large, size: 768x432, MIME type: image/jpeg
+		-> Type: allium-featured, size: 700x525, MIME type: image/jpeg
+		-> Type: allium-featured-single, size: 769x433, MIME type: image/jpeg
+
+19-07-2020 13:07:21.1595164041.0786 [185.25.116.236][5f1445][debug] New queue created #95, attributes values: {"server_id":null,"object_id":1931,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Cannot copy from uploaded file\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164041}
+19-07-2020 13:07:21.1595164041.0787 [185.25.116.236][5f1445][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/p1925-youtube-thumbnail.jpg, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1925-youtube-thumbnail.jpg, quality: 90) as error was returned: Cannot copy from uploaded file
+19-07-2020 13:07:21.1595164041.8711 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1932-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:07:22.1595164042.2069 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:07:22.1595164042.4247 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1932-youtube-thumbnail-250x250.jpg) to a remote server (server_1).
+19-07-2020 13:07:22.1595164042.6085 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1932-youtube-thumbnail-300x169.jpg) to a remote server (server_1).
+19-07-2020 13:07:22.1595164042.8072 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:07:22.1595164042.8933 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1932-youtube-thumbnail-768x432.jpg) to a remote server (server_1).
+19-07-2020 13:07:23.1595164043.1203 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1932-youtube-thumbnail-1024x576.jpg) to a remote server (server_1).
+19-07-2020 13:07:23.1595164043.3779 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:07:23.1595164043.5622 [185.25.116.236][5f1445][debug] New queue created #96, attributes values: {"server_id":null,"object_id":1934,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":269416,"final_size":261102,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":2,\"original_main_size\":152710,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164043}
+19-07-2020 13:07:24.1595164044.1141 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1935-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:07:24.1595164044.3832 [185.25.116.236][5f1445][error] Error to optimize attachment (ID: #1936). Message: "Cannot copy from uploaded file"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 1280x720
+	-> Relative path: 2020/07/p1935-youtube-thumbnail.jpg
+	-> Server used: server_1
+	->  Additional sizes:
+		-> Type: medium, size: 300x169, MIME type: image/jpeg
+		-> Type: large, size: 1024x576, MIME type: image/jpeg
+		-> Type: thumbnail, size: 250x250, MIME type: image/jpeg
+		-> Type: medium_large, size: 768x432, MIME type: image/jpeg
+		-> Type: allium-featured, size: 700x525, MIME type: image/jpeg
+		-> Type: allium-featured-single, size: 769x433, MIME type: image/jpeg
+
+19-07-2020 13:07:24.1595164044.3837 [185.25.116.236][5f1445][debug] New queue created #97, attributes values: {"server_id":null,"object_id":1936,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Cannot copy from uploaded file\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164044}
+19-07-2020 13:07:24.1595164044.3839 [185.25.116.236][5f1445][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/p1935-youtube-thumbnail.jpg, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1935-youtube-thumbnail.jpg, quality: 90) as error was returned: Cannot copy from uploaded file
+19-07-2020 13:07:25.1595164045.3435 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1937-youtube-thumbnail.jpg) to a remote server (server_1).
+19-07-2020 13:07:25.1595164045.6933 [185.25.116.236][5f1445][info] File successfully uploaded to remote server (server_1).
+19-07-2020 13:07:25.1595164045.92 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1937-youtube-thumbnail-250x250.jpg) to a remote server (server_1).
+19-07-2020 13:07:26.1595164046.1125 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1937-youtube-thumbnail-300x169.jpg) to a remote server (server_1).
+19-07-2020 13:07:26.1595164046.2976 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1937-youtube-thumbnail-768x432.jpg) to a remote server (server_1).
+19-07-2020 13:07:26.1595164046.5233 [185.25.116.236][5f1445][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/p1937-youtube-thumbnail-1024x576.jpg) to a remote server (server_1).
+19-07-2020 13:07:26.1595164046.7756 [185.25.116.236][5f1445][debug] New queue created #98, attributes values: {"server_id":null,"object_id":1939,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":149811,"final_size":146771,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":149811,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1595164046}
+30-07-2020 05:38:44.1596087524.0636 [185.25.116.236][5f225c][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/rjzgdh-1596087523.8851.php) to a remote server (server_1).
+30-07-2020 05:38:44.1596087524.1933 [185.25.116.236][5f225c][error] Error to optimize attachment (ID: #1991). Message: "Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF"
+	-> Attachment optimized? No
+	-> Should be resized? No
+	-> Original size: 34x16
+	-> Relative path: 2020/07/rjzgdh-1596087523.8851.php
+	-> Server used: server_1
+
+30-07-2020 05:38:44.1596087524.1944 [185.25.116.236][5f225c][debug] New queue created #99, attributes values: {"server_id":null,"object_id":1991,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"error","processing_level":"normal","is_backed_up":true,"original_size":0,"final_size":0,"original_mime_type":"","final_mime_type":"","extra_data":"{\"error\":\"optimization\",\"error_msg\":\"Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF\",\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1596087524}
+30-07-2020 05:38:44.1596087524.1946 [185.25.116.236][5f225c][error] Failed to process (url: https://profglobal.top/wp-content/uploads/2020/07/rjzgdh-1596087523.8851.php, path: /home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/rjzgdh-1596087523.8851.php, quality: 90) as error was returned: Unauthorized extension. Allowed are : JPG, PNG, GIF, BMP, TIFF
+31-07-2020 09:14:40.1596186880.0328 [185.25.116.236][5f23e0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/07/chqgo-1596186879.858.png) to a remote server (server_1).
+31-07-2020 09:14:40.1596186880.1777 [185.25.116.236][5f23e0][info] File successfully uploaded to remote server (server_1).
+31-07-2020 09:14:40.1596186880.2731 [185.25.116.236][5f23e0][debug] New queue created #100, attributes values: {"server_id":null,"object_id":1993,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":4719,"final_size":4719,"original_mime_type":"image\/png","final_mime_type":"image\/png","extra_data":"{\"thumbnails_count\":0,\"original_main_size\":4719,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1596186880}
+22-08-2020 10:16:10.1598091370.4458 [185.25.116.236][5f40f0][info] Try to create backup directory. Backup dir: (/home/admin/web/profglobal.top/public_html/wp-content/uploads/wio_backup)
+22-08-2020 10:16:10.1598091370.6695 [185.25.116.236][5f40f0][info] Try to create backup directory. Backup dir: (/home/admin/web/profglobal.top/public_html/wp-content/uploads/wio_backup/2020/08)
+22-08-2020 10:16:10.1598091370.6733 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/10-sposobov-stat-horoshim-sobesednikom-selesta-hjedli-ted-na-russkom-youtube-thumbnail.jpg) to a remote server (server_1).
+22-08-2020 10:16:11.1598091371.0538 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:11.1598091371.2827 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/10-sposobov-stat-horoshim-sobesednikom-selesta-hjedli-ted-na-russkom-youtube-thumbnail-250x250.jpg) to a remote server (server_1).
+22-08-2020 10:16:11.1598091371.4994 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:11.1598091371.6055 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/10-sposobov-stat-horoshim-sobesednikom-selesta-hjedli-ted-na-russkom-youtube-thumbnail-300x169.jpg) to a remote server (server_1).
+22-08-2020 10:16:11.1598091371.7958 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:11.1598091371.8874 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/10-sposobov-stat-horoshim-sobesednikom-selesta-hjedli-ted-na-russkom-youtube-thumbnail-768x432.jpg) to a remote server (server_1).
+22-08-2020 10:16:12.1598091372.1413 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:12.1598091372.3249 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/10-sposobov-stat-horoshim-sobesednikom-selesta-hjedli-ted-na-russkom-youtube-thumbnail-1024x576.jpg) to a remote server (server_1).
+22-08-2020 10:16:12.1598091372.6094 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:12.1598091372.7825 [185.25.116.236][5f40f0][debug] New queue created #101, attributes values: {"server_id":null,"object_id":2036,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":323169,"final_size":310563,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":4,\"original_main_size\":134007,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1598091372}
+22-08-2020 10:16:17.1598091377.6254 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/nasilie-nad-zhenshhinami-jeto-problema-muzhchin-dzhekson-kac-ted-na-russkom-youtube-thumbnail.jpg) to a remote server (server_1).
+22-08-2020 10:16:17.1598091377.9803 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:18.1598091378.2077 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/nasilie-nad-zhenshhinami-jeto-problema-muzhchin-dzhekson-kac-ted-na-russkom-youtube-thumbnail-250x250.jpg) to a remote server (server_1).
+22-08-2020 10:16:18.1598091378.3596 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:18.1598091378.456 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/nasilie-nad-zhenshhinami-jeto-problema-muzhchin-dzhekson-kac-ted-na-russkom-youtube-thumbnail-300x169.jpg) to a remote server (server_1).
+22-08-2020 10:16:18.1598091378.5962 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:18.1598091378.6962 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/nasilie-nad-zhenshhinami-jeto-problema-muzhchin-dzhekson-kac-ted-na-russkom-youtube-thumbnail-768x432.jpg) to a remote server (server_1).
+22-08-2020 10:16:18.1598091378.9888 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:19.1598091379.1829 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/nasilie-nad-zhenshhinami-jeto-problema-muzhchin-dzhekson-kac-ted-na-russkom-youtube-thumbnail-1024x576.jpg) to a remote server (server_1).
+22-08-2020 10:16:19.1598091379.4825 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:19.1598091379.6696 [185.25.116.236][5f40f0][debug] New queue created #102, attributes values: {"server_id":null,"object_id":2038,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":268553,"final_size":255921,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":4,\"original_main_size\":111304,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1598091379}
+22-08-2020 10:16:23.1598091383.239 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/tedxkrasnayapolyanasalon-vremja-horoshih-novostej-10-idej-kak-uluchshit-kachestvo-zhizni-youtube-thumbnail.jpg) to a remote server (server_1).
+22-08-2020 10:16:23.1598091383.631 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:23.1598091383.8512 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/tedxkrasnayapolyanasalon-vremja-horoshih-novostej-10-idej-kak-uluchshit-kachestvo-zhizni-youtube-thumbnail-250x250.jpg) to a remote server (server_1).
+22-08-2020 10:16:24.1598091384.0525 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:24.1598091384.1494 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/tedxkrasnayapolyanasalon-vremja-horoshih-novostej-10-idej-kak-uluchshit-kachestvo-zhizni-youtube-thumbnail-300x169.jpg) to a remote server (server_1).
+22-08-2020 10:16:24.1598091384.3014 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:24.1598091384.391 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/tedxkrasnayapolyanasalon-vremja-horoshih-novostej-10-idej-kak-uluchshit-kachestvo-zhizni-youtube-thumbnail-768x432.jpg) to a remote server (server_1).
+22-08-2020 10:16:24.1598091384.6569 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:24.1598091384.8226 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/tedxkrasnayapolyanasalon-vremja-horoshih-novostej-10-idej-kak-uluchshit-kachestvo-zhizni-youtube-thumbnail-1024x576.jpg) to a remote server (server_1).
+22-08-2020 10:16:25.1598091385.1235 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:25.1598091385.3036 [185.25.116.236][5f40f0][debug] New queue created #103, attributes values: {"server_id":null,"object_id":2040,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":336460,"final_size":315305,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":4,\"original_main_size\":144986,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1598091385}
+22-08-2020 10:16:29.1598091389.9772 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/v-chem-vasha-poligamija-ljens-ollred-ted-na-russkom-youtube-thumbnail.jpg) to a remote server (server_1).
+22-08-2020 10:16:30.1598091390.3405 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:30.1598091390.5456 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/v-chem-vasha-poligamija-ljens-ollred-ted-na-russkom-youtube-thumbnail-250x250.jpg) to a remote server (server_1).
+22-08-2020 10:16:30.1598091390.7406 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:30.1598091390.8709 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/v-chem-vasha-poligamija-ljens-ollred-ted-na-russkom-youtube-thumbnail-300x169.jpg) to a remote server (server_1).
+22-08-2020 10:16:31.1598091391.075 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:31.1598091391.1676 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/v-chem-vasha-poligamija-ljens-ollred-ted-na-russkom-youtube-thumbnail-768x432.jpg) to a remote server (server_1).
+22-08-2020 10:16:31.1598091391.4403 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:31.1598091391.6126 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/v-chem-vasha-poligamija-ljens-ollred-ted-na-russkom-youtube-thumbnail-1024x576.jpg) to a remote server (server_1).
+22-08-2020 10:16:31.1598091391.9268 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:32.1598091392.1451 [185.25.116.236][5f40f0][debug] New queue created #104, attributes values: {"server_id":null,"object_id":2042,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":386430,"final_size":370890,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":4,\"original_main_size\":172395,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1598091392}
+22-08-2020 10:16:36.1598091396.5508 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/za-kogo-tebe-dejstvitelno-stoit-vyjti-zamuzh-trejsi-makmillan-ted-na-russkom-youtube-thumbnail.jpg) to a remote server (server_1).
+22-08-2020 10:16:36.1598091396.9555 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:37.1598091397.1747 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/za-kogo-tebe-dejstvitelno-stoit-vyjti-zamuzh-trejsi-makmillan-ted-na-russkom-youtube-thumbnail-250x250.jpg) to a remote server (server_1).
+22-08-2020 10:16:37.1598091397.3855 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:37.1598091397.5255 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/za-kogo-tebe-dejstvitelno-stoit-vyjti-zamuzh-trejsi-makmillan-ted-na-russkom-youtube-thumbnail-300x169.jpg) to a remote server (server_1).
+22-08-2020 10:16:37.1598091397.7375 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:37.1598091397.8714 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/za-kogo-tebe-dejstvitelno-stoit-vyjti-zamuzh-trejsi-makmillan-ted-na-russkom-youtube-thumbnail-768x432.jpg) to a remote server (server_1).
+22-08-2020 10:16:38.1598091398.1373 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:38.1598091398.3001 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/za-kogo-tebe-dejstvitelno-stoit-vyjti-zamuzh-trejsi-makmillan-ted-na-russkom-youtube-thumbnail-1024x576.jpg) to a remote server (server_1).
+22-08-2020 10:16:38.1598091398.6416 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:38.1598091398.8453 [185.25.116.236][5f40f0][debug] New queue created #105, attributes values: {"server_id":null,"object_id":2044,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":392746,"final_size":376086,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":4,\"original_main_size\":165143,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1598091398}
+22-08-2020 10:16:43.1598091403.2355 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/kak-stat-masterom-zapominanija-idriz-zogaj-ted-na-russkom-youtube-thumbnail.jpg) to a remote server (server_1).
+22-08-2020 10:16:43.1598091403.6013 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:43.1598091403.8054 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/kak-stat-masterom-zapominanija-idriz-zogaj-ted-na-russkom-youtube-thumbnail-250x250.jpg) to a remote server (server_1).
+22-08-2020 10:16:43.1598091403.9889 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:44.1598091404.1271 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/kak-stat-masterom-zapominanija-idriz-zogaj-ted-na-russkom-youtube-thumbnail-300x169.jpg) to a remote server (server_1).
+22-08-2020 10:16:44.1598091404.3401 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:44.1598091404.4367 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/kak-stat-masterom-zapominanija-idriz-zogaj-ted-na-russkom-youtube-thumbnail-768x432.jpg) to a remote server (server_1).
+22-08-2020 10:16:44.1598091404.7687 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:44.1598091404.9436 [185.25.116.236][5f40f0][info] Preparing to upload a file (/home/admin/web/profglobal.top/public_html/wp-content/uploads/2020/08/kak-stat-masterom-zapominanija-idriz-zogaj-ted-na-russkom-youtube-thumbnail-1024x576.jpg) to a remote server (server_1).
+22-08-2020 10:16:45.1598091405.2922 [185.25.116.236][5f40f0][info] File successfully uploaded to remote server (server_1).
+22-08-2020 10:16:45.1598091405.4582 [185.25.116.236][5f40f0][debug] New queue created #106, attributes values: {"server_id":null,"object_id":2046,"object_name":"","item_type":"attachment","item_hash":null,"item_hash_alternative":null,"result_status":"success","processing_level":"normal","is_backed_up":true,"original_size":352551,"final_size":338244,"original_mime_type":"image\/jpeg","final_mime_type":"image\/jpeg","extra_data":"{\"thumbnails_count\":4,\"original_main_size\":147845,\"class\":\"RIO_Attachment_Extra_Data\"}","created_at":1598091405}
+27-10-2021 22:37:30 [profglobal.top][info] Plugin migration to 1.5.1 was successful!
+-------------------------------
+04-01-2023 21:22:37 [profglobal.top][info] Parent plugin start deactivation!
+04-01-2023 21:22:37 [profglobal.top][info] Parent plugin deactivation complete!
+-------------------------------

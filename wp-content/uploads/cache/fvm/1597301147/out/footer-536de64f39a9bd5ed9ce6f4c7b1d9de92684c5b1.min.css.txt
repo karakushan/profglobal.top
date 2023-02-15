@@ -1,0 +1,4 @@
+PROCESSED on Fri, 14 Aug 2020 05:02:45 +0000
+/wp-content/plugins/shortcodes-ultimate/includes/css/icons.css
+/wp-content/plugins/shortcodes-ultimate/includes/css/shortcodes.css
+PROCESSED from https://profglobal.top/ajax-v-wordpress/

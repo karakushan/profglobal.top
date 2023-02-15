@@ -1,0 +1,92 @@
+# Translation of Plugins - Enlighter &#8211; Customizable Syntax Highlighter - Stable (latest release) in Russian
+# This file is distributed under the same license as the Plugins - Enlighter &#8211; Customizable Syntax Highlighter - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-09-25 13:44:48+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: ru\n"
+"Project-Id-Version: Plugins - Enlighter &#8211; Customizable Syntax Highlighter - Stable (latest release)\n"
+
+#: modules/core/EnvironmentCheck.php:50
+msgid "Plugin \"EnlighterJS3 Compatibility\" is enabled - please disable it to use Enlighter v4! "
+msgstr "Плагин \"EnlighterJS3 Compatibility\" включен - отключите его, чтобы использовать Enlighter v4! "
+
+#: modules/core/Enlighter.php:58
+msgid "Report Bugs"
+msgstr "Сообщить об ошибках"
+
+#. Description of the plugin
+msgid "all-in-one syntax highlighting solution"
+msgstr "универсальное решение для подсветки синтаксиса"
+
+#: modules/core/EnvironmentCheck.php:35
+msgid "The cache-directory <code>"
+msgstr "Кэш-директория <code>"
+
+#: modules/core/EnvironmentCheck.php:45
+msgid "The plugin is located within an invalid path - the <code>enlighter/</code> directory name is <strong>mandatory</strong>"
+msgstr "Плагин расположен в недопустимом пути - имя каталога имя каталога <code> enlighter/</code> является <strong> обязательным </strong>"
+
+#. Author URI of the plugin
+msgid "https://andidittrich.com"
+msgstr "https://andidittrich.com"
+
+#. Author of the plugin
+msgid "Andi Dittrich"
+msgstr "Andi Dittrich"
+
+#. Plugin URI of the plugin
+msgid "https://enlighterjs.org"
+msgstr "https://enlighterjs.org"
+
+#: modules/editor/TinyMCE.php:149
+msgid "Enlighter Inline"
+msgstr "Enlighter Inline"
+
+#: modules/editor/TinyMCE.php:126
+msgid "Enlighter Codeblocks"
+msgstr "Кодовые блоки Enlighter"
+
+#: modules/core/EnvironmentCheck.php:39
+msgid "Autoset Permissions failed - Please change the directory permission (chmod <code>0644</code> or <code>0777</code>) manually!"
+msgstr "Ошибка автонастройки разрешений - измените разрешение каталога (chmod <code>0644</code> or <code>0777</code>) вручную!"
+
+#: modules/core/EnvironmentCheck.php:30
+msgid "Plugin \"Crayon Syntax Highlighter\" is enabled - it may take over the Enlighter pre elements - highlighting will not work!"
+msgstr "Плагин \"Crayon Syntax Highlighter\" включен - он может взять на себя предварительные элементы Enlighter - подсветка не будет работать!"
+
+#: modules/core/EnvironmentCheck.php:25
+msgid "Option <code>use_balanceTags</code> is enabled - this option is <strong>DEPRECATED</strong>. Might cause a weired behaviour by inserting random closing html tags into your code."
+msgstr "Включена опция <code>use_balanceTags</code> - эта опция <strong>DEPRECATED</strong>. Может вызвать нечеткое поведение, вставляя случайные закрывающие html-теги в ваш код."
+
+#: modules/skltn/Plugin.php:238
+msgid "About"
+msgstr "О плагине"
+
+#: modules/skltn/Plugin.php:233
+msgid "Settings"
+msgstr "Настройки"
+
+#: modules/core/Enlighter.php:59
+msgid "EnlighterJS Website"
+msgstr "Сайт EnlighterJS"
+
+#: modules/core/Enlighter.php:57
+msgid "News & Updates"
+msgstr "Новости и Обновления"
+
+#. Plugin Name of the plugin
+msgid "Enlighter - Customizable Syntax Highlighter"
+msgstr "Enlighter - настраиваемая подсветка синтаксиса"
+
+#: modules/admin/ContextualHelp.php:22
+msgid "General Usage"
+msgstr "Общие вопросы"
+
+#: modules/admin/ContextualHelp.php:14
+msgid "Tutorials"
+msgstr "Обучающие материалы"

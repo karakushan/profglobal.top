@@ -1,0 +1,1511 @@
+# Translation of Themes - Emmet Lite in Russian
+# This file is distributed under the same license as the Themes - Emmet Lite package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-11-11 03:10:06+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: ru\n"
+"Project-Id-Version: Themes - Emmet Lite\n"
+
+#. Description of the plugin/theme
+msgid "Clean and responsive WordPress theme with a professional design created for corporate and portfolio websites. Emmet comes packaged with page builder and fully integrated with WordPress Customizer. Theme works perfect with major WordPress plugins like WooCommerce, bbPress, BuddyPress and many others. After installing the theme navigate to Appearance > Theme Wizard."
+msgstr "Чистая адаптивная тема WordPress с профессиональным дизайном, созданная для корпоративных и портфолио сайтов. Emmet поставляется в комплекте с редактором контента и полностью интегрирована с Настройщиком WordPress. Тема отлично работает с основными WordPress плагинами, такими, как WooCommerce, bbPress, BuddyPress и многими другими. После установки темы перейдите к меню Внешний вид> Мастер темы."
+
+#. Theme Name of the plugin/theme
+msgid "Emmet Lite"
+msgstr "Emmet Lite"
+
+#: header.php:178
+msgid "Close"
+msgstr "Закрыть"
+
+#: header.php:177
+msgid "Menu"
+msgstr "Меню"
+
+#. #-#-#-#-#  emmet-lite.pot (Emmet Lite 1.7.0)  #-#-#-#-#
+#. Author URI of the plugin/theme
+#: footer.php:92
+msgid "https://motopress.com/"
+msgstr "https://motopress.com/"
+
+#. translators: %2$s: plugin name in screen reader markup
+#: classes/theme/class-tgm-plugin-activation.php:2614
+msgid "Activate %2$s"
+msgstr "Активировать %2$s"
+
+#. translators: %2$s: plugin name in screen reader markup
+#: classes/theme/class-tgm-plugin-activation.php:2608
+msgid "Update %2$s"
+msgstr "Обновить %2$s"
+
+#. translators: %2$s: plugin name in screen reader markup
+#: classes/theme/class-tgm-plugin-activation.php:2603
+msgid "Install %2$s"
+msgstr "Установить %2$s"
+
+#: classes/theme/class-tgm-plugin-activation.php:2533
+msgid "No plugins to install, update or activate."
+msgstr "Ни один плагин не нуждается в установке, обновлении или активации."
+
+#. translators: 1: install status, 2: update status
+#: classes/theme/class-tgm-plugin-activation.php:2342
+msgctxt "Install/Update Status"
+msgid "%1$s, %2$s"
+msgstr "%1$s, %2$s"
+
+#. translators: %s: version number
+#: classes/theme/class-tgm-plugin-activation.php:1982
+msgid "TGMPA v%s"
+msgstr "TGMPA v%s"
+
+#: classes/theme/class-tgm-plugin-activation.php:396
+msgid "There are one or more required or recommended plugins to install, update or activate."
+msgstr "Существует один или несколько обязательных или рекомендуемых плагинов для установки, обновления или активации.."
+
+#. translators: %s: plugin name.
+#: classes/theme/class-tgm-plugin-activation.php:332
+msgid "Updating Plugin: %s"
+msgstr "Обновление плагина: %s"
+
+#: searchform.php:9
+msgctxt "placeholder"
+msgid "Search &#8230;"
+msgstr "Искать &#8230;"
+
+#: inc/theme/init.php:334
+msgid "Appears on shop pages in the sidebar."
+msgstr "Отображается на сайдбаре на страницах магазина."
+
+#: inc/theme/init.php:332
+msgid "Shop Widget Area"
+msgstr "Область виджетов магазина"
+
+#: inc/admin/customize.php:781 inc/admin/customize.php:984
+#: inc/admin/customize.php:1168 inc/admin/customize.php:1328
+#: inc/admin/customize.php:1451 inc/admin/customize.php:1610
+msgid "Custom Section ID"
+msgstr "Пользовательский ID секции"
+
+#: inc/admin/customize.php:499
+msgid "Skype name"
+msgstr "Имя в Скайпе"
+
+#: inc/admin/customize.php:478
+msgid "Vk link"
+msgstr "Ссылка на ВКонтакте"
+
+#: inc/admin/customize.php:101
+msgid "Display breadcrumbs"
+msgstr "Показать \"хлебные крошки\""
+
+#: footer.php:86
+msgid "&copy; Copyright %1$s"
+msgstr "&copy; Все права защищены %1$s"
+
+#: content-none.php:20
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Запрошенную информацию найти не удалось. Возможно, будет полезен поиск по сайту."
+
+#: content-none.php:16
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Готовы опубликовать свою первую запись? <a href=\"%1$s\">Начните отсюда</a>."
+
+#: inc/admin/customize.php:1228 sections/accent.php:40
+msgid "Install the theme in several clicks and start editing it with a help of a handy WordPress Customizer or use a very user-friendly built-in visual page builder."
+msgstr "Установите тему в несколько кликов и начните ее редактирование с помощью Настройщика WordPress или используйте очень удобный встроенный визуальный редактор страниц."
+
+#: inc/admin/customize.php:457
+msgid "Youtube link"
+msgstr "Ссылка на Youtube"
+
+#: inc/admin/customize.php:437
+msgid "Tumblr link"
+msgstr "Ссылка на Tumblr"
+
+#: inc/admin/customize.php:418
+msgid "Instagram link"
+msgstr "Ссылка на Instagram"
+
+#: inc/admin/customize.php:399
+msgid "Pinterest link"
+msgstr "Ссылка на Pinterest"
+
+#: inc/admin/customize.php:763 inc/admin/customize.php:966
+#: inc/admin/customize.php:1150 inc/admin/customize.php:1310
+#: inc/admin/customize.php:1433 inc/admin/customize.php:1592
+msgid "Section position"
+msgstr "Позиция секции"
+
+#. Template Name of the plugin/theme
+msgid "With Header Image"
+msgstr "With Header Image (С изображением заголовка)"
+
+#. Template Name of the plugin/theme
+msgid "Landing page"
+msgstr "Landing (Целевая страница)"
+
+#. Template Name of the plugin/theme
+msgid "Customizable Front Page"
+msgstr "Customizable Front Page (Настраиваемая Главная страница)"
+
+#: sections/subscribe.php:76
+msgid "subscribe"
+msgstr "подписаться"
+
+#: sections/subscribe.php:74
+msgid "Your E-mail:"
+msgstr "Ваш email:"
+
+#: sections/lastnews.php:113
+msgid "No news!"
+msgstr "Нет новостей!"
+
+#: searchform.php:9
+msgctxt "label"
+msgid "Search for:"
+msgstr "Искать:"
+
+#: content-none.php:18 search.php:37
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "Извините, по вашему запросу ничего не найдено. Попробуйте другие ключевые слова."
+
+#: content-none.php:14 search.php:36
+msgid "Nothing Found"
+msgstr "Не найдено"
+
+#: inc/woocommerce/woo-init.php:14
+msgctxt "breadcrumb"
+msgid "Home"
+msgstr "Главная"
+
+#: inc/theme/init.php:733
+msgid "Run Theme Wizard"
+msgstr "Запустить Мастер темы"
+
+#: inc/theme/init.php:731
+msgid "You&#8217;ve installed Emmet theme. Click &#34;Run Theme Wizard&#34; to view a quick guided tour of theme functionality and complete the installation."
+msgstr "Вы установили тему Emmet. Кликните &#34;Запустить Мастер темы&#34; для просмотра быстрого тура по функциям и завершения установки."
+
+#: inc/theme/init.php:478
+msgid "(Edit)"
+msgstr "(Редактировать)"
+
+#: inc/theme/init.php:476
+msgid "%1$s <span>at %2$s</span>"
+msgstr "%1$s <span>в %2$s</span>"
+
+#: inc/theme/init.php:471
+msgid "Your comment is awaiting moderation."
+msgstr "Ваш комментарий ожидает проверки."
+
+#: inc/theme/init.php:428
+msgid "Google Map Section"
+msgstr "Секция Карты Google"
+
+#: inc/theme/init.php:419
+msgid "Testimonials Section"
+msgstr "Секция Отзывы"
+
+#: inc/theme/init.php:401
+msgid "Team Section"
+msgstr "Секция Команда"
+
+#: inc/theme/init.php:392
+msgid "Packages Section"
+msgstr "Секция Пакеты"
+
+#: inc/theme/init.php:385 inc/theme/init.php:394 inc/theme/init.php:403
+#: inc/theme/init.php:412 inc/theme/init.php:421 inc/theme/init.php:430
+msgid "Appears on front page."
+msgstr "Отображается на Главной странице."
+
+#: inc/theme/init.php:383
+msgid "Features Section"
+msgstr "Секция Функции"
+
+#: inc/theme/init.php:375
+msgid "Appears on 404 page in the sidebar."
+msgstr "Отображается на 404 странице на сайдбаре."
+
+#: inc/theme/init.php:373
+msgid "404 Widget Area"
+msgstr "404 Область виджетов"
+
+#: inc/theme/init.php:363
+msgid "Footer Right"
+msgstr "Подвал справа"
+
+#: inc/theme/init.php:353
+msgid "Footer Center"
+msgstr "Подвал в центре"
+
+#: inc/theme/init.php:345 inc/theme/init.php:355 inc/theme/init.php:365
+msgid "Appears in the footer section of the site."
+msgstr "Отображается в нижней части сайта."
+
+#: inc/theme/init.php:343
+msgid "Footer Left"
+msgstr "Подвал слева"
+
+#: inc/theme/init.php:323
+msgid "Appears on posts and pages in the sidebar."
+msgstr "Отображается на сайдбаре в записях и на страницах."
+
+#: inc/theme/init.php:321
+msgid "Main Widget Area"
+msgstr "Основная область"
+
+#: inc/theme/init.php:83
+msgid "Top Menu"
+msgstr "Верхнее меню"
+
+#: inc/theme/init.php:82
+msgid "Primary Menu"
+msgstr "Основное меню"
+
+#: inc/theme/init.php:3
+msgid "Address: <b>123 Street W, Seattle WA 99999</b>"
+msgstr "Адрес: <b>123 Street W, Seattle WA 99999</b>"
+
+#: inc/theme/init.php:2
+msgid "Phone: <b>123-456-7890</b>"
+msgstr "Телефон: <b>123-456-7890</b>"
+
+#: inc/theme/breadcrumbs.php:251
+msgid "404 Not Found"
+msgstr "404 Не найдено"
+
+#: inc/theme/breadcrumbs.php:247
+msgid "Search results for &quot;%1$s&quot;"
+msgstr "Результаты поиска для &quot;%1$s&quot;"
+
+#: inc/theme/breadcrumbs.php:236
+msgid "W"
+msgstr "W"
+
+#: inc/theme/breadcrumbs.php:236
+msgid "Week %1$s"
+msgstr "Неделя %1$s"
+
+#: inc/theme/breadcrumbs.php:233
+msgid "j"
+msgstr "j"
+
+#: inc/theme/breadcrumbs.php:232 inc/theme/breadcrumbs.php:239
+msgid "F"
+msgstr "F"
+
+#: inc/theme/breadcrumbs.php:231 inc/theme/breadcrumbs.php:235
+#: inc/theme/breadcrumbs.php:238 inc/theme/breadcrumbs.php:241
+msgid "Y"
+msgstr "Y"
+
+#: inc/theme/breadcrumbs.php:220
+msgid "g a"
+msgstr "H"
+
+#: inc/theme/breadcrumbs.php:217
+msgid "i"
+msgstr "i"
+
+#: inc/theme/breadcrumbs.php:217
+msgid "Minute %1$s"
+msgstr "Минут %1$s"
+
+#: inc/theme/breadcrumbs.php:214
+msgid "g:i a"
+msgstr "H:i"
+
+#: inc/motopress/motopress-init.php:80
+msgid "Theme Read More Style"
+msgstr "Стиль темы \"читать далее\""
+
+#: inc/motopress/motopress-init.php:61
+msgid "Light"
+msgstr "светлый"
+
+#: inc/motopress/motopress-init.php:29 inc/motopress/motopress-init.php:45
+#: inc/motopress/motopress-init.php:57 inc/motopress/motopress-init.php:106
+#: inc/motopress/motopress-init.php:116 inc/motopress/motopress-init.php:122
+#: inc/motopress/motopress-init.php:142 inc/motopress/motopress-init.php:162
+#: inc/motopress/motopress-init.php:164 inc/motopress/motopress-init.php:170
+#: inc/motopress/motopress-init.php:180 inc/motopress/motopress-init.php:182
+#: inc/motopress/motopress-init.php:196 inc/motopress/motopress-init.php:218
+#: inc/motopress/motopress-init.php:231
+msgid "Theme Brand"
+msgstr "Основной цвет темы"
+
+#: inc/motopress/motopress-init.php:25 inc/motopress/motopress-init.php:117
+#: inc/motopress/motopress-init.php:126 inc/motopress/motopress-init.php:138
+#: inc/motopress/motopress-init.php:185 inc/motopress/motopress-init.php:214
+msgid "Theme White"
+msgstr "Белый цвет темы"
+
+#: inc/bbpress/bbpress-init.php:12 inc/theme/breadcrumbs.php:50
+msgid "Home"
+msgstr "Главная"
+
+#: inc/admin/customize.php:1908
+msgid "Two Columns"
+msgstr "Две колонки"
+
+#. #-#-#-#-#  emmet-lite.pot (Emmet Lite 1.7.0)  #-#-#-#-#
+#. Template Name of the plugin/theme
+#: inc/admin/customize.php:1907
+msgid "Full Width"
+msgstr "Полной ширины"
+
+#: inc/admin/customize.php:1906
+msgid "Masonry"
+msgstr "Плитка"
+
+#. #-#-#-#-#  emmet-lite.pot (Emmet Lite 1.7.0)  #-#-#-#-#
+#. Template Name of the plugin/theme
+#: inc/admin/customize.php:1905
+msgid "With Sidebar"
+msgstr "С сайдбаром"
+
+#: inc/admin/customize.php:1844
+msgid "Fade In Down"
+msgstr "Появление снизу"
+
+#: inc/admin/customize.php:1843
+msgid "Fade In Up"
+msgstr "Появление сверху"
+
+#: inc/admin/customize.php:1842
+msgid "Fade In Right"
+msgstr "Появление справа"
+
+#: inc/admin/customize.php:1841
+msgid "Fade In Left"
+msgstr "Появление слева"
+
+#: inc/admin/customize.php:1840
+msgid "Fade In"
+msgstr "Плавное появление"
+
+#: inc/admin/customize.php:1839
+msgid "None"
+msgstr "Нет"
+
+#: inc/admin/customize.php:1748
+msgid "Orange"
+msgstr "Оранжевая"
+
+#: inc/admin/customize.php:1740
+msgid "Red"
+msgstr "Красная"
+
+#: inc/admin/customize.php:1732
+msgid "Blue"
+msgstr "Голубая"
+
+#: inc/admin/customize.php:1724
+msgid "Green"
+msgstr "Зеленая"
+
+#: inc/admin/customize.php:1551 sections/lastnews.php:18
+msgid "view all posts"
+msgstr "показать все записи"
+
+#: inc/admin/customize.php:1541
+msgid "Posts animation"
+msgstr "Анимация записей"
+
+#: inc/admin/customize.php:1511 sections/lastnews.php:38
+msgid "Keep in touch with the all the latest news and events"
+msgstr "Оставайтесь в курсе последних новостей и событий"
+
+#: inc/admin/customize.php:1492 sections/lastnews.php:21
+msgid "blog posts"
+msgstr "записи блога"
+
+#: inc/admin/customize.php:1464
+msgid "<i>Automatically filled by your latest posts.</i><hr/>"
+msgstr "<i>Автоматически заполнится вашими последними записями.</i><hr/>"
+
+#: inc/admin/customize.php:1461
+msgid "Latest News Section"
+msgstr "Секция свежих новостей"
+
+#: inc/admin/customize.php:1418
+msgid "Widgets animation"
+msgstr "Анимация виджетов"
+
+#: inc/admin/customize.php:1407 inc/admin/customize.php:1530
+msgid "Description animation"
+msgstr "Анимация описания"
+
+#: inc/admin/customize.php:1388 sections/subscribe.php:35
+msgid "Use this section to display subscription form of any WordPress plugin or newsletter service"
+msgstr "Используйте эту секцию, чтобы отобразить форму подписки любого плагина WordPress или службы новостных рассылок."
+
+#: inc/admin/customize.php:1369 sections/subscribe.php:18
+msgid "newsletter form"
+msgstr "форма подписки"
+
+#: inc/admin/customize.php:1341
+msgid "<i>Fill in this section by adding widgets to \"Customize > Widgets > Subscribe section\"</i><hr/>"
+msgstr "<i>Заполните эту секцию, добавив виджет в \"Настроить > Виджеты > Секция Подписка\"</i><hr/>"
+
+#: inc/admin/customize.php:1338 inc/theme/init.php:410
+msgid "Subscribe Section"
+msgstr "Секция Подписка"
+
+#: inc/admin/customize.php:1295
+msgid "Button animation"
+msgstr "Анимация кнопки"
+
+#: inc/admin/customize.php:1209 sections/accent.php:28
+msgid "Install Emmet theme now!"
+msgstr "Установить тему Emmet сейчас!"
+
+#: inc/admin/customize.php:1179
+msgid "Accent Section"
+msgstr "Секция Акцент"
+
+#: inc/admin/customize.php:1043 sections/third.php:46
+msgid "Your content will automatically adapt to any screen size and look perfectly on all devices. Extend the boundaries of your web presence, create a website with full mobile support."
+msgstr "Ваше содержимое будет автоматически адаптироваться к любому размеру экрана и отлично выглядеть на всех устройствах. Расширьте границы вашего веб-присутствия, создайте вебсайт с полной поддержкой мобильных устройств."
+
+#: inc/admin/customize.php:1024 sections/third.php:34
+msgid "Responsive Design"
+msgstr "Адаптивный дизайн"
+
+#: inc/admin/customize.php:994
+msgid "Second Feature Section"
+msgstr "Секция Вторая функция"
+
+#: inc/admin/customize.php:951 inc/admin/customize.php:1135
+msgid "Image animation"
+msgstr "Анимация изображения"
+
+#: inc/admin/customize.php:939 inc/admin/customize.php:1123
+msgid "Image"
+msgstr "Изображение"
+
+#: inc/admin/customize.php:916 inc/admin/customize.php:1100
+#: inc/admin/customize.php:1247
+msgid "Content animation"
+msgstr "Анимация содержимого"
+
+#: inc/admin/customize.php:906 inc/admin/customize.php:1090
+#: inc/admin/customize.php:1285 inc/admin/customize.php:1578
+msgid "Button url"
+msgstr "URL кнопки"
+
+#: inc/admin/customize.php:887 inc/admin/customize.php:1072
+#: inc/admin/customize.php:1267 inc/admin/customize.php:1560
+msgid "Button label"
+msgstr "Надпись на кнопке"
+
+#: inc/admin/customize.php:877 inc/admin/customize.php:1062
+#: inc/admin/customize.php:1257 sections/accent.php:16 sections/third.php:30
+#: sections/welcome.php:23
+msgid "read more"
+msgstr "узнать больше"
+
+#: inc/admin/customize.php:858 sections/welcome.php:39
+msgid "Build blocks, change theme colors, edit titles, manage widgets and see the results of the changes in real time. Make some pretty unique site designs without touching any code."
+msgstr "Построить блоки, изменить цвета темы, редактировать названия, управлять виджетами и увидеть результаты изменений в реальном времени. Сделать особый уникальный дизайн сайта, не касаясь какого-либо кода."
+
+#: inc/admin/customize.php:839 sections/welcome.php:27
+msgid "WordPress Customizer"
+msgstr "Настройщик WordPress"
+
+#: inc/admin/customize.php:809
+msgid "First Feature Section"
+msgstr "Секция Первая функция"
+
+#: inc/admin/customize.php:798
+msgid "Shortcode of slider"
+msgstr "Шорткод слайдера"
+
+#: inc/admin/customize.php:744
+msgid "Second button url"
+msgstr "URL второй кнопки"
+
+#: inc/admin/customize.php:725
+msgid "Second button label"
+msgstr "Надпись на второй кнопке"
+
+#: inc/admin/customize.php:716 sections/big_title.php:10
+msgid "Read more"
+msgstr "Узнать больше"
+
+#: inc/admin/customize.php:705
+msgid "First button url"
+msgstr "URL первой кнопки"
+
+#: inc/admin/customize.php:686
+msgid "First button label"
+msgstr "Надпись на первой кнопке"
+
+#: inc/admin/customize.php:677 sections/big_title.php:8
+msgid "Features"
+msgstr "Функции"
+
+#: inc/admin/customize.php:666 inc/admin/customize.php:867
+#: inc/admin/customize.php:1052 inc/admin/customize.php:1237
+#: inc/admin/customize.php:1397 inc/admin/customize.php:1520
+msgid "Description"
+msgstr "Описание"
+
+#: inc/admin/customize.php:657 sections/big_title.php:39
+msgid "Clean and responsive WordPress theme with a professional design created for corporate and portfolio websites. Emmet comes packaged with page builder and fully integrated with WordPress Customizer. Theme works perfectly with major WordPress plugins like WooCommerce, bbPress, BuddyPress and many others."
+msgstr "Чистая адаптивная тема WordPress с профессиональным дизайном, созданная для корпоративных и портфолио сайтов. Emmet поставляется в комплекте с редактором контента и полностью интегрирована с Настройщиком WordPress. Тема отлично работает с основными WordPress плагинами, такими, как WooCommerce, bbPress, BuddyPress и многими другими."
+
+#: inc/admin/customize.php:646 inc/admin/customize.php:848
+#: inc/admin/customize.php:1033 inc/admin/customize.php:1218
+#: inc/admin/customize.php:1378 inc/admin/customize.php:1501
+msgid "Title"
+msgstr "Заголовок"
+
+#: inc/admin/customize.php:637 sections/big_title.php:27
+msgid "introducing the emmet theme"
+msgstr "представляем тему Emmet"
+
+#: inc/admin/customize.php:630
+msgid "MotoPress Slider"
+msgstr "MotoPress Slider"
+
+#: inc/admin/customize.php:629
+msgid "Section content"
+msgstr "Содержимое секции"
+
+#: inc/admin/customize.php:623
+msgid "This section displays"
+msgstr "В секции отображается"
+
+#: inc/admin/customize.php:611 inc/admin/customize.php:828
+#: inc/admin/customize.php:1013 inc/admin/customize.php:1198
+#: inc/admin/customize.php:1358 inc/admin/customize.php:1481
+msgid "Hide this section"
+msgstr "Скрыть эту секцию"
+
+#: inc/admin/customize.php:592
+msgid "Big Title Section"
+msgstr "Секция Большой заголовок"
+
+#: inc/admin/customize.php:580
+msgid "Display Tags"
+msgstr "Показать метки"
+
+#: inc/admin/customize.php:561
+msgid "Display Categories"
+msgstr "Показать рубрики"
+
+#: inc/admin/customize.php:542
+msgid "Display Meta"
+msgstr "Показать метаинформацию"
+
+#: inc/admin/customize.php:523
+msgid "Blog Layout"
+msgstr "Макет блога"
+
+#: inc/admin/customize.php:509
+msgid "Posts Settings"
+msgstr "Настройка записей"
+
+#: inc/admin/customize.php:376
+msgid "Google+ link"
+msgstr "Ссылка на Google+"
+
+#: inc/admin/customize.php:354
+msgid "LinkedIn link"
+msgstr "Ссылка на Linkedin"
+
+#: inc/admin/customize.php:331
+msgid "Twitter link"
+msgstr "Ссылка на Twitter"
+
+#: inc/admin/customize.php:309
+msgid "Facebook link"
+msgstr "Ссылка на Facebook"
+
+#: inc/admin/customize.php:287
+msgid "Social Links"
+msgstr "Ссылки на социальные сети"
+
+#: inc/admin/customize.php:277
+msgid "Contact Information 2"
+msgstr "Контактная информация 2"
+
+#: inc/admin/customize.php:260
+msgid "Contact Information 1"
+msgstr "Контактная информация 1"
+
+#: inc/admin/customize.php:242
+msgid "Contact Information"
+msgstr "Контактная информация"
+
+#: inc/admin/customize.php:203
+msgid "Logo & Favicon"
+msgstr "Логотип и Фавикон"
+
+#: inc/admin/customize.php:201 inc/admin/customize.php:230
+msgid "Logo"
+msgstr "Логотип"
+
+#: inc/admin/customize.php:194
+msgid "Sub-Menu Hover Color"
+msgstr "Цвет подменю при наведении мыши"
+
+#: inc/admin/customize.php:182
+msgid "Accent Hover Color"
+msgstr "Цвет акцентов при наведении мыши"
+
+#: inc/admin/customize.php:170
+msgid "Accent Color"
+msgstr "Цвет акцентов"
+
+#: inc/admin/customize.php:158
+msgid "Text Color"
+msgstr "Цвет текста"
+
+#: inc/admin/customize.php:140
+msgid "Base Color Scheme"
+msgstr "Основная цветовая схема"
+
+#: inc/admin/customize.php:76
+msgid "Background Size"
+msgstr "Размер фона"
+
+#: inc/admin/customize.php:60
+msgid "Sticky menu on scroll"
+msgstr "\"Липкое\" меню при прокрутке"
+
+#: inc/admin/customize.php:42
+msgid "General"
+msgstr "Общие настройки"
+
+#: inc/admin/customise-classes.php:62
+msgctxt "custom headers"
+msgid "Suggested"
+msgstr "Стандартные"
+
+#: inc/admin/customise-classes.php:55
+msgctxt "custom headers"
+msgid "Previously uploaded"
+msgstr "Загруженные ранее"
+
+#. translators: New as in add new header image via the Customizer
+#: inc/admin/customise-classes.php:50
+msgctxt "header image"
+msgid "Add new image"
+msgstr "Добавить новое изображение"
+
+#. translators: Hide as in hide header image via the Customizer
+#: inc/admin/customise-classes.php:48
+msgctxt "custom header"
+msgid "Hide image"
+msgstr "Скрыть изображение"
+
+#: inc/admin/customise-classes.php:41
+msgid "Current header"
+msgstr "Текущий заголовок"
+
+#: inc/admin/customise-classes.php:34
+msgid "While you can crop images to your liking after clicking <strong>Add new image</strong>, your theme recommends a header height of <strong>%s</strong> pixels."
+msgstr "Нажав кнопку <strong>&laquo;Добавить&raquo;</strong>, можно загрузить и обрезать изображение по своему усмотрению, однако в вашей теме оформления рекомендуется заголовок высотой <strong>%s</strong> пикселей."
+
+#: inc/admin/customise-classes.php:32
+msgid "While you can crop images to your liking after clicking <strong>Add new image</strong>, your theme recommends a header width of <strong>%s</strong> pixels."
+msgstr "Нажав кнопку <strong>&laquo;Добавить&raquo;</strong>, можно загрузить и обрезать изображение по своему усмотрению, однако в вашей теме оформления рекомендуется заголовок шириной <strong>%s</strong> пикселей."
+
+#: inc/admin/customise-classes.php:30
+msgid "While you can crop images to your liking after clicking <strong>Add new image</strong>, your theme recommends a header size of <strong>%s &times; %s</strong> pixels."
+msgstr "Нажав кнопку <strong>&laquo;Добавить&raquo;</strong>, можно загрузить и обрезать изображение по своему усмотрению, однако в вашей теме оформления рекомендуется заголовок размером <strong>%s &times; %s</strong> пикселей."
+
+#: inc/admin/customise-classes.php:24
+msgid "Note: this image is for pages with the \"With Header Image\" template."
+msgstr "Примечание: это изображение для страниц шаблона С изображением заголовка (\"With Header Image\")"
+
+#: footer.php:93
+msgid "WordPress"
+msgstr "WordPress"
+
+#: footer.php:93
+msgid "Semantic Personal Publishing Platform"
+msgstr "Современная персональная платформа для публикаций"
+
+#: footer.php:93
+msgid "http://wordpress.org/"
+msgstr "http://ru.wordpress.org/"
+
+#: footer.php:93
+msgid "&#8226; Proudly Powered by "
+msgstr "&#8226; Работает на "
+
+#. #-#-#-#-#  emmet-lite.pot (Emmet Lite 1.7.0)  #-#-#-#-#
+#. Author of the plugin/theme
+#: footer.php:92
+msgid "MotoPress"
+msgstr "MotoPress"
+
+#: footer.php:92
+msgid "Premium WordPress Plugins and Themes"
+msgstr "Премиум плагины и темы WordPress"
+
+#: footer.php:92
+msgid "&#8226; Designed by"
+msgstr "&#8226; Разработано"
+
+#: content.php:23
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Читать далее %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-single-portfolio.php:72 content-single.php:56
+msgid "Related posts"
+msgstr "Записи по теме"
+
+#: content-single-portfolio.php:45 content-single.php:40 inc/theme/init.php:528
+#: inc/theme/init.php:536
+msgid "Posted in"
+msgstr "Рубрики:"
+
+#: content-single-portfolio.php:41 content-single.php:34 inc/theme/init.php:518
+#: inc/theme/init.php:520
+msgid "Tagged with"
+msgstr "Метки:"
+
+#: content-single-portfolio.php:28 content-single.php:23 inc/theme/init.php:509
+msgid "Posted by"
+msgstr "Опубликовано "
+
+#: content-columns.php:38
+msgid "Read More"
+msgstr "Читать далее"
+
+#: content-columns.php:28 content-single-portfolio.php:36 content-single.php:30
+#: inc/theme/init.php:540
+msgid "Edit"
+msgstr "Редактировать"
+
+#: content-columns.php:25 content-single-portfolio.php:34 content-single.php:28
+#: inc/theme/init.php:515
+msgid "Comments"
+msgstr "Комментарии"
+
+#: comments.php:73
+msgid "Comment"
+msgstr "Комментарий"
+
+#: comments.php:69
+msgid "Website"
+msgstr "Вебсайт"
+
+#: comments.php:64
+msgid "Email"
+msgstr "Email"
+
+#: comments.php:58
+msgid "Name"
+msgstr "Имя"
+
+#: comments.php:47
+msgid "Comments are closed."
+msgstr "Комментарии запрещены."
+
+#: comments.php:41
+msgid "next"
+msgstr "следующая"
+
+#: comments.php:40
+msgid "previous"
+msgstr "предыдущая"
+
+#: comments.php:22
+msgid "% Comments"
+msgstr "Комментарии (%)"
+
+#: comments.php:22
+msgid "One Comment"
+msgstr "Один комментарий"
+
+#: comments.php:22
+msgid "No Comments"
+msgstr "Без комментариев"
+
+#: classes/theme/class-theme-install.php:714
+msgid "plugin is activated"
+msgstr "плагин активирован"
+
+#: classes/theme/class-theme-install.php:712
+msgid "plugin is not activated"
+msgstr "плагин не активирован"
+
+#: classes/theme/class-theme-install.php:663
+msgid "<h4>Regenerate Thumbnails</h4>"
+msgstr "<h4>Regenerate Thumbnails</h4>"
+
+#: classes/theme/class-theme-install.php:652
+#: classes/theme/class-theme-install.php:658
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: classes/theme/class-theme-install.php:645
+msgid "<h4>WooCommerce</h4>"
+msgstr "<h4>WooCommerce</h4>"
+
+#: classes/theme/class-theme-install.php:627
+msgid "<h4>MotoPress Content Editor Lite</h4>"
+msgstr "<h4>MotoPress Content Editor Lite</h4>"
+
+#: classes/theme/class-theme-install.php:609
+msgid "<h4>Newsletter widget</h4>"
+msgstr "<h4>Newsletter widget</h4>"
+
+#: classes/theme/class-theme-install.php:599
+#: classes/theme/class-theme-install.php:605
+#: classes/theme/class-theme-install.php:617
+#: classes/theme/class-theme-install.php:623
+#: classes/theme/class-theme-install.php:635
+#: classes/theme/class-theme-install.php:641
+#: classes/theme/class-theme-install.php:653
+#: classes/theme/class-theme-install.php:659
+#: classes/theme/class-theme-install.php:671
+#: classes/theme/class-theme-install.php:677
+msgid "Activating %s plugin..."
+msgstr "Активация %s плагина..."
+
+#: classes/theme/class-theme-install.php:591
+msgid "<h4>Emmet Theme Engine</h4>"
+msgstr "<h4>Emmet Theme Engine</h4>"
+
+#: classes/theme/class-theme-install.php:584
+msgid "Installing the plugins (this may take awhile)"
+msgstr "Установка плагинов (это может занять некоторое время)"
+
+#: classes/theme/class-theme-install.php:503
+msgid "Allows you to regenerate the thumbnails for your images if you've changed a theme. Available under Dashboard - Tools - Regenerate Thumbnails menu."
+msgstr "Позволяет перегенерировать миниатюры для ваших изображений, если вы изменили тему. Доступен в Консоль - Инструменты - меню Пересоздать миниатюры (Regenerate Thumbnails)."
+
+#: classes/theme/class-theme-install.php:499
+#: classes/theme/class-theme-install.php:509
+#: classes/theme/class-theme-install.php:670
+#: classes/theme/class-theme-install.php:676
+msgid "Regenerate Thumbnails"
+msgstr "Regenerate Thumbnails"
+
+#: classes/theme/class-theme-install.php:478
+msgid "The world's favorite eCommerce solution that gives you complete control to sell anything. Install this plugin if you are going to sell from this website."
+msgstr "Любимое решение в мире электронной коммерции, которое дает вам полный контроль, чтобы продать что-нибудь. Установите этот плагин, если вы собираетесь продавать с этого сайта."
+
+#: classes/theme/class-theme-install.php:477
+#: classes/theme/class-theme-install.php:486
+msgid "WooCommerce for eCommerce"
+msgstr "WooCommerce для eCommerce"
+
+#: classes/theme/class-theme-install.php:457
+msgid "Enhances the standard WordPress editor and enables to build websites visually. It's complete solution for building responsive pages without coding and simply by dragging and dropping content elements."
+msgstr "Дополняет стандартный редактор WordPress и позволяет создавать вебсайты визуально. Это комплексное решение для построения адаптивных страниц без кодирования, путем простого перетаскивания элементов содержимого."
+
+#: classes/theme/class-theme-install.php:456
+#: classes/theme/class-theme-install.php:464
+#: classes/theme/class-theme-install.php:634
+#: classes/theme/class-theme-install.php:640
+msgid "MotoPress Content Editor Lite"
+msgstr "MotoPress Content Editor Lite"
+
+#: classes/theme/class-theme-install.php:435
+msgid "Adds newsletter widget to this theme."
+msgstr "Добавляет виджет новостной рассылки к этой теме"
+
+#: classes/theme/class-theme-install.php:434
+#: classes/theme/class-theme-install.php:444
+#: classes/theme/class-theme-install.php:616
+#: classes/theme/class-theme-install.php:622
+msgid "Newsletter widget"
+msgstr "Виджет рассылки"
+
+#: classes/theme/class-theme-install.php:423
+#: classes/theme/class-theme-install.php:445
+#: classes/theme/class-theme-install.php:465
+#: classes/theme/class-theme-install.php:487
+#: classes/theme/class-theme-install.php:510
+msgid "Activate this plugin."
+msgstr "Активировать этот плагин."
+
+#: classes/theme/class-theme-install.php:414
+msgid "Adds Portfolio and Front Page Sections to this theme."
+msgstr "Добавляет Портфолио и секции Главной страницы к этой теме"
+
+#: classes/theme/class-theme-install.php:413
+#: classes/theme/class-theme-install.php:422
+#: classes/theme/class-theme-install.php:598
+#: classes/theme/class-theme-install.php:604
+msgid "Emmet Theme Engine"
+msgstr "Emmet Theme Engine"
+
+#: classes/theme/class-theme-install.php:404
+msgid "This theme recommends the following free plugins:"
+msgstr "Эта тема рекомендует следующие бесплатные плагины:"
+
+#: classes/theme/class-theme-install.php:401
+#: classes/theme/class-theme-install.php:522 inc/theme/init.php:736
+msgid "Skip"
+msgstr "Пропустить"
+
+#: classes/theme/class-theme-install.php:376
+msgid "Return to the WordPress Dashboard"
+msgstr "Вернуться в консоль WordPress"
+
+#: classes/theme/class-theme-install.php:375
+msgid "Customize this theme"
+msgstr "Настроить тему"
+
+#: classes/theme/class-theme-install.php:372
+msgid "Thank you for choosing Emmet theme."
+msgstr "Спасибо за выбор темы Emmet."
+
+#: classes/theme/class-theme-install.php:371
+msgid "You are Ready!"
+msgstr "Вы готовы!"
+
+#: classes/theme/class-theme-install.php:345
+msgid "2. In Settings -> Reading, set \"Posts page\" to \"Blog\""
+msgstr "2. В меню Настройки -> Чтение \"Страница записей\" установите созданную в предыдущем шаге страницу \"Блог\""
+
+#: classes/theme/class-theme-install.php:344
+msgid "1. Create new page and name it \"Blog\""
+msgstr "1. Создайте новую страницу и назовите ее \"Блог\""
+
+#: classes/theme/class-theme-install.php:335
+msgid "3. Setup Posts Page (Blog)"
+msgstr "2. Настройка страницы записей (Блога)"
+
+#: classes/theme/class-theme-install.php:328
+#: classes/theme/class-theme-install.php:346
+msgid "3. Scroll down and Save changes"
+msgstr "3. Прокрутите вниз и сохраните изменения"
+
+#: classes/theme/class-theme-install.php:327
+msgid "2. In Settings -> Reading, set \"Front page\" to \"Home\" or \"Front Page\" you've created in first step"
+msgstr "2. В меню Настройки -> Чтение \"На главной странице отображать\" \"Статическую страницу\" установите \"Домашняя\" или \"Главная страница\", которую вы создали в первом шаге"
+
+#: classes/theme/class-theme-install.php:326
+msgid "2. In Settings -> Reading, set \"Front page displays\" to \"A static page\""
+msgstr "2. В меню Настройки -> Чтение \"На главной странице отображать\" установите \"Статическую страницу\""
+
+#: classes/theme/class-theme-install.php:325
+msgid "Settings -> Reading"
+msgstr "Настройки -> Чтение"
+
+#: classes/theme/class-theme-install.php:325
+msgid "1. Navigate to "
+msgstr "1. Перейдите к"
+
+#: classes/theme/class-theme-install.php:315
+msgid "2. Setup Front Page"
+msgstr "2. Настройка Главной страницы"
+
+#: classes/theme/class-theme-install.php:310
+#: classes/theme/class-theme-install.php:330
+msgid "documentation"
+msgstr "документацию"
+
+#: classes/theme/class-theme-install.php:310
+#: classes/theme/class-theme-install.php:330
+msgid "For more information, please view"
+msgstr "Для получения дополнительной информации, пожалуйста, смотрите"
+
+#: classes/theme/class-theme-install.php:308
+msgid "4. Press Publish button"
+msgstr "4. Нажмите кнопку \"Опубликовать\""
+
+#: classes/theme/class-theme-install.php:307
+msgid "3. Choose \"Customizable Front Page\" template"
+msgstr "3. Выберите шаблон \"Customizable Front Page\" (Настраиваемая Главная страница)"
+
+#: classes/theme/class-theme-install.php:306
+msgid "2. Name it \"Home\" or \"Front Page\""
+msgstr "Назовите ее \"Домашняя\" или \"Главная страница\""
+
+#: classes/theme/class-theme-install.php:305
+msgid "Create New Page"
+msgstr "Создайте новую страницу"
+
+#: classes/theme/class-theme-install.php:305
+msgid "1. Follow this link to "
+msgstr "1. Перейдите по этой ссылке и"
+
+#: classes/theme/class-theme-install.php:296
+msgid "1. Create Front Page"
+msgstr "1. Создать Главную страницу"
+
+#: classes/theme/class-theme-install.php:291
+msgid "A huge feature of this theme is completely customizable Front Page. Front Page is the main page of your website that includes all content blocks you may need to build website. Features, Call to action, Portfolio, Contact form, Google Maps and many other blocks are available for you from the box. How to setup your Front Page:"
+msgstr "Отличительной особенностью этой темы является полностью настраиваемая Главная страница. Главная страница вашего сайта включает в себя все блоки содержимого, которые могут понадобиться для создания вебсайта. Вам доступны Функции, призыв к действию, портфолио, контактная форма, карта Google и многие другие блоки. Как настроить вашу Главную страницу:"
+
+#: classes/theme/class-theme-install.php:271
+#: classes/theme/class-theme-install.php:359
+#: classes/theme/class-theme-install.php:526
+#: classes/theme/class-theme-install.php:688
+msgid "Exit"
+msgstr "Выход"
+
+#: classes/theme/class-theme-install.php:252
+msgid "This section in customizer allows you to chage main image of your website and configure it for your needs."
+msgstr "Эта секция в Настройщике дает возможность изменить основное изображение вашего вебсайта и настроить его в соответствии с вашими потребностями."
+
+#: classes/theme/class-theme-install.php:244
+msgid "3. Background Image"
+msgstr "3. Фоновое изображение"
+
+#: classes/theme/class-theme-install.php:239
+msgid "The Colors section in customizer allows you to choose between 4 predefined colors or select your own colors."
+msgstr "Секция Цвета в Настройщике позволяет выбирать между 4-мя предустановленными цветами или выбрать ваши собственные."
+
+#: classes/theme/class-theme-install.php:231
+msgid "2. Theme Colors"
+msgstr "2. Цвета темы"
+
+#: classes/theme/class-theme-install.php:226
+msgid "The Site Identity section in customizer allows you to change the site title, description, and control whether or not you want to display them in the header."
+msgstr "Секция Свойства сайта в Настройщике дает возможность изменить название сайта, описание и контролировать, хотите ли вы отобразить их в заголовке."
+
+#: classes/theme/class-theme-install.php:218
+msgid "1. Site Identity"
+msgstr "1. Свойства сайта"
+
+#: classes/theme/class-theme-install.php:213
+msgid "One of the main tools of this theme is WordPress Customizer. Navigate to <strong>Appearance > Customize</strong> to change logo, website title, contact information, colors, background image, menus and so on. Once you are happy with your changes you can click save and your changes will be reflected on your live site."
+msgstr "Один из основных инструментов этой темы - Настройщик WordPress. Перейдите к <strong>Внешний вид > Настроить</strong>, чтобы изменить логотип, заголовок вебсайта, контактную информацию, цвета, фоновое изображение, меню и многое другое. Когда вы будете удовлетворены внесенными изменениями, кликните \"сохранить\" и все настройки будут применены к вашему вебсайту."
+
+#: classes/theme/class-theme-install.php:203
+#: classes/theme/class-theme-install.php:205
+#: classes/theme/class-theme-install.php:265
+#: classes/theme/class-theme-install.php:267
+#: classes/theme/class-theme-install.php:282
+#: classes/theme/class-theme-install.php:356
+#: classes/theme/class-theme-install.php:582
+#: classes/theme/class-theme-install.php:685
+msgid "Continue"
+msgstr "Продолжить"
+
+#: classes/theme/class-theme-install.php:187
+msgid "Let's Go!"
+msgstr "Вперед!"
+
+#: classes/theme/class-theme-install.php:179
+msgid "This Wizard is always available under Appearance > Theme Wizard menu."
+msgstr "Этот Мастер всегда доступен в меню Внешний вид > Мастер темы"
+
+#: classes/theme/class-theme-install.php:178
+msgid "skip and return to the WordPress dashboard."
+msgstr "пропустить и вернуться в Консоль WordPress."
+
+#: classes/theme/class-theme-install.php:177
+msgid "If you don&rsquo;t want to go through the wizard, you can"
+msgstr "Если вы не хотите использовать Мастера темы, можете"
+
+#: classes/theme/class-theme-install.php:175
+msgid "Start e-commerce website and build pages visually"
+msgstr "Запустить веб-сайт электронной коммерции и создавать страницы визуально"
+
+#: classes/theme/class-theme-install.php:174
+msgid "Change colors, texts and images"
+msgstr "Изменить цвета, текст и изображения"
+
+#: classes/theme/class-theme-install.php:173
+msgid "Customize this theme in a few steps"
+msgstr "Настроить эту тему в несколько шагов"
+
+#: classes/theme/class-theme-install.php:172
+msgid "Configure your Front Page"
+msgstr "Настроить вашу Главную страницу"
+
+#: classes/theme/class-theme-install.php:170
+msgid "Thank you for choosing Emmet theme. This Quick Guided Tour will show you how to:"
+msgstr "Спасибо за выбор темы Emmet. Этот быстрый обзорный тур покажет вам, как:"
+
+#: classes/theme/class-theme-install.php:165
+msgid "Welcome to the Emmet Theme!"
+msgstr "Добро пожаловать в тему Emmet!"
+
+#: classes/theme/class-theme-install.php:109
+msgid "Theme Quick Guided Tour"
+msgstr "Быстрый обзорный тур по теме"
+
+#: classes/theme/class-theme-install.php:71
+msgid "Ready"
+msgstr "Готово"
+
+#: classes/theme/class-theme-install.php:61
+msgid "Plugins"
+msgstr "Плагины"
+
+#: classes/theme/class-theme-install.php:56
+#: classes/theme/class-theme-install.php:208
+msgid "Customizer"
+msgstr "Настройка темы"
+
+#: classes/theme/class-theme-install.php:51
+#: classes/theme/class-theme-install.php:284
+msgid "Front Page Setup"
+msgstr "Настройка Главной страницы"
+
+#: classes/theme/class-theme-install.php:46
+msgid "Start"
+msgstr "Начать"
+
+#: classes/theme/class-theme-install.php:37
+msgid "Theme Wizard"
+msgstr "Мастер темы"
+
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+#: classes/theme/class-tgm-plugin-activation.php:3520
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr "Установка плагина %1$s (%2$d/%3$d)"
+
+#: classes/theme/class-tgm-plugin-activation.php:3518
+msgid "All installations have been completed."
+msgstr "Все установки завершены."
+
+#. translators: 1: plugin name.
+#: classes/theme/class-tgm-plugin-activation.php:3517
+msgid "%1$s installed successfully."
+msgstr "%1$s успешно установлен."
+
+#: classes/theme/class-tgm-plugin-activation.php:3515
+msgid "The installation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr "Начинается процесс установки. Он может занять некоторое время — пожалуйста, наберитесь терпения."
+
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+#: classes/theme/class-tgm-plugin-activation.php:3512
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr "Установка и активация плагина %1$s (%2$d/%3$d)"
+
+#: classes/theme/class-tgm-plugin-activation.php:3510
+msgid "All installations and activations have been completed."
+msgstr "Все установки и активации завершены."
+
+#: classes/theme/class-tgm-plugin-activation.php:3509
+#: classes/theme/class-tgm-plugin-activation.php:3517
+msgid "Hide Details"
+msgstr "Скрыть детали"
+
+#: classes/theme/class-tgm-plugin-activation.php:3509
+#: classes/theme/class-tgm-plugin-activation.php:3517
+msgid "Show Details"
+msgstr "Показать детали"
+
+#. translators: 1: plugin name.
+#: classes/theme/class-tgm-plugin-activation.php:3509
+msgid "%1$s installed and activated successfully."
+msgstr "%1$s успешно установлен и активирован."
+
+#: classes/theme/class-tgm-plugin-activation.php:3507
+msgid "The installation and activation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr "Начинается процесс установки и активации. Он может занять некоторое время — пожалуйста, наберитесь терпения."
+
+#. translators: 1: plugin name.
+#: classes/theme/class-tgm-plugin-activation.php:3503
+msgid "The installation of %1$s failed."
+msgstr "Установка %1$s не удалась."
+
+#. translators: 1: plugin name, 2: error message.
+#: classes/theme/class-tgm-plugin-activation.php:3501
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr "При установке %1$s произошла ошибка: <strong>%2$s</strong>."
+
+#. translators: 1: plugin name, 2: action number 3: total number of actions.
+#: classes/theme/class-tgm-plugin-activation.php:3498
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr "Обновление плагина %1$s (%2$d/%3$d)"
+
+#: classes/theme/class-tgm-plugin-activation.php:3158
+msgid "Plugin activation failed."
+msgstr "Активация плагина не удалась"
+
+#: classes/theme/class-tgm-plugin-activation.php:2934
+msgid "No plugins are available to be activated at this time."
+msgstr "Нет доступных плагинов для активации в данный момент."
+
+#: classes/theme/class-tgm-plugin-activation.php:2908
+msgid "No plugins were selected to be activated. No action taken."
+msgstr "Не выбраны плагины для активации. Действие не принято."
+
+#: classes/theme/class-tgm-plugin-activation.php:2802
+msgid "No plugins are available to be updated at this time."
+msgstr "Не доступны плагины для обновления в данный момент."
+
+#: classes/theme/class-tgm-plugin-activation.php:2800
+msgid "No plugins are available to be installed at this time."
+msgstr "Нет доступных плагинов для установки в данный момент."
+
+#: classes/theme/class-tgm-plugin-activation.php:2759
+msgid "No plugins were selected to be updated. No action taken."
+msgstr "Не выбраны плагины для обновления. Действие не принято."
+
+#: classes/theme/class-tgm-plugin-activation.php:2757
+msgid "No plugins were selected to be installed. No action taken."
+msgstr "Не выбраны плагины для установки. Действие не принято."
+
+#: classes/theme/class-tgm-plugin-activation.php:2726
+msgid "Activate"
+msgstr "Активировать"
+
+#: classes/theme/class-tgm-plugin-activation.php:2723
+msgid "Update"
+msgstr "Обновить"
+
+#: classes/theme/class-tgm-plugin-activation.php:2717
+msgid "Install"
+msgstr "Истраллировать"
+
+#: classes/theme/class-tgm-plugin-activation.php:2684
+msgid "Upgrade message from the plugin author:"
+msgstr "Обновленное сообщение от автора плагина:"
+
+#: classes/theme/class-tgm-plugin-activation.php:2554
+msgid "Status"
+msgstr "Статус"
+
+#: classes/theme/class-tgm-plugin-activation.php:2553
+msgid "Version"
+msgstr "Версия"
+
+#: classes/theme/class-tgm-plugin-activation.php:2549
+msgid "Type"
+msgstr "Тип"
+
+#: classes/theme/class-tgm-plugin-activation.php:2548
+msgid "Source"
+msgstr "Источник"
+
+#: classes/theme/class-tgm-plugin-activation.php:2547
+msgid "Plugin"
+msgstr "Плагин"
+
+#: classes/theme/class-tgm-plugin-activation.php:2510
+msgid "Available version:"
+msgstr "Доступные версии:"
+
+#: classes/theme/class-tgm-plugin-activation.php:2498
+msgid "Minimum required version:"
+msgstr "Минимальная требуемая версия:"
+
+#: classes/theme/class-tgm-plugin-activation.php:2490
+msgid "Installed version:"
+msgstr "Установленная версия:"
+
+#: classes/theme/class-tgm-plugin-activation.php:2482
+msgctxt "as in: \"version nr unknown\""
+msgid "unknown"
+msgstr "неизвестный"
+
+#. translators: 1: number of plugins.
+#: classes/theme/class-tgm-plugin-activation.php:2400
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgid_plural "To Activate <span class=\"count\">(%s)</span>"
+msgstr[0] "Для активации <span class=\"count\">(%s)</span>"
+msgstr[1] "Для активации <span class=\"count\">(%s)</span>"
+msgstr[2] "Для активации <span class=\"count\">(%s)</span>"
+
+#. translators: 1: number of plugins.
+#: classes/theme/class-tgm-plugin-activation.php:2396
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgid_plural "Update Available <span class=\"count\">(%s)</span>"
+msgstr[0] "Доступны обновления <span class=\"count\">(%s)</span>"
+msgstr[1] "Доступны обновления <span class=\"count\">(%s)</span>"
+msgstr[2] "Доступны обновления <span class=\"count\">(%s)</span>"
+
+#. translators: 1: number of plugins.
+#: classes/theme/class-tgm-plugin-activation.php:2392
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgid_plural "To Install <span class=\"count\">(%s)</span>"
+msgstr[0] "Для установки <span class=\"count\">(%s)</span>"
+msgstr[1] "Для установки <span class=\"count\">(%s)</span>"
+msgstr[2] "Для установки <span class=\"count\">(%s)</span>"
+
+#. translators: 1: number of plugins.
+#: classes/theme/class-tgm-plugin-activation.php:2388
+msgctxt "plugins"
+msgid "All <span class=\"count\">(%s)</span>"
+msgid_plural "All <span class=\"count\">(%s)</span>"
+msgstr[0] "Все <span class=\"count\">(%s)</span>"
+msgstr[1] "Все <span class=\"count\">(%s)</span>"
+msgstr[2] "Все <span class=\"count\">(%s)</span>"
+
+#: classes/theme/class-tgm-plugin-activation.php:2333
+msgid "Update recommended"
+msgstr "рекомендуется обновление"
+
+#: classes/theme/class-tgm-plugin-activation.php:2330
+msgid "Requires Update"
+msgstr "Требуется обновление"
+
+#: classes/theme/class-tgm-plugin-activation.php:2327
+msgid "Required Update not Available"
+msgstr "необходимое обновление недоступно"
+
+#: classes/theme/class-tgm-plugin-activation.php:2321
+msgid "Active"
+msgstr "Активирован"
+
+#: classes/theme/class-tgm-plugin-activation.php:2319
+msgid "Installed But Not Activated"
+msgstr "Установлен, но не активирован"
+
+#: classes/theme/class-tgm-plugin-activation.php:2315
+msgid "Not Installed"
+msgstr "Не установлен"
+
+#: classes/theme/class-tgm-plugin-activation.php:2298
+msgid "Pre-Packaged"
+msgstr "Включён в дистрибутив"
+
+#: classes/theme/class-tgm-plugin-activation.php:2295
+msgid "External Source"
+msgstr "Внешний источник"
+
+#: classes/theme/class-tgm-plugin-activation.php:2292
+msgid "WordPress Repository"
+msgstr "Каталог WordPress"
+
+#: classes/theme/class-tgm-plugin-activation.php:2276
+msgid "Recommended"
+msgstr "Рекомендуется"
+
+#: classes/theme/class-tgm-plugin-activation.php:2273
+msgid "Required"
+msgstr "Необходимые"
+
+#: classes/theme/class-tgm-plugin-activation.php:1121
+#: classes/theme/class-tgm-plugin-activation.php:2948
+msgctxt "plugin A *and* plugin B"
+msgid "and"
+msgstr "и"
+
+#: classes/theme/class-tgm-plugin-activation.php:937
+msgid "The remote plugin package consists of more than one file, but the files are not packaged in a folder."
+msgstr "Архив плагина состоит из более чем одного файла, но эти файлы не находятся в папке."
+
+#: classes/theme/class-tgm-plugin-activation.php:934
+#: classes/theme/class-tgm-plugin-activation.php:937
+msgid "Please contact the plugin provider and ask them to package their plugin according to the WordPress guidelines."
+msgstr "Пожалуйста, свяжитесь с поставщиком плагина и попросите его упаковать плагин в соответствии с рекомендациями WordPress."
+
+#: classes/theme/class-tgm-plugin-activation.php:934
+msgid "The remote plugin package does not contain a folder with the desired slug and renaming did not work."
+msgstr "Архив плагина не содержит папки нужным именем и переименование не сработало."
+
+#: classes/theme/class-tgm-plugin-activation.php:386
+#: classes/theme/class-tgm-plugin-activation.php:827
+#: classes/theme/class-tgm-plugin-activation.php:2533
+#: classes/theme/class-tgm-plugin-activation.php:3580
+msgid "Return to the Dashboard"
+msgstr "Вернуться в консоль"
+
+#: classes/theme/class-tgm-plugin-activation.php:523
+msgid "Update Required"
+msgstr "Необходимо обновление"
+
+#: classes/theme/class-tgm-plugin-activation.php:522
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr "Этот плагин необходимо обновить для совместимости с вашей темой."
+
+#: classes/theme/class-tgm-plugin-activation.php:397
+msgid "Please contact the administrator of this site for help."
+msgstr "Пожалуйста, свяжитесь с администратором сайта для помощи."
+
+#: classes/theme/class-tgm-plugin-activation.php:395
+msgid "Dismiss this notice"
+msgstr "Закрыть это уведомление"
+
+#. translators: 1: dashboard link.
+#: classes/theme/class-tgm-plugin-activation.php:394
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr "Все плагины установлены и активированны успешно. %1$s"
+
+#. translators: 1: plugin name.
+#: classes/theme/class-tgm-plugin-activation.php:392
+msgid "Plugin not activated. A higher version of %s is needed for this theme. Please update the plugin."
+msgstr "Плагин не активирован. Для данной темы необходима более новая версия %s. Пожалуйста, обновите плагин."
+
+#. translators: 1: plugin name.
+#: classes/theme/class-tgm-plugin-activation.php:390
+msgid "No action taken. Plugin %1$s was already active."
+msgstr "Никакие действия не применялись. Плагин %1$s был уже активирован."
+
+#: classes/theme/class-tgm-plugin-activation.php:388
+#: classes/theme/class-tgm-plugin-activation.php:2952
+msgid "The following plugin was activated successfully:"
+msgstr "Этот плагин был успешно активирован:"
+
+#: classes/theme/class-tgm-plugin-activation.php:387
+#: classes/theme/class-tgm-plugin-activation.php:3159
+msgid "Plugin activated successfully."
+msgstr "Плагин успешно активирован."
+
+#: classes/theme/class-tgm-plugin-activation.php:385
+msgid "Return to Required Plugins Installer"
+msgstr "Вернуться к установщику необходимых плагинов"
+
+#: classes/theme/class-tgm-plugin-activation.php:380
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] "Начать активацию плагина"
+msgstr[1] "Начать активацию плагинов"
+msgstr[2] "Начать активацию плагинов"
+
+#: classes/theme/class-tgm-plugin-activation.php:375
+msgid "Begin updating plugin"
+msgid_plural "Begin updating plugins"
+msgstr[0] "Начать обновление плагина"
+msgstr[1] "Начать обновление плагинов"
+msgstr[2] "Начать обновление плагинов"
+
+#. translators: 1: plugin name(s).
+#: classes/theme/class-tgm-plugin-activation.php:370
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] "Начать установку плагина"
+msgstr[1] "Начать установку плагинов"
+msgstr[2] "Начать установку плагинов"
+
+#: classes/theme/class-tgm-plugin-activation.php:333
+msgid "Something went wrong with the plugin API."
+msgstr "Что-то пошло не так с API плагинов."
+
+#. translators: %s: plugin name.
+#: classes/theme/class-tgm-plugin-activation.php:330
+msgid "Installing Plugin: %s"
+msgstr "Установка плагина: %s"
+
+#: classes/theme/class-tgm-plugin-activation.php:328
+#: classes/theme/class-theme-install.php:66
+msgid "Install Plugins"
+msgstr "Установить плагины"
+
+#: classes/theme/class-tgm-plugin-activation.php:327
+msgid "Install Required Plugins"
+msgstr "Установка необходимых плагинов"
+
+#: author-bio.php:17
+msgid "ABOUT THE AUTHOR"
+msgstr "Об авторе"
+
+#: 404.php:16
+msgid "It looks like nothing was found at this location. Maybe try one of the links below or a search?"
+msgstr "По данному адресу ничего не найдено. Попробуйте воспользоваться одной из ссылок ниже или поиском."
+
+#: 404.php:15
+msgid "Oops! That page can&#39;t be found."
+msgstr "К сожалению, страница не найдена."
+
+#: 404.php:14
+msgid "404"
+msgstr "404. Страница не найдена"
+
+#. Theme URI of the plugin/theme
+msgid "https://motopress.com/themes/emmet"
+msgstr "https://motopress.com/themes/emmet"

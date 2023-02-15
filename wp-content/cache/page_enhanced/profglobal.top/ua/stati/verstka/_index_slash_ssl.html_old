@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head><style>img.lazy{min-height:1px}</style><link rel="preload" href="https://profglobal.top/wp-content/plugins/w3-total-cache/pub/js/lazyload.min.js" as="script">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+	<script type="text/javascript">function theChampLoadEvent(e){var t=window.onload;if(typeof window.onload!="function"){window.onload=e}else{window.onload=function(){t();e()}}}</script>
+		<script type="text/javascript">var theChampDefaultLang = 'uk', theChampCloseIconPath = 'https://profglobal.top/wp-content/plugins/super-socializer/images/close.png';</script>
+		<script>var theChampSiteUrl = 'https://profglobal.top/ua', theChampVerified = 0, theChampEmailPopup = 0, heateorSsMoreSharePopupSearchText = 'Search';</script>
+			<script> var theChampSharingAjaxUrl = 'https://profglobal.top/wp-admin/admin-ajax.php', heateorSsFbMessengerAPI = 'https://www.facebook.com/dialog/send?app_id=123074861588258&display=popup&link=%encoded_post_url%&redirect_uri=%encoded_post_url%',heateorSsWhatsappShareAPI = 'web', heateorSsUrlCountFetched = [], heateorSsSharesText = 'Поширили:', heateorSsShareText = 'Поділитися', theChampPluginIconPath = 'https://profglobal.top/wp-content/plugins/super-socializer/images/logo.png', theChampSaveSharesLocally = 0, theChampHorizontalSharingCountEnable = 0, theChampVerticalSharingCountEnable = 0, theChampSharingOffset = -10, theChampCounterOffset = -10, theChampMobileStickySharingEnabled = 0, heateorSsCopyLinkMessage = "Link copied.";
+		var heateorSsHorSharingShortUrl = "https://profglobal.top/ua/miksiny-scss-sass/";var heateorSsVerticalSharingShortUrl = "https://profglobal.top/ua/miksiny-scss-sass/";		</script>
+			<style type="text/css">
+						.the_champ_button_instagram span.the_champ_svg,a.the_champ_instagram span.the_champ_svg{background:radial-gradient(circle at 30% 107%,#fdf497 0,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285aeb 90%)}
+					.the_champ_horizontal_sharing .the_champ_svg,.heateor_ss_standard_follow_icons_container .the_champ_svg{
+					color: #fff;
+				border-width: 0px;
+		border-style: solid;
+		border-color: transparent;
+	}
+		.the_champ_horizontal_sharing .theChampTCBackground{
+		color:#666;
+	}
+		.the_champ_horizontal_sharing span.the_champ_svg:hover,.heateor_ss_standard_follow_icons_container span.the_champ_svg:hover{
+				border-color: transparent;
+	}
+		.the_champ_vertical_sharing span.the_champ_svg,.heateor_ss_floating_follow_icons_container span.the_champ_svg{
+					color: #fff;
+				border-width: 0px;
+		border-style: solid;
+		border-color: transparent;
+	}
+		.the_champ_vertical_sharing .theChampTCBackground{
+		color:#666;
+	}
+		.the_champ_vertical_sharing span.the_champ_svg:hover,.heateor_ss_floating_follow_icons_container span.the_champ_svg:hover{
+						border-color: transparent;
+		}
+	@media screen and (max-width:783px){.the_champ_vertical_sharing{display:none!important}}</style>
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	
+	<title>Верстка - ProfGlobal</title>
+	<meta name="description" content="Верстка - свежие статьи на эту тематику а также примеры, рекомендации основанные на практике автора этого блога" />
+	<link rel="canonical" href="https://profglobal.top/ua/stati/verstka/" />
+	<meta property="og:locale" content="uk_UA" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="Верстка - ProfGlobal" />
+	<meta property="og:description" content="Верстка - свежие статьи на эту тематику а также примеры, рекомендации основанные на практике автора этого блога" />
+	<meta property="og:url" content="https://profglobal.top/ua/stati/verstka/" />
+	<meta property="og:site_name" content="ProfGlobal" />
+	<meta property="og:image" content="https://profglobal.top/wp-content/uploads/2020/05/logo-cube.png" />
+	<meta property="og:image:width" content="512" />
+	<meta property="og:image:height" content="512" />
+	<meta property="og:image:type" content="image/png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@karakushan" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://profglobal.top/ua/stati/verstka/","url":"https://profglobal.top/ua/stati/verstka/","name":"Верстка - ProfGlobal","isPartOf":{"@id":"https://profglobal.top/#website"},"primaryImageOfPage":{"@id":"https://profglobal.top/stati/verstka/#primaryimage"},"image":{"@id":"https://profglobal.top/stati/verstka/#primaryimage"},"thumbnailUrl":"https://profglobal.top/wp-content/uploads/2017/05/sass-logo1.png","description":"","breadcrumb":{"@id":"https://profglobal.top/ua/stati/verstka/#breadcrumb"},"inLanguage":"uk"},{"@type":"ImageObject","inLanguage":"uk","@id":"https://profglobal.top/stati/verstka/#primaryimage","url":"https://profglobal.top/wp-content/uploads/2017/05/sass-logo1.png","contentUrl":"https://profglobal.top/wp-content/uploads/2017/05/sass-logo1.png","width":1024,"height":768},{"@type":"BreadcrumbList","@id":"https://profglobal.top/stati/verstka/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная страница","item":"https://profglobal.top/"},{"@type":"ListItem","position":2,"name":"{:ru}Статьи{:}{:ua}Статті{:}","item":"https://profglobal.top/stati/"},{"@type":"ListItem","position":3,"name":"Верстка"}]},{"@type":"WebSite","@id":"https://profglobal.top/#website","url":"https://profglobal.top/","name":"ProfGlobal","description":"IT блог","publisher":{"@id":"https://profglobal.top/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://profglobal.top/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"uk"},{"@type":"Organization","@id":"https://profglobal.top/#organization","name":"ProfGlobal","url":"https://profglobal.top/","logo":{"@type":"ImageObject","inLanguage":"uk","@id":"https://profglobal.top/#/schema/logo/image/","url":"https://profglobal.top/wp-content/uploads/2020/05/logo-cube.png","contentUrl":"https://profglobal.top/wp-content/uploads/2020/05/logo-cube.png","width":512,"height":512,"caption":"ProfGlobal"},"image":{"@id":"https://profglobal.top/#/schema/logo/image/"},"sameAs":["https://www.facebook.com/profglobal/","https://twitter.com/karakushan","https://www.youtube.com/channel/UC9CNfgaF3Rjwh_P1S_gYHUw"]}]}</script>
+	
+
+
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="ProfGlobal &raquo; стрічка" href="https://profglobal.top/ua/feed/" />
+<link rel="alternate" type="application/rss+xml" title="ProfGlobal &raquo; Канал коментарів" href="https://profglobal.top/ua/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="ProfGlobal &raquo; Верстка Канал категорії" href="https://profglobal.top/ua/stati/verstka/feed/" />
+<link rel='stylesheet' id='wp-block-library-css' href='https://profglobal.top/wp-includes/css/dist/block-library/style.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wpzoom-social-icons-block-style-css' href='https://profglobal.top/wp-content/plugins/social-icons-widget-by-wpzoom/block/dist/style-wpzoom-social-icons.css' type='text/css' media='all' />
+<link rel='stylesheet' id='classic-theme-styles-css' href='https://profglobal.top/wp-includes/css/classic-themes.min.css' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='contact-form-7-css' href='https://profglobal.top/wp-content/plugins/contact-form-7/includes/css/styles.css' type='text/css' media='all' />
+<style id='contact-form-7-inline-css' type='text/css'>
+.wpcf7 .wpcf7-recaptcha iframe {margin-bottom: 0;}.wpcf7 .wpcf7-recaptcha[data-align="center"] > div {margin: 0 auto;}.wpcf7 .wpcf7-recaptcha[data-align="right"] > div {margin: 0 0 0 auto;}
+</style>
+<link rel='stylesheet' id='popularis-extra-css' href='https://profglobal.top/wp-content/plugins/popularis-extra/assets/css/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='cmplz-general-css' href='https://profglobal.top/wp-content/plugins/complianz-gdpr/assets/css/cookieblocker.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='allium-bootstrap-custom-css' href='https://profglobal.top/wp-content/themes/allium/css/bootstrap-custom.css' type='text/css' media='all' />
+<link rel='stylesheet' id='font-awesome-5-css' href='https://profglobal.top/wp-content/themes/allium/css/fontawesome-all.css' type='text/css' media='all' />
+<link rel='stylesheet' id='allium-style-css' href='https://profglobal.top/wp-content/themes/allium/style.css' type='text/css' media='all' />
+<style id='allium-style-inline-css' type='text/css'>
+.credits-designer { clip: rect(1px, 1px, 1px, 1px); position: absolute; }
+</style>
+<link rel='stylesheet' id='wpzoom-social-icons-socicon-css' href='https://profglobal.top/wp-content/plugins/social-icons-widget-by-wpzoom/assets/css/wpzoom-socicon.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wpzoom-social-icons-genericons-css' href='https://profglobal.top/wp-content/plugins/social-icons-widget-by-wpzoom/assets/css/genericons.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wpzoom-social-icons-academicons-css' href='https://profglobal.top/wp-content/plugins/social-icons-widget-by-wpzoom/assets/css/academicons.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wpzoom-social-icons-font-awesome-3-css' href='https://profglobal.top/wp-content/plugins/social-icons-widget-by-wpzoom/assets/css/font-awesome-3.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wpzoom-social-icons-styles-css' href='https://profglobal.top/wp-content/plugins/social-icons-widget-by-wpzoom/assets/css/wpzoom-social-icons-styles.css' type='text/css' media='all' />
+<link rel='stylesheet' id='the_champ_frontend_css-css' href='https://profglobal.top/wp-content/plugins/super-socializer/css/front.css' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighterjs-css' href='https://profglobal.top/wp-content/plugins/enlighter/cache/enlighterjs.min.css' type='text/css' media='all' />
+<link rel='preload' as='font'  id='wpzoom-social-icons-font-academicons-woff2-css' href='https://profglobal.top/wp-content/plugins/social-icons-widget-by-wpzoom/assets/font/academicons.woff2?v=1.9.2'  type='font/woff2' crossorigin />
+<link rel='preload' as='font'  id='wpzoom-social-icons-font-fontawesome-3-woff2-css' href='https://profglobal.top/wp-content/plugins/social-icons-widget-by-wpzoom/assets/font/fontawesome-webfont.woff2?v=4.7.0'  type='font/woff2' crossorigin />
+<link rel='preload' as='font'  id='wpzoom-social-icons-font-genericons-woff-css' href='https://profglobal.top/wp-content/plugins/social-icons-widget-by-wpzoom/assets/font/Genericons.woff'  type='font/woff' crossorigin />
+<link rel='preload' as='font'  id='wpzoom-social-icons-font-socicon-woff2-css' href='https://profglobal.top/wp-content/plugins/social-icons-widget-by-wpzoom/assets/font/socicon.woff2?v=4.2.10'  type='font/woff2' crossorigin />
+<link rel='stylesheet' id='wpglobus-css' href='https://profglobal.top/wp-content/plugins/wpglobus/includes/css/wpglobus.css' type='text/css' media='all' />
+<script type='text/javascript' src='https://profglobal.top/wp-includes/js/jquery/jquery.min.js' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://profglobal.top/wp-includes/js/jquery/jquery-migrate.min.js' id='jquery-migrate-js'></script>
+
+
+<script type='text/javascript' src='https://www.googletagmanager.com/gtag/js?id=UA-62141677-8' id='google_gtagjs-js' async></script>
+<script type='text/javascript' id='google_gtagjs-js-after'>
+window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag('set', 'linker', {"domains":["profglobal.top"]} );
+gtag("js", new Date());
+gtag("set", "developer_id.dZTNiMT", true);
+gtag("config", "UA-62141677-8", {"anonymize_ip":true});
+gtag("config", "G-BPHHKSMPXD");
+</script>
+
+
+<script type='text/javascript' id='utils-js-extra'>
+/* <![CDATA[ */
+var userSettings = {"url":"\/","uid":"0","time":"1676453253","secure":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://profglobal.top/wp-includes/js/utils.min.js' id='utils-js'></script>
+<script type='text/javascript' id='wbcr_clearfy-css-lazy-load-js-extra'>
+/* <![CDATA[ */
+var wbcr_clearfy_async_links = {"wbcr_clearfy-google-fonts":"https:\/\/fonts.googleapis.com\/css?family=Nunito%20Sans:400,400i,700,700i|Roboto:400,400i,700,700i&subset=latin,latin-ext"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://profglobal.top/wp-content/plugins/clearfy/assets/js/css-lazy-load.min.js' id='wbcr_clearfy-css-lazy-load-js'></script>
+<link rel="https://api.w.org/" href="https://profglobal.top/ua/wp-json/" /><link rel="alternate" type="application/json" href="https://profglobal.top/ua/wp-json/wp/v2/categories/78" /><meta name="generator" content="Site Kit by Google 1.94.0" /><style>.cmplz-hidden{display:none!important;}</style>
+
+<meta name="google-adsense-platform-account" content="ca-host-pub-2644536267352236">
+<meta name="google-adsense-platform-domain" content="sitekit.withgoogle.com">
+
+      <meta name="onesignal" content="wordpress-plugin"/>
+            <script>
+
+      window.OneSignal = window.OneSignal || [];
+
+      OneSignal.push( function() {
+        OneSignal.SERVICE_WORKER_UPDATER_PATH = "OneSignalSDKUpdaterWorker.js.php";
+                      OneSignal.SERVICE_WORKER_PATH = "OneSignalSDKWorker.js.php";
+                      OneSignal.SERVICE_WORKER_PARAM = { scope: "/" };
+        OneSignal.setDefaultNotificationUrl("https://profglobal.top");
+        var oneSignal_options = {};
+        window._oneSignalInitOptions = oneSignal_options;
+
+        oneSignal_options['wordpress'] = true;
+oneSignal_options['appId'] = '9cd2904a-84b8-4ea9-a00b-e91783bee2a0';
+oneSignal_options['allowLocalhostAsSecureOrigin'] = true;
+oneSignal_options['welcomeNotification'] = { };
+oneSignal_options['welcomeNotification']['title'] = "Вы успешно подписались!";
+oneSignal_options['welcomeNotification']['message'] = "Это ваше первое сообщение с сайта ProfGlobal";
+oneSignal_options['welcomeNotification']['url'] = "https://profglobal.top";
+oneSignal_options['path'] = "https://profglobal.top/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/";
+oneSignal_options['safari_web_id'] = "web.onesignal.auto.380fb02b-8aa0-443a-a38d-87b1b457c3de";
+oneSignal_options['persistNotification'] = true;
+oneSignal_options['promptOptions'] = { };
+oneSignal_options['promptOptions']['actionMessage'] = "Подписка на новости сайта в вашем браузере";
+oneSignal_options['promptOptions']['exampleNotificationTitleDesktop'] = "Подтвердите подписку";
+oneSignal_options['promptOptions']['exampleNotificationMessageDesktop'] = "Подписка на новости сайта в вашем браузере";
+oneSignal_options['promptOptions']['exampleNotificationTitleMobile'] = "Подтвердите подписку";
+oneSignal_options['promptOptions']['exampleNotificationMessageMobile'] = "Подписка на новости сайта в вашем браузере";
+oneSignal_options['promptOptions']['exampleNotificationCaption'] = "Подписка на новости сайта в вашем браузере";
+oneSignal_options['promptOptions']['acceptButtonText'] = "Подписаться";
+oneSignal_options['promptOptions']['cancelButtonText'] = "Не хочу";
+oneSignal_options['promptOptions']['siteName'] = "https://profglobal.top";
+oneSignal_options['promptOptions']['autoAcceptTitle'] = "Нажмите разрешить";
+                OneSignal.init(window._oneSignalInitOptions);
+                OneSignal.showSlidedownPrompt();      });
+
+      function documentInitOneSignal() {
+        var oneSignal_elements = document.getElementsByClassName("OneSignal-prompt");
+
+        var oneSignalLinkClickHandler = function(event) { OneSignal.push(['registerForPushNotifications']); event.preventDefault(); };        for(var i = 0; i < oneSignal_elements.length; i++)
+          oneSignal_elements[i].addEventListener('click', oneSignalLinkClickHandler, false);
+      }
+
+      if (document.readyState === 'complete') {
+           documentInitOneSignal();
+      }
+      else {
+           window.addEventListener("load", function(event){
+               documentInitOneSignal();
+          });
+      }
+    </script>
+
+	
+				<style type="text/css" media="screen">
+				.wpglobus_flag_ru{background-image:url(https://profglobal.top/wp-content/plugins/wpglobus/flags/ru.png)}
+.wpglobus_flag_ua{background-image:url(https://profglobal.top/wp-content/plugins/wpglobus/flags/ua.png)}
+			</style>
+			<link rel="alternate" hreflang="ru-RU" href="https://profglobal.top/stati/verstka/" /><link rel="alternate" hreflang="uk" href="https://profglobal.top/ua/stati/verstka/" /><link rel="icon" href="https://profglobal.top/wp-content/uploads/2020/05/cropped-favicon-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://profglobal.top/wp-content/uploads/2020/05/cropped-favicon-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://profglobal.top/wp-content/uploads/2020/05/cropped-favicon-180x180.png" />
+<meta name="msapplication-TileImage" content="https://profglobal.top/wp-content/uploads/2020/05/cropped-favicon-270x270.png" />
+		<style type="text/css" id="wp-custom-css">
+			.comments-area {
+    margin: 20px auto 0 auto;
+    padding: 20px;
+    position: relative;
+    width: 100%;
+    background: #fff;
+}
+.google-recatcha{
+    margin-bottom: 30px;
+}
+.yvii_single_video_player {
+  width: 100%!important;
+  height: 433px!important;
+	margin-bottom:30px;
+}  
+@media (max-width:768px){
+	.yvii_single_video_player {
+    height: auto!important;
+   
+	}
+}		</style>
+		</head>
+
+<body class="archive category category-verstka category-78 hfeed has-site-branding has-wide-layout has-right-sidebar">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-dark-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0.49803921568627" /><feFuncG type="table" tableValues="0 0.49803921568627" /><feFuncB type="table" tableValues="0 0.49803921568627" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-grayscale"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.54901960784314 0.98823529411765" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.71764705882353 0.25490196078431" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-red"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 1" /><feFuncG type="table" tableValues="0 0.27843137254902" /><feFuncB type="table" tableValues="0.5921568627451 0.27843137254902" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-midnight"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0 0" /><feFuncG type="table" tableValues="0 0.64705882352941" /><feFuncB type="table" tableValues="0 1" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-magenta-yellow"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.78039215686275 1" /><feFuncG type="table" tableValues="0 0.94901960784314" /><feFuncB type="table" tableValues="0.35294117647059 0.47058823529412" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-purple-green"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.65098039215686 0.40392156862745" /><feFuncG type="table" tableValues="0 1" /><feFuncB type="table" tableValues="0.44705882352941 0.4" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;" ><defs><filter id="wp-duotone-blue-orange"><feColorMatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 " /><feComponentTransfer color-interpolation-filters="sRGB" ><feFuncR type="table" tableValues="0.098039215686275 1" /><feFuncG type="table" tableValues="0 0.66274509803922" /><feFuncB type="table" tableValues="0.84705882352941 0.41960784313725" /><feFuncA type="table" tableValues="1 1" /></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" /></filter></defs></svg><div id="page" class="site-wrapper site">
+
+	
+	<header id="masthead" class="site-header" role="banner">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+
+					<div class="site-header-inside-wrapper">
+						
+<div class="site-branding-wrapper">
+	
+	<div class="site-branding">
+					<p class="site-title"><a href="https://profglobal.top/ua/" title="ProfGlobal" rel="home">ProfGlobal</a></p>
+		
+				<p class="site-description">IT блог</p>
+			</div>
+</div>
+
+						
+<nav id="site-navigation" class="main-navigation" role="navigation">
+	<div class="main-navigation-inside">
+
+		<a class="skip-link screen-reader-text" href="#content">Перейти до вмісту</a>
+		<div class="toggle-menu-wrapper">
+			<a href="#header-menu-responsive" title="Меню" class="toggle-menu-control">
+				<span class="toggle-menu-label">Меню</span>
+			</a>
+		</div>
+
+		<div class="site-header-menu"><ul id="menu-1" class="header-menu sf-menu"><li id="menu-item-1693" class="menu-item menu-item-type-taxonomy menu-item-object-category current-category-ancestor current-menu-ancestor current-menu-parent current-category-parent menu-item-has-children menu-item-1693"><a href="https://profglobal.top/ua/stati/">Статті</a>
+<ul class="sub-menu">
+	<li id="menu-item-1793" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1793"><a href="https://profglobal.top/ua/stati/laravel/">Laravel</a></li>
+	<li id="menu-item-1695" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1695"><a href="https://profglobal.top/ua/stati/wordpress/">WordPress</a></li>
+	<li id="menu-item-1694" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1694"><a href="https://profglobal.top/ua/stati/php/">PHP</a></li>
+	<li id="menu-item-1717" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1717"><a href="https://profglobal.top/ua/stati/seo/">Статті про СЕО</a></li>
+	<li id="menu-item-1696" class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-1696"><a href="https://profglobal.top/ua/stati/verstka/" aria-current="page">Верстка</a></li>
+	<li id="menu-item-1659" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1659"><a href="https://profglobal.top/ua/stati/shpargalka/">Шпаргалка</a></li>
+	<li id="menu-item-1706" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1706"><a href="https://profglobal.top/ua/stati/shpargalka/linux/">Linux</a></li>
+</ul>
+</li>
+<li id="menu-item-1692" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1692"><a href="https://profglobal.top/ua/videos/">Відео</a>
+<ul class="sub-menu">
+	<li id="menu-item-1953" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-1953"><a href="https://profglobal.top/ua/videos/biznes-video/">Бізнес</a>
+	<ul class="sub-menu">
+		<li id="menu-item-1954" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1954"><a href="https://profglobal.top/ua/videos/biznes-video/big-money/">Big Money</a></li>
+	</ul>
+</li>
+	<li id="menu-item-2033" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-2033"><a href="https://profglobal.top/ua/videos/lichnostnyj-rost/">Особистісний ріст</a></li>
+</ul>
+</li>
+<li id="menu-item-1660" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1660"><a href="https://profglobal.top/ua/stati/psihologija/">Психологія</a></li>
+<li id="menu-item-1658" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1658"><a href="https://profglobal.top/ua/stati/drugoe/zarabotok-v-internete/">Заробіток в інтернеті</a></li>
+<li id="menu-item-1703" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1703"><a href="https://profglobal.top/ua/contacts/">Контакти</a></li>
+<li id="menu-item-9999999999" class="menu-item menu-item-type-custom menu-item-object-custom menu_item_wpglobus_menu_switch wpglobus-selector-link wpglobus-current-language menu-item-9999999999"><a href="https://profglobal.top/ua/stati/verstka/"><span class="wpglobus_flag wpglobus_language_name wpglobus_flag_ua">ua</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-wpglobus_menu_switch_ru" class="menu-item menu-item-type-custom menu-item-object-custom sub_menu_item_wpglobus_menu_switch wpglobus-selector-link menu-item-wpglobus_menu_switch_ru"><a href="https://profglobal.top/stati/verstka/"><span class="wpglobus_flag wpglobus_language_name wpglobus_flag_ru">ru</span></a></li>
+</ul>
+</li>
+</ul></div>
+	</div>
+</nav>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div id="content" class="site-content">
+
+	<div class="page-header-wrapper page-header-wrapper-archive">
+		<div class="container">
+
+			<div class="row">
+				<div class="col">
+
+					<header class="page-header">
+						<h1 class="page-title"><span class="page-title-label">Категорія:</span> <span class="page-title-value"><span>Верстка</span></span></h1>					</header>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="site-content-inside">
+		<div class="container">
+			<div class="row">
+
+				<div id="primary" class="content-area col-16 col-sm-16 col-md-16 col-lg-11 col-xl-11 col-xxl-11">
+					<main id="main" class="site-main" role="main">
+
+					
+						<div id="post-wrapper" class="post-wrapper post-wrapper-archive">
+												
+							
+<div class="post-wrapper-hentry">
+	<article id="post-713" class="post-713 post type-post status-publish format-standard has-post-thumbnail hentry category-sass category-verstka tag-sass tag-scss tag-verstka tag-miksiny tag-nabor">
+		<div class="post-content-wrapper post-content-wrapper-archive">
+
+			<div class="entry-image-wrapper"><a href="https://profglobal.top/ua/miksiny-scss-sass/"><figure class="post-thumbnail"><img width="700" height="525" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20700%20525'%3E%3C/svg%3E" data-src="https://profglobal.top/wp-content/uploads/2017/05/sass-logo1.png" class="img-featured img-responsive wp-post-image lazy" alt="Миксины SCSS (sass)" decoding="async" data-srcset="https://profglobal.top/wp-content/uploads/2017/05/sass-logo1.png 1024w, https://profglobal.top/wp-content/uploads/2017/05/sass-logo1-300x225.png 300w, https://profglobal.top/wp-content/uploads/2017/05/sass-logo1-768x576.png 768w" data-sizes="(max-width: 700px) 100vw, 700px" title="Миксины SCSS (sass)" /></figure></a></div>
+			<div class="entry-data-wrapper">
+				<div class="entry-header-wrapper">
+										<div class="entry-meta entry-meta-header-before">
+						<span class="post-category post-first-category cat-links entry-meta-icon"><a href="https://profglobal.top/ua/stati/verstka/sass/" title="SASS">SASS</a></span><span class="posted-on entry-meta-icon"><span class="screen-reader-text">Розміщений на</span><a href="https://profglobal.top/ua/miksiny-scss-sass/" rel="bookmark"><time class="entry-date published" datetime="2017-05-09T12:28:17+02:00">9 Травня, 2017</time><time class="updated" datetime="2017-05-09T12:34:14+02:00">9 Травня, 2017</time></a></span>					</div>
+					
+					<header class="entry-header">
+						<h1 class="entry-title"><a href="https://profglobal.top/ua/miksiny-scss-sass/" rel="bookmark">Миксины SCSS (sass)</a></h1>					</header>
+				</div>
+
+								<div class="entry-summary">
+					<p>Представляю набор собственных миксинов для препроцессора SASS. Эти миксины используются в повседневной жизни верстальщика. Вы сможете  всего за пару движений сделать  то, на что у вас уходило уйму времени. Набор постоянно обновляется, поэтому лучше всего подписаться на обновления нашего сайта.</p>
+				</div>
+				
+				<div class="more-link-wrapper"><a href="https://profglobal.top/ua/miksiny-scss-sass/" class="more-link">Детальніше</a></div>			</div>
+
+		</div>
+	</article>
+</div>
+
+						
+							
+<div class="post-wrapper-hentry">
+	<article id="post-612" class="post-612 post type-post status-publish format-standard has-post-thumbnail hentry category-verstka category-drugoe">
+		<div class="post-content-wrapper post-content-wrapper-archive">
+
+			<div class="entry-image-wrapper"><a href="https://profglobal.top/ua/start-sass-gulp-startovyj-proekt-dlya-bystroj-i-kachestvennoj-verstki/"><figure class="post-thumbnail"><img width="400" height="400" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%20400'%3E%3C/svg%3E" data-src="https://profglobal.top/wp-content/uploads/2017/03/95FQxeT2_400x400.png" class="img-featured img-responsive wp-post-image lazy" alt="start-sass-gulp - стартовый проект для быстрой и качественной верстки" decoding="async" data-srcset="https://profglobal.top/wp-content/uploads/2017/03/95FQxeT2_400x400.png 400w, https://profglobal.top/wp-content/uploads/2017/03/95FQxeT2_400x400-250x250.png 250w, https://profglobal.top/wp-content/uploads/2017/03/95FQxeT2_400x400-300x300.png 300w, https://profglobal.top/wp-content/uploads/2017/03/95FQxeT2_400x400-50x50.png 50w, https://profglobal.top/wp-content/uploads/2017/03/95FQxeT2_400x400-150x150.png 150w" data-sizes="(max-width: 400px) 100vw, 400px" title="start-sass-gulp - стартовый проект для быстрой и качественной верстки" /></figure></a></div>
+			<div class="entry-data-wrapper">
+				<div class="entry-header-wrapper">
+										<div class="entry-meta entry-meta-header-before">
+						<span class="post-category post-first-category cat-links entry-meta-icon"><a href="https://profglobal.top/ua/stati/verstka/" title="Верстка">Верстка</a></span><span class="posted-on entry-meta-icon"><span class="screen-reader-text">Розміщений на</span><a href="https://profglobal.top/ua/start-sass-gulp-startovyj-proekt-dlya-bystroj-i-kachestvennoj-verstki/" rel="bookmark"><time class="entry-date published" datetime="2017-03-06T17:22:33+02:00">6 Березня, 2017</time><time class="updated" datetime="2017-03-06T17:31:26+02:00">6 Березня, 2017</time></a></span>					</div>
+					
+					<header class="entry-header">
+						<h1 class="entry-title"><a href="https://profglobal.top/ua/start-sass-gulp-startovyj-proekt-dlya-bystroj-i-kachestvennoj-verstki/" rel="bookmark">start-sass-gulp &#8211; стартовый проект для быстрой и качественной верстки</a></h1>					</header>
+				</div>
+
+								<div class="entry-summary">
+					<p>Данный пакет содержит в себе необходимые npm плагины для быстрой верстки: browser-sync &#8211; встроенный сервер для редактирвоаниия sccs файлов без перезагрузи страницы. gulp-sass &#8211; компилятор sass файлов gulp.spritesmith &#8211; автоматическое создание спрайтов gulp-autoprefixer &#8211; создание&hellip;</p>
+				</div>
+				
+				<div class="more-link-wrapper"><a href="https://profglobal.top/ua/start-sass-gulp-startovyj-proekt-dlya-bystroj-i-kachestvennoj-verstki/" class="more-link">Детальніше</a></div>			</div>
+
+		</div>
+	</article>
+</div>
+
+						
+							
+<div class="post-wrapper-hentry">
+	<article id="post-229" class="post-229 post type-post status-publish format-standard hentry category-html-css-javascript category-sass tag-stilizatsiya-chekboksov">
+		<div class="post-content-wrapper post-content-wrapper-archive">
+
+			
+			<div class="entry-data-wrapper">
+				<div class="entry-header-wrapper">
+										<div class="entry-meta entry-meta-header-before">
+						<span class="post-category post-first-category cat-links entry-meta-icon"><a href="https://profglobal.top/ua/stati/shpargalka/html-css-javascript/" title="HTML/CSS/Javascript">HTML/CSS/Javascript</a></span><span class="posted-on entry-meta-icon"><span class="screen-reader-text">Розміщений на</span><a href="https://profglobal.top/ua/stilizatsiya-input-type-checkbox-na-chistom-css/" rel="bookmark"><time class="entry-date published" datetime="2016-07-24T00:17:47+02:00">24 Липня, 2016</time><time class="updated" datetime="2018-04-11T07:54:00+02:00">11 Квітня, 2018</time></a></span>					</div>
+					
+					<header class="entry-header">
+						<h1 class="entry-title"><a href="https://profglobal.top/ua/stilizatsiya-input-type-checkbox-na-chistom-css/" rel="bookmark">Стилизация checkbox на чистом css</a></h1>					</header>
+				</div>
+
+								<div class="entry-summary">
+					<p>Стилизация checkbox &#8211; это способ маскировки стандартных элементов формы типа чекбокс с заменой на другие с целью улучшения вида.</p>
+				</div>
+				
+				<div class="more-link-wrapper"><a href="https://profglobal.top/ua/stilizatsiya-input-type-checkbox-na-chistom-css/" class="more-link">Детальніше</a></div>			</div>
+
+		</div>
+	</article>
+</div>
+
+						
+							
+<div class="post-wrapper-hentry">
+	<article id="post-76" class="post-76 post type-post status-publish format-standard has-post-thumbnail hentry category-html-css-javascript category-sass tag-startovyj-html-bootstrap-shablon tag-startovyj-shablon">
+		<div class="post-content-wrapper post-content-wrapper-archive">
+
+			<div class="entry-image-wrapper"><a href="https://profglobal.top/ua/html-bootstrap-start-template/"><figure class="post-thumbnail"><img width="400" height="300" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%20300'%3E%3C/svg%3E" data-src="https://profglobal.top/wp-content/uploads/2016/03/html.png" class="img-featured img-responsive wp-post-image lazy" alt="Стартовый html (bootstrap) шаблон для верстки" decoding="async" data-srcset="https://profglobal.top/wp-content/uploads/2016/03/html.png 400w, https://profglobal.top/wp-content/uploads/2016/03/html-300x225.png 300w" data-sizes="(max-width: 400px) 100vw, 400px" title="Стартовый html (bootstrap) шаблон для верстки" /></figure></a></div>
+			<div class="entry-data-wrapper">
+				<div class="entry-header-wrapper">
+										<div class="entry-meta entry-meta-header-before">
+						<span class="post-category post-first-category cat-links entry-meta-icon"><a href="https://profglobal.top/ua/stati/shpargalka/html-css-javascript/" title="HTML/CSS/Javascript">HTML/CSS/Javascript</a></span><span class="posted-on entry-meta-icon"><span class="screen-reader-text">Розміщений на</span><a href="https://profglobal.top/ua/html-bootstrap-start-template/" rel="bookmark"><time class="entry-date published" datetime="2016-03-11T14:41:28+02:00">11 Березня, 2016</time><time class="updated" datetime="2016-12-29T22:18:12+02:00">29 Грудня, 2016</time></a></span>					</div>
+					
+					<header class="entry-header">
+						<h1 class="entry-title"><a href="https://profglobal.top/ua/html-bootstrap-start-template/" rel="bookmark">Стартовый html (bootstrap) шаблон для верстки</a></h1>					</header>
+				</div>
+
+								<div class="entry-summary">
+					<p>Не секрет, что подготовительные  работы верстальщика занимают львиную часть времени. А ведь зачем париться? Можно приступать к работе автоматизировав часть процесса. Я говорю о том что  большая часть веб-разработчиков или тех, кто хочет ими стать&hellip;</p>
+				</div>
+				
+				<div class="more-link-wrapper"><a href="https://profglobal.top/ua/html-bootstrap-start-template/" class="more-link">Детальніше</a></div>			</div>
+
+		</div>
+	</article>
+</div>
+
+												</div>
+
+						
+					
+					</main>
+				</div>
+
+				<div id="site-sidebar" class="sidebar-area col-16 col-sm-16 col-md-16 col-lg-5 col-xl-5 col-xxl-5">
+	<div id="secondary" class="sidebar widget-area sidebar-widget-area" role="complementary">
+		<aside id="search-2" class="widget widget_search">
+<form role="search" method="get" class="search-form" action="https://profglobal.top/ua/">
+	<label>
+		<span class="screen-reader-text">Пошук:</span>
+		<input type="search" class="search-field" placeholder="Пошук ..." value="" name="s" title="Пошук:" />
+	</label>
+	<button type="submit" class="search-submit"><span class="screen-reader-text">Пошук</span></button>
+</form>
+</aside><aside id="zoom-social-icons-widget-3" class="widget zoom-social-icons-widget"><h2 class="widget-title">Приєднуйтесь до нас: </h2>
+		
+<ul class="zoom-social-icons-list zoom-social-icons-list--with-canvas zoom-social-icons-list--round zoom-social-icons-list--no-labels">
+
+		
+				<li class="zoom-social_icons-list__item">
+		<a class="zoom-social_icons-list__link" href="https://www.linkedin.com/company/prof-global/" target="_blank" title="Default Label" rel="nofollow">
+									
+						<span class="screen-reader-text">linkedin</span>
+			
+						<span class="zoom-social_icons-list-span social-icon socicon socicon-linkedin" data-hover-rule="background-color" data-hover-color="#0077B5" style="background-color : #0077B5; font-size: 18px; padding:8px" ></span>
+			
+					</a>
+	</li>
+
+	
+				<li class="zoom-social_icons-list__item">
+		<a class="zoom-social_icons-list__link" href="https://www.facebook.com/profglobal" target="_blank" title="Facebook" rel="nofollow">
+									
+						<span class="screen-reader-text">facebook</span>
+			
+						<span class="zoom-social_icons-list-span social-icon socicon socicon-facebook" data-hover-rule="background-color" data-hover-color="#3b5998" style="background-color : #3b5998; font-size: 18px; padding:8px" ></span>
+			
+					</a>
+	</li>
+
+	
+				<li class="zoom-social_icons-list__item">
+		<a class="zoom-social_icons-list__link" href="https://twitter.com/profglobal_web" target="_blank" title="Twitter" rel="nofollow">
+									
+						<span class="screen-reader-text">twitter</span>
+			
+						<span class="zoom-social_icons-list-span social-icon socicon socicon-twitter" data-hover-rule="background-color" data-hover-color="#1da1f2" style="background-color : #1da1f2; font-size: 18px; padding:8px" ></span>
+			
+					</a>
+	</li>
+
+	
+				<li class="zoom-social_icons-list__item">
+		<a class="zoom-social_icons-list__link" href="https://vk.com/profglobal" target="_blank" title="Default Label" rel="nofollow">
+									
+						<span class="screen-reader-text">vkontakte</span>
+			
+						<span class="zoom-social_icons-list-span social-icon socicon socicon-vkontakte" data-hover-rule="background-color" data-hover-color="#5a7fa6" style="background-color : #5a7fa6; font-size: 18px; padding:8px" ></span>
+			
+					</a>
+	</li>
+
+	
+</ul>
+
+		</aside>
+		<aside id="recent-posts-3" class="widget widget_recent_entries">
+		<h2 class="widget-title">Останні записи</h2>
+		<ul>
+											<li>
+					<a href="https://profglobal.top/ua/sravnenie-tarifnyh-planov-konstruktorov-internet-magazina/">Какой конструктор интернет магазина лучший? Обзор тарифных планов.</a>
+									</li>
+											<li>
+					<a href="https://profglobal.top/ua/spisok-neobhodimyh-paketov-dlja-laravel/">Список необходимых пакетов для Laravel</a>
+									</li>
+											<li>
+					<a href="https://profglobal.top/ua/sajt-vypal-iz-indeksa-pochemu-sajty-vypadajut-iz-indeksa/">Сайт випав з індексу Гугла чи Яндекса? Чому сайти випадають із індексу пошукових систем</a>
+									</li>
+											<li>
+					<a href="https://profglobal.top/ua/kak-vybrat-seo-optimizatora/">Как выбрать SEO оптимизатора</a>
+									</li>
+											<li>
+					<a href="https://profglobal.top/ua/istorija-jandeksa/">История Яндекса</a>
+									</li>
+					</ul>
+
+		</aside><aside id="recent-comments-3" class="widget widget_recent_comments"><h2 class="widget-title">Останні коментарі</h2><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link">Данил</span> до <a href="https://profglobal.top/ua/registratsiya-v-vordpress-bez-plagina/#comment-74">Регистрация в вордпресс без плагина</a></li><li class="recentcomments"><span class="comment-author-link">Сергей</span> до <a href="https://profglobal.top/ua/registratsiya-v-vordpress-bez-plagina/#comment-52">Регистрация в вордпресс без плагина</a></li><li class="recentcomments"><span class="comment-author-link">Максим</span> до <a href="https://profglobal.top/ua/re-initsializatsiya-form-plagina-contact-form-7-kotorye-zagruzhayutsya-cherez-ajax/#comment-51">Ре-инициализация форм плагина Contact Form 7, которые загружаются через Ajax</a></li><li class="recentcomments"><span class="comment-author-link">Гор</span> до <a href="https://profglobal.top/ua/registratsiya-v-vordpress-bez-plagina/#comment-48">Регистрация в вордпресс без плагина</a></li><li class="recentcomments"><span class="comment-author-link"><span class="wbcr-clearfy-pseudo-link" data-uri="https://iklife.ru/">Василий (iklife.ru)</span></span> до <a href="https://profglobal.top/ua/pravila-uspeshnogo-nayomnogo-rabotnika/#comment-47">Правила успешного наёмного работника</a></li></ul></aside>	</div>
+</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	</div>
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		
+<div class="site-info">
+	<div class="site-info-inside">
+
+		<div class="container">
+
+			<div class="row">
+				<div class="col">
+					<div class="credits-wrapper">
+						<div class="credits credits-blog">2020 © ProfGlobal &#8211; IT блог</div><div class="credits credits-designer">Тема Allium від <a href="https://templatelens.com" title="TemplateLens">TemplateLens</a> <span>&sdot;</span> Працює від <a href="https://wordpress.org" title="WordPress">WordPress</a></div>					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+	</footer>
+
+</div>
+
+<div class="overlay-effect"></div>
+
+
+
+<div id="cmplz-cookiebanner-container"><div class="cmplz-cookiebanner cmplz-hidden banner-1 optin cmplz-bottom-left cmplz-categories-type-view-preferences" aria-modal="true" data-nosnippet="true" role="dialog" aria-live="polite" aria-labelledby="cmplz-header-1-optin" aria-describedby="cmplz-message-1-optin">
+	<div class="cmplz-header">
+		<div class="cmplz-logo"></div>
+		<div class="cmplz-title" id="cmplz-header-1-optin">Дозвіл на викоррістання cookie</div>
+		<div class="cmplz-close" tabindex="0" role="button" aria-label="close-dialog">
+			<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+		</div>
+	</div>
+
+	<div class="cmplz-divider cmplz-divider-header"></div>
+	<div class="cmplz-body">
+		<div class="cmplz-message" id="cmplz-message-1-optin">Ми використовуємо такі технології, як файли cookie, для зберігання та/або доступу до інформації про пристрій. Ми робимо це, щоб покращити роботу веб-переглядача та показувати персоналізовану рекламу. Згода на використання цих технологій дозволить нам обробляти такі дані, як поведінка веб-переглядача або унікальні ідентифікатори на цьому сайті. Відмова або відкликання згоди може негативно вплинути на певні функції та функції.</div>
+		
+		<div class="cmplz-categories">
+			<details class="cmplz-category cmplz-functional" >
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Functional</span>
+							<span class='cmplz-always-active'>
+								<span class="cmplz-banner-checkbox">
+									<input type="checkbox"
+										   id="cmplz-functional-optin"
+										   data-category="cmplz_functional"
+										   class="cmplz-consent-checkbox cmplz-functional"
+										   size="40"
+										   value="1"/>
+									<label class="cmplz-label" for="cmplz-functional-optin" tabindex="0"><span class="screen-reader-text">Functional</span></label>
+								</span>
+								Always active							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-functional">The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.</span>
+				</div>
+			</details>
+
+			<details class="cmplz-category cmplz-preferences" >
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Preferences</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox"
+									   id="cmplz-preferences-optin"
+									   data-category="cmplz_preferences"
+									   class="cmplz-consent-checkbox cmplz-preferences"
+									   size="40"
+									   value="1"/>
+								<label class="cmplz-label" for="cmplz-preferences-optin" tabindex="0"><span class="screen-reader-text">Preferences</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-preferences">The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.</span>
+				</div>
+			</details>
+
+			<details class="cmplz-category cmplz-statistics" >
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Statistics</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox"
+									   id="cmplz-statistics-optin"
+									   data-category="cmplz_statistics"
+									   class="cmplz-consent-checkbox cmplz-statistics"
+									   size="40"
+									   value="1"/>
+								<label class="cmplz-label" for="cmplz-statistics-optin" tabindex="0"><span class="screen-reader-text">Statistics</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-statistics">The technical storage or access that is used exclusively for statistical purposes.</span>
+					<span class="cmplz-description-statistics-anonymous">The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.</span>
+				</div>
+			</details>
+			<details class="cmplz-category cmplz-marketing" >
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Marketing</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox"
+									   id="cmplz-marketing-optin"
+									   data-category="cmplz_marketing"
+									   class="cmplz-consent-checkbox cmplz-marketing"
+									   size="40"
+									   value="1"/>
+								<label class="cmplz-label" for="cmplz-marketing-optin" tabindex="0"><span class="screen-reader-text">Marketing</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-marketing">The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.</span>
+				</div>
+			</details>
+		</div>
+			</div>
+
+	<div class="cmplz-links cmplz-information">
+		<a class="cmplz-link cmplz-manage-options cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">Manage options</a>
+		<a class="cmplz-link cmplz-manage-third-parties cookie-statement" href="#" data-relative_url="#cmplz-cookies-overview">Manage services</a>
+		<a class="cmplz-link cmplz-manage-vendors tcf cookie-statement" href="#" data-relative_url="#cmplz-tcf-wrapper">Manage vendors</a>
+		<a class="cmplz-link cmplz-external cmplz-read-more-purposes tcf" target="_blank" rel="noopener noreferrer nofollow" href="https://cookiedatabase.org/tcf/purposes/">Read more about these purposes</a>
+			</div>
+
+	<div class="cmplz-divider cmplz-footer"></div>
+
+	<div class="cmplz-buttons">
+		<button class="cmplz-btn cmplz-accept">Згоден</button>
+		<button class="cmplz-btn cmplz-deny">Заперечую</button>
+		<button class="cmplz-btn cmplz-view-preferences">Детальніше</button>
+		<button class="cmplz-btn cmplz-save-preferences">Зберегти налаштування</button>
+		<a class="cmplz-btn cmplz-manage-options tcf cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">Детальніше</a>
+			</div>
+
+	<div class="cmplz-links cmplz-documents">
+		<a class="cmplz-link cookie-statement" href="#" data-relative_url="">{title}</a>
+		<a class="cmplz-link privacy-statement" href="#" data-relative_url="">{title}</a>
+		<a class="cmplz-link impressum" href="#" data-relative_url="">{title}</a>
+			</div>
+
+</div>
+</div>
+					<div id="cmplz-manage-consent" data-nosnippet="true"><button class="cmplz-btn cmplz-hidden cmplz-manage-consent manage-consent-1">Manage consent</button>
+
+</div><script type='text/javascript' src='https://profglobal.top/wp-content/plugins/contact-form-7/includes/swv/js/index.js' id='swv-js'></script>
+<script type='text/javascript' id='contact-form-7-js-extra'>
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"https:\/\/profglobal.top\/ua\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://profglobal.top/wp-content/plugins/contact-form-7/includes/js/index.js' id='contact-form-7-js'></script>
+<script type='text/javascript' src='https://profglobal.top/wp-content/themes/allium/js/enquire.js' id='enquire-js'></script>
+<script type='text/javascript' src='https://profglobal.top/wp-content/themes/allium/js/fitvids.js' id='fitvids-js'></script>
+<script type='text/javascript' src='https://profglobal.top/wp-content/themes/allium/js/hover-intent.js' id='hover-intent-js'></script>
+<script type='text/javascript' src='https://profglobal.top/wp-content/themes/allium/js/superfish.js' id='superfish-js'></script>
+<script type='text/javascript' src='https://profglobal.top/wp-content/themes/allium/js/custom.js' id='allium-custom-js'></script>
+<script type='text/javascript' src='https://profglobal.top/wp-content/plugins/social-icons-widget-by-wpzoom/assets/js/social-icons-widget-frontend.js' id='zoom-social-icons-widget-frontend-js'></script>
+<script type='text/javascript' src='https://profglobal.top/wp-content/plugins/super-socializer/js/front/social_login/general.js' id='the_champ_ss_general_scripts-js'></script>
+<script type='text/javascript' src='https://profglobal.top/wp-content/plugins/super-socializer/js/front/sharing/sharing.js' id='the_champ_share_counts-js'></script>
+<script type='text/javascript' src='https://profglobal.top/wp-content/plugins/enlighter/cache/enlighterjs.min.js' id='enlighterjs-js'></script>
+<script type='text/javascript' id='enlighterjs-js-after'>
+!function(e,n){if("undefined"!=typeof EnlighterJS){var o={"selectors":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"options":{"indent":4,"ampersandCleanup":true,"linehover":true,"rawcodeDbclick":false,"textOverflow":"break","linenumbers":true,"theme":"enlighter","language":"php","retainCssClasses":false,"collapse":false,"toolbarOuter":"","toolbarTop":"{BTN_RAW}{BTN_COPY}{BTN_WINDOW}{BTN_WEBSITE}","toolbarBottom":""}};(e.EnlighterJSINIT=function(){EnlighterJS.init(o.selectors.block,o.selectors.inline,o.options)})()}else{(n&&(n.error||n.log)||function(){})("Error: EnlighterJS resources not loaded yet!")}}(window,console);
+</script>
+<script type='text/javascript' id='cmplz-cookiebanner-js-extra'>
+/* <![CDATA[ */
+var complianz = {"prefix":"cmplz_","user_banner_id":"1","set_cookies":[],"block_ajax_content":"","banner_version":"15","version":"6.4.0","store_consent":"","do_not_track_enabled":"","consenttype":"optin","region":"eu","geoip":"","dismiss_timeout":"","disable_cookiebanner":"","soft_cookiewall":"","dismiss_on_scroll":"","cookie_expiry":"365","url":"https:\/\/profglobal.top\/ua\/wp-json\/complianz\/v1\/","locale":"lang=uk&locale=uk","set_cookies_on_root":"","cookie_domain":"","current_policy_id":"16","cookie_path":"\/ua\/","categories":{"statistics":"statistics","marketing":"marketing"},"tcf_active":"","placeholdertext":"Click to accept {category} cookies and enable this content","css_file":"https:\/\/profglobal.top\/wp-content\/uploads\/complianz\/css\/banner-{banner_id}-{type}.css?v=15","page_links":{"eu":{"privacy-statement":{"title":"Privacy Policy","url":"https:\/\/profglobal.top\/ua\/privacy-policy\/"}}},"tm_categories":"","forceEnableStats":"","preview":"","clean_cookies":""};
+/* ]]> */
+</script>
+<script defer type='text/javascript' src='https://profglobal.top/wp-content/plugins/complianz-gdpr/cookiebanner/js/complianz.min.js' id='cmplz-cookiebanner-js'></script>
+<script type='text/javascript' id='wpglobus-js-extra'>
+/* <![CDATA[ */
+var WPGlobus = {"version":"2.10.9","language":"ua","enabledLanguages":["ru","ua"]};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://profglobal.top/wp-content/plugins/wpglobus/includes/js/wpglobus.min.js' id='wpglobus-js'></script>
+<script type='text/javascript' src='https://cdn.onesignal.com/sdks/OneSignalSDK.js' async='async' id='remote_sdk-js'></script>
+				<script async data-category="statistics" src="https://www.googletagmanager.com/gtag/js?id="></script><script>window.w3tc_lazyload=1,window.lazyLoadOptions={elements_selector:".lazy",callback_loaded:function(t){var e;try{e=new CustomEvent("w3tc_lazyload_loaded",{detail:{e:t}})}catch(a){(e=document.createEvent("CustomEvent")).initCustomEvent("w3tc_lazyload_loaded",!1,!1,{e:t})}window.dispatchEvent(e)}}</script><script async src="https://profglobal.top/wp-content/plugins/w3-total-cache/pub/js/lazyload.min.js"></script></body>
+</html>
+
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/
+
+Object Caching 193/340 objects using redis
+Page Caching using disk: enhanced 
+Lazy Loading
+Minified using disk
+Database Caching 5/53 queries in 0.025 seconds using redis (Request-wide modification query)
+
+Served from: profglobal.top @ 2023-02-15 11:27:33 by W3 Total Cache
+-->

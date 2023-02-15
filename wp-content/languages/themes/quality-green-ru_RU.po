@@ -1,0 +1,49 @@
+# Translation of Themes - Quality green in Russian
+# This file is distributed under the same license as the Themes - Quality green package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-02-01 21:56:57+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: ru\n"
+"Project-Id-Version: Themes - Quality green\n"
+
+#. Theme Name of the plugin/theme
+msgid "Quality green"
+msgstr "Quality green"
+
+#. Description of the plugin/theme
+msgid "A Business theme which is ideal for creating a corporate / business website. quality Light theme is a child theme of quality theme and it is the lite color variation. Those who need the white background based theme they can use this child  theme and if you want dark background based then directly use the parent theme."
+msgstr "Бизнес тема, которая идеально подходит для создания бизнес сайта. Для тех, кому нужен светлый фон сайта, могут использовать эту тему. Если вы хотите темный фон, то тогда напрямую используйте родительскую тему."
+
+#: template-blog-fullwidth.php:57 template-blog-leftsidebar.php:57
+#: template-blog-rightsidebar.php:58
+msgid "Read More"
+msgstr "Прочитать больше"
+
+#. Template Name of the plugin/theme
+msgid "Full Width Blog"
+msgstr "Блог на всю ширину"
+
+#. Template Name of the plugin/theme
+msgid "Blog Right Sidebar"
+msgstr "Правая боковая колонка блога"
+
+#. Template Name of the plugin/theme
+msgid "Blog Left Sidebar"
+msgstr "Блог с левым сайдбаром"
+
+#. Theme URI of the plugin/theme
+msgid "http://webriti.com/quality-green-child-version-details-page/"
+msgstr "http://webriti.com/quality-green-child-version-details-page/"
+
+#. Author URI of the plugin/theme
+msgid "http://www.webriti.com"
+msgstr "http://www.webriti.com"
+
+#. Author of the plugin/theme
+msgid "webriti"
+msgstr "webriti"

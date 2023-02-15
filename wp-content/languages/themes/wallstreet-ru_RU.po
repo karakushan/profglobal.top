@@ -1,0 +1,1212 @@
+# Translation of Themes - Wallstreet in Russian
+# This file is distributed under the same license as the Themes - Wallstreet package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2017-01-29 03:09:30+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: GlotPress/2.3.0-alpha\n"
+"Language: ru\n"
+"Project-Id-Version: Themes - Wallstreet\n"
+
+#. Description of the plugin/theme
+msgid "WallStreet is a Business WordPress Theme that contains a lot of features for customizing your website as you need. Already thousands of users loving this theme because it is designed for multiple businesses like corporates, firms, law firms, digital media agency, architecture firm, personal, portfolio and freelancer's website. The theme is developed using Bootstrap 3 CSS framework that makes it friendly for all the devices like mobiles, tablets, laptops etc. In WallStreet Lite, you can easily set Featured Banner / Slide, Social Icons in Header, Contact Information, Services, Portfolio, 4 column widgetized footer. Couple of page templates are added one is Homepage and the second one is full width page template. In the premium version, you will get 2 color skins Lite and Dark, 10 predefined color schemes, feature for creating your custom color scheme, an eye-catching slider, Services, Testimonial’s, Portfolio, Clients/ Sponsors, Blog Layouts, Layout Manager and Latest News. You will get Various page templates  like About, Service, Portfolio, Blog and Contact Us. The theme has supports for popular  plugins like WPML, Polylang and JetPack Gallery Extensions. Just navigate to Appearance / Customize to start customizing. Both the lite and premium version of WallStreet theme comes with various locales. Check premium version theme demo at http://webriti.com/demo/wp/wallstreet"
+msgstr "WallStreet - бизнес WordPress тема, которая содержит в себе большое количество функциональности для настройки вашего сайта под ваши нужды. Тысячи пользователей любят эту тему, потому что она создана для самого разного бизнеса - корпораций, фирм, нотариусов, медиа-агентств, архитектурных фирм, персональных и портфолио сайтов. Тема разработана с использованием Bootstrap 3, что сразу делает ее отлично работающей на мобильных устройствах. В Wallstreet Lite вы можете с легкостью настроить избранный баннер, социальные иконки в шапке, контактную информацию, услуги, портфолио, 4-х колоночный подвал с виджетами. Добавлено несколько шаблонов страниц, одна из которых - главная страница, вторая - страница на всю ширину темы. В премиум версии темы вы также получите 2 цветовых гаммы (темную и светлую), 10 вариаций расцветки с возможностью создать свою собственную, слайдер, услуги, отзывы, портфолио, клиенты / спонсоры, макеты блога, менеджер макетов и последние новости. Вы также получите разные дополнительные шаблоны страниц: О нас, услуги, портфолио, блог и контакты. Тема поддерживает популярные плагины: WPML, Polylang, JetPack Gallery Extensions. Просто перейдите с кастомизатор, чтобы настроить тему под себя. И бесплатная, и платная версии WallStreet темы сразу поддерживают несколько языков (включая русский). Посмотрите на демо премиум версии темы на сайте: http://webriti.com/demo/wp/wallstreet"
+
+#. Theme Name of the plugin/theme
+msgid "Wallstreet"
+msgstr "Wallstreet"
+
+#: functions/customizer/customizer-template.php:69
+msgid "About page setting"
+msgstr "Настройки страницы О Нас"
+
+#: functions/customizer/customizer-typography.php:98
+msgid "General Paragraph"
+msgstr "Общие настройки"
+
+#: functions/customizer/customizer-typography.php:248
+msgid "Post / Page title"
+msgstr "Заголовок записи/страницы"
+
+#: functions/customizer/customizer-heading.php:95
+#: functions/customizer/customizer-template.php:116
+msgid "We offer great services to our clients"
+msgstr "Мы предлагаем отличные услуги для наших клиентов"
+
+#: functions/customizer/customizer-client.php:5
+#: functions/customizer/customizer-feature.php:6
+#: functions/customizer/customizer-pro.php:12
+#: functions/customizer/customizer-pro.php:19
+#: functions/customizer/customizer-project.php:299
+#: functions/customizer/customizer-service.php:234
+#: functions/customizer/customizer-template.php:6
+#: functions/customizer/customizer-template.php:15
+#: functions/customizer/customizer-template.php:24
+#: functions/customizer/customizer-template.php:32
+#: functions/customizer/customizer-template.php:41
+#: functions/customizer/customizer-template.php:51
+#: functions/customizer/customizer-testimonial.php:5
+#: functions/customizer/customizer-typography.php:8
+#: functions/customizer/customizer-typography.php:17
+#: functions/customizer/customizer-typography.php:25
+#: functions/customizer/customizer-typography.php:33
+#: functions/customizer/customizer-typography.php:41
+#: functions/customizer/customizer-typography.php:49
+#: functions/customizer/customizer-typography.php:57
+#: functions/customizer/customizer-typography.php:65
+#: functions/customizer/customizer-typography.php:73
+msgid "Upgrade to pro"
+msgstr "Обновиться до ПРО"
+
+#: functions/customizer/customizer-template.php:692
+msgid "URL"
+msgstr "URL"
+
+#: functions/customizer/customizer-typography.php:173
+msgid "Menus"
+msgstr "меню"
+
+#: functions/customizer/customizer-typography.php:322
+msgid "Service title"
+msgstr "Название услуги"
+
+#: functions/customizer/customizer-typography.php:544
+msgid "Callout title"
+msgstr "Заголовок контактного блока"
+
+#: functions/customizer/customizer-typography.php:618
+msgid "Callout description"
+msgstr "Описание контактного блока"
+
+#: functions/customizer/customizer-typography.php:691
+msgid "Callout button"
+msgstr "Кнопка контактного блока"
+
+#: functions.php:95 functions.php:97
+msgid "Sidebar widget area"
+msgstr "Область виджетов в боковой колонке"
+
+#: functions/customizer/customizer-social.php:95
+msgid "Facebook URL"
+msgstr "Facebook URL"
+
+#: functions/customizer/customizer-social.php:76
+msgid "Twitter URL"
+msgstr "Twitter URL"
+
+#: functions/customizer/customizer-social.php:136
+msgid "LinkedIn URL"
+msgstr "LinkedIn URL"
+
+#: functions/customizer/customizer-social.php:115
+msgid "GooglePlus URL"
+msgstr "GooglePlus URL"
+
+#: functions/customizer/customizer-template.php:136
+msgid "Contact page address setting"
+msgstr "Настройки адреса контактной страницы"
+
+#: functions/customizer/customizer-template.php:235
+msgid "Address one"
+msgstr "Адрес одного"
+
+#: functions/customizer/customizer-template.php:253
+msgid "Address two"
+msgstr "Адрес две"
+
+#: functions/customizer/customizer-template.php:263
+msgid "Contact page phone setting"
+msgstr "Настройки телефона контактной страницы"
+
+#: functions/customizer/customizer-template.php:364
+msgid "Phone number one"
+msgstr "Телефонный номер 1"
+
+#: functions/customizer/customizer-template.php:384
+msgid "Phone number two"
+msgstr "Телефонный номер 2"
+
+#: functions/customizer/customizer-template.php:396
+msgid "Contact page email setting"
+msgstr "Настройки email адреса контактной страницы"
+
+#: functions/customizer/customizer-template.php:547
+msgid "Contact page form setting"
+msgstr "Настройки формы контактной страницы"
+
+#: functions/customizer/customizer-template.php:616
+msgid "Contact page Google maps"
+msgstr "Google Карты контактной страницы"
+
+#: functions/customizer/customizer-template.php:495
+#: functions/customizer/customizer-template.php:535
+msgid "Email one"
+msgstr "Email 1"
+
+#: functions/customizer/customizer-template.php:515
+msgid "Email two"
+msgstr "Email 2"
+
+#: functions/customizer/customizer-social.php:156
+msgid "YouTube URL"
+msgstr "YouTube URL"
+
+#: functions/customizer/customizer-slider.php:53
+msgid "Sub title"
+msgstr "Подзаголовок"
+
+#: functions/customizer/customizer-service.php:160
+msgid "Service three"
+msgstr "Услуга 3"
+
+#: functions/customizer/customizer-service.php:101
+msgid "Service two"
+msgstr "Услуга 2"
+
+#: functions/customizer/customizer-service.php:40
+msgid "Service one"
+msgstr "Услуга 1"
+
+#: comments.php:31
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment"
+msgstr "Вы должны быть <a href=\"%s\">авторизованы</a>, чтобы оставить комментарий."
+
+#: comments.php:37
+msgid "Name"
+msgstr "Имя"
+
+#: comments.php:47 comments.php:53
+msgid "Leave your message"
+msgstr "Оставьте свое сообщение"
+
+#: comments.php:48
+msgid "Logout from this Account"
+msgstr "Выйти из этой учетной записи"
+
+#: comments.php:48
+msgid "Logout"
+msgstr "Выход"
+
+#: functions/customizer/customizer-feature.php:116
+#: functions/customizer/customizer-feature.php:179
+#: functions/customizer/customizer-feature.php:242
+#: functions/customizer/customizer-template.php:195
+#: functions/customizer/customizer-template.php:323
+#: functions/customizer/customizer-template.php:455
+msgid "Icon"
+msgstr "Иконка"
+
+#: functions/customizer/customizer-feature.php:85
+msgid "Core features of theme"
+msgstr "Основные особенности темы"
+
+#: functions/customizer/customizer-client.php:61
+msgid "Have a look at our client we are growing their business and they are going up in the market by beating their competitors."
+msgstr "Посмотрите на наших клиентов - мы развиваем их бизнес, и они идут вверх на рынке, побеждая своих конкурентов."
+
+#: functions/customizer/customizer-client.php:51
+#: functions/customizer/customizer-feature.php:96
+#: functions/customizer/customizer-feature.php:136
+#: functions/customizer/customizer-feature.php:199
+#: functions/customizer/customizer-feature.php:262
+#: functions/customizer/customizer-project.php:50
+#: functions/customizer/customizer-project.php:120
+#: functions/customizer/customizer-project.php:180
+#: functions/customizer/customizer-project.php:240
+#: functions/customizer/customizer-service.php:75
+#: functions/customizer/customizer-service.php:135
+#: functions/customizer/customizer-service.php:194
+#: functions/customizer/customizer-slider.php:38
+#: functions/customizer/customizer-template.php:105
+#: functions/customizer/customizer-template.php:215
+#: functions/customizer/customizer-template.php:475
+#: functions/customizer/customizer-template.php:584
+#: functions/customizer/customizer-template.php:672
+msgid "Title"
+msgstr "Заголовок"
+
+#: functions/customizer/customizer-client.php:70
+#: functions/customizer/customizer-feature.php:157
+#: functions/customizer/customizer-feature.php:220
+#: functions/customizer/customizer-feature.php:283
+#: functions/customizer/customizer-project.php:69
+#: functions/customizer/customizer-project.php:138
+#: functions/customizer/customizer-project.php:198
+#: functions/customizer/customizer-project.php:258
+#: functions/customizer/customizer-service.php:93
+#: functions/customizer/customizer-service.php:153
+#: functions/customizer/customizer-service.php:212
+#: functions/customizer/customizer-slider.php:68
+#: functions/customizer/customizer-template.php:125
+#: functions/customizer/customizer-template.php:604
+msgid "Description"
+msgstr "Описание"
+
+#: functions/customizer/customizer-client.php:14
+msgid "Client settings"
+msgstr "Настройки клиента"
+
+#: functions/customizer/customizer-feature.php:60
+msgid "Check to enable theme featured section on homepage"
+msgstr "Отметьте, чтобы включить раздел с избранным на главной странице"
+
+#: functions/customizer/customizer-feature.php:74
+#: functions/customizer/customizer-project.php:94
+#: functions/customizer/customizer-project.php:151
+#: functions/customizer/customizer-project.php:212
+#: functions/customizer/customizer-project.php:272
+#: functions/customizer/customizer-service.php:53
+#: functions/customizer/customizer-service.php:114
+#: functions/customizer/customizer-service.php:173
+#: functions/customizer/customizer-slider.php:20
+msgid "Image"
+msgstr "Изображение"
+
+#: functions/customizer/customizer-feature.php:254
+msgid "Shortcodes"
+msgstr "Шорткоды"
+
+#: functions/customizer/customizer-home.php:153
+#: functions/customizer/customizer-home.php:166
+msgid "Custom CSS"
+msgstr "Пользовательский CSS"
+
+#: functions/customizer/customizer-heading.php:65
+msgid "Contact email"
+msgstr "Контактный email адрес"
+
+#: functions/customizer/customizer-heading.php:47
+msgid "Contact phone number"
+msgstr "Контактный номер телефона"
+
+#: functions/customizer/customizer-heading.php:28
+msgid "Enable contact information"
+msgstr "Включить контактную информацию"
+
+#: author.php:8
+msgid "Author Archive"
+msgstr "Архив автора"
+
+#: 404.php:23
+msgid "Go Back"
+msgstr "Вернуться назад"
+
+#. Template Name of the plugin/theme
+msgid "Full Width Page"
+msgstr "Страница на всю ширину"
+
+#: functions/customizer/customizer-social.php:15
+msgid "Social Links"
+msgstr "Социальные ссылки"
+
+#: functions.php:241
+msgid "Something went wrong with the plugin API."
+msgstr "Что-то пошло не так с API плагином."
+
+#: functions.php:254
+msgid "All plugins installed and activated successfully. %s"
+msgstr "Все плагины успешно установлены и активированы. %s"
+
+#: class-tgm-plugin-activation.php:2062
+msgid "%1$s installed successfully."
+msgstr "%1$s успешно установлен."
+
+#: class-tgm-plugin-activation.php:2063
+msgid "All installations have been completed."
+msgstr "Все установки были завершены."
+
+#: class-tgm-plugin-activation.php:2064
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr "Установка плагина %1$s (%2$d/%3$d)"
+
+#: functions.php:238
+msgid "Install Recommended Plugins"
+msgstr "Установить необходимые плагины"
+
+#: class-tgm-plugin-activation.php:2059
+msgid "The installation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr "Процесс установки и активации начат. Этот процесс может занять некоторое время, пожалуйста, будьте терпеливы."
+
+#: class-tgm-plugin-activation.php:2060
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr "Произошла ошибка при установке %1$s: <strong>%2$s</strong>."
+
+#: class-tgm-plugin-activation.php:2061
+msgid "The installation of %1$s failed."
+msgstr "Установка %1$s fehlgeschlagen."
+
+#: class-tgm-plugin-activation.php:2054
+msgid "All installations and activations have been completed."
+msgstr "Все установок и активаций были завершены."
+
+#: class-tgm-plugin-activation.php:2055
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr "Установка и активация плагина %1$s (%2$d/%3$d)"
+
+#: class-tgm-plugin-activation.php:2053 class-tgm-plugin-activation.php:2062
+msgid "Hide Details"
+msgstr "Скрыть детали"
+
+#: class-tgm-plugin-activation.php:2052
+msgid "The installation and activation process is starting. This process may take a while on some hosts, so please be patient."
+msgstr "Процесс установки и активации начат. Этот процесс может занять некоторое время, пожалуйста, будьте терпеливы."
+
+#: class-tgm-plugin-activation.php:2053
+msgid "%1$s installed and activated successfully."
+msgstr "%1$s установлен и активирован успешно."
+
+#: class-tgm-plugin-activation.php:2053 class-tgm-plugin-activation.php:2062
+msgid "Show Details"
+msgstr "Показать детали"
+
+#: class-tgm-plugin-activation.php:1938
+msgid "Plugin activation failed."
+msgstr "Активация плагина не удалась"
+
+#: class-tgm-plugin-activation.php:1927
+msgid "Plugin installed successfully."
+msgstr "Плагин успешно установлен."
+
+#: class-tgm-plugin-activation.php:1926
+msgid "Plugin install failed."
+msgstr "Установка плагина не удалась."
+
+#: class-tgm-plugin-activation.php:1925
+msgid "Installing the plugin&#8230;"
+msgstr "Установка плагина&#8230;"
+
+#: class-tgm-plugin-activation.php:1924
+msgid "Unpacking the package&#8230;"
+msgstr "Извлечение файлов&#8230;"
+
+#: class-tgm-plugin-activation.php:1923
+msgid "Downloading install package from <span class=\"code\">%s</span>&#8230;"
+msgstr "Загрузка архива с <span class=\"code\">%s</span>&#8230;"
+
+#: class-tgm-plugin-activation.php:1922
+msgid "Install package not available."
+msgstr "Установка недоступна"
+
+#: class-tgm-plugin-activation.php:1377
+msgid "Status"
+msgstr "Статус"
+
+#: class-tgm-plugin-activation.php:1376
+msgid "Type"
+msgstr "Тип"
+
+#: class-tgm-plugin-activation.php:1375
+msgid "Source"
+msgstr "Источник"
+
+#: class-tgm-plugin-activation.php:1358
+msgid "No plugins to install or activate. <a href=\"%1$s\" title=\"Return to the Dashboard\">Return to the Dashboard</a>"
+msgstr "Нет плагинов для установки или активации. <a href=\"%1$s\" title=\"Вернуться на панель управления\">Вернуться на панель управления</a>"
+
+#: class-tgm-plugin-activation.php:1374
+msgid "Plugin"
+msgstr "Плагин"
+
+#: class-tgm-plugin-activation.php:1309 class-tgm-plugin-activation.php:1396
+msgid "Activate"
+msgstr "Активный."
+
+#: class-tgm-plugin-activation.php:1287 class-tgm-plugin-activation.php:1395
+msgid "Install"
+msgstr "Установить"
+
+#: class-tgm-plugin-activation.php:1180
+msgid "Not Installed"
+msgstr "Не установлен"
+
+#: class-tgm-plugin-activation.php:1182
+msgid "Installed But Not Activated"
+msgstr "Установлены, но не активированы"
+
+#: class-tgm-plugin-activation.php:1177
+msgid "Required"
+msgstr "Обязательное"
+
+#: class-tgm-plugin-activation.php:1177
+msgid "Recommended"
+msgstr "Рекомендуется"
+
+#: class-tgm-plugin-activation.php:1166
+msgid "Private Repository"
+msgstr "Личное хранилище"
+
+#: class-tgm-plugin-activation.php:1169
+msgid "Pre-Packaged"
+msgstr "Предварительно упакованные"
+
+#: class-tgm-plugin-activation.php:1174
+msgid "WordPress Repository"
+msgstr "WordPress репозитория"
+
+#: class-tgm-plugin-activation.php:178 class-tgm-plugin-activation.php:1630
+msgid "The following plugin was activated successfully:"
+msgstr "Этот плагин был успешно активирован:"
+
+#: class-tgm-plugin-activation.php:179
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr "Всеплагины установлены и активированны успешно. %1$s"
+
+#: class-tgm-plugin-activation.php:180
+msgid "Dismiss this notice"
+msgstr "Закрыть это сообщение"
+
+#: class-tgm-plugin-activation.php:175 functions.php:252
+msgid "Return to Required Plugins Installer"
+msgstr "Вернуться на установку подключаемых модулей."
+
+#: class-tgm-plugin-activation.php:176 class-tgm-plugin-activation.php:531
+#: class-tgm-plugin-activation.php:2156
+msgid "Return to the dashboard"
+msgstr "Вернуться на панель управления"
+
+#: class-tgm-plugin-activation.php:177 class-tgm-plugin-activation.php:1939
+#: functions.php:253
+msgid "Plugin activated successfully."
+msgstr "Плагин успешно активирован."
+
+#: class-tgm-plugin-activation.php:171 functions.php:248
+msgid "The following plugin needs to be updated to its latest version to ensure maximum compatibility with this theme: %1$s."
+msgid_plural "The following plugins need to be updated to their latest version to ensure maximum compatibility with this theme: %1$s."
+msgstr[0] "Следующие плагин должен быть обновлен до своей последней версии для обеспечения максимальной совместимости с этой темой: %1$s."
+msgstr[1] "Следующие плагины должны быть обновлены до последней версии их для обеспечения максимальной совместимости с этой темой: %1$s."
+msgstr[2] ""
+
+#: class-tgm-plugin-activation.php:172 functions.php:249
+msgid "Sorry, but you do not have the correct permissions to update the %s plugin. Contact the administrator of this site for help on getting the plugin updated."
+msgid_plural "Sorry, but you do not have the correct permissions to update the %s plugins. Contact the administrator of this site for help on getting the plugins updated."
+msgstr[0] ""
+"Просим прощения, но у вас нет прав для обновления %s плагина.\n"
+"Свяжитесь с администратором для помощи в установке."
+msgstr[1] ""
+"Просим прощения, но у вас нет прав для обновления %s плагинов.\n"
+"Свяжитесь с администратором для помощи в установке."
+msgstr[2] ""
+
+#: class-tgm-plugin-activation.php:173 functions.php:250
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] "Начать установку плагина"
+msgstr[1] "Начать установку плагинов"
+msgstr[2] ""
+
+#: class-tgm-plugin-activation.php:174 functions.php:251
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] "Начать активировать плагин"
+msgstr[1] "Начинается активация плагинов"
+msgstr[2] ""
+
+#: class-tgm-plugin-activation.php:167 functions.php:244
+msgid "Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed."
+msgid_plural "Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed."
+msgstr[0] ""
+"Просим прощения, но у вас нет прав для установки %s плагина.\n"
+"Свяжитесь с администратором для помощи в установке."
+msgstr[1] ""
+"Просим прощения, но у вас нет прав для установки %s плагинов.\n"
+"Свяжитесь с администратором для помощи в установке."
+msgstr[2] ""
+
+#: class-tgm-plugin-activation.php:168 functions.php:245
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] "Ниже требуется плагин в настоящее время неактивен: %1$s."
+msgstr[1] "Следующие необходимые плагины в настоящее время неактивны: %1$s."
+msgstr[2] ""
+
+#: class-tgm-plugin-activation.php:169 functions.php:246
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] "Следующие рекомендованные плагин в настоящее время неактивен: %1$s."
+msgstr[1] "Следующие рекомендованные плагины в настоящее время неактивны: %1$s."
+msgstr[2] ""
+
+#: class-tgm-plugin-activation.php:170 functions.php:247
+msgid "Sorry, but you do not have the correct permissions to activate the %s plugin. Contact the administrator of this site for help on getting the plugin activated."
+msgid_plural "Sorry, but you do not have the correct permissions to activate the %s plugins. Contact the administrator of this site for help on getting the plugins activated."
+msgstr[0] ""
+"Просим прощения, но у вас нет прав для активации %s плагина.\n"
+"Свяжитесь с администратором для помощи в установке."
+msgstr[1] ""
+"Просим прощения, но у вас нет прав для активации %s плагинов.\n"
+"Свяжитесь с администратором для помощи в установке."
+msgstr[2] ""
+
+#: class-tgm-plugin-activation.php:164
+msgid "Something went wrong."
+msgstr "Произошла ошибка."
+
+#: class-tgm-plugin-activation.php:165 functions.php:242
+msgid "This theme requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] "Эта тема требует следующие плагин: %1$s."
+msgstr[1] "Эта тема требует следующие плагины: %1$s."
+msgstr[2] ""
+
+#: class-tgm-plugin-activation.php:166 functions.php:243
+msgid "This theme recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] "Рекомендуется установка плагина: %1$s."
+msgstr[1] "Рекомендуется установка плагинов: %1$s."
+msgstr[2] ""
+
+#: class-tgm-plugin-activation.php:163 functions.php:240
+msgid "Installing Plugin %s"
+msgstr "Установка плагина %s"
+
+#: class-tgm-plugin-activation.php:162 functions.php:239
+msgid "Install Plugins"
+msgstr "Установить плагины"
+
+#: class-tgm-plugin-activation.php:161
+msgid "Install Required Plugins"
+msgstr "Установите требуемые подключаемые модули"
+
+#: functions/customizer/customizer-copyright.php:15 theme_setup_data.php:87
+msgid "Copyright @ 2014 - WALL STREET. Designed by,wallstreet <a href=\"%1$s\" target=\"_blank\">Webriti</a>"
+msgstr "Copyright @ 2014 - WALL STREET. Дизайн wallstreet <a href=\"%1$s\" target=\"_blank\">Webriti</a>"
+
+#: functions/customizer/customizer-typography.php:163
+#: functions/customizer/customizer-typography.php:238
+#: functions/customizer/customizer-typography.php:313
+#: functions/customizer/customizer-typography.php:387
+#: functions/customizer/customizer-typography.php:460
+#: functions/customizer/customizer-typography.php:535
+#: functions/customizer/customizer-typography.php:609
+#: functions/customizer/customizer-typography.php:682
+#: functions/customizer/customizer-typography.php:755
+msgid "Font style"
+msgstr "Стиль шрифта"
+
+#: functions/customizer/customizer-typography.php:470
+msgid "Widget heading title"
+msgstr "Заголовок виджета"
+
+#: functions/customizer/customizer-typography.php:147
+#: functions/customizer/customizer-typography.php:222
+#: functions/customizer/customizer-typography.php:297
+#: functions/customizer/customizer-typography.php:371
+#: functions/customizer/customizer-typography.php:444
+#: functions/customizer/customizer-typography.php:519
+#: functions/customizer/customizer-typography.php:593
+#: functions/customizer/customizer-typography.php:666
+#: functions/customizer/customizer-typography.php:739
+msgid "Font family"
+msgstr "Семейство шрифта"
+
+#: functions/customizer/customizer-testimonial.php:59
+msgid "fade"
+msgstr "fade"
+
+#: functions/customizer/customizer-testimonial.php:57
+msgid "Slide type variations"
+msgstr "Варианты типов слайда"
+
+#: functions/customizer/customizer-testimonial.php:59
+msgid "crossfade"
+msgstr "склейка"
+
+#: functions/customizer/customizer-testimonial.php:59
+msgid "cover-fade"
+msgstr "cover-fade"
+
+#: functions/customizer/customizer-testimonial.php:98
+msgid "Scroll duration"
+msgstr "Длительность прокрутки"
+
+#: functions/customizer/customizer-testimonial.php:118
+msgid "Time out duration"
+msgstr "Продолжительность паузы"
+
+#: functions/customizer/customizer-typography.php:130
+#: functions/customizer/customizer-typography.php:205
+#: functions/customizer/customizer-typography.php:280
+#: functions/customizer/customizer-typography.php:354
+#: functions/customizer/customizer-typography.php:427
+#: functions/customizer/customizer-typography.php:502
+#: functions/customizer/customizer-typography.php:576
+#: functions/customizer/customizer-typography.php:649
+#: functions/customizer/customizer-typography.php:722
+msgid "Font size"
+msgstr "Размер шрифта"
+
+#: functions/customizer/customizer-typography.php:81
+msgid "Typography settings"
+msgstr "Настройки типографики"
+
+#: functions/customizer/customizer-testimonial.php:78
+msgid "Scroll Items"
+msgstr "Прокрутка элементов"
+
+#: functions/customizer/customizer-typography.php:7
+msgid "Want to add genral typography in theme then upgrade to pro"
+msgstr "Если хотите добавить общие настройки типографики, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-typography.php:16
+msgid "Want to add menus typography in theme then upgrade to pro"
+msgstr "Если хотите добавить типографику для меню в теме, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-typography.php:24
+msgid "Want to add post/page typography in theme then upgrade to pro"
+msgstr "Если хотите добавить типографику для записей / страниц в теме, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-typography.php:32
+msgid "Want to add service title typography in theme then upgrade to pro"
+msgstr "Если хотите добавить типографику заголовка услуги, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-typography.php:40
+msgid "Want to add portfolio title typography in theme then upgrade to pro"
+msgstr "Если хотите добавить типографику заголовка портфолио, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-typography.php:48
+msgid "Want to add widget title typography in theme then upgrade to pro"
+msgstr "Если хотите добавить типографику заголовка виджета, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-typography.php:56
+msgid "Want to add callout area title typography in theme then upgrade to pro"
+msgstr "Если хотите добавить типографику заголовка блока контактной информации, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-typography.php:64
+msgid "Want to add callout area description typography in theme then upgrade to pro"
+msgstr "Если хотите добавить типографику описания блока контактной информации, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-typography.php:72
+msgid "Want to add callout button title typography in theme then upgrade to pro"
+msgstr "Если хотите добавить типографику заголовка кнопки блока контактной информации, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-template.php:663
+msgid "Location map"
+msgstr "Карта"
+
+#: functions/customizer/customizer-template.php:595
+msgid "Feel free to write us a message"
+msgstr "Не стесняйтесь написать нам сообщение"
+
+#: functions/customizer/customizer-template.php:653
+msgid "Enable Google map in contact page"
+msgstr "Включить Google Карты контактной страницы"
+
+#: functions/customizer/customizer-testimonial.php:14
+#: functions/customizer/customizer-testimonial.php:20
+msgid "Testimonial settings"
+msgstr "Настройки отзывов"
+
+#: functions/customizer/customizer-testimonial.php:47
+#: functions/customizer/customizer-testimonial.php:59
+#: functions/customizer/customizer-testimonial.php:68
+msgid "scroll"
+msgstr "свиток"
+
+#: functions/customizer/customizer-template.php:575
+msgid "Drop Us a Line"
+msgstr "Напишите нам"
+
+#: functions/customizer/customizer-testimonial.php:5
+msgid "Want to add testimonial than upgrade to pro"
+msgstr "Если хотите добавить отзывы, тогда обновитесь до ПРО"
+
+#: comments.php:38 functions/customizer/customizer-template.php:466
+msgid "Email"
+msgstr "Email"
+
+#: functions/customizer/customizer-template.php:335
+#: functions/customizer/customizer-template.php:344
+msgid "Phone"
+msgstr "Телефон"
+
+#: functions/customizer/customizer-template.php:301
+msgid "Enable contact page phone section"
+msgstr "Включить секцию телефона контактной страницы"
+
+#: functions/customizer/customizer-template.php:436
+msgid "Enable contact page email section"
+msgstr "Включить секцию email адреса контактной страницы"
+
+#: functions/customizer/customizer-template.php:206
+msgid "Address"
+msgstr "Адрес"
+
+#: functions/customizer/customizer-template.php:96
+msgid "Our great team"
+msgstr "Наша отличная команда"
+
+#: functions/customizer/customizer-template.php:174
+msgid "Enable contact page address section"
+msgstr "Включить секцию адреса контактной страницы"
+
+#: functions/customizer/customizer-feature.php:128
+#: functions/customizer/customizer-feature.php:191
+msgid "Incredibly flexible"
+msgstr "Невероятная гибкость"
+
+#: functions/customizer/customizer-feature.php:15
+#: functions/customizer/customizer-feature.php:20
+msgid "Theme feature settings"
+msgstr "Настройки функций темы"
+
+#: functions/customizer/customizer-client.php:42
+msgid "Our Clients"
+msgstr "Наши клиенты"
+
+#: functions/customizer/customizer-template.php:61
+msgid "Template settings"
+msgstr "Настройки шаблона"
+
+#: functions/customizer/customizer-client.php:5
+msgid "Want to add client section then upgrade to Pro"
+msgstr "Если хотите добавить секцию клиентов, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-client.php:30
+#: functions/customizer/customizer-feature.php:36
+#: functions/customizer/customizer-template.php:85
+#: functions/customizer/customizer-template.php:153
+#: functions/customizer/customizer-template.php:280
+#: functions/customizer/customizer-template.php:414
+#: functions/customizer/customizer-template.php:564
+#: functions/customizer/customizer-template.php:633
+#: functions/customizer/customizer-testimonial.php:35
+#: functions/customizer/customizer-typography.php:113
+#: functions/customizer/customizer-typography.php:188
+#: functions/customizer/customizer-typography.php:263
+#: functions/customizer/customizer-typography.php:337
+#: functions/customizer/customizer-typography.php:411
+#: functions/customizer/customizer-typography.php:486
+#: functions/customizer/customizer-typography.php:559
+#: functions/customizer/customizer-typography.php:633
+#: functions/customizer/customizer-typography.php:706
+msgid "Wallstreet upgrade"
+msgstr "Обновление Wallstreet"
+
+#: functions/customizer/customizer-feature.php:6
+msgid "Want to add theme feature section then upgrade to pro"
+msgstr "Если хотите добавить избранный блок, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-template.php:5
+msgid "Want to add about us template heading and add team section then upgrade to pro"
+msgstr "Если хотите добавить секцию команды и шаблон заголовка О Нас, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-template.php:14
+msgid "Want to add contact address in contact template then upgrade to pro"
+msgstr "Если хотите добавить контактный адрес в шаблоне контактов, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-template.php:23
+msgid "Want to add contact phone number in contact template then upgrade to pro"
+msgstr "Если хотите добавить контактный номер телефона в шаблона контактов, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-template.php:31
+msgid "Want to add email in contact template then upgrade to pro"
+msgstr "Если хотите добавить адрес email в шаблоне контактов, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-template.php:40
+msgid "Want to add contact form title & description in contact template then upgrade to pro"
+msgstr "Если хотите добавить заголовок и описание контактной формы в шаблоне контактов, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-template.php:50
+msgid "Want to add map in contact template then upgrade to pro"
+msgstr "Если хотите добавить карту в шаблоне контактов, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-social.php:7
+msgid "Social link settings"
+msgstr "Настройки социальных ссылок"
+
+#: functions/customizer/customizer-project.php:8
+#: functions/customizer/customizer-project.php:14
+msgid "Project settings"
+msgstr "Настройки проекта"
+
+#: functions/customizer/customizer-service.php:231
+msgid "Want to add more services, than upgrade to pro version"
+msgstr "Если хотите добавить больше услуг, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-slider.php:7
+msgid "Banner image settings"
+msgstr "Настройки картинки баннера"
+
+#: functions/customizer/customizer-service.php:218
+msgid "Add more service"
+msgstr "Добавить больше услуг"
+
+#: functions/customizer/customizer-service.php:185
+msgid "Easy to use"
+msgstr "Легко использовать"
+
+#: functions/customizer/customizer-project.php:283
+msgid "Add More Project"
+msgstr "Добавить больше проектов"
+
+#: functions/customizer/customizer-project.php:296
+msgid "Want to add more projects and categorization than upgrade to pro"
+msgstr "Если хотите добавить больше проектов и их категоризацию, тогда обновитесь до ПРО"
+
+#: functions/customizer/customizer-project.php:106
+msgid "Home portfolio two"
+msgstr "Проект на главной 2"
+
+#: functions/customizer/customizer-project.php:80
+msgid "Home portfolio one"
+msgstr "Проект на главной 1"
+
+#: functions/customizer/customizer-project.php:226
+msgid "Home portfolio Four"
+msgstr "Проект на главной 4"
+
+#: functions/customizer/customizer-project.php:164
+msgid "Home portfolio three"
+msgstr "Проект на главной 3"
+
+#: functions/customizer/customizer-pro.php:78
+msgid "The Pro Version gives you more opportunities to enhance your site and business. In order to create effective online presence one have to showcase their wide range of products, have to use contact us enquiry form, have to make effective about us page, have to introduce team members, etc etc . The pro version will give it all. Buy the pro version and give us a chance to serve you better."
+msgstr "ПРО версия дает вам больше возможностей для улучшения вашего сайта и бизнеса. Для создания эффективного присутствия в интернете вы сможете показать широкий набор своих продуктов, использовать контактную форму для сбора лидов и эффективную страницу о вас, представить ваше команду и многое другое. ПРО версия даст вам все это. Купите ПРО версию темы и дайте нам шанс помочь вам."
+
+#: functions/customizer/customizer-pro.php:74
+msgid "DOCUMENTATION"
+msgstr "Документация"
+
+#: functions/customizer/customizer-pro.php:46
+msgid "ADD YOUR REVIEW"
+msgstr "Добавьте свой отзыв"
+
+#: functions/customizer/customizer-home.php:14
+msgid "Site favicon"
+msgstr "Иконка сайта"
+
+#: functions/customizer/customizer-home.php:16
+msgid "Upload a favicon"
+msgstr "Загрузить иконку"
+
+#: functions/customizer/customizer-home.php:27
+msgid "Choose your favicon (ideal width and height is 16x16 or 32x32)"
+msgstr "Выберите вашу иконку (идеальный размер 16х16 или 32х32)"
+
+#: functions/customizer/customizer-home.php:46
+msgid "Header logo setting"
+msgstr "Настройка логотипа в шапке"
+
+#: functions/customizer/customizer-home.php:64
+msgid "Upload a 150x150 for Logo Image"
+msgstr "Загрузить картинку 150x150 для логотипа"
+
+#: functions/customizer/customizer-home.php:104
+msgid "Enter Logo Width"
+msgstr "Введите ширину логотипа"
+
+#: functions/customizer/customizer-home.php:123
+msgid "Enter Logo Height"
+msgstr "Введите высоту логотипа"
+
+#: functions/customizer/customizer-home.php:145
+msgid "Show Logo text"
+msgstr "Показать текст логотипа"
+
+#: functions/customizer/customizer-home.php:83
+msgid "Enable/Disable Logo"
+msgstr "Включить/Выключить логотип"
+
+#: functions/customizer/customizer-copyright.php:24
+msgid "Copyright text"
+msgstr "Текст копирайта"
+
+#: functions/customizer/customizer-copyright.php:8
+msgid "Footer copyright settings"
+msgstr "Настройки копирайта в подвале"
+
+#: functions/customizer/customizer-home.php:8
+msgid "Header settings"
+msgstr "Настройки шапки"
+
+#: functions/customizer/customizer-heading.php:151 theme_setup_data.php:74
+msgid "Our latest blog post"
+msgstr "Наша последняя запись в блоге"
+
+#: functions/customizer/customizer-heading.php:170 theme_setup_data.php:75
+msgid "We work with new customers and grow their businesses"
+msgstr "Мы работаем с новыми клиентами и помогаем им развивать свой бизнес"
+
+#: functions/customizer/customizer-blog.php:7
+msgid "Home blog settings"
+msgstr "Настройка блога на главной странице"
+
+#: functions/customizer/customizer-blog.php:27
+msgid "Enable Home Blog Section"
+msgstr "Включить секцию блога на главной странице"
+
+#: functions/customizer/customizer-heading.php:179
+msgid "Homepage blog section description"
+msgstr "Описание секции блога на главной странице"
+
+#: functions/customizer/customizer-heading.php:160
+msgid "Homepage blog section heading"
+msgstr "Заголовок секции блога на главной странице"
+
+#: functions/customizer/customizer-heading.php:132 theme_setup_data.php:73
+msgid "Most popular of our works."
+msgstr "Самое популярное из наших работ."
+
+#: tag.php:8
+msgid "Tag Archive %s"
+msgstr "Архив метки %s"
+
+#: searchform.php:2
+msgid "Search Here"
+msgstr "Искать здесь"
+
+#: search.php:63
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "Жаль, но ничего не соответствуют критериям вашего поиска. Пожалуйста, попробуйте снова с другими ключевыми словами."
+
+#: search.php:61
+msgid "Nothing Found"
+msgstr "Ничего не найдено"
+
+#: search.php:57
+msgid "Next"
+msgstr "следующий"
+
+#: search.php:56
+msgid "Previous"
+msgstr "предыдущий"
+
+#: search.php:23
+msgid "Search results for: %s"
+msgstr "Результат поиска: %s"
+
+#: functions.php:159
+msgid "Your comment is awaiting moderation."
+msgstr "Ваш комментарий ожидает модерации."
+
+#: functions.php:154
+msgid "Edit"
+msgstr "Редактировать"
+
+#: functions.php:152
+msgid "Posted on &nbsp;"
+msgstr "Опубликовано &nbsp;"
+
+#: functions.php:145
+msgid "Reply"
+msgstr "Ответить"
+
+#: functions.php:105 functions.php:107
+msgid "Footer widget area"
+msgstr "Область виджетов в подвале"
+
+#: functions.php:70
+msgid "Primary Menu"
+msgstr "Основное меню"
+
+#: searchform.php:3
+msgid "Search"
+msgstr "Поиск"
+
+#. Template Name of the plugin/theme
+msgid "Home Page"
+msgstr "Главная страница"
+
+#: functions/customizer/customizer-service.php:126 theme_setup_data.php:37
+msgid "WordPress themes"
+msgstr "WordPress темы"
+
+#: theme_setup_data.php:41
+msgid "Responsive designs"
+msgstr "Отзывчивый дизайн"
+
+#: functions/customizer/customizer-slider.php:32 theme_setup_data.php:24
+msgid "Clean & fresh theme"
+msgstr "Чистые и свежие темы"
+
+#: functions/customizer/customizer-slider.php:62 theme_setup_data.php:26
+msgid "The state-of-the-art HTML5 powered flexible layout with lightspeed fast CSS3 transition effects. Works perfect in any modern mobile."
+msgstr "Отличный гибкий макет с использованием HTML5 и быстрыми эффектами трансформации CSS3. Идеально работает в любом современном телефоне."
+
+#: functions/customizer/customizer-service.php:7
+msgid "Service settings"
+msgstr "Настройки услуг"
+
+#: functions/customizer/customizer-slider.php:47 theme_setup_data.php:25
+msgid "Welcome to wallstreet"
+msgstr "Добро пожаловать в Wallstreet"
+
+#: functions/customizer/customizer-service.php:12
+#: functions/customizer/customizer-service.php:32
+msgid "Enable service section"
+msgstr "Включить секцию услуг"
+
+#: functions/customizer/customizer-service.php:66 theme_setup_data.php:33
+msgid "Product Designing"
+msgstr "Дизайн продуктов"
+
+#: functions/customizer/customizer-project.php:34
+msgid "Enable portfolio section on home page(project section)."
+msgstr "Включить секцию портфолио на главной странице"
+
+#: functions/customizer/customizer-project.php:60
+#: functions/customizer/customizer-project.php:129
+#: functions/customizer/customizer-project.php:189
+#: functions/customizer/customizer-project.php:249 theme_setup_data.php:48
+#: theme_setup_data.php:52 theme_setup_data.php:56 theme_setup_data.php:60
+msgid "A wonderful serenity has taken possession of my entire soul, like these sweet mornings."
+msgstr "Замечательное спокойствие овладело всей моей душой, люблю это сладкое утро."
+
+#: functions/customizer/customizer-project.php:44
+#: functions/customizer/customizer-project.php:114
+#: functions/customizer/customizer-project.php:174
+#: functions/customizer/customizer-project.php:234 theme_setup_data.php:47
+#: theme_setup_data.php:51 theme_setup_data.php:55 theme_setup_data.php:59
+msgid "WallStreet style"
+msgstr "Стиль WallStreet"
+
+#: functions/customizer/customizer-heading.php:113 theme_setup_data.php:72
+msgid "Featured portfolio project"
+msgstr "Рекомендуемый проект портфолио"
+
+#: functions/customizer/customizer-heading.php:122
+#: functions/customizer/customizer-typography.php:396
+msgid "Portfolio title"
+msgstr "Заголовок портфолио"
+
+#: functions/customizer/customizer-heading.php:9
+msgid "Section Heading"
+msgstr "Заголовок секции"
+
+#: functions/customizer/customizer-heading.php:76 theme_setup_data.php:70
+msgid "Our services"
+msgstr "Наши услуги"
+
+#: functions/customizer/customizer-heading.php:141
+msgid "Portfolio Description"
+msgstr "Описание портфолио"
+
+#: functions/customizer/customizer-heading.php:104
+msgid "Services Description"
+msgstr "Описание услуг"
+
+#: functions/customizer/customizer-heading.php:85
+msgid "Services Title"
+msgstr "Заголовок услуг"
+
+#: theme_setup_data.php:71
+msgid "We offer great services to our clients "
+msgstr "Мы предоставляем отличные услуги нашим клиентам"
+
+#: functions/customizer/customizer-social.php:35
+msgid "Enable social media links on header section"
+msgstr "Включить ссылки на социальные сети в шапке"
+
+#: functions/customizer/customizer-social.php:54
+msgid "Enable social media links on footer section"
+msgstr "Включить ссылки на социальные сети в подвале"
+
+#: archive.php:49 author.php:39 category.php:40
+#: functions/breadcrumbs/breadcrumbs.php:98 functions.php:53 index.php:43
+#: single.php:42 tag.php:39
+msgid "Page"
+msgstr "Страница"
+
+#: functions/breadcrumbs/breadcrumbs.php:85
+msgid "Posts tagged"
+msgstr "Записи с метками"
+
+#: functions/breadcrumbs/breadcrumbs.php:90
+msgid "Articles posted by"
+msgstr "Записи от автора"
+
+#: functions/breadcrumbs/breadcrumbs.php:24
+msgid "Archive by category"
+msgstr "Архив по рубрикам"
+
+#: functions/breadcrumbs/breadcrumbs.php:27
+msgid "Search results for"
+msgstr "Результаты поиска по"
+
+#: functions/breadcrumbs/breadcrumbs.php:5
+#: functions/menu/default_menu_walker.php:23
+msgid "Home"
+msgstr "Главная"
+
+#: comments.php:50
+msgid "Send Message"
+msgstr "Отправить сообщение"
+
+#: comments.php:48
+msgid "Logged in as"
+msgstr "Вы вошли как"
+
+#: comments.php:26
+msgid "Comments are closed"
+msgstr "Комментирование закрыто."
+
+#: comments.php:22
+msgid "Newer Comments &rarr;"
+msgstr "Новые комментарии &rarr;"
+
+#: comments.php:21
+msgid "&larr; Older Comments"
+msgstr "&larr; Старые комментарии"
+
+#: comments.php:20
+msgid "Comment navigation"
+msgstr "Навигация по комментариям"
+
+#: comments.php:10
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "%2$s: %1$s комментарий"
+msgstr[1] "%2$s: %1$s комментария"
+msgstr[2] "%2$s: %1$s комментариев"
+
+#: comments.php:2
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr "Это запись защищена паролем. Введите пароль для просмотра комментариев."
+
+#: archive.php:48 author.php:38 category.php:39 functions.php:87
+#: index-blog.php:46 index.php:42 search.php:41 tag.php:38
+msgid "Read More"
+msgstr "Прочитать больше"
+
+#: archive.php:14
+msgid "Yearly Archive"
+msgstr "Архив за год"
+
+#: archive.php:16
+msgid "Blog Archive"
+msgstr "Архив блога"
+
+#: 404.php:8 404.php:20 functions/breadcrumbs/breadcrumbs.php:93
+msgid "Error 404"
+msgstr "Ошибка 404"
+
+#: 404.php:21
+msgid "Oops! Page not found"
+msgstr "Упс! Страница не найдена"
+
+#: 404.php:22
+msgid "We are sorry, but the page you are looking for does not exist."
+msgstr "Мы сожалеем, но страница, которую вы ищете, не существует."
+
+#: archive.php:10
+msgid "Daily Archive"
+msgstr "Архив за день"
+
+#: archive.php:12
+msgid "Monthly Archive"
+msgstr "Архив за месяц"
+
+#. Author URI of the plugin/theme
+msgid "http://www.webriti.com"
+msgstr "http://www.webriti.com"
+
+#. Theme URI of the plugin/theme
+msgid "http://webriti.com/wallstreet-lite-version-details-page/"
+msgstr "http://webriti.com/wallstreet-lite-version-details-page/"
+
+#. Author of the plugin/theme
+msgid "webriti"
+msgstr "webriti"
