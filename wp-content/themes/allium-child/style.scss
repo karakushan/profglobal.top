@@ -1,0 +1,91 @@
+/*
+Theme Name:   Allium Child
+Theme URI:    http://example.com/twenty-fifteen-child/
+Description:  Twenty Fifteen Child Theme
+Author:       John Doe
+Author URI:   http://example.com
+Template:     allium
+Version:      1.0.0
+License:      GNU General Public License v2 or later
+License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+Tags:         light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+Text Domain:  allium-child
+*/
+
+.card-product {
+  background-color: #ffffff;
+  margin: 0 0 30px;
+
+  position: relative;
+  box-shadow: -5px 6px 11px 0px rgba(0, 0, 0, .08);
+  &-price{
+    color: #020202;
+    font-weight: 600
+  }
+  &-description{
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    p{
+      font-size: 1rem;
+    }
+  }
+  &-title {
+    font-size: 20px;
+    font-size: 1.25rem;
+    line-height: 1;
+    margin-bottom: .7rem;
+    display: block;
+
+  }
+  &-button {
+    margin-top: 1rem;
+  }
+  .btn {
+    padding: 15px 30px;
+    display: inline-flex;
+    align-items: center;
+    svg{
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+    &.btn-primary {
+      background-color: #04bfbf;
+      color: #ffffff;
+
+      line-height: 1;
+      &:hover{
+        background-color: #08d6d6;
+      }
+    }
+  }
+  &-image {
+    a {
+      display: block;
+      img {
+        display: block;
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+      }
+    }
+  }
+  &-body {
+    padding: 1.6rem;
+  }
+}
+
+.post-thumbnail-single{
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .custom-logo {
+    max-height: 40px;
+  }
+}
+
+
