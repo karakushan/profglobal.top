@@ -14,19 +14,22 @@ namespace wpdFormAttr\Login\twitter;
  * character (ASCII code 38) even if empty.
  *   - Chapter 9.2 ("HMAC-SHA1")
  */
-class HmacSha1 extends SignatureMethod {
+class HmacSha1 extends SignatureMethod
+{
 
     /**
      * {@inheritDoc}
      */
-    public function getName() {
+    public function getName()
+    {
         return "HMAC-SHA1";
     }
 
     /**
      * {@inheritDoc}
      */
-    public function buildSignature(Request $request, Consumer $consumer, Token $token = null) {
+    public function buildSignature(Request $request, Consumer $consumer, Token $token = null)
+    {
         $signatureBase = $request->getSignatureBaseString();
         $parts = [$consumer->secret, null !== $token ? $token->secret : ""];
 

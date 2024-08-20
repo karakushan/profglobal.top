@@ -88,7 +88,7 @@ class Reset {
 	public function register() {
 		add_filter(
 			'googlesitekit_rest_routes',
-			function( $routes ) {
+			function ( $routes ) {
 				return array_merge( $routes, $this->get_rest_routes() );
 			}
 		);
@@ -227,7 +227,7 @@ class Reset {
 	 * @return array List of REST_Route objects.
 	 */
 	private function get_rest_routes() {
-		$can_setup = function() {
+		$can_setup = function () {
 			return current_user_can( Permissions::SETUP );
 		};
 
@@ -237,9 +237,12 @@ class Reset {
 				array(
 					array(
 						'methods'             => WP_REST_Server::EDITABLE,
-						'callback'            => function( WP_REST_Request $request ) {
+						'callback'            => function () {
 							$this->all();
 							$this->maybe_hard_reset();
+
+							// Call hooks on plugin reset. This is used to reset the ad blocking recovery notification.
+							do_action( 'googlesitekit_reset' );
 
 							return new WP_REST_Response( true );
 						},
@@ -263,8 +266,11 @@ class Reset {
 			$authentication->invalid_nonce_error( static::ACTION );
 		}
 		if ( ! current_user_can( Permissions::SETUP ) ) {
-			wp_die( esc_html__( 'You don\'t have permissions to set up Site Kit.', 'google-site-kit' ), 403 );
+			wp_die( esc_html__( 'You don’t have permissions to set up Site Kit.', 'google-site-kit' ), 403 );
 		}
+
+		// Call hooks on plugin reset. This is used to reset the ad blocking recovery notification.
+		do_action( 'googlesitekit_reset' );
 
 		$this->all();
 		$this->maybe_hard_reset();
@@ -309,5 +315,4 @@ class Reset {
 		$reset_persistent = new Reset_Persistent( $this->context );
 		$reset_persistent->all();
 	}
-
 }

@@ -88,11 +88,11 @@ class Util_PageSpeed {
 		$bar = '';
 
 		if ( $metric['score'] >= 90 ) {
-			$bar = '<div style="flex-grow: ' . $metric['score'] . '"><span class="w3tcps_range w3tcps_pass">' . $metric['displayValue'] . '</span></div>';
+			$bar = '<div style="flex-grow: ' . esc_attr( $metric['score'] ) . '"><span class="w3tcps_range w3tcps_pass">' . esc_html( $metric['displayValue'] ) . '</span></div>';
 		} elseif ( $metric['score'] >= 50 && $metric['score'] < 90 ) {
-			$bar = '<div style="flex-grow: ' . $metric['score'] . '"><span class="w3tcps_range w3tcps_average">' . $metric['displayValue'] . '</span></div>';
+			$bar = '<div style="flex-grow: ' . esc_attr( $metric['score'] ) . '"><span class="w3tcps_range w3tcps_average">' . esc_html( $metric['displayValue'] ) . '</span></div>';
 		} elseif ( $metric['score'] < 50 ) {
-			$bar = '<div style="flex-grow: ' . $metric['score'] . '"><span class="w3tcps_range w3tcps_fail">' . $metric['displayValue'] . '<span></div>';
+			$bar = '<div style="flex-grow: ' . esc_attr( $metric['score'] ) . '"><span class="w3tcps_range w3tcps_fail">' . esc_html( $metric['displayValue'] ) . '<span></div>';
 		}
 
 		echo wp_kses(
@@ -115,13 +115,16 @@ class Util_PageSpeed {
 	 * @param array  $data PageSpeed data.
 	 * @param string $metric Metric key.
 	 * @param string $name Metric name.
+	 * @param bool   $widget Widget flag to add line break between desktop/mobile metric.
 	 *
 	 * @return void
 	 */
-	public static function print_bar_combined_with_icon( $data, $metric, $name ) {
+	public static function print_bar_combined_with_icon( $data, $metric, $name, $widget = false ) {
 		if ( ! isset( $data ) || empty( $metric ) || empty( $name ) ) {
 			return;
 		}
+
+		$widget_break = $widget ? '<br/>' : '';
 
 		?>
 		<div class="w3tcps_metric">
@@ -129,6 +132,7 @@ class Util_PageSpeed {
 			<div class="w3tcps_metric_stats">
 				<span class="dashicons dashicons-<?php echo esc_attr( 'desktop' ); ?>"></span>
 				<?php self::print_barline( $data['desktop'][ $metric ] ); ?>
+				<?php echo $widget_break; ?>
 				<span class="dashicons dashicons-<?php echo esc_attr( 'smartphone' ); ?>"></span>
 				<?php self::print_barline( $data['mobile'][ $metric ] ); ?>
 			</div>
@@ -163,18 +167,19 @@ class Util_PageSpeed {
 	/**
 	 * Get PageSpeed metric notice BG.
 	 *
-	 * @param int $score PageSpeed desktop/mobile score.
+	 * @param int    $score        PageSpeed desktop/mobile score.
+	 * @param string $display_mode PageSpeed desktop/mobile score display mode.
 	 *
 	 * @return string
 	 */
-	public static function get_breakdown_bg( $score ) {
+	public static function get_breakdown_bg( $score, $display_mode ) {
 		$notice = 'notice notice-info inline';
-		if ( isset( $score ) && is_numeric( $score ) ) {
+		if ( isset( $display_mode ) && in_array( $display_mode, array( 'metric', 'metricSavings' ), true ) && isset( $score ) && is_numeric( $score ) ) {
 			if ( $score >= 90 ) {
 				$notice = 'notice notice-success inline';
 			} elseif ( $score >= 50 && $score < 90 ) {
 				$noitce = 'notice notice-warning inline';
-			} elseif ( $score > 0 && $score < 50 ) {
+			} elseif ( $score >= 0 && $score < 50 ) {
 				$notice = 'notice notice-error inline';
 			}
 		}
@@ -184,18 +189,19 @@ class Util_PageSpeed {
 	/**
 	 * Get PageSpeed metric grade.
 	 *
-	 * @param int $score PageSpeed desktop/mobile score.
+	 * @param int    $score        PageSpeed desktop/mobile score.
+	 * @param string $display_mode PageSpeed desktop/mobile score display mode.
 	 *
 	 * @return string
 	 */
-	public static function get_breakdown_grade( $score ) {
+	public static function get_breakdown_grade( $score, $display_mode ) {
 		$grade = 'w3tcps_blank';
-		if ( isset( $score ) && is_numeric( $score ) ) {
+		if ( isset( $display_mode ) && in_array( $display_mode, array( 'metric', 'metricSavings' ), true ) && isset( $score ) && is_numeric( $score ) ) {
 			if ( $score >= 90 ) {
 				$grade = 'w3tcps_pass';
 			} elseif ( $score >= 50 && $score < 90 ) {
 				$grade = 'w3tcps_average';
-			} elseif ( $score > 0 && $score < 50 ) {
+			} elseif ( $score >= 0 && $score < 50 ) {
 				$grade = 'w3tcps_fail';
 			}
 		}
@@ -247,17 +253,13 @@ class Util_PageSpeed {
 		$passed_audits = '';
 
 		foreach ( $data['opportunities'] as $opportunity ) {
-			if ( empty( $opportunity['details'] ) ) {
-				continue;
-			}
-
 			$opportunity['score'] *= 100;
 
 			$notice = 'notice notice-info inline';
 			$grade  = 'w3tcps_blank';
 			if ( isset( $opportunity['score'] ) ) {
-				$notice = self::get_breakdown_bg( $opportunity['score'] );
-				$grade  = self::get_breakdown_grade( $opportunity['score'] );
+				$notice = self::get_breakdown_bg( $opportunity['score'], $opportunity['scoreDisplayMode'] );
+				$grade  = self::get_breakdown_grade( $opportunity['score'], $opportunity['scoreDisplayMode'] );
 			}
 
 			$audit_classes = '';
@@ -267,25 +269,42 @@ class Util_PageSpeed {
 				}
 			}
 
-			$opportunity['description'] = preg_replace( '/(.*)(\[Learn more\])\((.*?)\)(.*)/i', '$1<a href="$3">$2</a>$4', $opportunity['description'] );
+			$opportunity['description'] = preg_replace( '/(.*?)(\[.*?\])\((.*?)\)(.*?[,.?!]*)/', '$1<a href="$3">$2</a>$4', esc_html( $opportunity['description'] ) );
 
 			$headers = '';
 			$items   = '';
 
+			$opportunity['details'] = $opportunity['details'] ?? array();
 			foreach ( $opportunity['details'] as $item ) {
 				$headers = '';
 				$items  .= '<tr class="w3tcps_passed_audit_item">';
 				if ( isset( $item['url'] ) ) {
 					$headers .= '<th>' . esc_html__( 'URL', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td><span class="copyurl dashicons dashicons-admin-page" title="' . esc_attr__( 'Copy Full URL', 'w3-total-cache' ) . '" copyurl="' . $item['url'] . '"></span><span title="' . $item['url'] . '"> ...' . wp_parse_url( $item['url'] )['path'] . '</span></td>';
+					if ( filter_var( $item['url'], FILTER_VALIDATE_URL ) !== false ) {
+						// The value is confirmed as a valid URL. We create a HTML link with the full URL value but display it with a trucated value.
+						$items   .= '<td><span class="copyurl dashicons dashicons-admin-page" title="' . esc_attr__( 'Copy Full URL', 'w3-total-cache' ) . '" copyurl="' . esc_url( $item['url'] ) . '"></span><a href="' . esc_url( $item['url'] ) . '" target="_blank" title="' . esc_url( $item['url'] ) . '"> ' . esc_url( $item['url'] ) . '</a></td>';
+					} else {
+						// For certain metrics Google uses the 'url' field for non-URL values. These are often HTML/CSS that shouldn't be escaped and will be displayed as plain text.
+						$items   .= '<td>' . esc_html( $item['url'] ) . '</td>';
+					}
+				}
+				if ( isset( $item['source'] ) ) {
+					$headers .= '<th>' . esc_html__( 'URL', 'w3-total-cache' ) . '</th>';
+					if ( filter_var( $item['source']['url'], FILTER_VALIDATE_URL ) !== false ) {
+						// The value is confirmed as a valid URL. We create a HTML link with the full URL value but display it with a trucated value.
+						$items   .= '<td><span class="copyurl dashicons dashicons-admin-page" title="' . esc_attr__( 'Copy Full URL', 'w3-total-cache' ) . '" copyurl="' . esc_url( $item['source']['url'] ) . '"></span><a href="' . esc_url( $item['source']['url'] ) . '" target="_blank" title="' . esc_url( $item['source']['url'] ) . '"> ' . esc_url( $item['url'] ) . '</a></td>';
+					} else {
+						// For certain metrics Google uses the 'url' field for non-URL values. These are often HTML/CSS that shouldn't be escaped and will be displayed as plain text.
+						$items   .= '<td>' . esc_html( $item['source']['url'] ) . '</td>';
+					}
 				}
 				if ( isset( $item['totalBytes'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Total Bytes', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['totalBytes'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['totalBytes'] ) . '</td>';
 				}
 				if ( isset( $item['wastedBytes'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Wasted Bytes', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['wastedBytes'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['wastedBytes'] ) . '</td>';
 				}
 				if ( isset( $item['wastedPercent'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Wasted Percentage', 'w3-total-cache' ) . '</th>';
@@ -297,78 +316,104 @@ class Util_PageSpeed {
 				}
 				if ( isset( $item['label'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Type', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['label'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['label'] ) . '</td>';
 				}
 				if ( isset( $item['groupLabel'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Group', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['groupLabel'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['groupLabel'] ) . '</td>';
 				}
 				if ( isset( $item['requestCount'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Requests', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['requestCount'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['requestCount'] ) . '</td>';
 				}
 				if ( isset( $item['transferSize'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Transfer Size', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['transferSize'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['transferSize'] ) . '</td>';
 				}
 				if ( isset( $item['startTime'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Start Time', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['startTime'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['startTime'] ) . '</td>';
 				}
 				if ( isset( $item['duration'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Duration', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['duration'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['duration'] ) . '</td>';
 				}
 				if ( isset( $item['scriptParseCompile'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Parse/Compile Time', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['scriptParseCompile'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['scriptParseCompile'] ) . '</td>';
 				}
 				if ( isset( $item['scripting'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Execution Time', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['scripting'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['scripting'] ) . '</td>';
 				}
 				if ( isset( $item['total'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Total', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['total'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['total'] ) . '</td>';
 				}
 				if ( isset( $item['cacheLifetimeMs'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Cache Lifetime Miliseconds', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['cacheLifetimeMs'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['cacheLifetimeMs'] ) . '</td>';
 				}
 				if ( isset( $item['cacheHitProbability'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Cache Hit Probability', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['cacheHitProbability'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['cacheHitProbability'] ) . '</td>';
 				}
 				if ( isset( $item['value'] ) && isset( $item['statistic'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Statistic', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['statistic'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['statistic'] ) . '</td>';
 
 					$headers .= '<th>' . esc_html__( 'Element', 'w3-total-cache' ) . '</th>';
 					$items   .= '<td>';
 					if ( isset( $item['node'] ) ) {
-						$items .= '<p>' . esc_html( $item['node']['snippet'] ) . '</p>';
-						$items .= '<p>' . $item['node']['selector'] . '</p>';
+						$items .= '<p><b>' . __( 'Snippet', 'w3-total-cache' ) . ': </b>' . esc_html( $item['node']['snippet'] ) . '</p>';
+						$items .= '<p><b>' . __( 'Selector', 'w3-total-cache' ) . ': </b>' . esc_html( $item['node']['selector'] ) . '</p>';
 					}
 					$items .= '</td>';
 
 					$headers .= '<th>' . esc_html__( 'Value', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['value'] . '</td>';
+					$items   .= is_array( $item['value'] ) ? '<td>' . esc_html( $item['value']['value'] ) . '</td>' : '<td>' . esc_html( $item['value'] ) . '</td>';
 				} elseif ( isset( $item['node'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Element', 'w3-total-cache' ) . '</th>';
 					$items   .= '<td>';
-					$items   .= '<p>' . esc_html( $item['node']['snippet'] ) . '</p>';
-					$items   .= '<p>' . $item['node']['selector'] . '</p>';
+					$items   .= '<p><b>' . __( 'Snippet', 'w3-total-cache' ) . ': </b>' . esc_html( $item['node']['snippet'] ) . '</p>';
+					$items   .= '<p><b>' . __( 'Selector', 'w3-total-cache' ) . ': </b>' . esc_html( $item['node']['selector'] ) . '</p>';
 					$items   .= '</td>';
+				}
+				if ( isset( $item['headings'] ) && isset( $item['items'] ) ) {
+					$items   .= '<td><table class="w3tcps_breakdown_subitems_table"><tr class="w3tcps_passed_audit_subitem_header">';
+					foreach ( $item['headings'] as $heading ) {
+						$items .= '<th>' . esc_html( $heading['label'], 'w3-total-cache' ) . '</th>';
+					}
+					$items  .= '</tr>';
+					foreach ( $item['items'] as $sub_item ) {
+						$items .= '<tr class="w3tcps_passed_audit_subitem">';
+						if ( isset( $sub_item['node'] ) ) {
+							$items   .= '<td>';
+							$items   .= '<p><b>' . __( 'Snippet', 'w3-total-cache' ) . ': </b>' . esc_html( $sub_item['node']['snippet'] ) . '</p>';
+							$items   .= '<p><b>' . __( 'Selector', 'w3-total-cache' ) . ': </b>' . esc_html( $sub_item['node']['selector'] ) . '</p>';
+							$items   .= '</td>';
+						}
+						if ( isset( $sub_item['phase'] ) && isset( $sub_item['timing'] ) && isset( $sub_item['percent'] ) ) {
+							$items   .= '<td>' . esc_html( $sub_item['phase'] ) . '</td>';
+							$items   .= '<td>' . esc_html( $sub_item['percent'] ) . '</td>';
+							$items   .= '<td>' . esc_html( $sub_item['timing'] ) . ' ms</td>';
+						}
+						$items .= '</tr>';
+					}
+					$items  .= '</table></td>';
+				}
+				if ( isset( $item['responseTime'] ) ) {
+					$headers .= '<th>' . esc_html__( 'Response Time', 'w3-total-cache' ) . '</th>';
+					$items   .= '<td>' . esc_html( $item['responseTime'] ) . '</td>';
 				}
 				$items .= '</tr>';
 			}
 
 			$items = ( isset( $items ) ? $items : '<p class="w3tcps-no-items">' . esc_html__( 'No identified items were provided by Google PageSpeed Insights API for this metric', 'w3-total-cache' ) . '</p>' );
-
-			if ( $opportunity['score'] >= 90 ) {
+			if ( $opportunity['score'] >= 90 || in_array( $opportunity['scoreDisplayMode'], array( 'notApplicable' ), true ) ) {
 				$passed_audits .= '
-					<div class="audits w3tcps_passed_audit' . $audit_classes . ' ' . $notice . '">
-						<span class="w3tcps_breakdown_items_toggle w3tcps_range ' . $grade . '">' . $opportunity['title'] . ( isset( $opportunity['displayValue'] ) ? ' - ' . $opportunity['displayValue'] : '' ) . '<span class="dashicons dashicons-arrow-down-alt2"></span></span>
+					<div class="audits w3tcps_passed_audit' . esc_attr( $audit_classes ) . ' ' . esc_attr( $notice ) . '">
+						<span class="w3tcps_breakdown_items_toggle w3tcps_range ' . esc_attr( $grade ) . '" gatitle="' . esc_attr( $opportunity['title'] ) . '">' . esc_html( $opportunity['title'] ) . ( isset( $opportunity['displayValue'] ) ? ' - ' . esc_html( $opportunity['displayValue'] ) : '' ) . '<span class="dashicons dashicons-arrow-down-alt2"></span></span>
 						<div class="w3tcps_breakdown_items w3tcps_pass_audit_items">
 							<p class="w3tcps_item_desciption">' . $opportunity['description'] . '</p>
 							<div class="w3tcps_breakdown_items_container">
@@ -379,8 +424,7 @@ class Util_PageSpeed {
 									<div class="w3tc_fancy_header">
 										<img class="w3tc_fancy_icon" src="' . esc_url( plugins_url( '/w3-total-cache/pub/img/w3tc_cube-shadow.png' ) ) . '" />
 										<div class="w3tc_fancy_title">
-											<span>' . esc_html__( 'TOTAL', 'w3-total-cache' ) . '</span>
-											<span>' . esc_html__( 'CACHE', 'w3-total-cache' ) . '</span>
+											<span>Total Cache</span>
 											<span>:</span>
 											<span>' . esc_html__( 'Tips', 'w3-total-cache' ) . '</span>
 										</div>
@@ -392,8 +436,8 @@ class Util_PageSpeed {
 					</div>';
 			} else {
 				$opportunities .= '
-					<div class="audits w3tcps_opportunities' . $audit_classes . ' ' . $notice . '">
-						<span class="w3tcps_breakdown_items_toggle w3tcps_range ' . $grade . '">' . $opportunity['title'] . ( isset( $opportunity['displayValue'] ) ? ' - ' . $opportunity['displayValue'] : '' ) . '<span class="dashicons dashicons-arrow-down-alt2"></span></span>
+					<div class="audits w3tcps_opportunities' . esc_attr( $audit_classes ) . ' ' . esc_attr( $notice ) . '">
+						<span class="w3tcps_breakdown_items_toggle w3tcps_range ' . esc_attr( $grade ) . '" gatitle="' . esc_attr( $opportunity['title'] ) . '">' . esc_html( $opportunity['title'] ) . ( isset( $opportunity['displayValue'] ) ? ' - ' . esc_html( $opportunity['displayValue'] ) : '' ) . '<span class="dashicons dashicons-arrow-down-alt2"></span></span>
 						<div class="w3tcps_breakdown_items w3tcps_opportunity_items">
 							<p class="w3tcps_item_desciption">' . $opportunity['description'] . '</p>
 							<div class="w3tcps_breakdown_items_container">
@@ -404,8 +448,7 @@ class Util_PageSpeed {
 									<div class="w3tc_fancy_header">
 										<img class="w3tc_fancy_icon" src="' . esc_url( plugins_url( '/w3-total-cache/pub/img/w3tc_cube-shadow.png' ) ) . '" />
 										<div class="w3tc_fancy_title">
-											<span>' . esc_html__( 'TOTAL', 'w3-total-cache' ) . '</span>
-											<span>' . esc_html__( 'CACHE', 'w3-total-cache' ) . '</span>
+											<span>Total Cache</span>
 											<span>:</span>
 											<span>' . esc_html__( 'Tips', 'w3-total-cache' ) . '</span>
 										</div>
@@ -419,17 +462,13 @@ class Util_PageSpeed {
 		}
 
 		foreach ( $data['diagnostics'] as $diagnostic ) {
-			if ( empty( $diagnostic['details'] ) ) {
-				continue;
-			}
-
 			$diagnostic['score'] *= 100;
 
 			$notice = 'notice notice-info inline';
 			$grade  = 'w3tcps_blank';
 			if ( isset( $diagnostic['score'] ) ) {
-				$notice = self::get_breakdown_bg( $diagnostic['score'] );
-				$grade  = self::get_breakdown_grade( $diagnostic['score'] );
+				$notice = self::get_breakdown_bg( $diagnostic['score'], $diagnostic['scoreDisplayMode'] );
+				$grade  = self::get_breakdown_grade( $diagnostic['score'], $diagnostic['scoreDisplayMode'] );
 			}
 
 			$audit_classes = '';
@@ -437,24 +476,42 @@ class Util_PageSpeed {
 				$audit_classes .= ' ' . $type;
 			}
 
-			$diagnostic['description'] = preg_replace( '/(.*)(\[Learn more\])\((.*?)\)(.*)/i', '$1<a href="$3">$2</a>$4', $diagnostic['description'] );
+			$diagnostic['description'] = preg_replace( '/(.*?)(\[.*?\])\((.*?)\)(.*?[,.?!]*)/', '$1<a href="$3">$2</a>$4', esc_html( $diagnostic['description'] ) );
 
 			$headers = '';
 			$items   = '';
+
+			$diagnostic['details'] = $diagnostic['details'] ?? array();
 			foreach ( $diagnostic['details'] as $item ) {
 				$headers = '';
 				$items  .= '<tr class="w3tcps_passed_audit_item">';
 				if ( isset( $item['url'] ) ) {
 					$headers .= '<th>' . esc_html__( 'URL', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td><span class="copyurl dashicons dashicons-admin-page" title="' . esc_attr__( 'Copy Full URL', 'w3-total-cache' ) . '" copyurl="' . $item['url'] . '"></span><span title="' . $item['url'] . '"> ...' . wp_parse_url( $item['url'] )['path'] . '</span></td>';
+					if ( filter_var( $item['url'], FILTER_VALIDATE_URL ) !== false ) {
+						// The value is confirmed as a valid URL. We create a HTML link with the full URL value but display it with a trucated value.
+						$items   .= '<td><span class="copyurl dashicons dashicons-admin-page" title="' . esc_attr__( 'Copy Full URL', 'w3-total-cache' ) . '" copyurl="' . esc_url( $item['url'] ) . '"></span><a href="' . esc_url( $item['url'] ) . '" target="_blank" title="' . esc_url( $item['url'] ) . '">' . esc_url( $item['url'] ) . '</a></td>';
+					} else {
+						// For certain metrics Google uses the 'url' field for non-URL values. These are often HTML/CSS that shouldn't be escaped and will be displayed as plain text.
+						$items   .= '<td>' . esc_html( $item['url'] ) . '</td>';
+					}
+				}
+				if ( isset( $item['source'] ) ) {
+					$headers .= '<th>' . esc_html__( 'URL', 'w3-total-cache' ) . '</th>';
+					if ( filter_var( $item['source']['url'], FILTER_VALIDATE_URL ) !== false ) {
+						// The value is confirmed as a valid URL. We create a HTML link with the full URL value but display it with a trucated value.
+						$items   .= '<td><span class="copyurl dashicons dashicons-admin-page" title="' . esc_attr__( 'Copy Full URL', 'w3-total-cache' ) . '" copyurl="' . esc_url( $item['source']['url'] ) . '"></span><a href="' . esc_url( $item['source']['url'] ) . '" target="_blank" title="' . esc_url( $item['source']['url'] ) . '">' . esc_url( $item['url'] ) . '</a></td>';
+					} else {
+						// For certain metrics Google uses the 'url' field for non-URL values. These are often HTML/CSS that shouldn't be escaped and will be displayed as plain text.
+						$items   .= '<td>' . esc_html( $item['source']['url'] ) . '</td>';
+					}
 				}
 				if ( isset( $item['totalBytes'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Total Bytes', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['totalBytes'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['totalBytes'] ) . '</td>';
 				}
 				if ( isset( $item['wastedBytes'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Wasted Bytes', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['wastedBytes'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['wastedBytes'] ) . '</td>';
 				}
 				if ( isset( $item['wastedPercent'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Wasted Percentage', 'w3-total-cache' ) . '</th>';
@@ -466,78 +523,105 @@ class Util_PageSpeed {
 				}
 				if ( isset( $item['label'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Type', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['label'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['label'] ) . '</td>';
 				}
 				if ( isset( $item['groupLabel'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Group', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['groupLabel'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['groupLabel'] ) . '</td>';
 				}
 				if ( isset( $item['requestCount'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Requests', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['requestCount'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['requestCount'] ) . '</td>';
 				}
 				if ( isset( $item['transferSize'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Transfer Size', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['transferSize'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['transferSize'] ) . '</td>';
 				}
 				if ( isset( $item['startTime'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Start Time', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['startTime'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['startTime'] ) . '</td>';
 				}
 				if ( isset( $item['duration'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Duration', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['duration'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['duration'] ) . '</td>';
 				}
 				if ( isset( $item['scriptParseCompile'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Parse/Compile Time', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['scriptParseCompile'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['scriptParseCompile'] ) . '</td>';
 				}
 				if ( isset( $item['scripting'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Execution Time', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['scripting'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['scripting'] ) . '</td>';
 				}
 				if ( isset( $item['total'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Total', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['total'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['total'] ) . '</td>';
 				}
 				if ( isset( $item['cacheLifetimeMs'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Cache Lifetime Miliseconds', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['cacheLifetimeMs'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['cacheLifetimeMs'] ) . '</td>';
 				}
 				if ( isset( $item['cacheHitProbability'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Cache Hit Probability', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . ( $item['cacheHitProbability'] * 100 ) . '%</td>';
+					$items   .= '<td>' . ( esc_html( $item['cacheHitProbability'] ) * 100 ) . '%</td>';
 				}
 				if ( isset( $item['value'] ) && isset( $item['statistic'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Statistic', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['statistic'] . '</td>';
+					$items   .= '<td>' . esc_html( $item['statistic'] ) . '</td>';
 
 					$headers .= '<th>' . esc_html__( 'Element', 'w3-total-cache' ) . '</th>';
 					$items   .= '<td>';
 					if ( isset( $item['node'] ) ) {
-						$items .= '<p>' . esc_html( $item['node']['snippet'] ) . '</p>';
-						$items .= '<p>' . $item['node']['selector'] . '</p>';
+						$items .= '<p><b>' . __( 'Snippet', 'w3-total-cache' ) . ': </b>' . esc_html( $item['node']['snippet'] ) . '</p>';
+						$items .= '<p><b>' . __( 'Selector', 'w3-total-cache' ) . ': </b>' .esc_html( $item['node']['selector'] ) . '</p>';
 					}
 					$items .= '</td>';
 
 					$headers .= '<th>' . esc_html__( 'Value', 'w3-total-cache' ) . '</th>';
-					$items   .= '<td>' . $item['value'] . '</td>';
+					$items   .= is_array( $item['value'] ) ? '<td>' . esc_html( $item['value']['value'] ) . '</td>' : '<td>' . esc_html( $item['value'] ) . '</td>';
 				} elseif ( isset( $item['node'] ) ) {
 					$headers .= '<th>' . esc_html__( 'Element', 'w3-total-cache' ) . '</th>';
 					$items   .= '<td>';
-					$items   .= '<p>' . esc_html( $item['node']['snippet'] ) . '</p>';
-					$items   .= '<p>' . $item['node']['selector'] . '</p>';
+					$items   .= '<p><b>' . __( 'Snippet', 'w3-total-cache' ) . ': </b>' . esc_html( $item['node']['snippet'] ) . '</p>';
+					$items   .= '<p><b>' . __( 'Selector', 'w3-total-cache' ) . ': </b>' . esc_html( $item['node']['selector'] ) . '</p>';
 					$items   .= '</td>';
+				}
+				if ( isset( $item['headings'] ) && isset( $item['items'] ) ) {
+					$items   .= '<td><table class="w3tcps_breakdown_subitems_table"><tr class="w3tcps_passed_audit_subitem_header">';
+					foreach ( $item['headings'] as $heading ) {
+						$items .= '<th>' . esc_html( $heading['label'], 'w3-total-cache' ) . '</th>';
+					}
+					$items  .= '</tr>';
+					foreach ( $item['items'] as $sub_item ) {
+						$items .= '<tr class="w3tcps_passed_audit_subitem">';
+						if ( isset( $sub_item['node'] ) ) {
+							$items   .= '<td>';
+							$items   .= '<p><b>' . __( 'Snippet', 'w3-total-cache' ) . ': </b>' . esc_html( $sub_item['node']['snippet'] ) . '</p>';
+							$items   .= '<p><b>' . __( 'Selector', 'w3-total-cache' ) . ': </b>' . esc_html( $sub_item['node']['selector'] ) . '</p>';
+							$items   .= '</td>';
+						}
+						if ( isset( $sub_item['phase'] ) && isset( $sub_item['timing'] ) && isset( $sub_item['percent'] ) ) {
+							$items   .= '<td>' . esc_html( $sub_item['phase'] ) . '</td>';
+							$items   .= '<td>' . esc_html( $sub_item['percent'] ) . '</td>';
+							$items   .= '<td>' . esc_html( $sub_item['timing'] ) . ' ms</td>';
+						}
+						$items .= '</tr>';
+					}
+					$items  .= '</table></td>';
+				}
+				if ( isset( $item['responseTime'] ) ) {
+					$headers .= '<th>' . esc_html__( 'Response Time', 'w3-total-cache' ) . '</th>';
+					$items   .= '<td>' . esc_html( $item['responseTime'] ) . '</td>';
 				}
 				$items .= '</tr>';
 			}
 
 			$items = ( isset( $items ) ? $items : '<p class="w3tcps-no-items">' . esc_html__( 'No identified items were provided by Google PageSpeed Insights API for this metric', 'w3-total-cache' ) . '</p>' );
 
-			if ( $diagnostic['score'] >= 90 ) {
+			if ( $diagnostic['score'] >= 90 || in_array( $diagnostic['scoreDisplayMode'], array( 'notApplicable' ), true ) ) {
 				$passed_audits .= '
-					<div class="audits w3tcps_passed_audit' . $audit_classes . ' ' . $notice . '">
-						<span class="w3tcps_breakdown_items_toggle w3tcps_range ' . $grade . '">' . $diagnostic['title'] . ( isset( $diagnostic['displayValue'] ) ? ' - ' . $diagnostic['displayValue'] : '' ) . '<span class="dashicons dashicons-arrow-down-alt2"></span></span>
+					<div class="audits w3tcps_passed_audit' . esc_attr( $audit_classes ) . ' ' . esc_attr( $notice ) . '">
+						<span class="w3tcps_breakdown_items_toggle w3tcps_range ' . esc_attr( $grade ) . '" gatitle="' . esc_attr( $diagnostic['title'] ) . '">' . esc_html( $diagnostic['title'] ) . ( isset( $diagnostic['displayValue'] ) ? ' - ' . esc_html( $diagnostic['displayValue'] ) : '' ) . '<span class="dashicons dashicons-arrow-down-alt2"></span></span>
 						<div class="w3tcps_breakdown_items w3tcps_pass_audit_items">
 							<p class="w3tcps_item_desciption">' . $diagnostic['description'] . '</p>
 							<div class="w3tcps_breakdown_items_container">
@@ -548,8 +632,7 @@ class Util_PageSpeed {
 									<div class="w3tc_fancy_header">
 										<img class="w3tc_fancy_icon" src="' . esc_url( plugins_url( '/w3-total-cache/pub/img/w3tc_cube-shadow.png' ) ) . '" />
 										<div class="w3tc_fancy_title">
-											<span>' . esc_html__( 'TOTAL', 'w3-total-cache' ) . '</span>
-											<span>' . esc_html__( 'CACHE', 'w3-total-cache' ) . '</span>
+											<span>Total Cache</span>
 											<span>:</span>
 											<span>' . esc_html__( 'Tips', 'w3-total-cache' ) . '</span>
 										</div>
@@ -561,8 +644,8 @@ class Util_PageSpeed {
 					</div>';
 			} else {
 				$diagnostics .= '
-					<div class="audits w3tcps_diagnostics' . $audit_classes . ' ' . $notice . '">
-						<span class="w3tcps_breakdown_items_toggle w3tcps_range ' . $grade . '">' . $diagnostic['title'] . ( isset( $diagnostic['displayValue'] ) ? ' - ' . $diagnostic['displayValue'] : '' ) . '<span class="dashicons dashicons-arrow-down-alt2"></span></span>
+					<div class="audits w3tcps_diagnostics' . esc_attr( $audit_classes ) . ' ' . esc_attr( $notice ) . '">
+						<span class="w3tcps_breakdown_items_toggle w3tcps_range ' . esc_attr( $grade ) . '" gatitle="' . esc_attr( $diagnostic['title'] ) . '">' . esc_html( $diagnostic['title'] ) . ( isset( $diagnostic['displayValue'] ) ? ' - ' . esc_html( $diagnostic['displayValue'] ) : '' ) . '<span class="dashicons dashicons-arrow-down-alt2"></span></span>
 						<div class="w3tcps_breakdown_items w3tcps_diagnostic_items">
 							<p class="w3tcps_item_desciption">' . $diagnostic['description'] . '</p>
 							<div class="w3tcps_breakdown_items_container">
@@ -573,8 +656,7 @@ class Util_PageSpeed {
 									<div class="w3tc_fancy_header">
 										<img class="w3tc_fancy_icon" src="' . esc_url( plugins_url( '/w3-total-cache/pub/img/w3tc_cube-shadow.png' ) ) . '" />
 										<div class="w3tc_fancy_title">
-											<span>' . esc_html__( 'TOTAL', 'w3-total-cache' ) . '</span>
-											<span>' . esc_html__( 'CACHE', 'w3-total-cache' ) . '</span>
+											<span>Total Cache</span>
 											<span>:</span>
 											<span>' . esc_html__( 'Tips', 'w3-total-cache' ) . '</span>
 										</div>
@@ -635,6 +717,7 @@ class Util_PageSpeed {
 				'id'      => array(),
 				'class'   => array(),
 				'title'   => array(),
+				'gatitle' => array(),
 				'copyurl' => array(),
 			),
 			'p'     => array(
@@ -668,6 +751,7 @@ class Util_PageSpeed {
 				'href'   => array(),
 				'target' => array(),
 				'rel'    => array(),
+				'title'  => array(),
 			),
 			'link'  => array(
 				'id'    => array(),

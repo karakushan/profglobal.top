@@ -5,19 +5,22 @@ namespace wpdFormAttr\Tools;
 use wpdFormAttr\FormConst\wpdFormConst;
 use wpdFormAttr\Form;
 
-class PersonalDataExporter implements wpdFormConst {
+class PersonalDataExporter implements wpdFormConst
+{
 
     private static $_instance = null;
     private $generalOptions;
     private $fields = [];
 
-    private function __construct($options) {
+    private function __construct($options)
+    {
         $this->generalOptions = $options;
         $this->initFormsFields();
         add_filter("wp_privacy_personal_data_exporters", [&$this, "wpdiscuzCommentsPersonalDataExport"], 13);
     }
 
-    private function initFormsFields() {
+    private function initFormsFields()
+    {
         $forms = get_posts(["numberposts" => -1, "post_type" => self::WPDISCUZ_FORMS_CONTENT_TYPE]);
         if ($forms) {
             foreach ($forms as $k => $form) {
@@ -31,7 +34,8 @@ class PersonalDataExporter implements wpdFormConst {
         }
     }
 
-    public function wpdiscuzCommentsPersonalDataExport($exporters) {
+    public function wpdiscuzCommentsPersonalDataExport($exporters)
+    {
         $exporters["wpdiscuz"] = [
             "exporter_friendly_name" => esc_html__("wpDiscuz Fields Data", "wpdiscuz"),
             "callback" => [&$this, "customFieldsExport"],
@@ -39,27 +43,28 @@ class PersonalDataExporter implements wpdFormConst {
         return $exporters;
     }
 
-    public function customFieldsExport($email_address, $page = 1) {
+    public function customFieldsExport($email_address, $page = 1)
+    {
         $number = 500; // Limit us to avoid timing out
-        $page = (int) $page;
+        $page = (int)$page;
         $done = true;
         $export_items = [];
 
         $doExport = apply_filters("wpdiscuz_do_export_personal_data", false);
-        
+
         if ($this->fields || $doExport) {
             $comments = get_comments(
-                    [
-                        "author_email" => $email_address,
-                        "number" => $number,
-                        "paged" => $page,
-                        "order_by" => "comment_ID",
-                        "order" => "ASC",
-                    ]
+                [
+                    "author_email" => $email_address,
+                    "number" => $number,
+                    "paged" => $page,
+                    "order_by" => "comment_ID",
+                    "order" => "ASC",
+                ]
             );
 
 
-            foreach ((array) $comments as $k => $comment) {
+            foreach ((array)$comments as $k => $comment) {
                 $commentId = $comment->comment_ID;
                 $data = [];
                 $commentMeta = get_metadata("comment", $commentId);
@@ -93,7 +98,8 @@ class PersonalDataExporter implements wpdFormConst {
         ];
     }
 
-    private function generateFieldData($data) {
+    private function generateFieldData($data)
+    {
         $value = "";
         $data = maybe_unserialize($data);
         if (empty($data)) {
@@ -107,7 +113,8 @@ class PersonalDataExporter implements wpdFormConst {
         return $value;
     }
 
-    public static function getInstance($options) {
+    public static function getInstance($options)
+    {
         if (is_null(self::$_instance)) {
             self::$_instance = new self($options);
         }

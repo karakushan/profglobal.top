@@ -54,7 +54,7 @@ class Module_Sharing_Settings extends Setting {
 	 * @return callable Callback method that filters or type casts invalid setting values.
 	 */
 	protected function get_sanitize_callback() {
-		return function( $option ) {
+		return function ( $option ) {
 			if ( ! is_array( $option ) ) {
 				return array();
 			}
@@ -88,7 +88,7 @@ class Module_Sharing_Settings extends Setting {
 	private function filter_shared_roles( array $shared_roles ) {
 		$filtered_shared_roles = array_filter(
 			$shared_roles,
-			function( $role_slug ) {
+			function ( $role_slug ) {
 				$role = get_role( $role_slug );
 
 				if ( empty( $role ) || ! $role->has_cap( 'edit_posts' ) ) {
@@ -149,6 +149,34 @@ class Module_Sharing_Settings extends Setting {
 		);
 
 		return $this->set( $this->array_merge_deep( $settings, $partial ) );
+	}
+
+	/**
+	 * Gets the sharing settings for a given module, or the defaults.
+	 *
+	 * @since 1.95.0
+	 *
+	 * @param string $slug Module slug.
+	 * @return array {
+	 *     Sharing settings for the given module.
+	 *     Default sharing settings do not grant any access so they
+	 *     are safe to return for a non-existent or non-shareable module.
+	 *
+	 *     @type array  $sharedRoles A list of WP Role IDs that the module is shared with.
+	 *     @type string $management  Which users can manage the sharing settings.
+	 * }
+	 */
+	public function get_module( $slug ) {
+		$settings = $this->get();
+
+		if ( isset( $settings[ $slug ] ) ) {
+			return $settings[ $slug ];
+		}
+
+		return array(
+			'sharedRoles' => array(),
+			'management'  => 'owner',
+		);
 	}
 
 	/**
@@ -232,5 +260,4 @@ class Module_Sharing_Settings extends Setting {
 
 		return $array1;
 	}
-
 }

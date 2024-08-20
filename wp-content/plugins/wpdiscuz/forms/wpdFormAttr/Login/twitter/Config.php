@@ -19,7 +19,6 @@ class Config
     protected $retriesDelay = 1;
 
 
-
     /**
      * Decode JSON Response as associative Array
      *

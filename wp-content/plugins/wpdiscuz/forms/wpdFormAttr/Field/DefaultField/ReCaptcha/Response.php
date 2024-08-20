@@ -175,6 +175,7 @@ class Response
     {
         return $this->apkPackageName;
     }
+
     /**
      * Get score
      *

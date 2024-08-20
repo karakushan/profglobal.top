@@ -50,7 +50,7 @@ if (!class_exists('nxs_adminMgmt')){
            
            if (defined('NXSAPIVER')){ ?>&nbsp;&nbsp;|&nbsp;&nbsp; <img id="checkAPI2xLoadingImg" style="display: none;" src='<?php echo NXS_PLURL; ?>img/ajax-loader-sm.gif' /><a href="" id="checkAPI2x">[Check for API Update]</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="" class="showLic">[Change Activation Key]</a><?php } echo '<br/><br/>';         
           
-            if (!empty($_POST['nxs_ntsiteid']) && check_admin_referer('nxsSsPageWPN', 'nxsSsPageWPN_wpnonce') ) { $csN = (int)$_POST['nxs_ntsiteid']; 
+            if (!empty($_POST['nxs_ntsiteid']) && check_admin_referer('nxsSsPageWPN', 'nxsSsPageWPN_wpnonce') ) { $csN = (int)sanitize_key($_POST['nxs_ntsiteid']);
               if (!empty($cs) && $csN!=$cs) { switch_to_blog($cs); delete_option('nxsSNAPNetworks'); delete_option('nxsSNAPOptions');restore_current_blog();} $cs = $csN; update_site_option('nxs_nts', $cs); 
             } foreach ( $sites as $i => $site ) { $blog = get_blog_details($site['blog_id']); $sites[$i]['name'] = $blog->blogname; if ( $sites[$i]['blog_id']==$cs) $cSite = $sites[$i]; }  
             // uasort( $sites, function( $site_a, $site_b ) { return strcasecmp( $site_a[ 'name' ], $site_b[ 'name' ] ); });
@@ -205,7 +205,11 @@ if (!class_exists('nxs_adminMgmt')){
                 <p><?php _e('Here you can configure automatic repost of the existing posts to your social network accounts.', 'social-networks-auto-poster-facebook-twitter-g'); ?> <a href="http://nxs.fyi/rpst" target="_blank"><?php _e('Instructions', 'social-networks-auto-poster-facebook-twitter-g'); ?></a></p> 
              </div>
              <div style="padding-top: 8px; padding-bottom: 8px;"> <a id="nxsFltAddButton" href="#" class="NXSButton"><?php _e( 'Add new Reposter Action', 'social-networks-auto-poster-facebook-twitter-g' ); ?></a> </div>
-             <form method="get"> <input type="hidden" name="page" value="nxssnap-reposter" /><?php $itemsTable->display(); ?></form>        
+             <form method="get"> <input type="hidden" name="page" value="nxssnap-reposter" />
+             <?php
+             echo '<input type="hidden" name="my_bulk_action_nonce" value="' . wp_create_nonce( 'my_bulk_action_nonce' ) . '" />';
+             $itemsTable->display(); ?>
+             </form>
             </div> <div id="nxs_spFltPopup"><span class="nxspButton bClose"><span>X</span></span><div id="nxs_spFltPopupU" style="min-height: 300px;"><?php nxs_rpstPopupCode(); ?></div></div><?php 
             
         }

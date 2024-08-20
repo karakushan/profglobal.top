@@ -937,17 +937,17 @@ class Zoom_Social_Icons_Widget extends WP_Widget {
 						'label'              => 'Facebook',
 						'icon'               => 'facebook',
 						'icon_kit'           => 'socicon',
-						'color_picker'       => '#1877F2',
-						'color_picker_hover' => '#1877F2',
+						'color_picker'       => '#0866FF',
+						'color_picker_hover' => '#0866FF',
 						'aria_label'         => '',
 					),
 					array(
-						'url'                => 'https://twitter.com/',
-						'label'              => 'Twitter',
-						'icon'               => 'twitter',
+						'url'                => 'https://x.com/',
+						'label'              => 'X',
+						'icon'               => 'x',
 						'icon_kit'           => 'socicon',
-						'color_picker'       => '#1da1f2',
-						'color_picker_hover' => '#1da1f2',
+						'color_picker'       => '#000000',
+						'color_picker_hover' => '#000000',
 						'aria_label'         => '',
 
 					),
@@ -1231,7 +1231,7 @@ class Zoom_Social_Icons_Widget extends WP_Widget {
 
 			<?php
 			$rule            = ( 'with-canvas' === $instance['icon_style'] ) ? 'background-color' : 'color';
-			$hover_style     = empty( $field['color_picker_hover'] ) ? '' : 'data-hover-rule="' . $rule . '" data-hover-color="' . $field['color_picker_hover'] . '"';
+			$hover_style     = empty( $field['color_picker_hover'] ) ? '' : 'data-hover-rule="' . $rule . '" data-hover-color="' . esc_attr( $field['color_picker_hover'] ) . '"';
 			$rel_tag         = 'true' == $instance['no_follow'] ? 'nofollow' : '';
 			$rel_tag        .= 'true' == $instance['no_opener'] ? ' noopener' : '';
 			$rel_tag        .= 'true' == $instance['no_referrer'] ? ' noreferrer' : '';
@@ -1244,7 +1244,7 @@ class Zoom_Social_Icons_Widget extends WP_Widget {
 			}
 
 			if ( ! empty( $field['aria_label'] ) ) {
-				$aria_image_role = "role='img' aria-label='" . $field['aria_label'] . "'";
+				$aria_image_role = "role='img' aria-label='" . esc_attr( $field['aria_label'] ) . "'";
 			}
 			?>
 	<li class="zoom-social_icons-list__item">
@@ -1252,7 +1252,7 @@ class Zoom_Social_Icons_Widget extends WP_Widget {
 			<?php
 			if ( ! empty( $field['icon'] ) && ! empty( $field['icon_kit'] ) && ! empty( $field['color_picker'] ) ) {
 				$class = $field['icon_kit'] . ' ' . $field['icon_kit'] . '-' . $field['icon'];
-				$style = $rule . ' : ' . $field['color_picker'];
+				$style = $rule . ' : ' . esc_attr( $field['color_picker'] );
 			} else {
 				$style = '';
 
@@ -1261,12 +1261,12 @@ class Zoom_Social_Icons_Widget extends WP_Widget {
 			?>
 			<?php
 			if ( ! empty( $instance['icon_font_size'] ) ) {
-				$style .= '; font-size: ' . $instance['icon_font_size'] . 'px';
+				$style .= '; font-size: ' . esc_attr( $instance['icon_font_size'] ) . 'px';
 			}
 			?>
 			<?php
 			if ( ! empty( $instance['icon_padding_size'] ) ) {
-				$style .= '; padding:' . $instance['icon_padding_size'] . 'px';
+				$style .= '; padding:' . esc_attr( $instance['icon_padding_size'] ) . 'px';
 			}
 			?>
 

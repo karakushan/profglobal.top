@@ -1,6 +1,7 @@
 <?php
 
-class WpdiscuzRest extends WP_REST_Controller {
+class WpdiscuzRest extends WP_REST_Controller
+{
 
     private $dbManager;
     private $options;
@@ -9,7 +10,8 @@ class WpdiscuzRest extends WP_REST_Controller {
     private $resource_name;
     private $routes;
 
-    public function __construct($dbManager, $options, $helper, $wpdiscuzForm) {
+    public function __construct($dbManager, $options, $helper, $wpdiscuzForm)
+    {
         $this->dbManager = $dbManager;
         $this->options = $options;
         $this->helper = $helper;
@@ -20,7 +22,8 @@ class WpdiscuzRest extends WP_REST_Controller {
         $this->initRoutes();
     }
 
-    public function initRoutes() {
+    public function initRoutes()
+    {
         $routes = [];
         if ($this->options->live["commentListUpdateType"] || ($this->options->live["enableBubble"] && $this->options->live["bubbleLiveUpdate"])) {
             $routes["wpdiscuz"] = [
@@ -52,7 +55,8 @@ class WpdiscuzRest extends WP_REST_Controller {
         $this->routes = apply_filters("wpdiscuz_rest_routes", $routes, $this->namespace);
     }
 
-    public function registerRoutes() {
+    public function registerRoutes()
+    {
         if (!empty($this->routes)) {
             foreach ($this->routes as $route) {
                 if ($this->isValidRoute($route)) {
@@ -62,7 +66,8 @@ class WpdiscuzRest extends WP_REST_Controller {
         }
     }
 
-    public function checkPermission() {
+    public function checkPermission()
+    {
         if ($this->options->live["commentListUpdateType"] || ($this->options->live["enableBubble"] && $this->options->live["bubbleLiveUpdate"])) {
             $currentUser = WpdiscuzHelper::getCurrentUser();
             return !empty($currentUser->ID) || (empty($currentUser->ID) && $this->options->live["liveUpdateGuests"]);
@@ -70,7 +75,8 @@ class WpdiscuzRest extends WP_REST_Controller {
         return false;
     }
 
-    public function checkNewComments($data) {
+    public function checkNewComments($data)
+    {
         $params = $data->get_params();
         $response = ["ids" => [], "commentIDsToRemove" => []];
         $status = current_user_can("moderate_comments") ? "all" : "approved";
@@ -141,14 +147,15 @@ class WpdiscuzRest extends WP_REST_Controller {
         return $response;
     }
 
-    private function isValidRoute($route) {
+    private function isValidRoute($route)
+    {
         $isValid = empty($route) || !is_array($route) ? false : true;
         if ($isValid) {
             $isValid = !empty($route["namespace"]) &&
-                    !empty($route["resource_name"]) &&
-                    !empty($route["data"][0]["methods"]) &&
-                    !empty($route["data"][0]["callback"]) &&
-                    !empty($route["data"][0]["permission_callback"]);
+                !empty($route["resource_name"]) &&
+                !empty($route["data"][0]["methods"]) &&
+                !empty($route["data"][0]["callback"]) &&
+                !empty($route["data"][0]["permission_callback"]);
         }
         return $isValid;
     }

@@ -16,10 +16,11 @@ $tools = apply_filters("wpdiscuz_dashboard_tools", $tools);
 ?>
 <div class="wrap wpdiscuz_tools_page">
     <div style="float:left; width:50px; height:55px; margin:10px 10px 10px 0px;">
-        <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/dashboard/wpdiscuz-7-logo.png")); ?>" style="height: 48px;"/>
+        <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/dashboard/wpdiscuz-7-logo.png")); ?>"
+             style="height: 48px;"/>
     </div>
     <h1 style="padding-bottom:20px; padding-top:15px;"><?php esc_html_e("wpDiscuz Tools", "wpdiscuz"); ?></h1>
-    <br style="clear:both" />
+    <br style="clear:both"/>
     <?php settings_errors("wpdiscuz"); ?>
     <div id="toolsTab">
         <?php

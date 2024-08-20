@@ -12,7 +12,9 @@ use WPTelegram\BotAPI\Response;
 use WPTelegram\BotAPI\API;
 use WPTelegram\Core\modules\p2tg\RequestCheck;
 use WPTelegram\Core\modules\p2tg\Main as P2TGMain;
+use WPSocio\TelegramFormatText\Exceptions\ConverterException;
 use ReflectionClass;
+use WP_Filesystem_Base;
 use WP_Post;
 
 /**
@@ -90,7 +92,13 @@ class Logger extends BaseClass {
 	 */
 	protected function hook_it_up() {
 
-		foreach ( $this->get_active_logs() as $log_type ) {
+		$active_logs = $this->get_active_logs();
+
+		if ( empty( $active_logs ) ) {
+			return;
+		}
+
+		foreach ( $active_logs as $log_type ) {
 
 			$method = [ $this, "hookup_for_{$log_type}" ];
 
@@ -98,6 +106,8 @@ class Logger extends BaseClass {
 				call_user_func( $method );
 			}
 		}
+
+		add_action( 'wptelegram_prepare_content_error', [ $this, 'prepare_content_error' ], 10, 3 );
 	}
 
 	/**
@@ -131,12 +141,11 @@ class Logger extends BaseClass {
 			$type = sanitize_text_field( wp_unslash( $_GET['type'] ) ); // phpcs:ignore
 
 			if ( ! empty( $hash ) && ! empty( $type ) ) {
-				global $wp_filesystem;
 
 				$file_path = self::get_log_file_path( $type, $hash );
 
-				if ( $wp_filesystem->exists( $file_path ) ) {
-					$contents = $wp_filesystem->get_contents( $file_path );
+				if ( self::wp_filesystem()->exists( $file_path ) ) {
+					$contents = self::wp_filesystem()->get_contents( $file_path );
 				} else {
 					$contents = 'Log file not found!';
 				}
@@ -167,6 +176,8 @@ class Logger extends BaseClass {
 
 		add_action( 'wptelegram_p2tg_post_sv_check_failed', [ $this, 'add_sv_check' ], 999, 3 );
 
+		add_action( 'wptelegram_p2tg_delay_post', [ $this, 'add_delay_post' ], 999, 3 );
+
 		add_filter( 'wptelegram_p2tg_rules_apply', [ $this, 'add_rules_apply' ], 999, 3 );
 
 		add_filter( 'wptelegram_p2tg_featured_image_source', [ $this, 'add_featured_image_source' ], 999, 4 );
@@ -182,7 +193,7 @@ class Logger extends BaseClass {
 	 * @param WP_Post $post The post being handled.
 	 */
 	public function get_key( $post ) {
-		return $post->ID . '-' . $post->post_status;
+		return $post->post_type . '-' . $post->ID . '-' . $post->post_status;
 	}
 
 	/**
@@ -251,6 +262,24 @@ class Logger extends BaseClass {
 		$key = $this->get_key( $post );
 
 		$this->p2tg_post_info[ $key ]['sv'] = $validity;
+	}
+
+	/**
+	 * Add delay post info.
+	 *
+	 * @param float   $delay       Delay in posting.
+	 * @param WP_Post $post        The post being handled.
+	 * @param array   $result      The result of delay handler.
+	 */
+	public function add_delay_post( $delay, $post, $result ) {
+
+		// create an entry from post ID and its status.
+		$key = $this->get_key( $post );
+
+		$this->p2tg_post_info[ $key ]['delay'] = [
+			'duration' => $delay,
+			'result'   => $result,
+		];
 	}
 
 	/**
@@ -330,10 +359,10 @@ class Logger extends BaseClass {
 
 		if ( is_array( $result ) ) {
 			$result = array_map(
-				function( $responses ) {
+				function ( $responses ) {
 					if ( is_array( $responses ) ) {
 						return array_map(
-							function( $response ) {
+							function ( $response ) {
 								if ( $response instanceof Response ) {
 									return $response->get_decoded_body();
 								}
@@ -388,6 +417,23 @@ class Logger extends BaseClass {
 	}
 
 	/**
+	 * Handle prepare content error.
+	 *
+	 * @param ConverterException $exception The exception thrown.
+	 * @param string             $content The content that was being prepared.
+	 * @param array              $options The options passed to prepare_content.
+	 *
+	 * @return void
+	 */
+	public function prepare_content_error( $exception, $content, $options ) {
+		$text  = 'Error: ' . $exception . PHP_EOL;
+		$text .= 'Options: ' . wp_json_encode( $options ) . PHP_EOL;
+		$text .= 'Content: ' . $content;
+
+		$this->write_log( 'converter', $text );
+	}
+
+	/**
 	 * Write the log to file.
 	 *
 	 * @param string $type The log type.
@@ -396,20 +442,44 @@ class Logger extends BaseClass {
 	public function write_log( $type, $text ) {
 		$file_path = self::get_log_file_path( $type );
 
-		global $wp_filesystem;
+		$bot_token_regex = '/' . \WPTelegram\BotAPI\API::BOT_TOKEN_PATTERN . '/';
 
-		$contents = '[' . current_time( 'mysql' ) . ']' . PHP_EOL . $text . PHP_EOL . PHP_EOL;
+		$text = preg_replace( $bot_token_regex, '**********', $text );
+
+		$filesystem = self::wp_filesystem();
 
 		// Default to 1 MB.
 		$max_filesize = apply_filters( 'wptelegram_logger_max_filesize', 1024 ** 2, $type, $file_path );
 
+		$contents  = $filesystem->is_readable( $file_path ) ? $filesystem->get_contents( $file_path ) : '';
+		$contents .= '[' . current_time( 'mysql' ) . ']' . PHP_EOL . $text . PHP_EOL . PHP_EOL;
+
 		// Make sure that the file size remains less than $max_filesize.
-		if ( $wp_filesystem->exists( $file_path ) && $wp_filesystem->size( $file_path ) < $max_filesize ) {
-			// Append the existing content.
-			$contents = $wp_filesystem->get_contents( $file_path ) . $contents;
+		while ( mb_strlen( $contents ) > $max_filesize ) {
+			$content_pieces = preg_split( "/[\n\r]{2}/", $contents );
+
+			// Remove the first piece.
+			array_shift( $content_pieces );
+
+			$contents = implode( "\n\n", $content_pieces );
 		}
 
-		$wp_filesystem->put_contents( $file_path, $contents );
+		$filesystem->put_contents( $file_path, $contents );
+	}
+
+	/**
+	 * Get an instance of WP_Filesystem.
+	 *
+	 * @return WP_Filesystem_Base The global WP_Filesystem object.
+	 */
+	public static function wp_filesystem() {
+
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		WP_Filesystem();
+
+		global $wp_filesystem;
+
+		return $wp_filesystem;
 	}
 
 	/**
@@ -424,14 +494,9 @@ class Logger extends BaseClass {
 	 */
 	public static function get_log_file_path( $type, $hash = '' ) {
 
-		require_once ABSPATH . 'wp-admin/includes/file.php';
-		WP_Filesystem();
-
-		global $wp_filesystem;
-
 		$file_name = self::get_log_file_name( $type, $hash );
 
-		$file_path = $wp_filesystem->wp_content_dir() . $file_name;
+		$file_path = self::wp_filesystem()->wp_content_dir() . $file_name;
 
 		return apply_filters( 'wptelegram_logger_log_file_path', $file_path, $type );
 	}

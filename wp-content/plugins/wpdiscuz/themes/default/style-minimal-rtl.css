@@ -68,7 +68,7 @@ _:-ms-lang(x), .wpd-social-login [wpd-tooltip]::before{top: -24px;}
 
 
 /* Rating Section */
-@font-face { font-family: 'square721_cn_btroman'; src: url('css/fonts/sqr721c-webfont.eot'); src: url('css/fonts/sqr721c-webfont.eot?#iefix') format('embedded-opentype'), url('css/fonts/sqr721c-webfont.woff2') format('woff2'), url('css/fonts/sqr721c-webfont.woff') format('woff'), url('css/fonts/sqr721c-webfont.ttf')  format('truetype'), url('css/fonts/sqr721c-webfont.svg#svgFontName') format('svg'); }
+@font-face { font-family: 'square721_cn_btroman'; src: url('css/fonts/sqr721c-webfont.eot'); src: url('css/fonts/sqr721c-webfont.eot?#iefix') format('embedded-opentype'), url('css/fonts/sqr721c-webfont.woff2') format('woff2'), url('css/fonts/sqr721c-webfont.woff') format('woff'), url('css/fonts/sqr721c-webfont.ttf')  format('truetype'), url('css/fonts/sqr721c-webfont.svg#svgFontName') format('svg'); font-display: swap;}
 #wpd-post-rating{display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; align-items: center; width: 100%; margin-top: 20px; margin-bottom: 30px;}
 #wpd-post-rating .wpd-rating-wrap{width: 30%;display: flex; flex-wrap: nowrap; flex-direction: row; justify-content: center; align-items: center; align-content: center; text-align: center; }
 #wpd-post-rating .wpd-rating-wrap .wpd-rating-left{flex-grow: 1; height: 1px; border-bottom: 1px dashed #999999; margin-left: -10px;}

@@ -439,6 +439,7 @@ if (!class_exists('Popularis_Extra_Demo_Import_Theme_Wizard')):
 
                                 // Vars
                                 $item_categories = Popularis_Extra_Demos::get_demo_item_categories($key);
+								$link = isset($key['demo_url']) ? $key['demo_url'] : $key['demo_template'];
                                 ?>
 
                                 <div class="theme-wrap" data-categories="<?php echo esc_attr($item_categories); ?>" data-name="<?php echo esc_attr(strtolower($key['demo_template'])); ?>">
@@ -454,7 +455,7 @@ if (!class_exists('Popularis_Extra_Demo_Import_Theme_Wizard')):
 
                                             <h2 class="theme-name" id="<?php echo esc_attr(str_replace('-demo', '', $key['demo_template'])); ?>"><span><?php echo esc_html($key['demo_name']); ?></span></h2>
                                             <div class="theme-actions">
-                                                <a class="button button-primary" href="https://populariswp.com/<?php echo esc_attr($key['demo_template']); ?>/" target="_blank"><?php esc_html_e('Live Preview', 'popularis-extra'); ?></a>
+                                                <a class="button button-primary" href="https://populariswp.com/<?php echo esc_attr($link); ?>/" target="_blank"><?php esc_html_e('Live Preview', 'popularis-extra'); ?></a>
                                                 <span class="button button-secondary"><?php esc_html_e('Select', 'popularis-extra'); ?></span>
                                             </div>
                                         </div>

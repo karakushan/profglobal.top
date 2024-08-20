@@ -10,6 +10,8 @@
 
 namespace Google\Site_Kit\Modules;
 
+use Google\Site_Kit\Core\Assets\Script;
+use Google\Site_Kit\Core\Authentication\Clients\Google_Site_Kit_Client;
 use Google\Site_Kit\Core\Modules\Module;
 use Google\Site_Kit\Core\Modules\Module_Settings;
 use Google\Site_Kit\Core\Modules\Module_With_Debug_Fields;
@@ -17,19 +19,20 @@ use Google\Site_Kit\Core\Modules\Module_With_Owner;
 use Google\Site_Kit\Core\Modules\Module_With_Owner_Trait;
 use Google\Site_Kit\Core\Modules\Module_With_Scopes;
 use Google\Site_Kit\Core\Modules\Module_With_Scopes_Trait;
-use Google\Site_Kit\Core\Authentication\Clients\Google_Site_Kit_Client;
 use Google\Site_Kit\Core\Modules\Module_With_Settings;
 use Google\Site_Kit\Core\Modules\Module_With_Settings_Trait;
 use Google\Site_Kit\Core\Modules\Module_With_Assets;
 use Google\Site_Kit\Core\Modules\Module_With_Assets_Trait;
 use Google\Site_Kit\Core\Modules\Module_With_Service_Entity;
+use Google\Site_Kit\Core\Modules\Module_With_Data_Available_State;
+use Google\Site_Kit\Core\Modules\Module_With_Data_Available_State_Trait;
 use Google\Site_Kit\Core\Permissions\Permissions;
-use Google\Site_Kit\Core\REST_API\Exception\Invalid_Datapoint_Exception;
-use Google\Site_Kit\Core\Assets\Script;
 use Google\Site_Kit\Core\REST_API\Data_Request;
-use Google\Site_Kit\Core\Util\Feature_Flags;
+use Google\Site_Kit\Core\REST_API\Exception\Invalid_Datapoint_Exception;
+use Google\Site_Kit\Core\Util\Date;
 use Google\Site_Kit\Core\Util\Google_URL_Matcher_Trait;
 use Google\Site_Kit\Core\Util\Google_URL_Normalizer;
+use Google\Site_Kit\Core\Util\Sort;
 use Google\Site_Kit\Modules\Search_Console\Settings;
 use Google\Site_Kit_Dependencies\Google\Service\Exception as Google_Service_Exception;
 use Google\Site_Kit_Dependencies\Google\Service\SearchConsole as Google_Service_SearchConsole;
@@ -42,7 +45,6 @@ use Google\Site_Kit_Dependencies\Psr\Http\Message\ResponseInterface;
 use Google\Site_Kit_Dependencies\Psr\Http\Message\RequestInterface;
 use WP_Error;
 use Exception;
-use Google\Site_Kit\Core\Util\Sort;
 
 /**
  * Class representing the Search Console module.
@@ -51,9 +53,13 @@ use Google\Site_Kit\Core\Util\Sort;
  * @access private
  * @ignore
  */
-final class Search_Console extends Module
-	implements Module_With_Scopes, Module_With_Settings, Module_With_Assets, Module_With_Debug_Fields, Module_With_Owner, Module_With_Service_Entity {
-	use Module_With_Scopes_Trait, Module_With_Settings_Trait, Google_URL_Matcher_Trait, Module_With_Assets_Trait, Module_With_Owner_Trait;
+final class Search_Console extends Module implements Module_With_Scopes, Module_With_Settings, Module_With_Assets, Module_With_Debug_Fields, Module_With_Owner, Module_With_Service_Entity, Module_With_Data_Available_State {
+	use Module_With_Scopes_Trait;
+	use Module_With_Settings_Trait;
+	use Google_URL_Matcher_Trait;
+	use Module_With_Assets_Trait;
+	use Module_With_Owner_Trait;
+	use Module_With_Data_Available_State_Trait;
 
 	/**
 	 * Module slug name.
@@ -71,7 +77,7 @@ final class Search_Console extends Module
 		// Detect and store Search Console property when receiving token for the first time.
 		add_action(
 			'googlesitekit_authorize_user',
-			function( array $token_response ) {
+			function ( array $token_response ) {
 				if ( ! current_user_can( Permissions::SETUP ) ) {
 					return;
 				}
@@ -99,10 +105,23 @@ final class Search_Console extends Module
 			}
 		);
 
+		// Ensure that the data available state is reset when the property changes.
+		$this->get_settings()->on_change(
+			function ( $old_value, $new_value ) {
+				if (
+					is_array( $old_value ) &&
+					is_array( $new_value ) &&
+					isset( array_diff_assoc( $new_value, $old_value )['propertyID'] )
+				) {
+					$this->reset_data_available();
+				}
+			}
+		);
+
 		// Ensure that a Search Console property must be set at all times.
 		add_filter(
 			'googlesitekit_setup_complete',
-			function( $complete ) {
+			function ( $complete ) {
 				if ( ! $complete ) {
 					return $complete;
 				}
@@ -164,7 +183,7 @@ final class Search_Console extends Module
 			'GET:matched-sites'   => array( 'service' => 'searchconsole' ),
 			'GET:searchanalytics' => array(
 				'service'   => 'searchconsole',
-				'shareable' => Feature_Flags::enabled( 'dashboardSharing' ),
+				'shareable' => true,
 			),
 			'POST:site'           => array( 'service' => 'searchconsole' ),
 			'GET:sites'           => array( 'service' => 'searchconsole' ),
@@ -189,11 +208,7 @@ final class Search_Console extends Module
 				$start_date = $data['startDate'];
 				$end_date   = $data['endDate'];
 				if ( ! strtotime( $start_date ) || ! strtotime( $end_date ) ) {
-					list ( $start_date, $end_date ) = $this->parse_date_range(
-						$data['dateRange'] ?: 'last-28-days',
-						$data['compareDateRanges'] ? 2 : 1,
-						1 // Offset.
-					);
+					list ( $start_date, $end_date ) = Date::parse_date_range( 'last-28-days', 1, 1 );
 				}
 
 				$data_request = array(
@@ -465,7 +480,7 @@ final class Search_Console extends Module
 		if ( count( $properties ) > 1 ) {
 			$url_properties = array_filter(
 				$properties,
-				function( $property ) {
+				function ( $property ) {
 					return 0 !== strpos( $property['siteURL'], 'sc-domain:' );
 				}
 			);
@@ -555,8 +570,10 @@ final class Search_Console extends Module
 						'googlesitekit-vendor',
 						'googlesitekit-api',
 						'googlesitekit-data',
+						'googlesitekit-datastore-user',
 						'googlesitekit-modules',
 						'googlesitekit-components',
+						'googlesitekit-modules-data',
 					),
 				)
 			),
@@ -599,5 +616,4 @@ final class Search_Console extends Module
 
 		return true;
 	}
-
 }

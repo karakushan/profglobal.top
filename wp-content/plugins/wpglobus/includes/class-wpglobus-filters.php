@@ -11,7 +11,11 @@
  */
 class WPGlobus_Filters {
 
-	/** @var string[] Meta keys where data can be multilingual */
+	/**
+	 * Meta keys where data can be multilingual
+	 *
+	 * @var string[]
+	 */
 	protected static $multilingual_meta_keys = array();
 
 	/**
@@ -63,11 +67,13 @@ class WPGlobus_Filters {
 	 * when the 'wpglobus_force_filter__the_posts' is set
 	 * (@see WPGlobus_QA::_test_get_posts for example).
 	 *
-	 * @param array    $posts
+	 * @since 1.0.14
+	 *
 	 * @param WP_Query $query
 	 *
+	 * @param array    $posts
+	 *
 	 * @return array
-	 * @since 1.0.14
 	 */
 	public static function filter__the_posts( $posts, $query ) {
 
@@ -76,9 +82,10 @@ class WPGlobus_Filters {
 
 				/**
 				 * Don't filter post of disabled post type.
+				 *
 				 * @since 2.5.15
 				 */
-				if ( in_array( $post->post_type, WPGlobus::Config()->disabled_entities ) ) {
+				if ( in_array( $post->post_type, WPGlobus::Config()->disabled_entities, true ) ) {
 					continue;
 				}
 
@@ -97,10 +104,12 @@ class WPGlobus_Filters {
 	 * This is similar to the @see filter__text filter,
 	 * but it returns text in the DEFAULT language.
 	 *
+	 * @since        1.0.8
+	 *
 	 * @param string $text
 	 *
 	 * @return string
-	 * @since 1.0.8
+	 * @noinspection PhpUnused
 	 */
 	public static function filter__text_default_language( $text ) {
 
@@ -127,7 +136,7 @@ class WPGlobus_Filters {
 	public static function filter__get_terms( array $terms ) {
 
 		/**
-		 * @todo Example of a "stopper" filter
+		 * Todo Example of a "stopper" filter
 		 *       if ( apply_filters( 'wpglobus_do_filter__get_terms', true ) ) {}
 		 *       Because it might affect the performance, this is a to-do for now.
 		 */
@@ -154,14 +163,15 @@ class WPGlobus_Filters {
 	public static function filter__get_the_terms( $terms ) {
 
 		/**
-		 * @internal 15.01.31
 		 * Theoretically, we should not have this filter because @see get_the_terms
 		 * calls @see wp_get_object_terms, which is already filtered.
 		 * However, there is a case when the terms are retrieved from @see get_object_term_cache,
 		 * and when we do a Quick Edit / inline-save, we ourselves write raw terms to the cache.
 		 * As of now, we know only one such case, so we activate this filter only in admin,
 		 * and only on the 'single_row' call
+		 *
 		 * @todo     Keep watching this
+		 * @internal 15.01.31
 		 */
 
 		if ( ! is_wp_error( $terms ) && WPGlobus_WP::is_function_in_backtrace( 'single_row' ) ) {
@@ -192,9 +202,10 @@ class WPGlobus_Filters {
 	public static function filter__wp_get_object_terms( array $terms ) {
 
 		/**
-		 * @internal
 		 * Do not need to check for is_wp_error($terms),
 		 * because the WP_Error is returned by wp_get_object_terms() before applying filter.
+		 *
+		 * @internal
 		 */
 
 		if ( ! count( $terms ) ) {
@@ -210,17 +221,20 @@ class WPGlobus_Filters {
 		if (
 			is_admin() &&
 			WPGlobus_WP::is_pagenow( 'post.php' ) &&
-			( ! empty( $_POST['save'] ) || ! empty( $_POST['publish'] ) ) // phpcs:ignore WordPress.CSRF.NonceVerification
+			WPGlobus_WP::get_http_post_parameter( 'save' ) ||
+			WPGlobus_WP::get_http_post_parameter( 'publish' )
 		) {
 			return $terms;
 		}
 
+		$_GET_action = WPGlobus_WP::get_http_get_parameter( 'action' );
+
 		/**
 		 * Don't filter term names for trash and un-trash single post
-		 *
-		 * @see we check post.php page instead of edit.php because redirect
+		 * We check post.php page instead of edit.php because redirect
 		 */
-		if ( is_admin() && WPGlobus_WP::is_pagenow( 'post.php' ) && isset( $_GET['action'] ) && ( 'trash' === $_GET['action'] || 'untrash' === $_GET['action'] ) // phpcs:ignore WordPress.CSRF.NonceVerification
+		if ( is_admin() && WPGlobus_WP::is_pagenow( 'post.php' ) &&
+			 ( 'trash' === $_GET_action || 'untrash' === $_GET_action )
 		) {
 			return $terms;
 		}
@@ -228,7 +242,8 @@ class WPGlobus_Filters {
 		/**
 		 * Don't filter term names bulk trash and untrash posts
 		 */
-		if ( is_admin() && WPGlobus_WP::is_pagenow( 'edit.php' ) && isset( $_GET['action'] ) && ( 'trash' === $_GET['action'] || 'untrash' === $_GET['action'] ) // phpcs:ignore WordPress.CSRF.NonceVerification
+		if ( is_admin() && WPGlobus_WP::is_pagenow( 'edit.php' ) &&
+			 ( 'trash' === $_GET_action || 'untrash' === $_GET_action )
 		) {
 			return $terms;
 		}
@@ -260,12 +275,14 @@ class WPGlobus_Filters {
 			}
 		}
 
+		0 && wp_verify_nonce( '' );
+
 		/**
 		 * Don't filter term names for heartbeat autosave
 		 */
 		if ( WPGlobus_WP::is_http_post_action( 'heartbeat' ) &&
 			 WPGlobus_WP::is_pagenow( 'admin-ajax.php' ) &&
-			 ! empty( $_POST['data']['wp_autosave'] ) // phpcs:ignore WordPress.CSRF
+			 ! empty( $_POST['data']['wp_autosave'] )
 		) {
 			return $terms;
 		}
@@ -274,7 +291,7 @@ class WPGlobus_Filters {
 		 * Don't filter term name at time generate checklist categories in metabox
 		 */
 		if (
-			empty( $_POST ) && // phpcs:ignore WordPress.CSRF
+			empty( $_POST ) &&
 			is_admin() &&
 			WPGlobus_WP::is_pagenow( 'post.php' ) &&
 			WPGlobus_WP::is_function_in_backtrace( 'wp_terms_checklist' )
@@ -312,13 +329,13 @@ class WPGlobus_Filters {
 	 * @see               WPGLobus_QA::_test_post_name
 	 * -
 	 * @see               WPSEO_Metabox::localize_script
-	 * @todo              Check what's going on in localize_script of WPSEO?
-	 * @todo              What if there is no EN language? Only ru and kz but - we cannot use 'en' for permalink
-	 * @todo              check guid
 	 *
 	 * @param string $title
 	 *
 	 * @return string
+	 * @todo              Check what's going on in localize_script of WPSEO?
+	 * @todo              What if there is no EN language? Only ru and kz but - we cannot use 'en' for permalink
+	 * @todo              check guid
 	 */
 	public static function filter__sanitize_title( $title ) {
 
@@ -328,7 +345,7 @@ class WPGlobus_Filters {
 			WPGlobus_WP::is_filter_called_by( 'wp_update_term' )
 		) {
 			/**
-			 * @internal_note: the DEFAULT language, not the current one
+			 * Internal_note: the DEFAULT language, not the current one
 			 */
 			$title = WPGlobus_Core::text_filter(
 				$title, WPGlobus::Config()->default_language
@@ -347,7 +364,7 @@ class WPGlobus_Filters {
 	 */
 	public static function filter__get_term( $term ) {
 
-		if ( WPGlobus_WP::is_http_post_action( 'inline-save-tax' ) ) { // phpcs:ignore Generic
+		if ( ! WPGlobus_WP::is_http_post_action( 'inline-save-tax' ) ) {
 			/**
 			 * Don't filter ajax action 'inline-save-tax' from edit-tags.php page.
 			 * See quick_edit() in includes/js/wpglobus.admin.js
@@ -358,8 +375,6 @@ class WPGlobus_Filters {
 			 *
 			 * @see wp_ajax_inline_save_tax()
 			 */
-			// do nothing
-		} else {
 			WPGlobus_Core::translate_term( $term, WPGlobus::Config()->language );
 		}
 
@@ -394,18 +409,15 @@ class WPGlobus_Filters {
 	/**
 	 * Filter @see wp_insert_term().
 	 *
-	 * @since 1.6.6
+	 * @since        1.6.6
 	 *
 	 * @param string $term     The term to add or update.
 	 * @param string $taxonomy Taxonomy slug.
 	 *
 	 * @return string
+	 * @noinspection PhpUnusedParameterInspection
 	 */
-	public static function filter__pre_insert_term(
-		$term,
-		/** @noinspection PhpUnusedParameterInspection */
-		$taxonomy
-	) {
+	public static function filter__pre_insert_term( $term, $taxonomy ) {
 
 		$multilingual_term = esc_sql( $term );
 		if ( WPGlobus::Config()->language !== WPGlobus::Config()->default_language ) {
@@ -413,8 +425,8 @@ class WPGlobus_Filters {
 		}
 
 		global $wpdb;
-		// phpcs:ignore WordPress.WP.PreparedSQL
-		$data = $wpdb->get_results( "SELECT * FROM $wpdb->terms AS terms WHERE terms.name LIKE '%{$multilingual_term}%'" );
+
+		$data = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->terms AS terms WHERE terms.name LIKE %s", "%{$multilingual_term}%" ) );
 
 		if ( count( $data ) > 0 ) {
 			/**
@@ -441,7 +453,7 @@ class WPGlobus_Filters {
 	public static function filter__home_url( $url ) {
 
 		/**
-		 * @internal note
+		 * Internal note
 		 * Example of URL in admin:
 		 * When admin interface is not in default language, we still should not see
 		 * any permalinks with language prefixes.
@@ -507,11 +519,12 @@ class WPGlobus_Filters {
 	/**
 	 * Filter for @see get_locale
 	 *
+	 * @see     setlocale
+	 *
 	 * @param string $locale Locale.
 	 *
 	 * @return string
 	 * @todo    Do we need to do setlocale(LC_???, $locale)? (*** NOT HERE )
-	 * @see     setlocale
 	 * @link    http://php.net/manual/en/function.setlocale.php
 	 * @example echo setlocale(LC_ALL, 'Russian'); => Russian_Russia.1251
 	 */
@@ -528,6 +541,11 @@ class WPGlobus_Filters {
 			// We need to exclude is_admin when it's a front-originated AJAX.
 			is_admin()
 			&& ( ! WPGlobus_WP::is_doing_ajax() || WPGlobus_WP::is_admin_doing_ajax() )
+			/**
+			 * Filter wpglobus_use_admin_wplang
+			 *
+			 * @since 1.9.15
+			 */
 			&& apply_filters( 'wpglobus_use_admin_wplang', true )
 		) {
 			/**
@@ -560,11 +578,12 @@ class WPGlobus_Filters {
 	/**
 	 * Filter @see wp_setup_nav_menu_item in wp-includes\nav-menu.php for more info
 	 *
-	 * @since 1.0.0
+	 * @since        1.0.0
 	 *
-	 * @param WP_Post[] $object
+	 * @param WP_Post[]|object $object
 	 *
 	 * @return WP_Post[]
+	 * @noinspection PhpUnused
 	 */
 	public static function filter__nav_menu_item( $object ) {
 		/**
@@ -606,21 +625,18 @@ class WPGlobus_Filters {
 	/**
 	 * Filter @see heartbeat_received
 	 *
-	 * @since 1.0.1
+	 * @since        1.0.1
 	 *
 	 * @param array  $response
 	 * @param array  $data
 	 * @param string $screen_id
 	 *
 	 * @return array
+	 * @noinspection PhpUnusedParameterInspection
 	 */
-	public static function filter__heartbeat_received(
-		$response, $data,
-		/** @noinspection PhpUnusedParameterInspection */
-		$screen_id
-	) {
+	public static function filter__heartbeat_received( $response, $data, $screen_id ) {
 
-		if ( false !== strpos( $_SERVER['HTTP_REFERER'], 'wpglobus=off' ) ) { // WPCS: input var ok, sanitization ok.
+		if ( false !== strpos( WPGlobus_WP::http_referer(), 'wpglobus=off' ) ) {
 			/**
 			 * Check $_SERVER['HTTP_REFERER'] for wpglobus toggle is off because wpglobus-admin.js doesn't loaded in this mode
 			 */
@@ -631,7 +647,7 @@ class WPGlobus_Filters {
 
 			if ( empty( $data['wp_autosave']['post_id'] ) || 0 === (int) $data['wp_autosave']['post_id'] ) {
 				/**
-				 * wp_autosave may come from edit.php page
+				 * Note: wp_autosave may come from edit.php page
 				 */
 				return $response;
 			}
@@ -704,6 +720,7 @@ class WPGlobus_Filters {
 				$response['wp_autosave'] = array(
 					'success' => true,
 					'message' => sprintf(
+					// Translators:
 						__( 'Draft saved at %s.' ), date_i18n( $draft_saved_date_format )
 					),
 				);
@@ -741,11 +758,11 @@ class WPGlobus_Filters {
 	 *
 	 * @see   WP_Widget::display_callback
 	 * @scope front
-     *
+	 *
 	 * @since 1.0.6
 	 * @since 2.4.10 Prevent handling of incorrect widget instance's settings.
 	 * @since 2.8.5 Added checking for translations in $widget_setting.
-	 * 				Using `extract_text` instead of `text_filter`.
+	 *                Using `extract_text` instead of `text_filter`.
 	 *
 	 * @param string[] $instance
 	 *
@@ -755,15 +772,20 @@ class WPGlobus_Filters {
 
 		/**
 		 * Prevent handling of incorrect widget instance's settings.
+		 *
 		 * @since 2.4.10
 		 */
-		if ( empty($instance) || is_bool($instance) ) {
+		if ( empty( $instance ) || is_bool( $instance ) ) {
 			return $instance;
 		}
 
 		foreach ( $instance as &$widget_setting ) {
 
-			/** @noinspection ReferenceMismatchInspection */
+			/**
+			 * What?
+			 *
+			 * @noinspection ReferenceMismatchInspection
+			 */
 			if ( ! empty( $widget_setting ) && is_string( $widget_setting ) && WPGlobus_Core::has_translations( $widget_setting ) ) {
 				$widget_setting =
 					WPGlobus_Core::extract_text( $widget_setting, WPGlobus::Config()->language );
@@ -797,9 +819,9 @@ class WPGlobus_Filters {
 	/**
 	 * Filter @see wp_trim_words
 	 *
-	 * @qa    At the /wp-admin/index.php page is a Quick Draft metabox
+	 * @qa           At the /wp-admin/index.php page is a Quick Draft metabox
 	 *      which shows 3 last post drafts. This filter lets post content in default language.
-	 * @since 1.0.14
+	 * @since        1.0.14
 	 *
 	 * @param string $text          The trimmed text.
 	 * @param int    $num_words     The number of words to trim the text to.
@@ -807,14 +829,15 @@ class WPGlobus_Filters {
 	 * @param string $original_text The text before it was trimmed.
 	 *
 	 * @return string
+	 * @noinspection PhpUnusedParameterInspection
 	 */
-	public static function filter__wp_trim_words(
-		/** @noinspection PhpUnusedParameterInspection */
-		$text, $num_words, $more, $original_text
-	) {
+	public static function filter__wp_trim_words( $text, $num_words, $more, $original_text ) {
 
-		// Method argument is ignored.
-		/* @noinspection SuspiciousAssignmentsInspection */
+		/**
+		 * Method argument is ignored.
+		 *
+		 * @noinspection SuspiciousAssignmentsInspection
+		 */
 		$text = WPGlobus_Core::text_filter( $original_text, WPGlobus::Config()->language );
 
 		if ( null === $more ) {
@@ -822,7 +845,7 @@ class WPGlobus_Filters {
 		}
 
 		$text = wp_strip_all_tags( $text );
-		if ( 'characters' == _x( 'words', 'word count: words or characters?' ) && preg_match( '/^utf\-?8$/i', get_option( 'blog_charset' ) ) ) {//phpcs:ignore WordPress.PHP.StrictComparisons
+		if ( 'characters' === _x( 'words', 'word count: words or characters?' ) && preg_match( '/^utf-?8$/i', get_option( 'blog_charset' ) ) ) {
 			$text = trim( preg_replace( "/[\n\r\t ]+/", ' ', $text ), ' ' );
 			preg_match_all( '/./u', $text, $words_array );
 			$words_array = array_slice( $words_array[0], 0, $num_words + 1 );
@@ -871,16 +894,16 @@ class WPGlobus_Filters {
 	/**
 	 * Specify meta keys where the meta data can be multilingual.
 	 *
+	 * @since   1.2.1
 	 * @example
-	 * <code>
-	 *  add_filter( 'wpglobus_multilingual_meta_keys',
-	 *      function ( $multilingual_meta_keys ) {
+	 *          <code>
+	 *          add_filter( 'wpglobus_multilingual_meta_keys',
+	 *          function ( $multilingual_meta_keys ) {
 	 *          $multilingual_meta_keys['slides'] = true;
 	 *          return $multilingual_meta_keys;
-	 *      }
-	 *  );
-	 * </code>
-	 * @since 1.2.1
+	 *          }
+	 *          );
+	 *          </code>
 	 */
 	public static function set_multilingual_meta_keys() {
 
@@ -888,12 +911,16 @@ class WPGlobus_Filters {
 		 * Add Alternative Text meta value for media.
 		 * We need to use only one meta because Title, Caption and Description was stored in wp_posts table.
 		 *
-		 * @todo  may be to use another class to store keys for $multilingual_meta_keys in future version.
-		 *
 		 * @since 1.9.11
+		 * @todo  may be to use another class to store keys for $multilingual_meta_keys in future version.
 		 */
 		self::$multilingual_meta_keys['_wp_attachment_image_alt'] = true;
 
+		/**
+		 * Filter wpglobus_multilingual_meta_keys
+		 *
+		 * @since 1.9.11
+		 */
 		self::$multilingual_meta_keys = apply_filters(
 			'wpglobus_multilingual_meta_keys', self::$multilingual_meta_keys
 		);
@@ -902,7 +929,7 @@ class WPGlobus_Filters {
 	/**
 	 * Translate meta data
 	 *
-	 * @see \WPGlobus_Filters::set_multilingual_meta_keys
+	 * @see WPGlobus_Filters::set_multilingual_meta_keys
 	 *
 	 * @param string|array $value     Null is passed. We set the value.
 	 * @param int          $object_id Post ID
@@ -914,7 +941,7 @@ class WPGlobus_Filters {
 	public static function filter__postmeta( $value, $object_id, $meta_key, $single ) {
 
 		/**
-		 * @todo Currently, only single values are supported
+		 * Todo Currently, only single values are supported
 		 */
 		if ( ! $single ) {
 			return $value;
@@ -935,7 +962,6 @@ class WPGlobus_Filters {
 			return $_cache[ $meta_key ][ $object_id ];
 		}
 
-		/** @global wpdb $wpdb */
 		global $wpdb;
 		$meta_value = $wpdb->get_var(
 			$wpdb->prepare(
@@ -948,14 +974,14 @@ class WPGlobus_Filters {
 
 			if ( is_serialized( $meta_value ) ) {
 				/**
-				 * @todo Refactor this. Write a `filter__array` method.
+				 * Todo Refactor this. Write a `filter__array` method.
 				 */
-				$_meta_array = unserialize( $meta_value ); //phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions
+				$_meta_array = maybe_unserialize( $meta_value );
 				foreach ( $_meta_array as &$_value ) {
 					if ( is_array( $_value ) ) {
 						foreach ( $_value as &$_deep_value ) {
 							/**
-							 * @todo Assuming that the array had max. two levels, which is wrong.
+							 * Todo Assuming that the array had max. two levels, which is wrong.
 							 */
 							$_deep_value = self::filter__text( $_deep_value );
 						}
@@ -1038,7 +1064,7 @@ class WPGlobus_Filters {
 	 */
 	public static function filter__front_styles( $css, $css_editor ) {
 		if ( ! empty( $css_editor ) ) {
-			$css .= strip_tags( $css_editor );
+			$css .= wp_strip_all_tags( $css_editor );
 		}
 
 		return $css;
@@ -1055,9 +1081,7 @@ class WPGlobus_Filters {
 	 * @return string
 	 */
 	public static function filter__url_to_postid( $url ) {
-		$url = WPGlobus_Utils::localize_url( $url, WPGlobus::Config()->default_language );
-
-		return $url;
+		return WPGlobus_Utils::localize_url( $url, WPGlobus::Config()->default_language );
 	}
 
 	/**
@@ -1089,10 +1113,11 @@ class WPGlobus_Filters {
 	/**
 	 * Filter the oembed data returned by the /wp-json/oembed/... calls.
 	 *
+	 * @since 1.8.4
+	 *
 	 * @param array $data The response data.
 	 *
 	 * @return array
-	 * @since 1.8.4
 	 */
 	public static function filter__oembed_response_data( $data ) {
 		// If $language_for_oembed is empty, text_filter will use the default language.
@@ -1109,12 +1134,13 @@ class WPGlobus_Filters {
 	/**
 	 * Filters the wp_mail() arguments.
 	 *
-	 * @see   wp-includes\pluggable.php
+	 * See   wp-includes\pluggable.php
+	 *
+	 * @since 1.9.5
 	 *
 	 * @param array $atts A compacted array of wp_mail() arguments.
 	 *
 	 * @return array
-	 * @since 1.9.5
 	 */
 	public static function filter__wp_mail( $atts ) {
 
@@ -1162,25 +1188,24 @@ class WPGlobus_Filters {
 	/**
 	 * Filters oEmbed HTML.
 	 *
-	 * @param mixed  $cache   The cached HTML result, stored in post meta.
+	 * @since        1.9.8
+	 * @noinspection PhpUnusedParameterInspection
+	 *
 	 * @param string $url     The attempted embed URL.
 	 * @param array  $attr    An array of shortcode attributes.
 	 * @param int    $post_ID Post ID.
 	 *
+	 * @param mixed  $cache   The cached HTML result, stored in post meta.
+	 *
 	 * @return string
-	 * @since 1.9.8
 	 */
-	public static function filter__embed_oembed_html(
-		$cache, $url,
-		/** @noinspection PhpUnusedParameterInspection */
-		$attr,
-		/** @noinspection PhpUnusedParameterInspection */
-		$post_ID
-	) {
+	public static function filter__embed_oembed_html( $cache, $url, $attr, $post_ID ) {
 
 		if ( ! is_string( $cache ) ) {
 			/**
-			 * @since 1.9.8. We are working with string.
+			 * We are working with string.
+			 *
+			 * @since 1.9.8
 			 */
 			return $cache;
 		}
@@ -1194,39 +1219,32 @@ class WPGlobus_Filters {
 			return $cache;
 		}
 
-		$cache = str_replace( WPGlobus_Utils::localize_url( $url, WPGlobus::Config()->default_language ), $url, $cache );
-
-		return $cache;
+		return str_replace( WPGlobus_Utils::localize_url( $url, WPGlobus::Config()->default_language ), $url, $cache );
 	}
 
 	/**
 	 * Filters a 'wpseo_taxonomy_meta' option before its value is updated.
 	 *
-	 * @since 2.0
+	 * @since        2.0
 	 *
 	 * @param mixed  $new_value The new, unserialized option value.
 	 * @param mixed  $old_value The old option value.
 	 * @param string $option    Option name.
 	 *
 	 * @return mixed
+	 * @noinspection PhpUnusedParameterInspection
 	 */
-	public static function filter__pre_update_wpseo_taxonomy_meta(
-		$new_value,
-		/** @noinspection PhpUnusedParameterInspection */
-		$old_value,
-		/** @noinspection PhpUnusedParameterInspection */
-		$option
-	) {
+	public static function filter__pre_update_wpseo_taxonomy_meta( $new_value, $old_value, $option ) {
 
 		global $pagenow;
 
-		if ( 'edit-tags.php' === $pagenow && 'editedtag' === $_POST['action'] ) { // phpcs:ignore WordPress.CSRF.NonceVerification
+		if ( 'edit-tags.php' === $pagenow && 'editedtag' === WPGlobus_WP::get_http_post_parameter( 'action' ) ) {
 			/**
 			 * Update button was clicked on term.php page.
 			 */
 			$current_language = WPGlobus::Config()->builder->get_language();
 			$taxonomy         = WPGlobus::Config()->builder->get( 'taxonomy' );
-			$tag_ID           = (int) $_POST['tag_ID'];
+			$tag_ID           = (int) WPGlobus_WP::get_http_post_parameter( 'tag_ID' );
 
 			$_enabled_keys = array( 'wpseo_title', 'wpseo_desc', 'wpseo_focuskw' );
 
@@ -1234,10 +1252,9 @@ class WPGlobus_Filters {
 			 * Get option.
 			 */
 			global $wpdb;
-			$query         = "SELECT option_value FROM $wpdb->options WHERE option_name = 'wpseo_taxonomy_meta'";
-			$result        = $wpdb->get_col( $query ); // phpcs:ignore WordPress.WP.PreparedSQL
+			$result = $wpdb->get_col( "SELECT option_value FROM $wpdb->options WHERE option_name = 'wpseo_taxonomy_meta'" );
 
-			if ( ! empty($result[0]) ) {
+			if ( ! empty( $result[0] ) ) {
 				$option_values = maybe_unserialize( $result[0] );
 			} else {
 				$option_values = array();
@@ -1251,10 +1268,10 @@ class WPGlobus_Filters {
 
 					if ( $lang === $current_language ) {
 
-						if ( empty( $new_value[ $taxonomy ][ $tag_ID ][ $field ] ) ) {//phpcs:ignore Generic.CodeAnalysis
-							//$text = '';
-						} else {
+						if ( ! empty( $new_value[ $taxonomy ][ $tag_ID ][ $field ] ) ) {
 							$new[ $lang ] = $new_value[ $taxonomy ][ $tag_ID ][ $field ];
+							// } else {
+							//$text = '';
 						}
 					} else {
 
@@ -1282,9 +1299,9 @@ class WPGlobus_Filters {
 	 *
 	 * @since 2.8.0
 	 *
-	 * @param boolean $use_widgets_block_editor Whether or not to use the block editor to manage widgets.
+	 * @param bool $use_block_editor Whether or not to use the block editor to manage widgets.
 	 */
-	public static function filter__use_widgets_block_editor($use_block_editor) {
+	public static function filter__use_widgets_block_editor( $use_block_editor ) {
 
 		if ( ! $use_block_editor ) {
 
@@ -1302,5 +1319,3 @@ class WPGlobus_Filters {
 		return false;
 	}
 }
-
-# --- EOF

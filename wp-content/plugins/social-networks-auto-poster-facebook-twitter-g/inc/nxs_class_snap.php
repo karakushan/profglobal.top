@@ -171,7 +171,7 @@ if (!class_exists("nxs_SNAP")) { class nxs_SNAP {//## SNAP General Class
     if (function_exists('nxs_v4doSMAS2')) { $rf = new ReflectionFunction('nxs_v4doSMAS2'); $trrd++; $rff = $rf->getFileName(); if (stripos($rff, "'d code")===false) $cst(chr(100).$trrd,$trrd); }
     //## Import Settings            
     if (isset($_POST['upload_NS_SNAutoPoster_settings'])) { if (!empty($_POST['nxs_mqTest']) && $_POST['nxs_mqTest']=="\'") {array_walk_recursive($_POST, 'nsx_stripSlashes');}  array_walk_recursive($_POST, 'nsx_fixSlashes');             
-      $secCheck =  wp_verify_nonce($_POST['nxsChkUpl_wpnonce'], 'nxsChkUpl');
+      $secCheck =  wp_verify_nonce(sanitize_text_field( wp_unslash ($_POST['nxsChkUpl_wpnonce'])), 'nxsChkUpl');
       if ($secCheck!==false && isset($_FILES['impFileSettings_button']) && is_uploaded_file($_FILES['impFileSettings_button']['tmp_name'])) { $fileData = trim(file_get_contents($_FILES['impFileSettings_button']['tmp_name']));
         while (substr($fileData, 0,1)!=='a') $fileData = substr($fileData, 1);  
         $uplOpt = maybe_unserialize($fileData); if (is_array($uplOpt) && (isset($uplOpt['imgNoCheck']) || isset($uplOpt['useSSLCert'])) ) { $options = $uplOpt; //### V3 import
@@ -458,73 +458,156 @@ if (!class_exists("nxs_SNAP")) { class nxs_SNAP {//## SNAP General Class
              </div>           
            </div>
     <!-- ##################### URL Shortener #####################-->
-            <div class="nxs_box"> <div class="nxs_box_header"><h3><?php _e('URL Shortener', 'social-networks-auto-poster-facebook-twitter-g') ?></h3></div>
-            <div class="nxs_box_inside"> <span style="font-size: 11px; margin-left: 1px;">Please use %SURL% in "Message Format" to get shortened urls or check "Force Shortened Links". </span> <br/>
-              <!-- <div class="itemDiv">
-              <input type="radio" name="nxsURLShrtnr" value="G" <?php if (!isset($options['nxsURLShrtnr']) || $options['nxsURLShrtnr']=='' || $options['nxsURLShrtnr']=='G') echo 'checked="checked"'; ?> /> <b>gd.is</b> (Default) - fast, simple, free, no configuration nessesary.            
+            <div class="nxs_box">
+                <div class="nxs_box_header">
+                    <h3><?php _e('URL Shortener', 'social-networks-auto-poster-facebook-twitter-g') ?></h3></div>
+                <div class="nxs_box_inside"><span style="font-size: 11px; margin-left: 1px;">Please use %SURL% in "Message Format" to get shortened urls or check "Force Shortened Links". </span>
+                    <br/>
+                    <!-- <div class="itemDiv">
+              <input type="radio" name="nxsURLShrtnr" value="G" <?php if (!isset($options['nxsURLShrtnr']) || $options['nxsURLShrtnr'] == '' || $options['nxsURLShrtnr'] == 'G') echo 'checked="checked"'; ?> /> <b>gd.is</b> (Default) - fast, simple, free, no configuration nessesary.
               </div> -->
-              <div class="itemDiv">
-              
-     <input type="checkbox" name="forceSURL" value="1" <?php if (isset($options['forceSURL']) && $options['forceSURL']=='1') echo 'checked="checked"'; ?> /> <b><?php _e('Force Shortened Links', 'social-networks-auto-poster-facebook-twitter-g') ?></b>
-     <br/><br/>         
-              <input type="radio" name="nxsURLShrtnr" value="O" <?php if (!isset($options['nxsURLShrtnr']) || (isset($options['nxsURLShrtnr']) && ($options['nxsURLShrtnr']=='O' || $options['nxsURLShrtnr']=='G'))) echo 'checked="checked"'; ?> /> <b>is.gd</b>&nbsp;[Default] <i>Simple, no additional configuration required.</i><br/>
-              </div>
-              
-              <?php if (function_exists('wp_get_shortlink')) { ?><div class="itemDiv">
-              <input type="radio" name="nxsURLShrtnr" value="W" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr']=='W')  echo 'checked="checked"'; ?> /> <b>Wordpress Built-in Shortener</b> (wp.me if you use Jetpack)<br/> 
-              </div><?php } ?>
-              <!-- ## bitly ##-->
-              <div class="itemDiv">
-              <input type="radio" name="nxsURLShrtnr" value="B" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr']=='B') echo 'checked="checked"'; ?> /> <b>bit.ly</b>  - <i>Enter bit.ly  <a target="_blank" href="https://app.bitly.com/B9bc3l7ZtSy/bitlinks/2xqZo1c?actions=profile&actions=accessToken">Generic Access Token</a> below.</i> (<i style="font-size: 12px;">Please go for the Generic Access Token to "Profile Settings->Generic Access Token"</i>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bit.ly&nbsp;&nbsp;Generic Access Token:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="bitlyAPIToken" style="width: 20%;" value="<?php if (isset($options['bitlyAPIToken'])) _e(apply_filters('format_to_edit',$options['bitlyAPIToken']), 'social-networks-auto-poster-facebook-twitter-g') ?>" />
-              </div>
-              
-              <!-- ## u.to ##-->
-              <div class="itemDiv">
-                <input type="radio" name="nxsURLShrtnr" value="U" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr']=='U') echo 'checked="checked"'; ?> /> <b>u.to</b>  <i>Simple and anonymous (no accounts, no stats) use only, No additional configuration required.</i>
-              </div>
+                    <div class="itemDiv">
 
-                <!-- ## x.co ##-->
-                <div class="itemDiv">
-                    <input type="radio" name="nxsURLShrtnr" value="X" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr']=='X') echo 'checked="checked"'; ?> /> <b>x.co</b>  - <i>Enter x.co <a target="_blank" href="https://app.x.co/Settings.aspx">API Key</a> below. You can get API key from your x.co settings page: <a target="_blank" href="http://app.x.co/Settings.aspx">http://app.x.co/Settings.aspx</a>.</i><br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x.co&nbsp;&nbsp;API Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="xcoAPIKey" style="width: 20%;" value="<?php if (isset($options['xcoAPIKey'])) _e(apply_filters('format_to_edit',$options['xcoAPIKey']), 'social-networks-auto-poster-facebook-twitter-g') ?>" />
+                        <label>
+                            <input type="checkbox" name="forceSURL"
+                                   value="1" <?php if (isset($options['forceSURL']) && $options['forceSURL'] == '1') echo 'checked="checked"'; ?> />
+                            <b><?php _e('Force Shortened Links', 'social-networks-auto-poster-facebook-twitter-g') ?></b>
+                        </label>
+
+                        <br/><br/>
+                        <input type="radio" name="nxsURLShrtnr"
+                               value="O" <?php if (!isset($options['nxsURLShrtnr']) || (isset($options['nxsURLShrtnr']) && ($options['nxsURLShrtnr'] == 'O' || $options['nxsURLShrtnr'] == 'G'))) echo 'checked="checked"'; ?> />
+                        <b>is.gd</b>&nbsp;[Default] <i>Simple, no additional configuration required.</i><br/>
+                    </div>
+
+                    <?php if (function_exists('wp_get_shortlink')) { ?>
+                        <div class="itemDiv">
+                        <input type="radio" name="nxsURLShrtnr"
+                               value="W" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr'] == 'W') echo 'checked="checked"'; ?> />
+                        <b>Wordpress Built-in Shortener</b> (wp.me if you use Jetpack)<br/>
+                        </div><?php } ?>
+                    <!-- ## Go2Ln ##-->
+                    <div class="itemDiv">
+                        <input type="radio" name="nxsURLShrtnr"
+                               value="L" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr'] == 'L') echo 'checked="checked"'; ?> />
+                        <span style="color:#0077b3;"> <b>Go2Ln.com (gd.is)</b> [Recommended]</span> - <i>(Optional)Enter Go2Ln.com API Key and <a target="_blank"
+                                                                             href="https://go2ln.com/developers">API
+                                Key</a> and domain below. If domain is not set, <b>gd.is</b> will be used</i><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Go2Ln&nbsp;&nbsp;API Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                name="g2lnAPIKey" style="width: 20%;"
+                                value="<?php if (isset($options['g2lnAPIKey'])) _e(apply_filters('format_to_edit', $options['g2lnAPIKey']), 'social-networks-auto-poster-facebook-twitter-g') ?>"/><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Go2Ln&nbsp;&nbsp;Domain:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                name="g2lnDomain" style="width: 20%;"
+                                value="<?php if (isset($options['g2lnDomain'])) _e(apply_filters('format_to_edit', $options['g2lnDomain']), 'social-networks-auto-poster-facebook-twitter-g') ?>"/>&nbsp;
+                    </div>
+
+                    <!-- ## bitly ##-->
+                    <div class="itemDiv">
+                        <input type="radio" name="nxsURLShrtnr"
+                               value="B" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr'] == 'B') echo 'checked="checked"'; ?> />
+                        <b>bit.ly</b> - <i>Enter bit.ly <a target="_blank"
+                                                           href="https://app.bitly.com/B9bc3l7ZtSy/bitlinks/2xqZo1c?actions=profile&actions=accessToken">Generic
+                                Access Token</a> below.</i> (<i style="font-size: 12px;">Please go for the Generic
+                            Access Token to "Profile Settings->Generic Access Token"</i>)<br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bit.ly&nbsp;&nbsp;Generic Access Token:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                name="bitlyAPIToken" style="width: 20%;"
+                                value="<?php if (isset($options['bitlyAPIToken'])) _e(apply_filters('format_to_edit', $options['bitlyAPIToken']), 'social-networks-auto-poster-facebook-twitter-g') ?>"/>
+                    </div>
+
+                    <!-- ## u.to ##-->
+                    <div class="itemDiv">
+                        <input type="radio" name="nxsURLShrtnr"
+                               value="U" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr'] == 'U') echo 'checked="checked"'; ?> />
+                        <b>u.to</b> <i>Simple and anonymous (no accounts, no stats) use only, No additional
+                            configuration required.</i>
+                    </div>
+
+                    <!-- ## x.co ##-->
+                    <div class="itemDiv">
+                        <input type="radio" name="nxsURLShrtnr"
+                               value="X" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr'] == 'X') echo 'checked="checked"'; ?> />
+                        <b>x.co</b> - <i>Enter x.co <a target="_blank" href="https://app.x.co/Settings.aspx">API Key</a>
+                            below. You can get API key from your x.co settings page: <a target="_blank"
+                                                                                        href="http://app.x.co/Settings.aspx">http://app.x.co/Settings.aspx</a>.</i><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x.co&nbsp;&nbsp;API Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                name="xcoAPIKey" style="width: 20%;"
+                                value="<?php if (isset($options['xcoAPIKey'])) _e(apply_filters('format_to_edit', $options['xcoAPIKey']), 'social-networks-auto-poster-facebook-twitter-g') ?>"/>
+                    </div>
+                    <!-- ## clk.im ##-->
+                    <div class="itemDiv">
+                        <input type="radio" name="nxsURLShrtnr"
+                               value="C" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr'] == 'C') echo 'checked="checked"'; ?> />
+                        <b>clk.im</b> - <i>Enter clk.im <a target="_blank" href="https://clk.im/apikey">API Key</a>
+                            below. You can get API key from your clk.im page: <a target="_blank"
+                                                                                 href="http://clk.im/apikey">http://clk.im/apikey</a>.
+                            Please see the "Developers/Publishers" section on the right</i><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clk.im&nbsp;&nbsp;API Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                name="clkimAPIKey" style="width: 20%;"
+                                value="<?php if (isset($options['clkimAPIKey'])) _e(apply_filters('format_to_edit', $options['clkimAPIKey']), 'social-networks-auto-poster-facebook-twitter-g') ?>"/>
+                    </div>
+                    <!-- ## po.st ##-->
+                    <div class="itemDiv">
+                        <input type="radio" name="nxsURLShrtnr"
+                               value="P" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr'] == 'P') echo 'checked="checked"'; ?> />
+                        <b>po.st</b> - <i>Enter po.st <a target="_blank" href="https://re.po.st/partner/campaigns">API
+                                Key</a> below. You can get API key from your "Campaigns" page: <a target="_blank"
+                                                                                                  href="https://re.po.st/partner/campaigns">https://re.po.st/partner/campaigns</a></i><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;po.st&nbsp;&nbsp;API Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                name="postAPIKey" style="width: 20%;"
+                                value="<?php if (isset($options['postAPIKey'])) _e(apply_filters('format_to_edit', $options['postAPIKey']), 'social-networks-auto-poster-facebook-twitter-g') ?>"/>
+                    </div>
+
+                    <div class="itemDiv">
+                        <input type="radio" name="nxsURLShrtnr"
+                               value="A" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr'] == 'A') echo 'checked="checked"'; ?> />
+                        <b>adf.ly</b> - <i>Enter adf.ly user ID and <a target="_blank"
+                                                                       href="https://adf.ly/publisher/tools#tools-api">API
+                                Key</a> below</i><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adf.ly User ID: <input name="adflyUname"
+                                                                                         style="width: 20%;"
+                                                                                         value="<?php if (isset($options['bitlyUname'])) _e(apply_filters('format_to_edit', $options['adflyUname']), 'social-networks-auto-poster-facebook-twitter-g') ?>"/><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adf.ly&nbsp;&nbsp;API Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                name="adflyAPIKey" style="width: 20%;"
+                                value="<?php if (isset($options['adflyAPIKey'])) _e(apply_filters('format_to_edit', $options['adflyAPIKey']), 'social-networks-auto-poster-facebook-twitter-g') ?>"/>
+                        <div style="width:100%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adf.ly Domain: <select
+                                    name="adflyDomain" id="adflyDomain">
+                                <?php $adflyDomains = '<option value="adf.ly">adf.ly</option><option value="q.gs">q.gs</option>';
+                                if (isset($options['adflyDomain']) && $options['adflyDomain'] != '') $adflyDomains = str_replace($options['adflyDomain'] . '"', $options['adflyDomain'] . '" selected="selected"', $adflyDomains);
+                                echo $adflyDomains;
+                                ?>
+                            </select> <i>Please note that j.gs is not availabe for API use.</i></div>
+                    </div>
+
+                    <div class="itemDiv">
+                        <input type="radio" name="nxsURLShrtnr"
+                               value="R" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr'] == 'R') echo 'checked="checked"'; ?> />
+                        <b>Rebrandly</b> - <i>Enter Rebrandly API Key and <a target="_blank"
+                                                                             href="https://www.rebrandly.com/api-settings">API
+                                Key</a> and domain below. If domain is not set, rebrand.ly will be used</i><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rebrandly&nbsp;&nbsp;API Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                name="rblyAPIKey" style="width: 20%;"
+                                value="<?php if (isset($options['rblyAPIKey'])) _e(apply_filters('format_to_edit', $options['rblyAPIKey']), 'social-networks-auto-poster-facebook-twitter-g') ?>"/><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rebrandly&nbsp;&nbsp;Domain:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                                name="rblyDomain" style="width: 20%;"
+                                value="<?php if (isset($options['rblyDomain'])) _e(apply_filters('format_to_edit', $options['rblyDomain']), 'social-networks-auto-poster-facebook-twitter-g') ?>"/>&nbsp;
+                    </div>
+
+                    <div class="itemDiv">
+                        <input type="radio" name="nxsURLShrtnr"
+                               value="Y" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr'] == 'Y') echo 'checked="checked"'; ?> />
+                        <b>YOURLS (Your Own URL Shortener)</b> -
+                        &nbsp;<i>YOURLS API URL - usually sonething like https://yourdomain.cc/yourls-api.php; YOURLS
+                            API Secret Signature Token can be found in your YOURLS Admin Panel-&gt;Tools</i><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YOURLS API URL: <input name="YOURLSURL"
+                                                                                         style="width: 19.4%;"
+                                                                                         value="<?php if (isset($options['YOURLSURL'])) _e(apply_filters('format_to_edit', $options['YOURLSURL']), 'social-networks-auto-poster-facebook-twitter-g') ?>"/><br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YOURLS API Secret Signature
+                        Token:&nbsp;&nbsp;&nbsp;<input name="YOURLSKey" style="width: 13%;"
+                                                       value="<?php if (isset($options['YOURLSKey'])) _e(apply_filters('format_to_edit', $options['YOURLSKey']), 'social-networks-auto-poster-facebook-twitter-g') ?>"/>
+                    </div>
+
                 </div>
-                <!-- ## clk.im ##-->
-                <div class="itemDiv">
-                    <input type="radio" name="nxsURLShrtnr" value="C" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr']=='C') echo 'checked="checked"'; ?> /> <b>clk.im</b>  - <i>Enter clk.im <a target="_blank" href="https://clk.im/apikey">API Key</a> below. You can get API key from your clk.im page: <a target="_blank" href="http://clk.im/apikey">http://clk.im/apikey</a>. Please see the "Developers/Publishers" section on the right</i><br/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clk.im&nbsp;&nbsp;API Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="clkimAPIKey" style="width: 20%;" value="<?php if (isset($options['clkimAPIKey'])) _e(apply_filters('format_to_edit',$options['clkimAPIKey']), 'social-networks-auto-poster-facebook-twitter-g') ?>" />
-                </div>
-              <!-- ## po.st ##-->
-              <div class="itemDiv">
-              <input type="radio" name="nxsURLShrtnr" value="P" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr']=='P') echo 'checked="checked"'; ?> /> <b>po.st</b>  - <i>Enter po.st <a target="_blank" href="https://re.po.st/partner/campaigns">API Key</a> below. You can get API key from your "Campaigns" page: <a target="_blank" href="https://re.po.st/partner/campaigns">https://re.po.st/partner/campaigns</a></i><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;po.st&nbsp;&nbsp;API Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="postAPIKey" style="width: 20%;" value="<?php if (isset($options['postAPIKey'])) _e(apply_filters('format_to_edit',$options['postAPIKey']), 'social-networks-auto-poster-facebook-twitter-g') ?>" />
-              </div>
-              
-              <div class="itemDiv">
-              <input type="radio" name="nxsURLShrtnr" value="A" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr']=='A') echo 'checked="checked"'; ?> /> <b>adf.ly</b>  - <i>Enter adf.ly user ID and <a target="_blank" href="https://adf.ly/publisher/tools#tools-api">API Key</a> below</i><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adf.ly User ID: <input name="adflyUname" style="width: 20%;" value="<?php if (isset($options['bitlyUname'])) _e(apply_filters('format_to_edit',$options['adflyUname']), 'social-networks-auto-poster-facebook-twitter-g') ?>" /><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adf.ly&nbsp;&nbsp;API Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="adflyAPIKey" style="width: 20%;" value="<?php if (isset($options['adflyAPIKey'])) _e(apply_filters('format_to_edit',$options['adflyAPIKey']), 'social-networks-auto-poster-facebook-twitter-g') ?>" />
-             <div style="width:100%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adf.ly Domain: <select name="adflyDomain" id="adflyDomain">
-            <?php  $adflyDomains = '<option value="adf.ly">adf.ly</option><option value="q.gs">q.gs</option>';
-              if (isset($options['adflyDomain']) && $options['adflyDomain']!='') $adflyDomains = str_replace($options['adflyDomain'].'"', $options['adflyDomain'].'" selected="selected"', $adflyDomains);  echo $adflyDomains; 
-            ?>
-            </select> <i>Please note that j.gs is not availabe for API use.</i> </div>
-              </div>
-              
-               <div class="itemDiv">
-              <input type="radio" name="nxsURLShrtnr" value="R" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr']=='R') echo 'checked="checked"'; ?> /> <b>Rebrandly</b>  - <i>Enter Rebrandly API Key and <a target="_blank" href="https://www.rebrandly.com/api-settings">API Key</a> and domain below. If domain is not set, rebrand.ly will be used</i><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rebrandly&nbsp;&nbsp;API Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="rblyAPIKey" style="width: 20%;" value="<?php if (isset($options['rblyAPIKey'])) _e(apply_filters('format_to_edit',$options['rblyAPIKey']), 'social-networks-auto-poster-facebook-twitter-g') ?>" /><br/>             
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rebrandly&nbsp;&nbsp;Domain:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="rblyDomain" style="width: 20%;" value="<?php if (isset($options['rblyDomain'])) _e(apply_filters('format_to_edit',$options['rblyDomain']), 'social-networks-auto-poster-facebook-twitter-g') ?>" />&nbsp; 
-             </div>
-              
-              <div class="itemDiv">
-              <input type="radio" name="nxsURLShrtnr" value="Y" <?php if (isset($options['nxsURLShrtnr']) && $options['nxsURLShrtnr']=='Y')  echo 'checked="checked"'; ?> /> <b>YOURLS (Your Own URL Shortener)</b> -
-                  &nbsp;<i>YOURLS API URL - usually sonething like https://yourdomain.cc/yourls-api.php; YOURLS API Secret Signature Token can be found in your YOURLS Admin Panel-&gt;Tools</i><br/>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YOURLS API URL: <input name="YOURLSURL" style="width: 19.4%;" value="<?php if (isset($options['YOURLSURL'])) _e(apply_filters('format_to_edit',$options['YOURLSURL']), 'social-networks-auto-poster-facebook-twitter-g') ?>" /><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YOURLS API Secret Signature Token:&nbsp;&nbsp;&nbsp;<input name="YOURLSKey" style="width: 13%;" value="<?php if (isset($options['YOURLSKey'])) _e(apply_filters('format_to_edit',$options['YOURLSKey']), 'social-networks-auto-poster-facebook-twitter-g') ?>" />
-              </div>
-              
-            </div></div>
+            </div>
 
             <!-- ##################### NextScripts/PS Beta #####################--><?php // TODO 4.5
              /*
@@ -774,13 +857,13 @@ if (!class_exists("nxs_SNAP")) { class nxs_SNAP {//## SNAP General Class
                
                </div>              
              <?php  } ?>
-<?php /*
+
                  <div class="itemDiv">
                      <input value="set" id="actV5Beta" name="actV5Beta"  type="checkbox" <?php if (isset($options['actV5Beta']) && (int)$options['actV5Beta'] == 1) echo "checked"; ?> />
                      <strong>Activate V5 (Beta) Features</strong>
                      - <span style="font-size: 11px; margin-left: 1px;"><?php _e('Activate V5 (Beta) Features', 'social-networks-auto-poster-facebook-twitter-g') ?></span>
 
-                 </div> */ ?>
+                 </div>
               
            </div></div>               
     
@@ -832,7 +915,8 @@ if (!class_exists("nxs_SNAP")) { class nxs_SNAP {//## SNAP General Class
     </div> <?php }        
   function showQueryTab() { global $wpdb, $nxs_snapAvNts, $nxsOne, $nxs_isWPMU, $nxs_tpWMPU; $nxsOne = ''; $options = $this->nxs_options; 
           $uidQ = (!current_user_can( 'manage_options' ) && current_user_can( 'haveown_snap_accss' ) ) ? ' WHERE uid = '.get_current_user_id().' ' : ''; //echo "SELECT * FROM ". $wpdb->prefix . "nxs_query ".$uidQ." ORDER BY timetorun DESC";
-          $quPosts = $wpdb->get_results( "SELECT * FROM ". $wpdb->prefix . "nxs_query ".$uidQ." ORDER BY timetorun DESC", ARRAY_A );      
+	      $sql = $wpdb->prepare("SELECT * FROM %s ORDER BY timetorun DESC", $wpdb->prefix.'nxs_query'.$uidQ);
+	      $quPosts = $wpdb->get_results($sql, ARRAY_A);
         ?>
          <div style="width:99%;">
     <a href="#" style="float: right" onclick="nxs_rfLog();return false;" class="NXSButton" id="nxs_clearLog">Refresh</a>
@@ -1143,9 +1227,13 @@ if (!class_exists("nxs_SNAP")) { class nxs_SNAP {//## SNAP General Class
             if (isset($pvData['adflyDomain'])) $options['adflyDomain'] = $pvData['adflyDomain']; 
             
             if (isset($pvData['rblyAPIKey'])) $options['rblyAPIKey'] = $pvData['rblyAPIKey']; 
-            if (isset($pvData['rblyDomain'])) $options['rblyDomain'] = $pvData['rblyDomain']; 
-            
-            if (isset($pvData['YOURLSKey'])) $options['YOURLSKey'] = $pvData['YOURLSKey']; 
+            if (isset($pvData['rblyDomain'])) $options['rblyDomain'] = $pvData['rblyDomain'];
+
+      if (isset($pvData['g2lnAPIKey'])) $options['g2lnAPIKey'] = $pvData['g2lnAPIKey'];
+      if (isset($pvData['g2lnDomain'])) $options['g2lnDomain'] = $pvData['g2lnDomain'];
+
+
+      if (isset($pvData['YOURLSKey'])) $options['YOURLSKey'] = $pvData['YOURLSKey'];
             if (isset($pvData['YOURLSURL'])) $options['YOURLSURL'] = $pvData['YOURLSURL'];
             
             if (isset($pvData['clkimAPIKey'])) $options['clkimAPIKey'] = $pvData['clkimAPIKey']; 
@@ -1159,9 +1247,10 @@ if (!class_exists("nxs_SNAP")) { class nxs_SNAP {//## SNAP General Class
             if (isset($pvData['fltrsOn']))  $options['fltrsOn'] = 1;  else $options['fltrsOn'] = 0;                        
             
             if (!isset($options['nxsURLShrtnr'])) $options['nxsURLShrtnr'] = 'G';                                     
-            if ($options['nxsURLShrtnr']=='B' && (trim($pvData['bitlyAPIToken'])=='' || trim($pvData['bitlyAPIToken'])=='')) $options['nxsURLShrtnr'] = 'G';            
+            if ($options['nxsURLShrtnr']=='B' && (trim($pvData['bitlyAPIToken'])=='')) $options['nxsURLShrtnr'] = 'G';
             if ($options['nxsURLShrtnr']=='Y' && (trim($pvData['YOURLSKey'])=='' || trim($pvData['YOURLSURL'])=='')) $options['nxsURLShrtnr'] = 'G';
-            if ($options['nxsURLShrtnr']=='A' && (trim($pvData['adflyAPIKey'])=='' || trim($pvData['adflyAPIKey'])=='')) $options['nxsURLShrtnr'] = 'G';          
+            if ($options['nxsURLShrtnr']=='A' && (trim($pvData['adflyAPIKey'])=='')) $options['nxsURLShrtnr'] = 'G';
+            if ($options['nxsURLShrtnr']=='L' && (trim($pvData['g2lnAPIKey'])=='')) $options['nxsURLShrtnr'] = 'G';
             
             if ($options['nxsURLShrtnr']=='C' && trim($pvData['clkimAPIKey'])=='') $options['nxsURLShrtnr'] = 'G';
             if ($options['nxsURLShrtnr']=='P' && trim($pvData['postAPIKey'])=='') $options['nxsURLShrtnr'] = 'G';      
@@ -1247,9 +1336,7 @@ if (!class_exists("nxs_SNAP")) { class nxs_SNAP {//## SNAP General Class
             foreach ($options['whoCanSeeSNAPBox'] as $uRole) { $role = get_role($uRole); $role->add_cap('see_snap_box'); $role->add_cap('make_snap_posts'); }            
             foreach ($options['whoCanMakePosts'] as $uRole) { $role = get_role($uRole); $role->add_cap('make_snap_posts'); }           
             foreach ($options['whoCanHaveOwnSNAPAccs'] as $uRole) { $role = get_role($uRole); $role->add_cap('haveown_snap_accss'); }
-
-            if (isset($pvData['actV5Beta'])) $options['actV5Beta'] = 1;  else $options['actV5Beta'] = 0;
-
+	        if (isset($pvData['actV5Beta'])) { $options['actV5Beta'] = 1; update_site_option('_nxs_v5b', 1);  } else {  $options['actV5Beta'] = 0; update_site_option('_nxs_v5b', 0);  }
             $this->nxs_options = $options; return $options;
         }
         
@@ -1345,19 +1432,43 @@ class nxs_ReposterListTable extends WP_List_Table {
         );
         return $actions;
     }
-    function process_bulk_action() {
-        if( 'delete'===$this->current_action() ) { $items = is_array($_REQUEST['nxs_filter'])?$_REQUEST['nxs_filter']:[]; $jj = 0;  //prr($_REQUEST);
-           foreach ($items as $item ) { $item = sanitize_key($item); wp_delete_post( $item, true ); $jj++; }
-            wp_die($jj.' Items deleted.');
-        }
-        if( 'activate'===$this->current_action() ) { $items = is_array($_REQUEST['nxs_filter'])?$_REQUEST['nxs_filter']:[]; $jj = 0;  //prr($_REQUEST);
-           foreach ($items as $item ) { $item = sanitize_key($item); $o = maybe_unserialize(get_post_meta( $item, 'nxs_rpstr', true ));  $o['rpstOn']='1'; nxs_Filters::save_meta( $item, 'nxs_rpstr', $o ); $jj++; }
-           wp_die($jj.' Items activated.');
-        }
-        if( 'deactivate'===$this->current_action() ) { $items = is_array($_REQUEST['nxs_filter'])?$_REQUEST['nxs_filter']:[]; $jj = 0;  //prr($_REQUEST);
-           foreach ($items as $item ) { $item = sanitize_key($item); $o = maybe_unserialize(get_post_meta( $item, 'nxs_rpstr', true ));  $o['rpstOn']='0'; nxs_Filters::save_meta( $item, 'nxs_rpstr', $o ); $jj++; }
-           wp_die($jj.' Items deactivated.');
-        }
+    function process_bulk_action() { $ca = $this->current_action(); $items = is_array($_REQUEST['nxs_filter'])?$_REQUEST['nxs_filter']:[]; $jj = 0;
+
+	    if (!empty($ca) && !empty($items)) {
+		    $nonce = isset( $_REQUEST['my_bulk_action_nonce'] ) ? $_REQUEST['my_bulk_action_nonce'] : '';
+		    if ( ! wp_verify_nonce( $nonce, 'my_bulk_action_nonce' ) ) {
+			    wp_die( 'Security check failed!' );
+		    }
+
+		    if ( 'delete' === $ca ) {   //prr($_REQUEST);
+			    foreach ( $items as $item ) {
+				    $item = sanitize_key( $item );
+				    wp_delete_post( $item, true );
+				    $jj ++;
+			    }
+			    wp_die( $jj . ' Items deleted.' );
+		    }
+		    if ( 'activate' === $ca ) {
+			    foreach ( $items as $item ) {
+				    $item        = sanitize_key( $item );
+				    $o           = maybe_unserialize( get_post_meta( $item, 'nxs_rpstr', true ) );
+				    $o['rpstOn'] = '1';
+				    nxs_Filters::save_meta( $item, 'nxs_rpstr', $o );
+				    $jj ++;
+			    }
+			    wp_die( $jj . ' Items activated.' );
+		    }
+		    if ( 'deactivate' === $ca ) {
+			    foreach ( $items as $item ) {
+				    $item        = sanitize_key( $item );
+				    $o           = maybe_unserialize( get_post_meta( $item, 'nxs_rpstr', true ) );
+				    $o['rpstOn'] = '0';
+				    nxs_Filters::save_meta( $item, 'nxs_rpstr', $o );
+				    $jj ++;
+			    }
+			    wp_die( $jj . ' Items deactivated.' );
+		    }
+	    }
     }
 
     function prepare_items() {

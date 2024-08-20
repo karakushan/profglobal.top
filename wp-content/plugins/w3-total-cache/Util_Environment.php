@@ -141,17 +141,26 @@ class Util_Environment {
 		 * Using wp-content instead of document_root as known dir since dirbased
 		 * multisite wp adds blogname to the path inside site_url.
 		 */
-		if ( substr( $filename, 0, strlen( WP_CONTENT_DIR ) ) !== WP_CONTENT_DIR ) {
+		if ( substr( $filename, 0, strlen( WP_CONTENT_DIR ) ) === WP_CONTENT_DIR ) {
+			// This is the default location of the wp-content/cache directory.
+			$location = WP_CONTENT_DIR;
+		} else if ( substr( $filename, 0, strlen( W3TC_CACHE_DIR ) ) === W3TC_CACHE_DIR ) {
+			// This is needed in the event the cache directory is moved outside of wp-content and replace with a symbolic link.
+			$location = substr( W3TC_CACHE_DIR, 0, -strlen( '/cache' ) );
+		} else if ( substr( $filename, 0, strlen( W3TC_CONFIG_DIR ) ) === W3TC_CONFIG_DIR ) {
+			// This is needed in the event the cache directory is moved outside of wp-content and replace with a symbolic link.
+			$location = substr( W3TC_CONFIG_DIR, 0, -strlen( '/w3tc-config' ) );
+		} else {
 			return '';
 		}
 
-		$uri_from_wp_content = substr( $filename, strlen( WP_CONTENT_DIR ) );
+		$uri_from_location = substr( $filename, strlen( $location ) );
 
 		if ( DIRECTORY_SEPARATOR != '/' ) {
-			$uri_from_wp_content = str_replace( DIRECTORY_SEPARATOR, '/', $uri_from_wp_content );
+			$uri_from_location = str_replace( DIRECTORY_SEPARATOR, '/', $uri_from_location );
 		}
 
-		$url = content_url( $uri_from_wp_content );
+		$url = content_url( $uri_from_location );
 		$url = apply_filters( 'w3tc_filename_to_url', $url );
 
 		return $url;
@@ -164,8 +173,13 @@ class Util_Environment {
 	 *
 	 * @return bool
 	 */
-	public static function is_dbcluster() {
-		if ( ! defined( 'W3TC_PRO' ) || ! W3TC_PRO ) {
+	public static function is_dbcluster( $config = null ) {
+		if ( is_null( $config ) ) {
+			// fallback for compatibility with older wp-content/db.php
+			$config = \W3TC\Dispatcher::config();
+		}
+
+		if ( !self::is_w3tc_pro( $config ) ) {
 			return false;
 		}
 
@@ -1545,5 +1559,109 @@ class Util_Environment {
 		$w3_current_blog_id = null;
 
 		self::$is_using_master_config = null;
+	}
+
+	/**
+	 * Removes blank lines, trim values, removes duplicates, and sorts array.
+	 *
+	 * @since 2.4.3
+	 *
+	 * @param array $values Array of values.
+	 *
+	 * @return array
+	 */
+	public static function clean_array( $values ) {
+		if ( ! empty( $values ) && is_array( $values ) ) {
+			$values = array_unique(
+				array_filter(
+					array_map(
+						'trim',
+						$values
+					),
+					'strlen'
+				)
+			);
+			sort( $values );
+		}
+
+		return $values;
+	}
+
+	/**
+	 * Parses textarea setting value from string to array.
+	 *
+	 * @since 2.4.3
+	 *
+	 * @param string $value Value.
+	 *
+	 * @return array
+	 */
+	public static function textarea_to_array( $value ) {
+		$values_array = array();
+
+		if ( ! empty( $value ) ) {
+			$values_array = self::clean_array(
+				preg_split(
+					'/\R/',
+					$value,
+					0,
+					PREG_SPLIT_NO_EMPTY
+				)
+			);
+		}
+
+		return $values_array;
+	}
+
+	/**
+	 * Is there a partial array intersections match?
+	 *
+	 * Returns true if any entries between the tewo arrays match string endings or in whole.
+	 *
+	 * @since  2.7.4
+	 * @static
+	 *
+	 * @param array $array1 Array 1.
+	 * @param array $array2 Array 2.
+	 * @return bool
+	 */
+	public static function array_intersect_partial( array $array1, array $array2 ): bool {
+		foreach ( $array1 as $url1 ) {
+			foreach ( $array2 as $url2 ) {
+				/**
+				 * Parse array1 URLs to handle both full URLs and relative paths.
+				 * If homepage then 'path' will be null, set to '/'.
+				 */
+				$parsed_url1         = \wp_parse_url( \trim( $url1, '/' ) );
+				$parsed_url1['path'] = $parsed_url1['path'] ?? '/';
+
+				/**
+				 * Parse array2 URLs to handle both full URLs and relative paths.
+				 * If value is '/' for homepage then don't trim, otherwise tirm.
+				 */
+				$parsed_url2 = \wp_parse_url( '/' === $url2 ? '/' : \trim( $url2, '/' ) );
+
+				$is_host_set = isset( $parsed_url1['host'], $parsed_url2['host'] );
+
+				if ( $url1 === $url2 ) {
+					// Direct comparison for full URLs that are identical.
+					return true;
+				} elseif (
+					isset( $parsed_url1['path'], $parsed_url2['path'] )
+					&& (
+						\substr( $parsed_url1['path'], -\strlen( $parsed_url2['path'] ) ) === $parsed_url2['path'] ||
+						\substr( $parsed_url2['path'], -\strlen( $parsed_url1['path'] ) ) === $parsed_url1['path']
+					) && ( ! $is_host_set || ( $is_host_set && $parsed_url1['host'] === $parsed_url2['host'] ) )
+				) {
+					/**
+					 * Check if both parsed URLs have 'path' and 'host' component and if they match.
+					 * If either 'host' is not set but 'path' matches, consider it a match.
+					 */
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 }

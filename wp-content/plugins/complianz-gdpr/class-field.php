@@ -467,6 +467,9 @@ if ( ! class_exists( "cmplz_field" ) ) {
 			if (isset($arr['name']) ) {
 				$arr['name'] = sanitize_text_field($arr['name']);
 			}
+			if (isset($arr['editor']) ) {
+				$arr['editor'] = sanitize_text_field( $arr['editor'] );
+			}
 			if (isset($arr['async']) ) {
 				$arr['async'] = intval($arr['async']);
 			}
@@ -1287,12 +1290,14 @@ if ( ! class_exists( "cmplz_field" ) ) {
 			return true;
 		}
 
-		public function get_field_type( $fieldname ) {
-			if ( ! isset( COMPLIANZ::$config->fields[ $fieldname ] ) ) {
-				return false;
-			}
-
-			return COMPLIANZ::$config->fields[ $fieldname ]['type'];
+		/**
+		 * Get current field type
+		 * @param string $fieldname
+		 *
+		 * @return false|string
+		 */
+		public function get_field_type( string $fieldname ) {
+			return COMPLIANZ::$config->fields[ $fieldname ]['type'] ?? false;
 		}
 
 		public
@@ -1374,7 +1379,7 @@ if ( ! class_exists( "cmplz_field" ) ) {
 			<?php do_action( 'complianz_label_html' , $args );?>
 			<?php do_action( 'complianz_after_label', $args ); ?>
 			<div id="<?php echo esc_html( $fieldname ) ?>editor"
-			     style="height: 200px; width: 100%"><?php echo $value ?></div>
+			     style="height: 200px; width: 100%"><?php echo esc_html($value) ?></div>
 			<?php do_action( 'complianz_after_field', $args ); ?>
 			<script>
 				window.define = ace.define;
@@ -1393,7 +1398,7 @@ if ( ! class_exists( "cmplz_field" ) ) {
 				});
 			</script>
 			<textarea style="display:none"
-			          name="<?php echo esc_html( $fieldname ) ?>"><?php echo $value ?></textarea>
+			          name="<?php echo esc_html( $fieldname ) ?>"><?php echo esc_html($value) ?></textarea>
 			<?php
 		}
 
@@ -1410,7 +1415,7 @@ if ( ! class_exists( "cmplz_field" ) ) {
 			<?php do_action( 'complianz_label_html' , $args );?>
 			<?php do_action( 'complianz_after_label', $args ); ?>
 			<div id="<?php echo esc_html( $fieldname ) ?>editor"
-			     style="height: 290px; width: 100%"><?php echo $value ?></div>
+			     style="height: 290px; width: 100%"><?php echo esc_html($value) ?></div>
 			<?php do_action( 'complianz_after_field', $args ); ?>
 			<script>
 				window.define = ace.define;
@@ -1429,7 +1434,7 @@ if ( ! class_exists( "cmplz_field" ) ) {
 				});
 			</script>
 			<textarea style="display:none"
-			          name="<?php echo esc_html( $fieldname ) ?>"><?php echo $value ?></textarea>
+			          name="<?php echo esc_html( $fieldname ) ?>"><?php echo esc_html($value) ?></textarea>
 			<?php
 		}
 
@@ -2578,6 +2583,13 @@ if ( ! class_exists( "cmplz_field" ) ) {
         public function ajax_script_add()
         {
 
+			if (!isset($_POST['nonce']) ) {
+				return;
+			}
+			if (!wp_verify_nonce($_POST['nonce'], 'complianz_save')){
+				return;
+			}
+
             $html = "";
             $error = false;
 
@@ -2589,6 +2601,8 @@ if ( ! class_exists( "cmplz_field" ) ) {
             }
 
             if ( !$error ) {
+				//clear cache
+				delete_transient('cmplz_blocked_scripts');
                 $scripts = get_option("complianz_options_custom-scripts");
 
                 if (!is_array($scripts)) {
@@ -2670,11 +2684,20 @@ if ( ! class_exists( "cmplz_field" ) ) {
 
         public function ajax_script_save()
         {
+			if (!isset($_POST['nonce']) ) {
+				return;
+			}
+			if (!wp_verify_nonce($_POST['nonce'], 'complianz_save')){
+				return;
+			}
             $error = false;
             if ( ! cmplz_user_can_manage() ) $error = true;
             if ( ! isset($_POST['data']) ) $error = true;
             if ( ! isset($_POST['id']) ) $error = true;
             if ( ! isset($_POST['type']) ) $error = true;
+
+			//clear transients when updating script
+			delete_transient('cmplz_blocked_scripts');
             if ( $_POST['type'] !== 'add_script' && $_POST['type'] !== 'block_script' && $_POST['type'] !== 'whitelist_script' ) $error = true;
             if ( ! isset($_POST['button_action']) ) $error = true;
             if ( $_POST['button_action'] !== 'save' && $_POST['button_action'] !== 'enable' && $_POST['button_action'] !== 'disable' && $_POST['button_action'] !== 'remove') $error = true;
@@ -2875,10 +2898,10 @@ if ( ! class_exists( "cmplz_field" ) ) {
                             <div class="checkmark">' . cmplz_icon('check', 'success') . '</div>
                         </label>
                         </div>
-                        <div class="condition-check-1 '. ($value['iframe'] ? 'cmplz-hidden' : '') .'" data-condition-answer-1="" data-condition-question-1="block_script['.$i.'][iframe]">
+                        <div class="condition-check-1 '. ($value['iframe'] || !$value['enable_placeholder'] ? 'cmplz-hidden' : '') .'" data-condition-answer-1="" data-condition-question-1="block_script['.$i.'][iframe]" data-condition-answer-2="1" data-condition-question-2="block_script['.$i.'][enable_placeholder]">
                             <label>' . __( 'Enter the div class or ID that should be targeted.' , 'complianz-gdpr' ) .cmplz_read_more('https://complianz.io/script-center#placeholder/'). '</label>
                         </div>
-                        <div class="condition-check-1 '. ($value['iframe'] ? 'cmplz-hidden' : '') .'" data-condition-answer-1="" data-condition-question-1="block_script['.$i.'][iframe]">
+                        <div class="condition-check-1 '. ($value['iframe'] || !$value['enable_placeholder'] ? 'cmplz-hidden' : '') .'" data-condition-answer-1="" data-condition-question-1="block_script['.$i.'][iframe]" data-condition-answer-2="1" data-condition-question-2="block_script['.$i.'][enable_placeholder]">
                             <input type="text"
                             	data-name="placeholder_class"
 								   name="cmplz_block_script['.$i.'][placeholder_class]"

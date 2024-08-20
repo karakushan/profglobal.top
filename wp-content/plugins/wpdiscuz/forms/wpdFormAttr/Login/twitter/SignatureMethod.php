@@ -3,6 +3,7 @@
  * The MIT License
  * Copyright (c) 2007 Andy Smith
  */
+
 namespace wpdFormAttr\Login\twitter;
 
 /**

@@ -126,7 +126,7 @@ abstract class Dropbox_ConsumerAbstract
                 header('Location: ' . $url);
                 exit;
             } else {
-                throw new Dropbox_Exception(sprintf(__('The %s authentication could not go ahead, because something else on your site is breaking it. Try disabling your other plugins and switching to a default theme. (Specifically, you are looking for the component that sends output (most likely PHP warnings/errors) before the page begins. Turning off any debugging settings may also help).', 'updraftplus'), 'Dropbox'));
+                throw new Dropbox_Exception(sprintf(__('The %s authentication could not go ahead, because something else on your site is breaking it.', 'updraftplus'), 'Dropbox').' '.__('Try disabling your other plugins and switching to a default theme.', 'updraftplus').' ('.__('Specifically, you are looking for the component that sends output (most likely PHP warnings/errors) before the page begins.', 'updraftplus').' '.__('Turning off any debugging settings may also help.', 'updraftplus').')');
             }
             ?><?php
             return false;
@@ -151,9 +151,9 @@ abstract class Dropbox_ConsumerAbstract
 		*/
 	    
 		global $updraftplus;
-		if (!function_exists('crypt_random_string')) $updraftplus->ensure_phpseclib('Crypt_Random');
+        $updraftplus->ensure_phpseclib();
 
-		$CSRF = base64_encode(crypt_random_string(16));
+		$CSRF = base64_encode(phpseclib_Crypt_Random::string(16));
         $this->storage->set($CSRF,'CSRF');
         // Prepare request parameters
         /*

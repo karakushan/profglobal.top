@@ -32,7 +32,6 @@ $this->pages['za']['cookie-statement']['document_elements'] = array(
 		'content' => _x('Some cookies ensure that certain parts of the website work properly and that your user preferences remain known. By placing functional cookies, we make it easier for you to visit our website. This way, you do not need to repeatedly enter the same information when visiting our website and, for example, the items remain in your shopping cart until you have paid. We may place these cookies without your consent.', 'Legal document cookie policy', 'complianz-gdpr'),
 	),
 
-	//statistics
 	array(
 		'subtitle' => _x('Statistics cookies', 'Legal document cookie policy:paragraph title', 'complianz-gdpr'),
 		'content' => _x('We use statistics cookies to optimize the website experience for our users. With these statistics cookies we get insights in the usage of our website.', 'Legal document cookie policy', 'complianz-gdpr')
@@ -75,9 +74,6 @@ $this->pages['za']['cookie-statement']['document_elements'] = array(
 	array(
 		'subtitle' => _x('Marketing/Tracking cookies', 'cookie policy', 'complianz-gdpr'),
 		'content' => _x('Marketing/Tracking cookies are cookies or any other form of local storage, used to create user profiles to display advertising or to track the user on this website or across several websites for similar marketing purposes.', 'cookie policy', 'complianz-gdpr'),
-//		'condition' => array(
-//			'uses_ad_cookies' => 'no',
-//		),
 		'callback_condition' => 'cmplz_uses_marketing_cookies',
 	),
 
@@ -157,7 +153,7 @@ $this->pages['za']['cookie-statement']['document_elements'] = array(
 	),
 
 	'enable-disable-removal-cookies-2' => array(
-		'content' => _x('Please note that our website may not work properly if all cookies are disabled. If you do delete the cookies in your browser, they will be placed again after your consent when you visit our websites again.', 'Legal document cookie policy', 'complianz-gdpr'),
+		'content' => _x('Please note that our website may not work properly if all cookies are disabled. If you do delete the cookies in your browser, they will be placed again after your consent when you visit our website again.', 'Legal document cookie policy', 'complianz-gdpr'),
 	),
 
 
@@ -196,7 +192,7 @@ $this->pages['za']['cookie-statement']['document_elements'] = array(
 	),
 
 	'last-sync' => array(
-		'content' => cmplz_sprintf(_x('This Cookie Policy was synchronized with %scookiedatabase.org%s on %s', 'Legal document cookie policy', 'complianz-gdpr'),'<a href="https://cookiedatabase.org/" target="_blank">', '</a>', '[sync_date]'),
+		'content' => cmplz_sprintf(_x('This Cookie Policy was synchronized with %scookiedatabase.org%s on %s.', 'Legal document cookie policy', 'complianz-gdpr'),'<a href="https://cookiedatabase.org/" target="_blank">', '</a>', '[sync_date]'),
 		'callback_condition' => array(
 			'cmplz_cdb_reference_in_policy',
 		)

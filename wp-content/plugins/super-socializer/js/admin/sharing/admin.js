@@ -36,6 +36,7 @@ function theChampClearShorturlCache(){
         type: 'GET',
         url: theChampSharingAjaxUrl,
         data: {
+            nonce: theChampClearShorturlCacheNonce,
             action: 'the_champ_clear_shorturl_cache'
         },
         success: function(data, textStatus, XMLHttpRequest){
@@ -51,6 +52,7 @@ function heateorSsClearShareCountCache(){
         type: 'GET',
         url: theChampSharingAjaxUrl,
         data: {
+            nonce: theChampClearShareCountCacheNonce,
             action: 'heateor_ss_clear_share_count_cache'
         },
         success: function(data, textStatus, XMLHttpRequest){
@@ -273,6 +275,21 @@ function theChampVerticalCounterPreview(val){
             jQuery('#the_champ_vertical_rutube_options').css('display', 'table-row-group');
         }else{
             jQuery('#the_champ_vertical_rutube_options').css('display', 'none');
+        }
+    });
+    // Google News option
+    jQuery('input#the_champ_Google_News').click(function(){
+        if(jQuery(this).is(':checked')){
+            jQuery('#the_champ_google_news_options').css('display', 'table-row-group');
+        }else{
+            jQuery('#the_champ_google_news_options').css('display', 'none');
+        }
+    });
+    jQuery('input#the_champ_vertical_sharing_Google_News').click(function(){
+        if(jQuery(this).is(':checked')){
+            jQuery('#the_champ_vertical_google_news_options').css('display', 'table-row-group');
+        }else{
+            jQuery('#the_champ_vertical_google_news_options').css('display', 'none');
         }
     });
     // instagram username option

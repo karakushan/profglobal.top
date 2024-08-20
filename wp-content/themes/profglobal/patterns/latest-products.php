@@ -1,4 +1,5 @@
 <?php
+if(!class_exists('\FS\FS_Config',false)) return;
 /**
  * Title: Latest Products
  * Slug: profglobal/latest-products
@@ -7,7 +8,7 @@
 $products = new WP_Query( array(
     'post_type' => \FS\FS_Config::get_data('post_type'),
     'posts_per_page' => 6,
-) );
+) );;
 ?>
 
 <?php if ( $products->have_posts() ) : ?>

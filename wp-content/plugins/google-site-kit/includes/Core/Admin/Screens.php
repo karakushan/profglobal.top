@@ -28,7 +28,8 @@ use Google\Site_Kit\Core\Util\Feature_Flags;
  */
 final class Screens {
 
-	const PREFIX = 'googlesitekit-';
+	const PREFIX           = 'googlesitekit-';
+	const PARENT_SLUG_NULL = self::PREFIX . 'null';
 
 	/**
 	 * Plugin context.
@@ -101,7 +102,7 @@ final class Screens {
 		if ( $this->context->is_network_mode() ) {
 			add_action(
 				'network_admin_menu',
-				function() {
+				function () {
 					$this->add_screens();
 				}
 			);
@@ -109,21 +110,21 @@ final class Screens {
 
 		add_action(
 			'admin_menu',
-			function() {
+			function () {
 				$this->add_screens();
 			}
 		);
 
 		add_action(
 			'admin_enqueue_scripts',
-			function( $hook_suffix ) {
+			function ( $hook_suffix ) {
 				$this->enqueue_screen_assets( $hook_suffix );
 			}
 		);
 
 		add_action(
 			'admin_page_access_denied',
-			function() {
+			function () {
 				// Redirect dashboard to splash if no dashboard access (yet).
 				$this->no_access_redirect_dashboard_to_splash();
 				// Redirect splash to (shared) dashboard if splash is dismissed.
@@ -137,7 +138,7 @@ final class Screens {
 		// Ensure the menu icon always is rendered correctly, without enqueueing a global CSS file.
 		add_action(
 			'admin_head',
-			function() {
+			function () {
 				?>
 				<style type="text/css">
 					#adminmenu .toplevel_page_googlesitekit-dashboard img {
@@ -152,7 +153,7 @@ final class Screens {
 			}
 		);
 
-		$remove_notices_callback = function() {
+		$remove_notices_callback = function () {
 			global $hook_suffix;
 
 			if ( empty( $hook_suffix ) ) {
@@ -170,7 +171,7 @@ final class Screens {
 		add_filter( 'custom_menu_order', '__return_true' );
 		add_filter(
 			'menu_order',
-			function( array $menu_order ) {
+			function ( array $menu_order ) {
 				// Move the Site Kit dashboard menu item to be one after the index.php item if it exists.
 				$dashboard_index = array_search( 'index.php', $menu_order, true );
 
@@ -231,7 +232,7 @@ final class Screens {
 
 		add_action(
 			"load-{$hook_suffix}",
-			function() use ( $screen ) {
+			function () use ( $screen ) {
 				$screen->initialize( $this->context );
 			}
 		);
@@ -351,20 +352,22 @@ final class Screens {
 	 * @return array List of Screen instances.
 	 */
 	private function get_screens() {
+		$show_splash_in_menu = current_user_can( Permissions::VIEW_SPLASH ) && ! current_user_can( Permissions::VIEW_DASHBOARD );
+
 		$screens = array(
 			new Screen(
 				self::PREFIX . 'dashboard',
 				array(
 					'title'            => __( 'Dashboard', 'google-site-kit' ),
 					'capability'       => Permissions::VIEW_DASHBOARD,
-					'enqueue_callback' => function( Assets $assets ) {
+					'enqueue_callback' => function ( Assets $assets ) {
 						if ( $this->context->input()->filter( INPUT_GET, 'permaLink' ) ) {
 							$assets->enqueue_asset( 'googlesitekit-entity-dashboard' );
 						} else {
 							$assets->enqueue_asset( 'googlesitekit-main-dashboard' );
 						}
 					},
-					'render_callback'  => function( Context $context ) {
+					'render_callback'  => function ( Context $context ) {
 						$is_view_only = ! $this->authentication->is_authenticated();
 
 						$setup_slug = htmlspecialchars( $context->input()->filter( INPUT_GET, 'slug' ) ?: '' );
@@ -398,116 +401,84 @@ final class Screens {
 					},
 				)
 			),
-		);
-
-		$show_splash_in_menu = current_user_can( Permissions::VIEW_SPLASH ) && ! current_user_can( Permissions::VIEW_DASHBOARD );
-
-		$screens[] = new Screen(
-			self::PREFIX . 'splash',
-			array(
-				'title'               => __( 'Dashboard', 'google-site-kit' ),
-				'capability'          => Permissions::VIEW_SPLASH,
-				'parent_slug'         => $show_splash_in_menu ? Screen::MENU_SLUG : null,
-
-				// This callback will redirect to the dashboard on successful authentication.
-				'initialize_callback' => function( Context $context ) {
-					if ( Feature_Flags::enabled( 'dashboardSharing' ) ) {
+			new Screen(
+				self::PREFIX . 'splash',
+				array(
+					'title'               => __( 'Dashboard', 'google-site-kit' ),
+					'capability'          => Permissions::VIEW_SPLASH,
+					'parent_slug'         => $show_splash_in_menu ? Screen::MENU_SLUG : self::PARENT_SLUG_NULL,
+					// This callback will redirect to the dashboard on successful authentication.
+					'initialize_callback' => function ( Context $context ) {
 						// Get the dismissed items for this user.
 						$user_options = new User_Options( $context );
 						$dismissed_items = new Dismissed_Items( $user_options );
-					}
 
-					$splash_context = $context->input()->filter( INPUT_GET, 'googlesitekit_context' );
-					$reset_session  = $context->input()->filter( INPUT_GET, 'googlesitekit_reset_session', FILTER_VALIDATE_BOOLEAN );
+						$splash_context = $context->input()->filter( INPUT_GET, 'googlesitekit_context' );
+						$reset_session  = $context->input()->filter( INPUT_GET, 'googlesitekit_reset_session', FILTER_VALIDATE_BOOLEAN );
 
-					// If the user is authenticated, redirect them to the disconnect URL and then send them back here.
-					if ( ! $reset_session && 'revoked' === $splash_context && $this->authentication->is_authenticated() ) {
-						$this->authentication->disconnect();
+						// If the user is authenticated, redirect them to the disconnect URL and then send them back here.
+						if ( ! $reset_session && 'revoked' === $splash_context && $this->authentication->is_authenticated() ) {
+							$this->authentication->disconnect();
 
-						wp_safe_redirect( add_query_arg( array( 'googlesitekit_reset_session' => 1 ) ) );
-						exit;
-					}
+							wp_safe_redirect( add_query_arg( array( 'googlesitekit_reset_session' => 1 ) ) );
+							exit;
+						}
 
-					// Don't consider redirect if the current user cannot access the dashboard (yet).
-					if ( ! current_user_can( Permissions::VIEW_DASHBOARD ) ) {
-						return;
-					}
+						// Don't consider redirect if the current user cannot access the dashboard (yet).
+						if ( ! current_user_can( Permissions::VIEW_DASHBOARD ) ) {
+							return;
+						}
 
-					// Redirect to dashboard if user is authenticated or if
-					// they have already accessed the shared dashboard.
-					if (
-						$this->authentication->is_authenticated() ||
-						(
-							Feature_Flags::enabled( 'dashboardSharing' ) &&
-							! current_user_can( Permissions::AUTHENTICATE ) &&
-							$dismissed_items->is_dismissed( 'shared_dashboard_splash' ) &&
-							current_user_can( Permissions::VIEW_SHARED_DASHBOARD )
-						)
-					) {
-						wp_safe_redirect(
-							$context->admin_url(
-								'dashboard',
-								array(
-									// Pass through the notification parameter, or removes it if none.
-									'notification' => $context->input()->filter( INPUT_GET, 'notification' ),
-								)
+						// Redirect to dashboard if user is authenticated or if
+						// they have already accessed the shared dashboard.
+						if (
+							$this->authentication->is_authenticated() ||
+							(
+								! current_user_can( Permissions::AUTHENTICATE ) &&
+								$dismissed_items->is_dismissed( 'shared_dashboard_splash' ) &&
+								current_user_can( Permissions::VIEW_SHARED_DASHBOARD )
 							)
-						);
-						exit;
-					}
-				},
-				'enqueue_callback'    => function( Assets $assets ) {
-					$assets->enqueue_asset( 'googlesitekit-splash' );
-				},
-				'render_callback'     => function( Context $context ) {
-					?>
+						) {
+							wp_safe_redirect(
+								$context->admin_url(
+									'dashboard',
+									array(
+										// Pass through the notification parameter, or removes it if none.
+										'notification' => $context->input()->filter( INPUT_GET, 'notification' ),
+									)
+								)
+							);
+							exit;
+						}
+					},
+				)
+			),
+			new Screen(
+				self::PREFIX . 'settings',
+				array(
+					'title'      => __( 'Settings', 'google-site-kit' ),
+					'capability' => Permissions::MANAGE_OPTIONS,
+				)
+			),
+		);
 
-					<div id="js-googlesitekit-splash" class="googlesitekit-page"></div>
-
-					<?php
-				},
+		$screens[] = new Screen(
+			self::PREFIX . 'user-input',
+			array(
+				'title'       => __( 'User Input', 'google-site-kit' ),
+				'capability'  => Permissions::MANAGE_OPTIONS,
+				'parent_slug' => self::PARENT_SLUG_NULL,
 			)
 		);
 
 		$screens[] = new Screen(
-			self::PREFIX . 'settings',
+			self::PREFIX . 'ad-blocking-recovery',
 			array(
-				'title'            => __( 'Settings', 'google-site-kit' ),
-				'capability'       => Permissions::MANAGE_OPTIONS,
-				'enqueue_callback' => function( Assets $assets ) {
-					$assets->enqueue_asset( 'googlesitekit-settings' );
-				},
-				'render_callback'  => function( Context $context ) {
-					?>
-
-					<div id="googlesitekit-settings-wrapper" class="googlesitekit-page"></div>
-
-					<?php
-				},
+				'title'       => __( 'Ad Blocking Recovery', 'google-site-kit' ),
+				'capability'  => Permissions::MANAGE_OPTIONS,
+				'parent_slug' => self::PARENT_SLUG_NULL,
 			)
 		);
-
-		if ( Feature_Flags::enabled( 'userInput' ) ) {
-			$screens[] = new Screen(
-				self::PREFIX . 'user-input',
-				array(
-					'title'            => __( 'User Input', 'google-site-kit' ),
-					'capability'       => Permissions::MANAGE_OPTIONS,
-					'parent_slug'      => null,
-					'enqueue_callback' => function( Assets $assets ) {
-						$assets->enqueue_asset( 'googlesitekit-user-input' );
-					},
-					'render_callback'  => function( Context $context ) {
-						?>
-
-						<div id="js-googlesitekit-user-input" class="googlesitekit-page"></div>
-
-						<?php
-					},
-
-				)
-			);
-		}
 
 		return $screens;
 	}

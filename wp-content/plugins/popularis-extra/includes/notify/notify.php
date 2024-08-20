@@ -219,15 +219,15 @@ function popularis_extra_pro_sale() {
 
     popularis_extra_pro_sale_dismiss();
 
-    $activation_time = get_site_option('popularis_extra_active_pro_time_business');
+    $activation_time = get_site_option('popularis_extra_active_pro_time_verse');
 
     if (!$activation_time) {
-        add_site_option('popularis_extra_active_pro_time_business', time());
+        add_site_option('popularis_extra_active_pro_time_verse', time());
     }
 
     $daysinseconds = 60; // 1 Day in seconds (86400).
     $theme = wp_get_theme();
-    if ('Popularis Business' != $theme->name ) {
+    if ('Popularis Verse' != $theme->name ) {
         if (time() - $activation_time > $daysinseconds) {
             if (!popularis_extra_check_for_popularis_pro()) {
                 add_action('admin_notices', 'popularis_extra_pro_notice_sale');
@@ -249,16 +249,16 @@ function popularis_extra_pro_notice_sale() {
 
     <div class="popularis-review-notice">
         <div class="popularis-review-thumbnail p-business">
-            <img src="<?php echo esc_url(POPULARIS_EXTRA_PLUGIN_URL) . 'img/popularis-business.png'; ?>" alt="">
+            <img src="<?php echo esc_url(POPULARIS_EXTRA_PLUGIN_URL) . 'img/notify.png'; ?>" alt="">
         </div>
         <div class="popularis-review-text">
             <h3><?php esc_html_e('NEW FREE Popularis Theme', 'popularis-extra') ?></h3>
             <p>
-                <?php echo sprintf(esc_html__('New free multi-purpose and business WordPress theme. %1$s', 'popularis-extra'), '<a href="https://populariswp.com/popularis-business/" target="_blank">Popularis Business</a>') ?>
+                <?php echo sprintf(esc_html__('New free multi-purpose and business WordPress theme. %1$s', 'popularis-extra'), '<a href="https://populariswp.com/popularis-verse/" target="_blank">Popularis Verse</a>') ?>
             </p>
             <ul class="popularis-review-ul">
                 <li class="show-mor-message">
-                    <a href="https://populariswp.com/popularis-business/" target="_blank">
+                    <a href="https://populariswp.com/popularis-verse/" target="_blank">
                         <span class="dashicons dashicons-external"></span>
                         <?php esc_html_e('Show me more', 'popularis-extra') ?>
                     </a>
@@ -291,5 +291,22 @@ function popularis_extra_pro_sale_dismiss() {
     }
     $daysinseconds = 604800; // 7 Days in seconds.
     $newtime = time() + $daysinseconds;
-    update_site_option('popularis_extra_active_pro_time_business', $newtime);
+    update_site_option('popularis_extra_active_pro_time_verse', $newtime);
 }
+
+add_action('admin_notices', 'popularis_extra_pro_update_motice');
+
+function popularis_extra_pro_update_motice(){
+	
+	if(defined('TWP_PRO_CURRENT_VERSION') && version_compare(TWP_PRO_CURRENT_VERSION, '1.9.3', '<')  )	{
+		$changelogurl = 'https://populariswp.com/popularis-pro-changelog/';
+		$updateurl = 'https://populariswp.com/blog/docs/popularis-pro/how-to-update-popularis-pro/';
+
+		$message = sprintf( __( '%1$s requires an %2$supdate%3$s. Please update the plugin to ensure full compatibility with the %4$s theme and WordPress.', 'popularis-extra' ), '<strong>Popularis PRO</strong>','<strong>', '</strong>', '<strong>Popularis</strong>' );
+		$button_text = __( 'Update', 'popularis-extra' );
+
+		$button = '<p><a href="' . esc_url(admin_url( 'update-core.php?force-check=1')) . '" class="button-secondary">' . esc_html($button_text) . '</a><a href="' . esc_url($changelogurl) . '" target="_blank" class="popularis-changelog" style="margin-left:10px;margin-top: 4px;display: inline-block;">' . esc_html('Changelog') . '</a><a href="' . esc_url($updateurl) . '" target="_blank" class="popularis-link" style="margin-left:10px;margin-top: 4px;display: inline-block;">' . esc_html('How to update?') . '</a></p>';
+		printf( '<div class="error"><p>%1$s</p>%2$s</div>', $message, $button );
+	}
+	
+	}

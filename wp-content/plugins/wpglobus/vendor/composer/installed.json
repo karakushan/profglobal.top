@@ -63,6 +63,6 @@
             "install-path": "../tivwp/updater"
         }
     ],
-    "dev": true,
+    "dev": false,
     "dev-package-names": []
 }

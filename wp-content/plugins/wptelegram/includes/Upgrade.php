@@ -56,6 +56,7 @@ class Upgrade extends BaseClass {
 				'3.0.0',
 				'3.0.8',
 				'4.0.0',
+				'4.1.0',
 			];
 		}
 
@@ -82,7 +83,7 @@ class Upgrade extends BaseClass {
 	 *
 	 * @since    2.0.0
 	 *
-	 * @param string  $version        The plugin verion to upgrade to.
+	 * @param string  $version        The plugin version to upgrade to.
 	 * @param boolean $is_new_install Whether it's a fresh install of the plugin.
 	 */
 	private function upgrade_to( $version, $is_new_install ) {
@@ -355,7 +356,7 @@ class Upgrade extends BaseClass {
 			$filename = WP_CONTENT_DIR . "/wptelegram-{$type}.log";
 			$filename = apply_filters( "wptelegram_logger_{$type}_log_filename", $filename );
 			if ( file_exists( $filename ) ) {
-				unlink( $filename );
+				wp_delete_file( $filename );
 			}
 		}
 	}
@@ -665,5 +666,23 @@ class Upgrade extends BaseClass {
 				WPTG()->options()->set( $section, $options );
 			}
 		}
+	}
+
+	/**
+	 * Upgrade to 4.1.0
+	 *
+	 * - Upgrade to link_preview_options
+	 *
+	 * @since    4.1.0
+	 */
+	protected function upgrade_to_4_1_0() {
+		$p2tg_settings = WPTG()->options()->get( 'p2tg' );
+
+		$p2tg_settings['link_preview_disabled'] = isset( $p2tg_settings['disable_web_page_preview'] ) ? boolval( $p2tg_settings['disable_web_page_preview'] ) : false;
+
+		unset( $p2tg_settings['disable_web_page_preview'] );
+
+		// Update the options.
+		WPTG()->options()->set( 'p2tg', $p2tg_settings );
 	}
 }

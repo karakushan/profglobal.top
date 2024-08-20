@@ -118,7 +118,7 @@ class nxs_Filters {
     }
 
     public static function save_filter( $post_id ) { 
-        if ( !isset( $_POST['nxs_metabox_nonce'] ) || !wp_verify_nonce( $_POST['nxs_metabox_nonce'], basename( __FILE__ ) ) ) return $post_id;
+        if ( !isset( $_POST['nxs_metabox_nonce'] ) || !wp_verify_nonce( sanitize_text_field( wp_unslash ($_POST['nxs_metabox_nonce'])), basename( __FILE__ ) ) ) return $post_id;
         $pvData = self::sanitize_data($_POST); 
         if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return $post_id;
         if ( !current_user_can( 'edit_post', $post_id ) ) return $post_id;
@@ -272,9 +272,12 @@ class nxs_Filters {
         
         if ($optionsii['rpstOn']=='1' && ($rpstEvrySecNew!=$rpstEvrySecEx || $optionsii['rpstTimes']!=$pval['rpstTimes'] || !$isRpstWasOn || ($isTD && $pval['rpstCustTD'][0]!=$optionsii['rpstNxTime']) || !empty($_POST['resetStats']) )) { global $wpdb; 
             $optionsii['rpstNxTime'] = $isTD?strtotime($pval['rpstCustTD'][0]):$nxs_cTime + $rpstEvrySecNew;             
-            $dbItem = array('datecreated'=>date_i18n('Y-m-d H:i:s'), 'type'=>'R', 'postid'=>$post_id, 'nttype'=>'', 'refid'=>'', 'timetorun'=> date_i18n('Y-m-d H:i:s',$optionsii['rpstNxTime']), 'extInfo'=>'', 'descr'=> 'Reposter ID:('.$post_id.')', 'uid'=>get_current_user_id()); 
-            $wpdb->delete( $wpdb->prefix . "nxs_query", array( 'postid' => $post_id ) );
-            $nxDB = $wpdb->insert( $wpdb->prefix . "nxs_query", $dbItem );  $lid = $wpdb->insert_id;
+            $dbItem = ['datecreated'=>date_i18n('Y-m-d H:i:s'), 'type'=>'R', 'postid'=>$post_id, 'nttype'=>'', 'refid'=>'', 'timetorun'=> date_i18n('Y-m-d H:i:s',$optionsii['rpstNxTime']), 'extInfo'=>'', 'descr'=> 'Reposter ID:('.$post_id.')', 'uid'=>get_current_user_id()];
+	        $table_name = $wpdb->prefix . "nxs_query";
+	        $dbDel = ['postid' => $post_id];
+	        $wpdb -> delete( $table_name, $dbDel );
+	        $nxDB = $wpdb -> insert($table_name, $dbItem);
+	        $lid = $wpdb->insert_id;
         }
         if (empty($optionsii['rpstOn'])) { global $wpdb; $wpdb->delete( $wpdb->prefix . "nxs_query", array( 'postid' => $post_id ) );}
         
@@ -435,7 +438,7 @@ class nxs_Filters {
         ?></div><?php
     }   
     
-    public static function makeInputName($name, $nt='', $ii='') { $ntN = $nt.$ii; if (!empty($ntN)) return $nt.'['.$ii.']['.$name.']'; else return $name; }
+    public static function makeInputName($name, $nt='', $ii='') { $ntN = $nt.$ii; if ($nt=='exf') return 'src[exf][f]['.$name.']'; elseif (!empty($ntN)) return $nt.'['.$ii.']['.$name.']'; else return $name; }
     //## Sections
     public static function print_catsTags_section( $current_post, $metaSettings, $nt='', $ii='' ) { $ntN = $nt.$ii; if (empty($metaSettings)) $metaSettings = array();// ## Categories and Tags        
         $isVis =  !empty($metaSettings['nxs_tags_names']) || !empty($metaSettings['nxs_cats_names']); //prr($metaSettings);
@@ -577,7 +580,18 @@ class nxs_Filters {
           __( 'Author', 'social-networks-auto-poster-facebook-twitter-g' ) .'&nbsp;&nbsp;&gt;&gt; </h4><div id="nxs_sec_author'.$ntN.'" class="nxsLftPad" style="display:'.($isVis?'block':'none').';">';
         
         $user_names = array(); //$users = get_users();     //   prr($users); //## Not Good when we have a lot of subscribers.
-        global $wpdb; $users = $wpdb->get_results("SELECT ID, user_login, display_name FROM $wpdb->users WHERE 1=1 AND {$wpdb->users}.ID IN (SELECT {$wpdb->usermeta}.user_id FROM $wpdb->usermeta WHERE {$wpdb->usermeta}.meta_key = '{$wpdb->prefix}capabilities' AND {$wpdb->usermeta}.meta_value NOT LIKE '%subscriber%') ORDER BY display_name ASC"); //prr($users);
+	    global $wpdb;
+
+	    $sql = $wpdb->prepare(
+		    "SELECT ID, user_login, display_name FROM {$wpdb->users} WHERE 1=1
+                AND {$wpdb->users}.ID IN (
+                    SELECT {$wpdb->usermeta}.user_id FROM {$wpdb->usermeta} WHERE {$wpdb->usermeta}.meta_key = %s AND {$wpdb->usermeta}.meta_value NOT LIKE %s
+                ) ORDER BY display_name ASC",
+		    $wpdb->prefix . 'capabilities', '%subscriber%'
+	    );
+	    $users = $wpdb->get_results($sql);
+
+         //prr($users);
         
         if( $users ) foreach( $users as $user )  $user_names[$user->ID] = $user->display_name." (".$user->user_login.")";
         if( !empty( $user_names ) ) {            

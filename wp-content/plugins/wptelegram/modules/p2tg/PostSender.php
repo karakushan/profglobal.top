@@ -12,12 +12,12 @@
 namespace WPTelegram\Core\modules\p2tg;
 
 use WPTelegram\Core\modules\BaseClass;
-use WPTelegram\Core\includes\Options;
 use WPTelegram\Core\includes\Utils as MainUtils;
 use WPTelegram\BotAPI\API;
 use WPTelegram\BotAPI\Response;
 use WPTelegram\BotAPI\Client;
 use WP_Post;
+use WPSocio\WPUtils\Options;
 
 /**
  * The Post Handling functionality of the plugin.
@@ -147,12 +147,15 @@ class PostSender extends BaseClass {
 					$data = $body[ Main::PREFIX ];
 
 					$form_data = MainUtils::sanitize( $data );
-					// Sanitize the template separately.
-					$form_data['message_template'] = MainUtils::sanitize_message_template( $data['message_template'] );
 
-					$form_data['send2tg'] = $form_data['send2tg'] ? 'yes' : 'no';
+					if ( isset( $data['message_template'] ) ) {
+						// Sanitize the template separately.
+						$form_data['message_template'] = MainUtils::sanitize_message_template( $data['message_template'] );
+					}
 
-					$this->form_data = $form_data;
+					$form_data['send2tg'] = ! empty( $form_data['send2tg'] ) ? 'yes' : 'no';
+
+					$this->form_data = array_merge( $this->form_data, $form_data );
 					// For logging.
 					$this->form_data['is_from_gb'] = true;
 				}
@@ -230,27 +233,29 @@ class PostSender extends BaseClass {
 	public static function get_defaults() {
 		$array    = [];
 		$defaults = [
-			'cats_as_tags'             => false,
-			'channels'                 => $array,
-			'delay'                    => 0,
-			'disable_notification'     => false,
-			'disable_web_page_preview' => false,
-			'excerpt_length'           => 55,
-			'excerpt_preserve_eol'     => false,
-			'excerpt_source'           => 'post_content',
-			'image_position'           => 'before',
-			'inline_button_text'       => '',
-			'inline_button_url'        => '',
-			'inline_url_button'        => false,
-			'message_template'         => '',
-			'parse_mode'               => '',
-			'plugin_posts'             => false,
-			'post_types'               => $array,
-			'protect_content'          => false,
-			'rules'                    => $array,
-			'send_featured_image'      => true,
-			'send_when'                => $array,
-			'single_message'           => false,
+			'cats_as_tags'            => false,
+			'channels'                => $array,
+			'delay'                   => 0,
+			'disable_notification'    => false,
+			'link_preview_disabled'   => false,
+			'link_preview_url'        => '',
+			'link_preview_above_text' => false,
+			'excerpt_length'          => 55,
+			'excerpt_preserve_eol'    => false,
+			'excerpt_source'          => 'post_content',
+			'image_position'          => 'before',
+			'inline_button_text'      => '',
+			'inline_button_url'       => '',
+			'inline_url_button'       => false,
+			'message_template'        => '',
+			'parse_mode'              => '',
+			'plugin_posts'            => false,
+			'post_types'              => $array,
+			'protect_content'         => false,
+			'rules'                   => $array,
+			'send_featured_image'     => true,
+			'send_when'               => $array,
+			'single_message'          => false,
 		];
 
 		return (array) apply_filters( 'wptelegram_p2tg_defaults', $defaults );
@@ -591,15 +596,18 @@ class PostSender extends BaseClass {
 	 * @since 2.1.2
 	 *
 	 * @param string $hook The cron hook name.
+	 *
+	 * @return bool|int
 	 */
 	public function clear_scheduled_hook( $hook = '' ) {
 
 		$hook = $hook ? $hook : 'wptelegram_p2tg_delayed_post';
 
-		$args = [ strval( $this->post->ID ) ];
+		// cast to match the exact event.
+		$args = [ (string) $this->post->ID ];
 
 		// clear the previous event, if set.
-		wp_clear_scheduled_hook( $hook, $args );
+		return wp_clear_scheduled_hook( $hook, $args );
 	}
 
 	/**
@@ -613,11 +621,19 @@ class PostSender extends BaseClass {
 
 		$hook  = 'wptelegram_p2tg_delayed_post';
 		$delay = absint( $delay * MINUTE_IN_SECONDS );
-		$args  = [ strval( $this->post->ID ) ]; // strval to match the exact event.
+		// cast to match the exact event.
+		$args = [ (string) $this->post->ID ];
 
-		$this->clear_scheduled_hook();
+		$cleared = $this->clear_scheduled_hook();
 
-		wp_schedule_single_event( time() + $delay, $hook, $args );
+		$scheduled = wp_schedule_single_event( time() + $delay, $hook, $args );
+
+		$result = [
+			'cleared'   => $cleared,
+			'scheduled' => $scheduled,
+		];
+
+		do_action( 'wptelegram_p2tg_delay_post', $delay, $this->post, $result );
 	}
 
 	/**
@@ -948,13 +964,7 @@ class PostSender extends BaseClass {
 			$text = $this->get_response_text( $template );
 		}
 
-		$this->send_files_by_url = WPTG()->options()->get_path( 'advanced.send_files_by_url', true );
-
-		/**
-		 * Pass false to upload the file
-		 * instead of sending as URL
-		 */
-		$this->send_files_by_url = (bool) apply_filters( 'wptelegram_p2tg_send_files_by_url', $this->send_files_by_url, $this->post, $this->options );
+		$this->send_files_by_url = MainUtils::send_files_by_url();
 
 		// For Photo.
 		$image_source = $this->get_featured_image_source();
@@ -1063,6 +1073,39 @@ class PostSender extends BaseClass {
 	}
 
 	/**
+	 * Get the link preview options
+	 *
+	 * @return array
+	 */
+	protected function get_link_preview_options() {
+		$link_preview_options = [
+			'is_disabled' => $this->options->get( 'link_preview_disabled' ),
+		];
+
+		if ( ! $link_preview_options['is_disabled'] ) {
+
+			unset( $link_preview_options['is_disabled'] );
+
+			$link_preview_url = $this->options->get( 'link_preview_url' );
+
+			if ( $link_preview_url ) {
+
+				$parser = new TemplateParser( $this->post, $this->options );
+
+				$url = $parser->parse( $link_preview_url );
+
+				if ( $url ) {
+					$link_preview_options['url'] = $url;
+				}
+			}
+
+			$link_preview_options['show_above_text'] = $this->options->get( 'link_preview_above_text', false );
+		}
+
+		return apply_filters( 'wptelegram_p2tg_link_preview_options', $link_preview_options, $this->post, $this->options );
+	}
+
+	/**
 	 * Create responses based on the text and image source
 	 *
 	 * @since   1.0.0
@@ -1076,35 +1119,30 @@ class PostSender extends BaseClass {
 
 		$parse_mode = MainUtils::valid_parse_mode( $this->options->get( 'parse_mode' ) );
 
-		$disable_web_page_preview = $this->options->get( 'disable_web_page_preview' );
-		$disable_notification     = $this->options->get( 'disable_notification' );
-		$protect_content          = $this->options->get( 'protect_content' );
+		$link_preview_options = $this->get_link_preview_options();
+		$disable_notification = $this->options->get( 'disable_notification' );
+		$protect_content      = $this->options->get( 'protect_content' );
 
-		$limit_text = apply_filters( 'wptelegram_p2tg_limit_text_to_one_message', true, $this->post, $this->options, $text, $image_source );
+		$limit_to_one_message = apply_filters( 'wptelegram_p2tg_limit_text_to_one_message', true, $this->post, $this->options, $text, $image_source );
 
 		$text_options = [
 			'format_to' => $parse_mode,
 			'id'        => 'p2tg',
-			'limit'     => $limit_text ? MainUtils::get_max_text_length( 'text' ) : 0,
+			'limit'     => $limit_to_one_message ? MainUtils::get_max_text_length( 'text' ) : 0,
 			'limit_by'  => 'chars',
 		];
 
 		$caption_options = array_merge( $text_options, [ 'limit' => MainUtils::get_max_text_length( 'caption' ) ] );
 
-		// Do not fail if the replied-to message is not found.
-		$allow_sending_without_reply = true;
-
 		$method_params = [
 			'sendPhoto'   => compact(
-				'allow_sending_without_reply',
 				'disable_notification',
 				'parse_mode',
 				'protect_content'
 			),
 			'sendMessage' => compact(
-				'allow_sending_without_reply',
 				'disable_notification',
-				'disable_web_page_preview',
+				'link_preview_options',
 				'parse_mode',
 				'protect_content'
 			),
@@ -1123,7 +1161,7 @@ class PostSender extends BaseClass {
 					// remove sendMessage.
 					unset( $method_params['sendMessage'] );
 
-					$caption = $text;
+					$caption = MainUtils::smart_trim_excerpt( $text, $caption_options );
 
 				} elseif ( 'after' === $image_position && '' !== $parse_mode ) {
 
@@ -1139,8 +1177,6 @@ class PostSender extends BaseClass {
 
 			if ( isset( $method_params['sendPhoto'] ) ) {
 
-				$caption = MainUtils::smart_trim_excerpt( $text, $caption_options );
-
 				$caption = apply_filters( 'wptelegram_p2tg_post_image_caption', $caption, $this->post, $this->options, $text, $image_source );
 
 				$method_params['sendPhoto']['photo']   = $image_source;
@@ -1150,9 +1186,31 @@ class PostSender extends BaseClass {
 			unset( $method_params['sendPhoto'] );
 		}
 
+		$additional_text_responses = [];
+
 		if ( isset( $method_params['sendMessage'] ) ) {
 
-			$text = MainUtils::smart_trim_excerpt( $text, $text_options );
+			if ( $limit_to_one_message ) {
+
+				$text = MainUtils::smart_trim_excerpt( $text, $text_options );
+
+			} else {
+				$text_parts = MainUtils::split_content( $text, $parse_mode );
+				// Extract the first piece.
+				$text = array_shift( $text_parts );
+
+				// Create additional responses for the remaining pieces.
+				foreach ( $text_parts as $text_part ) {
+					$additional_text_responses[] = [
+						'sendMessage' => array_merge(
+							$method_params['sendMessage'],
+							[
+								'text' => $text_part,
+							]
+						),
+					];
+				}
+			}
 
 			$method_params['sendMessage']['text'] = $text;
 		}
@@ -1169,6 +1227,8 @@ class PostSender extends BaseClass {
 				$method => $params,
 			];
 		}
+
+		$default_responses = array_merge( $default_responses, $additional_text_responses );
 
 		return apply_filters( 'wptelegram_p2tg_default_responses', $default_responses, $this->post, $this->options, $text, $image_source );
 	}
@@ -1188,15 +1248,23 @@ class PostSender extends BaseClass {
 
 		$caption = $this->post_data->get_field( 'post_title' );
 
+		$size_limit = MainUtils::get_image_size_limit();
+
 		foreach ( $files as $id => $url ) {
 
 			$caption = apply_filters( 'wptelegram_p2tg_file_caption', $caption, $this->post, $id, $url, $this->options );
 
-			$type = MainUtils::guess_file_type( $id, $url );
+			$media_path = MainUtils::get_attachment_by_filesize( $id, $size_limit );
+
+			if ( ! $media_path ) {
+				continue;
+			}
+
+			$type = MainUtils::guess_file_type( $id, $media_path );
 
 			$file_responses[] = [
 				'send' . ucfirst( $type ) => [
-					$type     => $this->send_files_by_url ? $url : get_attached_file( $id ),
+					$type     => $media_path,
 					'caption' => $caption,
 				],
 			];
@@ -1230,7 +1298,7 @@ class PostSender extends BaseClass {
 
 		if ( ! empty( $inline_keyboard ) ) {
 
-			$reply_markup = wp_json_encode( compact( 'inline_keyboard' ) );
+			$reply_markup = [ 'inline_keyboard' => $inline_keyboard ];
 
 			if ( isset( $method_params['sendMessage'] ) ) {
 
@@ -1250,7 +1318,7 @@ class PostSender extends BaseClass {
 	 *
 	 * @param array $method_params Methods and Params.
 	 *
-	 * @return  array
+	 * @return  array|false
 	 */
 	public function get_inline_keyboard( $method_params ) {
 
@@ -1275,8 +1343,9 @@ class PostSender extends BaseClass {
 
 		$default_button = (array) apply_filters( 'wptelegram_p2tg_default_inline_button', $default_button, $this->post, $method_params );
 
-		$inline_keyboard[][] = $default_button;
-
+		$inline_keyboard = [
+			[ $default_button ],
+		];
 		return (array) apply_filters( 'wptelegram_p2tg_inline_keyboard', $inline_keyboard, $this->post, $method_params );
 	}
 
@@ -1291,46 +1360,22 @@ class PostSender extends BaseClass {
 	 * @return string
 	 */
 	public static function get_parsed_button_url( $url_template, $post_id ) {
-		$macro_keys = [
-			'full_url',
-			'short_url',
-		];
+		$parser = new TemplateParser( $post_id );
 
-		$post_data = new PostData( $post_id );
+		$button_url_filter = function ( $macro_values, $template, $post ) {
+			return (array) apply_filters_deprecated(
+				'wptelegram_p2tg_button_url_macro_values',
+				[ $macro_values, $template, $post->ID ],
+				'4.1.0',
+				'wptelegram_p2tg_template_macro_values'
+			);
+		};
 
-		$macro_values = [];
+		add_filter( 'wptelegram_p2tg_template_macro_values', $button_url_filter, 10, 3 );
 
-		foreach ( $macro_keys as $macro_key ) {
+		$url = $parser->parse( $url_template );
 
-			// get the value only if it's in the template.
-			if ( false !== strpos( $url_template, '{' . $macro_key . '}' ) ) {
-
-				$macro_values[ '{' . $macro_key . '}' ] = $post_data->get_field( $macro_key );
-			}
-		}
-
-		// if it's something unusual :) .
-		if ( preg_match_all( '/(?<=\{)(cf):([^\}]+?)(?=\})/iu', $url_template, $matches ) ) {
-
-			foreach ( $matches[0] as $field ) {
-
-				$macro_values[ '{' . $field . '}' ] = $post_data->get_field( $field );
-			}
-		}
-
-		/**
-		 * Use this filter to replace your own macros
-		 * with the corresponding values
-		 */
-		$macro_values = (array) apply_filters( 'wptelegram_p2tg_button_url_macro_values', $macro_values, $url_template, $post_id );
-
-		// decode all HTML entities & URL encode non-URL values.
-		foreach ( $macro_values as &$value ) {
-			// decode all HTML entities.
-			$value = MainUtils::decode_html( $value );
-		}
-
-		$url = str_replace( array_keys( $macro_values ), array_values( $macro_values ), $url_template );
+		remove_filter( 'wptelegram_p2tg_template_macro_values', $button_url_filter, 10, 3 );
 
 		return apply_filters( 'wptelegram_p2tg_parsed_button_url', $url, $url_template, $post_id );
 	}
@@ -1346,152 +1391,11 @@ class PostSender extends BaseClass {
 	 */
 	private function get_response_text( $template ) {
 
-		// Remove wpautop() from the `the_content` filter
-		// to preserve newlines.
-		$priority = has_filter( 'the_content', 'wpautop' );
-		if ( false !== $priority ) {
-			remove_filter( 'the_content', 'wpautop', $priority );
-			add_filter( 'the_content', [ $this, 'restore_wpautop_hook' ], $priority + 1 );
-		}
+		$parser = new TemplateParser( $this->post, $this->options );
 
-		$excerpt_source       = $this->options->get( 'excerpt_source' );
-		$excerpt_length       = (int) $this->options->get( 'excerpt_length' );
-		$excerpt_preserve_eol = $this->options->get( 'excerpt_preserve_eol' );
-		$cats_as_tags         = $this->options->get( 'cats_as_tags' );
-		$parse_mode           = MainUtils::valid_parse_mode( $this->options->get( 'parse_mode' ) );
-
-		// replace {tags} and {categories} with taxonomy names.
-		$replace = [ '{terms:post_tag}', '{terms:category}' ];
-
-		// use tags and categories for WooCommerce.
-		if ( class_exists( 'woocommerce' ) && 'product' === $this->post->post_type ) {
-
-			$replace = [ '{terms:product_tag}', '{terms:product_cat}' ];
-		}
-
-		// modify the template.
-		$template = str_replace( [ '{tags}', '{categories}' ], $replace, $template );
-
-		$macro_keys = [
-			'ID',
-			'post_title',
-			'post_slug',
-			'post_date',
-			'post_date_gmt',
-			'post_author',
-			'post_excerpt',
-			'post_content',
-			'post_type',
-			'post_type_label',
-			'short_url',
-			'full_url',
-		];
-
-		// for post excerpt.
-		$params = compact( 'excerpt_source', 'excerpt_length', 'excerpt_preserve_eol', 'cats_as_tags', 'parse_mode' );
-
-		$macro_values = [];
-
-		foreach ( $macro_keys as $macro_key ) {
-
-			$macro = '{' . $macro_key . '}';
-
-			// get the value only if it's in the template.
-			if ( false !== strpos( $template, $macro ) ) {
-
-				$macro_values[ $macro ] = $this->post_data->get_field( $macro_key, $params );
-			}
-		}
-
-		// if it's something unusual.
-		if ( preg_match_all( '/(?<=\{)(terms|cf):([^\}]+?)(?=\})/iu', $template, $matches ) ) {
-
-			foreach ( $matches[0] as $field ) {
-
-				$macro_values[ '{' . $field . '}' ] = $this->post_data->get_field( $field, $params );
-			}
-		}
-
-		/**
-		 * Use this filter to replace your own macros
-		 * with the corresponding values
-		 */
-		$macro_values = (array) apply_filters( 'wptelegram_p2tg_macro_values', $macro_values, $this->post, $this->options );
-
-		// stripslashes for all values.
-		$macro_values = array_map( 'stripslashes', $macro_values );
-
-		// lets replace the conditional macros.
-		$template = $this->process_template_logic( $template, $macro_values );
-
-		// replace the lone macros with values.
-		$text = str_replace( array_keys( $macro_values ), array_values( $macro_values ), $template );
+		$text = $parser->parse( $template );
 
 		return apply_filters( 'wptelegram_p2tg_response_text', $text, $template, $this->post, $this->options );
-	}
-
-	/**
-	 * Resolve the conditional macros in the template
-	 *
-	 * @since   2.0.17
-	 *
-	 * @param string $template     The message template.
-	 * @param array  $macro_values The values for macros.
-	 * @return  string
-	 */
-	private function process_template_logic( $template, $macro_values ) {
-
-		$raw_template = $template;
-
-		$pattern = '/\[if\s*?	# Conditional block starts
-			(\{[^\}]+?\})		# Conditional expression, a macro
-		\]						# Conditional block ends
-		\[						# Consequence block starts
-			([^\]]+?)			# Consequence expression
-		\]						# Consequence block ends
-		(?:						# non-capturing alternative block
-			\[					# Alternative block starts
-				([^\]]*?)		# Alternative expression
-			\]					# Alternative block ends
-		)?						# Make alternative block optional
-		/ix';
-
-		preg_match_all( $pattern, $template, $matches );
-
-		// loop through the conditional expressions.
-		foreach ( $matches[1] as $key => $macro ) {
-
-			// if expression is false, take from alternative.
-			$index = empty( $macro_values[ $macro ] ) ? 3 : 2;
-
-			$replace = str_replace( array_keys( $macro_values ), array_values( $macro_values ), $matches[ $index ][ $key ] );
-
-			$template = str_replace( $matches[0][ $key ], $replace, $template );
-		}
-
-		// remove the ugly empty lines.
-		$template = preg_replace( '/(?:\A|[\n\r]).*?\{remove_line\}.*/u', '', $template );
-
-		return apply_filters( 'wptelegram_p2tg_process_template_logic', $template, $macro_values, $raw_template, $this->post, $this->options );
-	}
-
-	/**
-	 * Re-add wp_autop() to the `the_content` filter.
-	 *
-	 * @access public
-	 *
-	 * @since 2.1.3
-	 *
-	 * @param string $content The post content running through this filter.
-	 * @return string The unmodified content.
-	 */
-	public function restore_wpautop_hook( $content ) {
-		$current_priority = has_filter( 'the_content', [ $this, 'restore_wpautop_hook' ] );
-
-		add_filter( 'the_content', 'wpautop', $current_priority - 1 );
-		remove_filter( 'the_content', [ $this, 'restore_wpautop_hook' ], $current_priority );
-
-		return $content;
 	}
 
 	/**
@@ -1566,6 +1470,9 @@ class PostSender extends BaseClass {
 				$params = reset( $response );
 				$method = key( $response );
 
+				// Remove note added to the chat id after "|".
+				$channel = preg_replace( '/\s*\|.*?$/u', '', $channel );
+
 				list( $params['chat_id'], $params['message_thread_id'] ) = array_pad( explode( ':', $channel ), 2, '' );
 
 				if ( ! $params['message_thread_id'] ) {
@@ -1574,8 +1481,14 @@ class PostSender extends BaseClass {
 
 				if ( $message_as_reply && $this->bot_api->is_success( $res ) ) {
 
-					$result                        = $res->get_result();
-					$params['reply_to_message_id'] = $result ? $result['message_id'] : null;
+					$result = $res->get_result();
+					// send next message in reply to the previous one.
+					if ( ! empty( $result['message_id'] ) ) {
+						$params['reply_parameters'] = [
+							'allow_sending_without_reply' => true,
+							'message_id'                  => $result['message_id'],
+						];
+					}
 				}
 
 				/**

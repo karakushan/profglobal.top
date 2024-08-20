@@ -2,16 +2,6 @@
 
 defined('ABSPATH') or die('This page may not be accessed directly.');
 
-function add_async_for_script($url)
-{
-	if (strpos($url, '#asyncload') === false)
-	    return $url;
-	else if (is_admin())
-	    return str_replace('#asyncload', '', $url);
-	else
-	    return str_replace('#asyncload', '', $url)."' async='async"; 
-}
-
 class OneSignal_Public
 {
     public function __construct()
@@ -77,13 +67,11 @@ class OneSignal_Public
             OneSignal_Public::insert_onesignal_stamp();
         } ?>
     <?php
-    add_filter('clean_url', 'add_async_for_script', 11, 1);
-
     if (defined('ONESIGNAL_DEBUG') && defined('ONESIGNAL_LOCAL')) {
-        wp_register_script('local_sdk', 'https://localhost:3001/sdks/OneSignalSDK.js#asyncload', array(), false, true);
+	wp_register_script('local_sdk', 'https://localhost:3001/sdks/OneSignalSDK.js', array(), '1.0.0', array('strategy' => 'async'));
         wp_enqueue_script('local_sdk');
     } else {
-        wp_register_script('remote_sdk', 'https://cdn.onesignal.com/sdks/OneSignalSDK.js#asyncload', array(), false, true);
+        wp_register_script('remote_sdk', 'https://cdn.onesignal.com/sdks/OneSignalSDK.js', array(), '1.0.0', array('strategy' => 'async'));
         wp_enqueue_script('remote_sdk');
     } ?>
     <script>
@@ -321,7 +309,7 @@ class OneSignal_Public
                 OneSignal.init(window._oneSignalInitOptions);
                 <?php
             }
-        
+
             if (array_key_exists('prompt_auto_register', $onesignal_wp_settings) && $onesignal_wp_settings['prompt_auto_register'] === true) {
                     echo "OneSignal.showSlidedownPrompt();";
             }
@@ -329,7 +317,7 @@ class OneSignal_Public
             if (array_key_exists('use_native_prompt', $onesignal_wp_settings) && $onesignal_wp_settings['use_native_prompt'] === true) {
                 echo "OneSignal.showNativePrompt();";
             }
-        
+
         } else {
             ?>
           /* OneSignal: Using custom SDK initialization. */

@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'W3TC', true );
-define( 'W3TC_VERSION', '2.3.0' );
+define( 'W3TC_VERSION', '2.7.5' );
 define( 'W3TC_POWERED_BY', 'W3 Total Cache' );
 define( 'W3TC_EMAIL', 'w3tc@w3-edge.com' );
 define( 'W3TC_TEXT_DOMAIN', 'w3-total-cache' );
@@ -32,10 +32,27 @@ define( 'W3TC_TERMS_URL', 'https://api.w3-edge.com/v1/redirects/policies-terms' 
 define( 'W3TC_TERMS_ACCEPT_URL', 'https://api.w3-edge.com/v1/redirects/policies-accept' );
 define( 'W3TC_MAILLINGLIST_SIGNUP_URL', 'https://api.w3-edge.com/v1/signup-newsletter' );
 define( 'W3TC_NEWRELIC_SIGNUP_URL', 'https://api.w3-edge.com/v1/redirects/newrelic/signup' );
-define( 'W3TC_STACKPATH_SIGNUP_URL', 'https://api.w3-edge.com/v1/redirects/stackpath/signup' );
 define( 'W3TC_STACKPATH_AUTHORIZE_URL', 'https://api.w3-edge.com/v1/redirects/stackpath/authorize' );
 define( 'W3TC_STACKPATH2_AUTHORIZE_URL', 'https://api.w3-edge.com/v1/redirects/stackpath2/authorize' );
 define( 'W3TC_GOOGLE_DRIVE_AUTHORIZE_URL', 'https://api.w3-edge.com/v1/googledrive/authorize' );
+define( 'W3TC_BUNNYCDN_SIGNUP_URL', 'https://api.w3-edge.com/v1/redirects/bunnycdn/signup' );
+define( 'W3TC_BUNNYCDN_SETTINGS_URL', 'https://api.w3-edge.com/v1/redirects/bunnycdn/settings' );
+define( 'W3TC_BUNNYCDN_CDN_URL', 'https://api.w3-edge.com/v1/redirects/bunnycdn/cdn' );
+define( 'W3TC_PARTNER_IMH', 'https://api.w3-edge.com/v1/redirects/partners/imh' );
+define( 'W3TC_PARTNER_A2', 'https://api.w3-edge.com/v1/redirects/partners/a2' );
+define( 'W3TC_PARTNER_CONVESIO', 'https://api.w3-edge.com/v1/redirects/partners/convesio' );
+define( 'W3TC_PARTNER_DREAMHOST', 'https://api.w3-edge.com/v1/redirects/partners/dreamhost' );
+
+// Admin notices from API.
+if ( ! defined( 'W3TC_NOTICE_FEED' ) ) {
+	define( 'W3TC_NOTICE_FEED', 'https://api2.w3-edge.com/notices' );
+}
+
+// Image Service rate constants.
+define( 'W3TC_IMAGE_SERVICE_FREE_HLIMIT', 10 );
+define( 'W3TC_IMAGE_SERVICE_FREE_MLIMIT', 100 );
+define( 'W3TC_IMAGE_SERVICE_PRO_HLIMIT', 10000 );
+define( 'W3TC_IMAGE_SERVICE_PRO_MLIMIT', 0 );
 
 // this is the URL our updater / license checker pings. This should be the URL of the site with EDD installed.
 if ( ! defined( 'W3TC_LICENSE_API_URL' ) ) {
@@ -72,11 +89,19 @@ if ( ! defined( 'WP_CONTENT_DIR' ) ) {
 }
 
 if ( ! defined( 'W3TC_CACHE_DIR' ) ) {
-	define( 'W3TC_CACHE_DIR', WP_CONTENT_DIR . '/cache' );
+	if ( false !== realpath( WP_CONTENT_DIR . '/cache' ) ) {
+		define( 'W3TC_CACHE_DIR', realpath( WP_CONTENT_DIR . '/cache' ) );
+	} else {
+		define( 'W3TC_CACHE_DIR', WP_CONTENT_DIR . '/cache' );
+	}
 }
 
 if ( ! defined( 'W3TC_CONFIG_DIR' ) ) {
-	define( 'W3TC_CONFIG_DIR', WP_CONTENT_DIR . '/w3tc-config' );
+	if ( false !== realpath( WP_CONTENT_DIR . '/w3tc-config' ) ) {
+		define( 'W3TC_CONFIG_DIR', realpath( WP_CONTENT_DIR . '/w3tc-config' ) );
+	} else {
+		define( 'W3TC_CONFIG_DIR', WP_CONTENT_DIR . '/w3tc-config' );
+	}
 }
 
 if ( ! defined( 'W3TC_CACHE_MINIFY_DIR' ) ) {
@@ -174,17 +199,26 @@ function w3tc_class_autoload( $class ) {
 			require $filename;
 			return;
 		} elseif ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			echo esc_html(
-				sprintf(
-					// translators: 1 class name, 2 file name.
-					__(
-						'Attempt to create object of class %1$s has been made, but file %2$s doesnt exists',
-						'w3-total-cache'
-					),
-					$class,
-					$filename
-				)
-			);
+			if ( function_exists( 'esc_html' ) && function_exists( '__' ) ) {
+				echo esc_html(
+					sprintf(
+						// translators: 1 class name, 2 file name.
+						__(
+							'Attempt to create object of class %1$s has been made, but file %2$s doesnt exists',
+							'w3-total-cache'
+						),
+						$class,
+						$filename
+					)
+				);
+			} else {
+				printf(
+					'Attempt to create object of class %1$s has been made, but file %2$s doesnt exists',
+					$class, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					$filename // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				);
+			}
+
 			debug_print_backtrace();
 		}
 	}

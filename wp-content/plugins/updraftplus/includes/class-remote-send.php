@@ -75,7 +75,7 @@ abstract class UpdraftPlus_RemoteSend {
 	 *
 	 * @return array                 - the array response
 	 */
-	public function udrpc_action($response, $command, $data, $name_indicator) {// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
+	public function udrpc_action($response, $command, $data, $name_indicator) {// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- Unused parameter is present because the method is used as a WP filter.
 
 		if (is_array($data) && isset($data['sender_public'])) {
 			// Do we already know the sender's public key?
@@ -120,7 +120,7 @@ abstract class UpdraftPlus_RemoteSend {
 		return $msg;
 	}
 
-	public function updraftplus_logline($line, $nonce, $level, $uniq_id) {// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
+	public function updraftplus_logline($line, $nonce, $level, $uniq_id) {// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- Unused parameter is present because the method is used as a WP filter.
 		if ('notice' === $level && 'php_event' === $uniq_id) {
 			$this->php_events[] = $line;
 		}
@@ -173,7 +173,7 @@ abstract class UpdraftPlus_RemoteSend {
 		$existing_size = file_exists($fullpath) ? filesize($fullpath) : 0;
 
 		if ($start > $existing_size) {
-			return $this->return_rpc_message(array('response' => 'error', 'data' => "invalid_start_too_big:start=${start},existing_size=${existing_size}"));
+			return $this->return_rpc_message(array('response' => 'error', 'data' => "invalid_start_too_big:start={$start},existing_size={$existing_size}"));
 		}
 
 		if (false == ($fhandle = fopen($fullpath, 'ab'))) {
@@ -187,7 +187,7 @@ abstract class UpdraftPlus_RemoteSend {
 		
 		if (false === $write_status || (false == $write_status && !empty($data))) return $this->return_rpc_message(array('response' => 'error', 'data' => 'fwrite_failure'));
 
-		@fclose($fhandle);// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		@fclose($fhandle);// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged -- Silenced to suppress errors that may arise because of the function.
 
 		$our_keys = UpdraftPlus_Options::get_updraft_option('updraft_migrator_localkeys');
 		if (is_array($our_keys) && isset($our_keys[$name_hash]) && !empty($our_keys[$name_hash]['name'])) $updraftplus->log("Received data chunk on key ".$our_keys[$name_hash]['name']. " ($file, ".$start.", is_last=$is_last_chunk)");
@@ -244,7 +244,7 @@ abstract class UpdraftPlus_RemoteSend {
 	}
 
 	/**
-	 * This function will return a response to the remote site to acknowledge that we have recieved the upload_complete message and if this is a clone it call the ready_for_restore action
+	 * This function will return a response to the remote site to acknowledge that we have received the upload_complete message and if this is a clone it call the ready_for_restore action
 	 *
 	 * @param string $response       - a string response
 	 * @param array  $data           - an array of data
@@ -252,7 +252,7 @@ abstract class UpdraftPlus_RemoteSend {
 	 *
 	 * @return array                 - the array response
 	 */
-	public function udrpc_command_upload_complete($response, $data, $name_indicator) {// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
+	public function udrpc_command_upload_complete($response, $data, $name_indicator) {// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- Unused parameter is present because the method is used as a WP filter.
 		if (!preg_match('/^([a-f0-9]+)\.migrator.updraftplus.com$/', $name_indicator, $matches)) return $response;
 		
 		if (defined('UPDRAFTPLUS_THIS_IS_CLONE') && UPDRAFTPLUS_THIS_IS_CLONE) {
@@ -260,8 +260,8 @@ abstract class UpdraftPlus_RemoteSend {
 			
 			$signal_ready_for_restore_now = true;
 			
-			if (class_exists('UpdraftPlus_Remote_Communications')) {
-				$test_udrpc = new UpdraftPlus_Remote_Communications();
+			if (class_exists('UpdraftPlus_Remote_Communications_V2')) {
+				$test_udrpc = new UpdraftPlus_Remote_Communications_V2();
 				if (version_compare($test_udrpc->version, '1.4.21', '>=')) {
 					$signal_ready_for_restore_now = false;
 					$this->job_id = $job_id;
@@ -422,7 +422,7 @@ abstract class UpdraftPlus_RemoteSend {
 				$res = array('e' => 1, 'r' => $err_msg);
 
 				if ($this->url_looks_internal($url)) {
-					$res['moreinfo'] = '<p>'.sprintf(__('The site URL you are sending to (%s) looks like a local development website. If you are sending from an external network, it is likely that a firewall will be blocking this.', 'updraftplus'), htmlspecialchars($url)).'</p>';
+					$res['moreinfo'] = '<p>'.sprintf(__('The site URL you are sending to (%s) looks like a local development website.', 'updraftplus'), htmlspecialchars($url)).' '.__('If you are sending from an external network, it is likely that a firewall will be blocking this.', 'updraftplus').'</p>';
 				}
 
 				// We got several support requests from people who didn't seem to be aware of other methods
@@ -510,7 +510,7 @@ abstract class UpdraftPlus_RemoteSend {
 	 *
 	 * @return string        - the RSA remote key
 	 */
-	public function updraft_migrate_key_create_return($string, $data) {// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
+	public function updraft_migrate_key_create_return($string, $data) {// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- Unused parameter is present because the method is used as a WP filter.
 		return $this->updraft_migrate_key_create($data);
 	}
 
@@ -562,7 +562,7 @@ abstract class UpdraftPlus_RemoteSend {
 		if (extension_loaded('mbstring')) {
 			// phpcs:ignore  PHPCompatibility.IniDirectives.RemovedIniDirectives.mbstring_func_overloadDeprecated -- Commented out as this flags as not compatible with PHP 5.2
 			if (ini_get('mbstring.func_overload') & 2) {
-				echo json_encode(array('e' => 1, 'r' => __('Error:', 'updraftplus').' '.sprintf(__('The setting %s is turned on in your PHP settings. It is deprecated, causes encryption to malfunction, and should be turned off.', 'updraftplus'), 'mbstring.func_overload')));
+				echo json_encode(array('e' => 1, 'r' => __('Error:', 'updraftplus').' '.sprintf(__('The setting %s is turned on in your PHP settings.', 'updraftplus'), 'mbstring.func_overload').' '.__('It is deprecated, causes encryption to malfunction, and should be turned off.', 'updraftplus')));
 				die;
 			}
 		}
@@ -668,7 +668,7 @@ abstract class UpdraftPlus_RemoteSend {
 		$ret .= sprintf(
 			'<a href="javascript:void(0)" class="updraft_migrate_clear_sites" %s onclick="updraft_migrate_delete_existingsites(\'%s\');"><span class="dashicons dashicons-trash"></span>%s</a>',
 			empty($remotesites) ? 'style="display: none"' : '',
-			esc_js(__("You are about to permanently delete the list of existing sites. This action cannot be undone. 'Cancel' to stop, 'OK' to delete.")),
+			esc_js(__("You are about to permanently delete the list of existing sites.", 'updraftplus').' '.__("This action cannot be undone.", 'updraftplus').' '.__("'Cancel' to stop, 'OK' to delete.")),
 			__('Clear list of existing sites', 'updraftplus')
 		);
 		$ret .= '</div>';

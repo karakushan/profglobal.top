@@ -61,7 +61,7 @@ if (!class_exists("nxs_addns")) { class nxs_addns {
 							<img class="card-img-top" src="<?php echo NXS_PLURL; ?>img/addn/addn-<?php echo $a; ?>-001.png" />
 							<div class="card-body">
 								<h5 class="card-title"><?php echo $inf['t']; ?></h5>
-								<a class="stretched-link text-decoration-none link-dark" target="_blank" href="<?php echo $inf['u']; ?>"><p class="card-text"><?php echo $inf['d']; ?></p></a>
+								<a class="stretched-link text-decoration-none link-dark" target="_blank" href="<?php echo esc_url($inf['u']); ?>"><p class="card-text"><?php echo $inf['d']; ?></p></a>
                                 <div style="margin-top:10px;" class="col border-end  d-flex justify-content-center align-items-center"><a class="btn btn-outline-success" href="<?php echo $inf['u']; ?>" target="_blank">More Info/Get it</a></div>
 							</div>
 						</div>
@@ -70,12 +70,12 @@ if (!class_exists("nxs_addns")) { class nxs_addns {
 				<?php foreach ($lst as $a=>$inf) if ($inf['s']=='cs'||!empty($inf['isi'])){ ?>
 					<div class="col-6">
 						<div class="card" style="padding: 0px;">
-							<div class="p-3 border bg-light nxs-ovrldiv"><img class="card-img-top img-fluid" src="<?php echo NXS_PLURL; ?>img/addn/addn-<?php echo $a; ?>-001.png" />
+							<div class="p-3 border bg-light nxs-ovrldiv"><img class="card-img-top img-fluid" src="<?php echo NXS_PLURL; ?>img/addn/addn-<?php echo esc_attr($a); ?>-001.png" />
 								<h2 class="nxs-ovrlh2"><span> <?php echo $inf['s']=='cs'?'Coming soon':'Installed';  ?> </span></h2>
 							</div>
 							<div class="card-body">
 								<h5 class="card-title"><?php echo $inf['t']; ?></h5>
-								<a class="stretched-link text-decoration-none link-dark" target="_blank" href="<?php echo $inf['u']; ?>"><p class="card-text"><?php echo $inf['d']; ?></p></a>
+								<a class="stretched-link text-decoration-none link-dark" target="_blank" href="<?php echo esc_url($inf['u']); ?>"><p class="card-text"><?php echo $inf['d']; ?></p></a>
 
 							</div>
 						</div>
@@ -96,7 +96,7 @@ if (!class_exists("nxs_addns")) { class nxs_addns {
 					<img class="card-img-top" src="<?php echo NXS_PLURL; ?>img/addn/addn-<?php echo $a; ?>-001.png" />
 					<div class="card-body">
 						<h5 class="card-title"><?php echo $inf['t']; ?></h5>
-						<a class="stretched-link text-decoration-none link-dark" target="_blank" href="<?php echo $inf['u']; ?>"><p class="card-text"><?php echo $inf['d']; ?></p></a>
+						<a class="stretched-link text-decoration-none link-dark" target="_blank" href="<?php echo esc_url($inf['u']); ?>"><p class="card-text"><?php echo $inf['d']; ?></p></a>
 					</div>
 					</div><?php
 				}

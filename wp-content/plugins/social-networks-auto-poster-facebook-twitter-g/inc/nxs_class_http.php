@@ -4,9 +4,9 @@ Project Name: NextScripts Social Networks AutoPoster
 Project URL: https://www.nextscripts.com/snap-api/
 Description: Automatically posts to all your Social Networks
 Author: NextScripts Corp
-File Version: 2.0.2 (Oct 21, 2022)
+File Version: 2.0.3 (Dec 26, 2022)
 Author URL: https://www.nextscripts.com
-Copyright 2012-2022  NextScripts Corp
+Copyright 2012-2023  NextScripts Corp
 #############################################################################*/
 
 if (!class_exists('nxsHttp2')) { class nxsHttp2 extends WP_Http {
@@ -23,7 +23,7 @@ if (!class_exists('nxsHttp2')) { class nxsHttp2 extends WP_Http {
 	    if (!empty($this->proxy)&&class_exists('nxaddn_prx')) nxaddn_prx::addPrx($this->proxy);
         //## Post AS Array (for Image/media Upload)
         if ($this->postData===true && !empty($args['body'])) $this->postData = $args['body'];
-        if (!empty($this->postData)) add_action( 'http_api_curl', array($this, 'imgUplcurl') );
+        if (!empty($this->postData)) { add_action( 'http_api_curl', array($this, 'imgUplcurl') ); unset($args['headers']['Content-Length']);  unset($args['headers']['Content-Type']); }
         $ret = parent::request($url, $args);
         if (!empty($this->postData)) { remove_action( 'http_api_curl', array($this, 'imgUplcurl') ); $this->postData = false; }
         return $ret;

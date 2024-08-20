@@ -6,12 +6,16 @@ if (!defined("ABSPATH")) {
 <!-- Option start -->
 <div class="wpd-opt-row">
     <div class="wpd-opt-intro">
-        <img class="wpd-opt-img" src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/dashboard/" . $setting["icon"])); ?>" style="height: 65px;"/>
+        <img class="wpd-opt-img"
+             src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/dashboard/" . $setting["icon"])); ?>"
+             style="height: 65px;"/>
         <?php echo sprintf(esc_html__("Please %s with Google to obtain the Site Key and Secret Key for %s. Then insert those keys in according fields below.", "wpdiscuz"), "<a href='https://www.google.com/recaptcha/admin' target='_blank'>" . esc_html__("register your domain", "wpdiscuz") . "</a>", "<span style='color:#FF0000'>" . esc_html__("reCAPTCHA Version 2", "wpdiscuz") . "</span>"); ?>
         <?php echo sprintf(esc_html__("If you want to use the latest Version 3 - Invisible Google reCAPTCHA with comment form, please checkout %s addon. This will make your commenters life easier, letting them pass through with ease.", "wpdiscuz"), "<a href='https://gvectors.com/product/wpdiscuz-recaptcha/' target='_blank' style='color:#07B290;'>" . "wpDiscuz reCAPTCHA" . "</a>"); ?>
     </div>
     <div class="wpd-opt-doc" style="padding-top: 10px;">
-        <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/google-recaptcha/" title="<?php esc_attr_e("Read the documentation", "wpdiscuz") ?>" target="_blank"><i class="far fa-question-circle"></i></a>
+        <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/google-recaptcha/"
+           title="<?php esc_attr_e("Read the documentation", "wpdiscuz") ?>" target="_blank"><i
+                    class="far fa-question-circle"></i></a>
     </div>
 </div>
 <!-- Option end -->
@@ -48,7 +52,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->recaptcha["showForGuests"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_RECAPTCHA); ?>[showForGuests]" id="showForGuests">
+            <input type="checkbox" <?php checked($this->recaptcha["showForGuests"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_RECAPTCHA); ?>[showForGuests]" id="showForGuests">
             <label for="showForGuests"></label>
         </div>
     </div>
@@ -66,7 +71,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php echo checked($this->recaptcha["showForUsers"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_RECAPTCHA); ?>[showForUsers]" id="showForUsers">
+            <input type="checkbox" <?php echo checked($this->recaptcha["showForUsers"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_RECAPTCHA); ?>[showForUsers]" id="showForUsers">
             <label for="showForUsers"></label>
         </div>
     </div>
@@ -84,7 +90,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php echo checked($this->recaptcha["isShowOnSubscribeForm"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_RECAPTCHA); ?>[isShowOnSubscribeForm]" id="isShowOnSubscribeForm">
+            <input type="checkbox" <?php echo checked($this->recaptcha["isShowOnSubscribeForm"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_RECAPTCHA); ?>[isShowOnSubscribeForm]"
+                   id="isShowOnSubscribeForm">
             <label for="isShowOnSubscribeForm"></label>
         </div>
     </div>
@@ -105,7 +113,10 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["siteKey"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input id="siteKey" type="text" name="<?php echo esc_attr(WpdiscuzCore::TAB_RECAPTCHA); ?>[siteKey]" placeholder="<?php esc_html_e("reCAPTCHA V2 Site Key", "wpdiscuz"); ?>" value="<?php echo esc_attr($this->recaptcha["siteKey"]); ?>" style="margin:1px;padding:3px 5px; width:90%;"/>
+        <input id="siteKey" type="text" name="<?php echo esc_attr(WpdiscuzCore::TAB_RECAPTCHA); ?>[siteKey]"
+               placeholder="<?php esc_html_e("reCAPTCHA V2 Site Key", "wpdiscuz"); ?>"
+               value="<?php echo esc_attr($this->recaptcha["siteKey"]); ?>"
+               style="margin:1px;padding:3px 5px; width:90%;"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["siteKey"]["docurl"]) ?>
@@ -120,7 +131,10 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["secretKey"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input id="secretKey" type="text" name="<?php echo esc_attr(WpdiscuzCore::TAB_RECAPTCHA); ?>[secretKey]" placeholder="<?php esc_html_e("reCAPTCHA V2 Secret Key", "wpdiscuz"); ?>" value="<?php echo esc_attr($this->recaptcha["secretKey"]); ?>" style="margin: 1px;padding:3px 5px; width:90%;"/>
+        <input id="secretKey" type="text" name="<?php echo esc_attr(WpdiscuzCore::TAB_RECAPTCHA); ?>[secretKey]"
+               placeholder="<?php esc_html_e("reCAPTCHA V2 Secret Key", "wpdiscuz"); ?>"
+               value="<?php echo esc_attr($this->recaptcha["secretKey"]); ?>"
+               style="margin: 1px;padding:3px 5px; width:90%;"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["secretKey"]["docurl"]) ?>
@@ -153,8 +167,12 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["lang"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input id="lang" type="text" name="<?php echo esc_attr(WpdiscuzCore::TAB_RECAPTCHA); ?>[lang]" value="<?php echo esc_attr($this->recaptcha["lang"]); ?>" placeholder="<?php esc_attr_e("Example en", "wpdiscuz"); ?>" style="margin: 1px;padding:3px 5px; width:120px;"/><br />
-        <a target="blanck" style="font-size: 10px;" href="https://developers.google.com/recaptcha/docs/language"><?php esc_html_e("Language codes", "wpdiscuz"); ?></a>
+        <input id="lang" type="text" name="<?php echo esc_attr(WpdiscuzCore::TAB_RECAPTCHA); ?>[lang]"
+               value="<?php echo esc_attr($this->recaptcha["lang"]); ?>"
+               placeholder="<?php esc_attr_e("Example en", "wpdiscuz"); ?>"
+               style="margin: 1px;padding:3px 5px; width:120px;"/><br/>
+        <a target="blanck" style="font-size: 10px;"
+           href="https://developers.google.com/recaptcha/docs/language"><?php esc_html_e("Language codes", "wpdiscuz"); ?></a>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["lang"]["docurl"]) ?>

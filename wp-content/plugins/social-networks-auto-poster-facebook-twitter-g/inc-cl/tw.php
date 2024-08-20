@@ -288,10 +288,10 @@ if (!class_exists("nxs_snapClassTW")) { class nxs_snapClassTW extends nxs_snapCl
         } $message['img'] = $imgData;
     }
 
-    function importComments($options='', $postID='', $po='') { if (empty($postID)) $postID = $_POST['pid']; $ci = 0;
-        if (empty($options)) {  global $nxs_SNAP; $options = $nxs_SNAP->nxs_options; }
-        if (empty($po)) { $po =  maybe_unserialize(get_post_meta($postID, 'snap'.strtoupper($_POST['nt']), true)); $po = $po[sanitize_key($_POST['ii'])]; }
-        if (isset($_POST['ii'])) $options = $options[$_POST['nt']][sanitize_key($_POST['ii'])];
+    function importComments($options='', $postID='', $po='') { if (empty($postID)) $postID = sanitize_key($_POST['pid']); $ci = 0; $ii = sanitize_key($_POST['ii']);  $nt = sanitize_key($_POST['nt']);
+	    if (empty($options)) {  global $nxs_SNAP; $options = $nxs_SNAP->nxs_options; }
+        if (empty($po)) { $po =  maybe_unserialize(get_post_meta($postID, 'snap'.strtoupper($nt), true)); $po = $po[$ii]; }
+        if (!empty($ii)) $options = $options[$nt][$ii];
 
         $appi = new nxsAPI_TW_Native(); $appi->conn = $options;  $rplL = [];
         if (!empty($options['riComments'])) { $rpls = $appi->getReplies($po['pgID']); $rplL = array_merge($rplL, $rpls); }
@@ -309,7 +309,7 @@ if (!class_exists("nxs_snapClassTW")) { class nxs_snapClassTW extends nxs_snapCl
             nxs_postNewComment($commentdata, $options['riCommentsAA']=='1'); $ci++; //echo $ci;
         }
         delete_post_meta($postID, 'snapImportedComments'); add_post_meta($postID, 'snapImportedComments', $impCmnts );
-        if ( isset($_POST['pid']) && $_POST['pid']!='') printf( _n('%d comment has been imported.', '%d comments has been imported.', $ci, 'social-networks-auto-poster-facebook-twitter-g'), $ci );
+        if ( !empty($_POST['pid']) ) printf( _n('%d comment has been imported.', '%d comments has been imported.', $ci, 'social-networks-auto-poster-facebook-twitter-g'), $ci );
     }
 
 }}

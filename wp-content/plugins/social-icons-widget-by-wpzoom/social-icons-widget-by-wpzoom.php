@@ -3,20 +3,20 @@
  * Plugin Name:         Social Icons Widget & Block by WPZOOM
  * Plugin URI:          https://www.wpzoom.com/plugins/social-widget/
  * Description:         Social Icons Widget & Block to display links to social media networks websites. Supports most of the known social networks and includes more than 400 icons. Sort icons by Drag & Drop and change their color easily.
- * Version:             4.2.10
+ * Version:             4.2.18
  * Author:              WPZOOM
  * Author URI:          https://www.wpzoom.com/
  * Text Domain:         social-icons-widget-by-wpzoom
  * License:             GNU General Public License v2.0 or later
  * License URI:         http://www.gnu.org/licenses/gpl-2.0.txt
  * Requires at least:   5.2
- * Tested up to:        6.1
+ * Tested up to:        6.6
  *
  * @package WPZOOM_Social_Icons
  */
 
 if ( ! defined( 'WPZOOM_SOCIAL_ICONS_PLUGIN_VERSION' ) ) {
-	define( 'WPZOOM_SOCIAL_ICONS_PLUGIN_VERSION', '4.2.10' );
+	define( 'WPZOOM_SOCIAL_ICONS_PLUGIN_VERSION', get_file_data( __FILE__, [ 'Version' ] )[0] ); // phpcs:ignore
 }
 
 if ( ! defined( 'WPZOOM_SOCIAL_ICONS_PLUGIN_URL' ) ) {
@@ -32,7 +32,6 @@ if ( ! defined( 'WPZOOM_SOCIAL_ICONS_PLUGIN_BASE' ) ) {
 }
 
 require_once plugin_dir_path( __FILE__ ) . 'includes/classes/class-wpzoom-social-icons-settings.php';
-require_once plugin_dir_path( __FILE__ ) . 'includes/zoom-helper.php';
 
 $wpzoom_social_icons_settings = WPZOOM_Social_Icons_Settings::get_settings();
 
@@ -384,7 +383,7 @@ if ( ! function_exists( 'wpzoom_social_icons_admin_notices' ) ) {
 		$should_display_notice = ( ( 'index.php' === $pagenow || 'plugins.php' === $pagenow || 'options-general.php' === $pagenow && 'wpzoom-social-icons-widget' === $page ) && $is_active && ! $dismiss_notice ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		if ( $should_display_notice ) {
-			wpzoom_social_icons_upgrade_pro_notice();
+			// wpzoom_social_icons_upgrade_pro_notice();
 		}
 	}
 	add_action( 'admin_notices', 'wpzoom_social_icons_admin_notices' );

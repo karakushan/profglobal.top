@@ -51,8 +51,7 @@ if (!class_exists("nxs_class_SNAP_YO")) { class nxs_class_SNAP_YO {
       $hdrsArr['User-Agent']='Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.54 Safari/537.36'; 
       
       global $wpdb; $gCnt = 0; $bCnt = 0;
-      $sql = "SELECT meta_value, user_id FROM $wpdb->usermeta WHERE meta_key = 'nxs_yo'";       
-      $users = $wpdb->get_results($sql);
+	  $sql = $wpdb->prepare("SELECT meta_value, user_id FROM {$wpdb->usermeta} WHERE meta_key = %s", 'nxs_yo' ); $users = $wpdb->get_results($sql);
       foreach ($users as $user) { $data['username'] = $user->meta_value;
         $advSet = nxs_mkRemOptsArr($hdrsArr, '', $data); $rep = nxs_remote_post('http://api.justyo.co/yo/', $advSet); // prr($advSet); prr($rep);      
         $jsRep = json_decode($rep['body'], true); if (!empty($jsRep['success'])) $gCnt++; else $bCnt++;   // $hddr = print_r($rep['headers'], true);  $limit = trim(CutFromTo($hddr, '[x-ratelimit-remaining] =>', '[')); prr($limit);        

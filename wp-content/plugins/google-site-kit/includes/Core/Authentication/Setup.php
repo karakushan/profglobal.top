@@ -16,7 +16,7 @@ use Google\Site_Kit\Core\Authentication\Exception\Exchange_Site_Code_Exception;
 use Google\Site_Kit\Core\Authentication\Exception\Missing_Verification_Exception;
 use Google\Site_Kit\Core\Permissions\Permissions;
 use Google\Site_Kit\Core\Storage\User_Options;
-use Google\Site_Kit\Core\Util\Feature_Flags;
+use Google\Site_Kit\Core\Util\Remote_Features;
 
 /**
  * Base class for authentication setup.
@@ -62,6 +62,15 @@ class Setup {
 	 * @var Google_Proxy
 	 */
 	protected $google_proxy;
+
+	/**
+	 * Proxy support URL.
+	 *
+	 * @since 1.109.0 Explicitly declared; previously, it was dynamically declared.
+	 *
+	 * @var string
+	 */
+	protected $proxy_support_link_url;
 
 	/**
 	 * Credentials instance.
@@ -217,7 +226,7 @@ class Setup {
 		$this->verify_nonce( $nonce );
 
 		if ( ! current_user_can( Permissions::SETUP ) ) {
-			wp_die( esc_html__( 'You don\'t have permissions to set up Site Kit.', 'google-site-kit' ), 403 );
+			wp_die( esc_html__( 'You don’t have permissions to set up Site Kit.', 'google-site-kit' ), 403 );
 		}
 
 		if ( ! $code ) {
@@ -274,7 +283,7 @@ class Setup {
 		$this->verify_nonce( $nonce );
 
 		if ( ! current_user_can( Permissions::SETUP ) ) {
-			wp_die( esc_html__( 'You don\'t have permissions to set up Site Kit.', 'google-site-kit' ), 403 );
+			wp_die( esc_html__( 'You don’t have permissions to set up Site Kit.', 'google-site-kit' ), 403 );
 		}
 
 		if ( ! $code || ! $site_code ) {

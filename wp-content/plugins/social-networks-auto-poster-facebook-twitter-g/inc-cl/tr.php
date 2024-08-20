@@ -55,8 +55,8 @@ if (!class_exists("nxs_snapClassTR")) { class nxs_snapClassTR extends nxs_snapCl
     }
   }    
   
-  function getListOfBlogs($networks){ $opVal = array(); $opNm = 'nxs_snap_tr_'.sha1('nxs_snap_tr'.$_POST['u'].$_POST['p']); $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']);
-     $currPstAs = !empty($_POST['cBlog'])?$_POST['cBlog']:(!empty($networks['tr'][$ii])?$networks['tr'][$ii]['pgID']:'');
+  function getListOfBlogs($networks){ $opVal = array(); $opNm = 'nxs_snap_tr_'.sha1('nxs_snap_tr'.sanitize_text_field($_POST['u']).sanitize_text_field($_POST['p'])); $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']);
+     $currPstAs = !empty($_POST['cBlog'])?sanitize_text_field($_POST['cBlog']):(!empty($networks['tr'][$ii])?$networks['tr'][$ii]['pgID']:'');
      if (empty($_POST['force']) && !empty($opVal['blogList']) ) $pgs = $opVal['blogList']; else { $options = $networks['tr'][$ii]; require_once('apis/trOAuth.php'); 
        $tum_oauth = new TumblrOAuth(nxs_gak($options['appKey']), nxs_gas($options['appSec']),  $options['accessToken'], $options['accessTokenSec']); $userinfo = $tum_oauth->get('https://api.tumblr.com/v2/user/info');// prr($userinfo);
        if ($userinfo->meta->status=='401') { $outMsg = '<b style="color:red;">'.__('Auth Problem').' HTTP-401 (Not Authorized) &nbsp;-&nbsp;</b>'; if (!empty($_POST['isOut'])) echo $outMsg; return $outMsg; }

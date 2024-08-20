@@ -74,7 +74,6 @@ We respect and understand that you may want to be sure that your personal inform
         'content' => 'Some cookies ensure that certain parts of the website work properly and that your user preferences remain known. By placing functional cookies, we make it easier for you to visit our website. This way, you do not need to repeatedly enter the same information when visiting our website and, for example, the items remain in your shopping cart until you have paid. We may place these cookies without your consent.',
     ),
 
-    //statistics
     array(
         'subtitle' => 'Statistics cookies',
         'content' => 'We use statistics cookies to optimize the website experience for our users. With these statistics cookies we get insights in the usage of our website.',
@@ -109,7 +108,7 @@ We respect and understand that you may want to be sure that your personal inform
     ),
 
 	array(
-		'subtitle' => 'Marketing/Tracking cookies', 'cookie policy',
+		'subtitle' => 'Marketing/Tracking cookies',
 		'content' => 'Marketing/Tracking cookies are cookies or any other form of local storage, used to create user profiles to display advertising or to track the user on this website or across several websites for similar marketing purposes.',
 //		'condition' => array(
 //			'uses_ad_cookies' => 'no',
@@ -126,8 +125,8 @@ We respect and understand that you may want to be sure that your personal inform
 		),
 	),
 	array(
-		'subtitle' => _x('Social media', 'Legal document cookie policy:paragraph title', 'complianz-gdpr'),
-		'content' => cmplz_sprintf(_x('On our website, we have included content from %s to promote web pages (e.g. “like”, “pin”) or share (e.g. “tweet”) on social networks like %s. This content is embedded with code derived from %s and places cookies. This content might store and process certain information for personalized advertising.', 'Legal document cookie policy', 'complianz-gdpr'), '[comma_socialmedia_on_site]', '[comma_socialmedia_on_site]', '[comma_socialmedia_on_site]'),
+		'subtitle' => 'Social media',
+		'content' => cmplz_sprintf(__('On our website, we have included content from %s to promote web pages (e.g. “like”, “pin”) or share (e.g. “tweet”) on social networks like %s. This content is embedded with code derived from %s and places cookies. This content might store and process certain information for personalized advertising.', 'complianz-gdpr'), '[comma_socialmedia_on_site]', '[comma_socialmedia_on_site]', '[comma_socialmedia_on_site]'),
 		'condition' => array(
 			'uses_social_media' => 'yes',
 			'socialmedia_on_site' => 'NOT EMPTY',
@@ -189,7 +188,7 @@ We respect and understand that you may want to be sure that your personal inform
 	),
 
 	'enable-disable-removal-cookies-2' => array(
-		'content' => _x('Please note that our website may not work properly if all cookies are disabled. If you do delete the cookies in your browser, they will be placed again after your consent when you visit our websites again.', 'Legal document cookie policy', 'complianz-gdpr'),
+		'content' => _x('Please note that our website may not work properly if all cookies are disabled. If you do delete the cookies in your browser, they will be placed again after your consent when you visit our website again.', 'Legal document cookie policy', 'complianz-gdpr'),
 	),
 
 
@@ -219,7 +218,7 @@ We respect and understand that you may want to be sure that your personal inform
     ),
 
 	array(
-        'title' => 'Contact details', 'Legal document cookie policy:',
+        'title' => 'Contact details',
         'content' => 'For questions and/or comments about our Cookie Policy and this statement, please contact us by using the following contact details:',
     ),
 
@@ -233,7 +232,7 @@ We respect and understand that you may want to be sure that your personal inform
     ),
 
     array(
-        'content' => cmplz_sprintf('This Cookie Policy was synchronized with %scookiedatabase.org%s on %s', '<a href="https://cookiedatabase.org/" target="_blank">', '</a>', '[sync_date]'),
+        'content' => cmplz_sprintf('This Cookie Policy was synchronized with %scookiedatabase.org%s on %s.', '<a href="https://cookiedatabase.org/" target="_blank">', '</a>', '[sync_date]'),
         'callback_condition' => array(
 	        'cmplz_cdb_reference_in_policy',
         )

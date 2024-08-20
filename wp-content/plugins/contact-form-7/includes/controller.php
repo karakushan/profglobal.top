@@ -33,7 +33,7 @@ function wpcf7_control_init() {
  */
 add_action(
 	'wp_enqueue_scripts',
-	function () {
+	static function () {
 		$assets = array();
 		$asset_file = wpcf7_plugin_path( 'includes/js/index.asset.php' );
 
@@ -54,15 +54,17 @@ add_action(
 				array( 'swv' )
 			),
 			$assets['version'],
-			true
+			array( 'in_footer' => true )
 		);
+
+		wp_set_script_translations( 'contact-form-7', 'contact-form-7' );
 
 		wp_register_script(
 			'contact-form-7-html5-fallback',
 			wpcf7_plugin_url( 'includes/js/html5-fallback.js' ),
 			array( 'jquery-ui-datepicker' ),
 			WPCF7_VERSION,
-			true
+			array( 'in_footer' => true )
 		);
 
 		if ( wpcf7_load_js() ) {

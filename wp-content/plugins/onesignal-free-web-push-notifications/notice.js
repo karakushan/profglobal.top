@@ -1,13 +1,13 @@
 jQuery(document).ready(notice);
 
 var state = {
-    post_id : ajax_object.post_id,  // post id sent from php backend
-    first_modified : undefined,     // when the post was first modified
-    started : false,                // post notification requests started
-    interval: undefined,            // global interval for reattempting requests
-    interval_count : 0,             // how many times has the request been attempted
-    status : undefined              // whether the post is scheduled or published
-  }
+  post_id: ajax_object.post_id,  // post id sent from php backend
+  first_modified: undefined,     // when the post was first modified
+  started: false,                // post notification requests started
+  interval: undefined,            // global interval for reattempting requests
+  interval_count: 0,             // how many times has the request been attempted
+  status: undefined              // whether the post is scheduled or published
+}
 
 function notice() {
   if (!isWpCoreEditorDefined()) {
@@ -15,9 +15,6 @@ function notice() {
   }
 
   const editor = wp.data.select("core/editor");
-  const get_wp_attr = attr => {
-    return editor.getEditedPostAttribute(attr);
-  };
 
   /*
    * Subscribes function to WP's state-change listener
@@ -29,7 +26,7 @@ function notice() {
     const post = editor.getCurrentPost();
 
     // runs until post data loads
-    if(!post || post === {}){
+    if (!post || post === {}) {
       return;
     }
 
@@ -46,9 +43,9 @@ function notice() {
     // is checked
     let send_os_notif;
     const htmlElement = jQuery("#send_onesignal_notification")[0];
-    
+
     if (!!htmlElement) {
-       send_os_notif = htmlElement.checked;
+      send_os_notif = htmlElement.checked;
     }
 
     // if last modified differs from first modified times, post_modified = true
@@ -57,7 +54,7 @@ function notice() {
     const is_published = status === "publish";
 
     // if hasn't started, change detected, box checked, and the status is 'publish'
-    if (!state.started && post_modified && send_os_notif && is_published ) {
+    if (!state.started && post_modified && send_os_notif && is_published) {
       state.interval = setInterval(get_metadata, 3000); // starts requests
       state.started = true;
     }
@@ -73,21 +70,22 @@ function notice() {
       post_id: state.post_id
     };
 
-    jQuery.get(ajax_object.ajax_url, data, function(response) {
+    jQuery.get(ajax_object.ajax_url, data, function (response) {
       response = JSON.parse(response);
-      const { recipients, status_code, response_body } = response;
+      let { status_code, response_body } = response;
 
-      if(window.DEBUG_MODE){
+      if (window.DEBUG_MODE) {
         console.log(response);
       }
 
       const is_status_empty = status_code.length == 0;
-      const is_recipients_empty = recipients.length == 0;
 
-      if(!is_status_empty && !is_recipients_empty){
+      if (!is_status_empty) {
+        status_code = parseInt(status_code);
+
         // status 0: HTTP request failed
-        if (status_code === "0") {
-          error_notice("OneSignal Push: request failed with status code 0. "+response_body);
+        if (status_code === 0) {
+          error_notice("OneSignal Push: request failed with status code 0. " + response_body);
           reset_state();
           return;
         }
@@ -97,8 +95,8 @@ function notice() {
           if (!response_body) {
             error_notice(
               "OneSignal Push: there was a " +
-                status_code +
-                " error sending your notification"
+              status_code +
+              " error sending your notification"
             );
           } else {
             error_notice("OneSignal Push: there was a " + status_code + " error sending your notification: " + response_body);
@@ -108,16 +106,8 @@ function notice() {
           return;
         }
 
-        if (recipients === "0") {
-          error_notice(
-            "OneSignal Push: there were no recipients."
-          );
-          reset_state();
-
-        } else if (recipients) {
-          show_notice(recipients);
-          reset_state();
-        }
+        show_notice();
+        reset_state();
       }
     });
 
@@ -128,40 +118,39 @@ function notice() {
       );
       reset_state();
     }
-    
+
     state.interval_count += 1;
   };
 
   /*
    * Gets recipient count and shows notice
    */
-  const show_notice = recipients => {
-    const plural = recipients == 1 ? "" : "s";
+  const show_notice = () => {
     var delivery_link_text = "";
 
     if (state.status === "publish") {
-      var notice_text = "OneSignal Push: Successfully sent a notification to ";
-      delivery_link_text = ". Go to your app's \"Delivery\" tab to check sent messages: https://app.onesignal.com/apps";
-    } else if (state.status === "future"){
-      var notice_text = "OneSignal Push: Successfully scheduled a notification for ";
+      var notice_text = "OneSignal Push: Successfully sent a notification.";
+      delivery_link_text = " Go to your app's Delivery tab to check sent messages: https://dashboard.onesignal.com/apps/";
+    } else if (state.status === "future") {
+      var notice_text = "OneSignal Push: Successfully scheduled a notification.";
     }
 
     wp.data
       .dispatch("core/notices")
       .createNotice(
         "info",
-        notice_text + recipients + " recipient" + plural + delivery_link_text,
+        notice_text + delivery_link_text,
         {
-            id:'onesignal-notice',
-            isDismissible: true
+          id: 'onesignal-notice',
+          isDismissible: true
         }
       );
   };
 
   const error_notice = error => {
     wp.data.dispatch("core/notices").createNotice("error", error, {
-        isDismissible: true,
-        id:'onesignal-error'
+      isDismissible: true,
+      id: 'onesignal-error'
     });
   };
 
@@ -205,8 +194,8 @@ const isWpCoreEditorDefined = () => {
  *  }
  */
 window.OneSignal = {
-    debug : () => {
-        window.DEBUG_MODE = window.DEBUG_MODE ? !window.DEBUG_MODE : true;
-        notice();
-    }
+  debug: () => {
+    window.DEBUG_MODE = window.DEBUG_MODE ? !window.DEBUG_MODE : true;
+    notice();
+  }
 };

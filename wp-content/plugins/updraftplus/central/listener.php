@@ -78,7 +78,7 @@ class UpdraftCentral_Listener {
 				// THis is included so we can get $wp_version
 				include_once(ABSPATH.WPINC.'/version.php');
 
-				if (is_a($login_user, 'WP_User') || (version_compare($wp_version, '3.5', '<') && !empty($login_user->ID))) {// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
+				if (is_a($login_user, 'WP_User') || (version_compare($wp_version, '3.5', '<') && !empty($login_user->ID))) {// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable -- The variable is defined inside the ABSPATH.WPINC.'/version.php'.
 					// Allow site implementers to disable this functionality
 					$allow_autologin = apply_filters('updraftcentral_allow_autologin', true, $login_user);
 					if ($allow_autologin) {
@@ -202,8 +202,6 @@ class UpdraftCentral_Listener {
 	 * @return Array - filtered response
 	 */
 	public function udrpc_action($response, $command, $data, $key_name_indicator, $ud_rpc) {
-		global $updraftcentral_host_plugin;
-
 		try {
 
 			if (empty($this->receivers[$key_name_indicator])) return $response;
@@ -218,10 +216,14 @@ class UpdraftCentral_Listener {
 			// that makes the UpdraftPlus plugin optional.
 			//
 			// This will give UpdraftCentral a proper way of disabling the backup feature
-			// for this site if the UpdraftPlus plugin is currently not installed or activated.  
+			// for this site if the UpdraftPlus plugin is currently not installed or activated.
+			//
+			// In addition, we need to attached the host plugin who is handling the UpdraftCentral requests
+			global $updraftcentral_host_plugin;
 			$extra = apply_filters('updraftcentral_get_updraftplus_status', array(
 				'is_updraftplus_installed' => false,
-				'is_updraftplus_active' => false
+				'is_updraftplus_active' => false,
+				'host_plugin' => $updraftcentral_host_plugin->plugin_name,
 			));
 
 			$command_info = apply_filters('updraftcentral_get_command_info', false, $command);
@@ -301,7 +303,7 @@ class UpdraftCentral_Listener {
 		if (!$updraftcentral_host_plugin->get_debug_mode()) return;
 	}
 	
-	public function updraftcentral_logline($line, $nonce, $level, $uniq_id) {// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
+	public function updraftcentral_logline($line, $nonce, $level, $uniq_id) {// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found -- Unused parameter is present because the method is used as a WP filter.
 		if ('notice' === $level && 'php_event' === $uniq_id) {
 			$this->php_events[] = $line;
 		}

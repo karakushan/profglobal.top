@@ -3,7 +3,7 @@ defined('ABSPATH') or die("you do not have access to this page!");
 
 $this->pages['eu']['cookie-statement']['document_elements'] = array(
     array(
-        'content' => '<i>' . cmplz_sprintf(_x('This Cookie Policy was last updated on %s and applies to citizens and legal permanent residents of the European Economic Area and Switzerland', 'Legal document cookie policy', 'complianz-gdpr'), '[publish_date]') . '</i><br>',
+        'content' => '<i>' . cmplz_sprintf(_x('This Cookie Policy was last updated on %s and applies to citizens and legal permanent residents of the European Economic Area and Switzerland.', 'Legal document cookie policy', 'complianz-gdpr'), '[publish_date]') . '</i><br>',
     ),
     array(
         'title' => _x('Introduction', 'Legal document cookie policy:paragraph title', 'complianz-gdpr'),
@@ -32,7 +32,6 @@ $this->pages['eu']['cookie-statement']['document_elements'] = array(
 	    'content' => _x('Some cookies ensure that certain parts of the website work properly and that your user preferences remain known. By placing functional cookies, we make it easier for you to visit our website. This way, you do not need to repeatedly enter the same information when visiting our website and, for example, the items remain in your shopping cart until you have paid. We may place these cookies without your consent.', 'Legal document cookie policy', 'complianz-gdpr'),
     ),
 
-	//statistics
     array(
 	    'subtitle' => _x('Statistics cookies', 'Legal document cookie policy:paragraph title', 'complianz-gdpr'),
 	    'content' => _x('We use statistics cookies to optimize the website experience for our users. With these statistics cookies we get insights in the usage of our website.', 'Legal document cookie policy', 'complianz-gdpr')
@@ -67,6 +66,22 @@ $this->pages['eu']['cookie-statement']['document_elements'] = array(
 		    'uses_ad_cookies_personalized' => 'no'
 	    ),
     ),
+
+    // consent mode v2, DMA
+
+    // array(
+    //   'content' => cmplz_sprintf(_x('We also use a subset of Google\'s core platform services, for the purpose of providing online advertising services, personal data of end users using services of third parties that make use of core platform services, limited to %s.', 'Legal document cookie policy', 'complianz-gdpr'), '[domain_cps]'),
+    //   'condition' => array(
+    //     'uses_ad_cookies_consent_mode' => 'manual'
+    //   ),
+    // ),
+    //
+    // array(
+    //   'content' => _x('We use Google\'s services to process, for the purpose of providing online advertising services, personal data of end users using services of third parties that make use of core platform services. These services and their privacy policies are available on policies.google.com/privacy', 'Legal document cookie policy', 'complianz-gdpr'),
+    //   'condition' => array(
+    //     'uses_ad_cookies_consent_mode' => 'yes'
+    //   ),
+    // ),
 
 	array(
 		'subtitle' => _x('Marketing/Tracking cookies', 'cookie policy', 'complianz-gdpr'),
@@ -159,7 +174,7 @@ $this->pages['eu']['cookie-statement']['document_elements'] = array(
 	),
 
 	'enable-disable-removal-cookies-2' => array(
-		'content' => _x('Please note that our website may not work properly if all cookies are disabled. If you do delete the cookies in your browser, they will be placed again after your consent when you visit our websites again.', 'Legal document cookie policy', 'complianz-gdpr'),
+		'content' => _x('Please note that our website may not work properly if all cookies are disabled. If you do delete the cookies in your browser, they will be placed again after your consent when you visit our website again.', 'Legal document cookie policy', 'complianz-gdpr'),
 	),
 
     array(
@@ -199,7 +214,7 @@ $this->pages['eu']['cookie-statement']['document_elements'] = array(
     ),
 
     'last-sync' => array(
-        'content' => cmplz_sprintf(_x('This Cookie Policy was synchronized with %scookiedatabase.org%s on %s', 'Legal document cookie policy', 'complianz-gdpr'),'<a href="https://cookiedatabase.org/" target="_blank">', '</a>', '[sync_date]'),
+        'content' => cmplz_sprintf(_x('This Cookie Policy was synchronized with %scookiedatabase.org%s on %s.', 'Legal document cookie policy', 'complianz-gdpr'),'<a href="https://cookiedatabase.org/" target="_blank">', '</a>', '[sync_date]'),
         'callback_condition' => array(
 	        'cmplz_cdb_reference_in_policy',
         )

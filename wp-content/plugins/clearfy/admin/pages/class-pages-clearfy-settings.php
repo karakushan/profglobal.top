@@ -19,7 +19,7 @@ class WCL_ClearfySettingsPage extends WCL_Page {
 	 * Mainly used to navigate between pages.
 	 *
 	 * @since 1.0.0
-	 * @see   FactoryPages463_AdminPage
+	 * @see   FactoryPages475_AdminPage
 	 *
 	 * @var string
 	 */
@@ -202,6 +202,10 @@ class WCL_ClearfySettingsPage extends WCL_Page {
 	 */
 	public function gererateReportAction()
 	{
+		if( !current_user_can('manage_options') ) {
+            wp_die(__('You do not have sufficient permissions to perform this action!', 'clearfy'));
+		}
+
 		require_once(WCL_PLUGIN_DIR . '/includes/classes/class.zip-archive.php');
 
 		$reposts_dir = WCL_PLUGIN_DIR . '/reports';

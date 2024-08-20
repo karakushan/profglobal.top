@@ -5,7 +5,7 @@ if (!defined("ABSPATH")) {
 ?>
 <div class="wpdtool-accordion-item">
     <div class="fas wpdtool-accordion-title" data-wpdtool-selector="wpdtool-<?php echo $tool["selector"]; ?>">
-        <p><?php esc_html_e("Export / Import options", "wpdiscuz"); ?></p>                
+        <p><?php esc_html_e("Export / Import options", "wpdiscuz"); ?></p>
     </div>
 
     <div class="wpdtool-accordion-content">
@@ -16,10 +16,11 @@ if (!defined("ABSPATH")) {
                 <?php wp_nonce_field("wc_tools_form", "wpd-options-export"); ?>
                 <div class="wpdtool-block">
                     <div class="wpdtool-right">
-                        <input type="submit" name="wpdiscuz-export-submit" class="button button-primary" value="<?php esc_attr_e("Backup Options", "wpdiscuz"); ?>">
+                        <input type="submit" name="wpdiscuz-export-submit" class="button button-primary"
+                               value="<?php esc_attr_e("Backup Options", "wpdiscuz"); ?>">
                     </div>
                     <div class="clearfix"></div>
-                    <input type="hidden" name="tools-action" value="export-options" />
+                    <input type="hidden" name="tools-action" value="export-options"/>
                 </div>
             </form>
         </div>
@@ -33,10 +34,11 @@ if (!defined("ABSPATH")) {
                         <input type="file" name="wpdiscuz-options-file" class="" style="vertical-align: top;"/>
                     </div>
                     <div class="wpdtool-right">
-                        <input type="submit" name="wpdiscuz-import-submit" class="button button-primary" value="<?php esc_attr_e("Import Options", "wpdiscuz"); ?>">
+                        <input type="submit" name="wpdiscuz-import-submit" class="button button-primary"
+                               value="<?php esc_attr_e("Import Options", "wpdiscuz"); ?>">
                     </div>
                     <div class="clearfix"></div>
-                    <input type="hidden" name="tools-action" value="import-options" />
+                    <input type="hidden" name="tools-action" value="import-options"/>
                 </div>
             </form>
         </div>

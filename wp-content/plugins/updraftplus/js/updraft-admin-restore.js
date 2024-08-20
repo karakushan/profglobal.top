@@ -27,6 +27,7 @@ jQuery(function($) {
 
 		var xhttp = new XMLHttpRequest();
 		var xhttp_data = 'action=' + action + '&updraftplus_ajax_restore=do_ajax_restore&job_id=' + job_id;
+		if ('updraft_ajaxrestore' === action) xhttp_data += '&nonce=' + updraft_credentialtest_nonce;
 		var previous_data_length = 0;
 		var show_alert = true;
 		var debug = $('#updraftplus_ajax_restore_debug').length;
@@ -214,7 +215,7 @@ jQuery(function($) {
 	}
 
 	/**
-	 * This function will update the time in the front end that we last recived data, after 120 seconds call the resume restore notice
+	 * This function will update the time in the front end that we last received data, after 120 seconds call the resume restore notice
 	 */
 	function updraft_restore_update() {
 		var current_time = Math.round(Date.now() / 1000);

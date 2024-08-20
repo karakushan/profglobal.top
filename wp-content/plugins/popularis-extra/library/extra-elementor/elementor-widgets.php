@@ -38,6 +38,9 @@ final class Popularis_Elementor_Extension {
 
         require_once POPULARIS_EXTRA_PATH . 'library/extra-elementor/elementor-widgets/text-block.php';
         \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Popularis_Text_Block());
+		
+		require_once POPULARIS_EXTRA_PATH . 'library/extra-elementor/elementor-widgets/heading.php';
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Popularis_Heading());
     }
 
     /**

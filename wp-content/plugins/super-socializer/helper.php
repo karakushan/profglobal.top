@@ -203,7 +203,7 @@ add_action('admin_init', 'the_champ_options_init');
  */	
 function the_champ_admin_scripts(){
 	?>
-	<script>var theChampWebsiteUrl = '<?php echo esc_url(home_url()) ?>', theChampHelpBubbleTitle = "<?php echo __('Click to toggle help', 'super-socializer') ?>"; </script>
+	<script>var theChampWebsiteUrl = '<?php echo esc_url(home_url()) ?>', theChampHelpBubbleTitle = "<?php echo __('Click to toggle help', 'super-socializer') ?>", theChampClearShorturlCacheNonce = "<?php echo wp_create_nonce('the_champ_clear_shorturl_cache_nonce') ?>", theChampClearShareCountCacheNonce = "<?php echo wp_create_nonce('heateor_ss_clear_share_count_cache') ?>"; </script>
 	<?php
 	wp_enqueue_script('the_champ_admin_script', plugins_url('js/admin/admin.js', __FILE__), array('jquery', 'jquery-ui-tabs'), THE_CHAMP_SS_VERSION);
 }
@@ -544,14 +544,14 @@ function the_champ_account_linking(){
 				$regRedirectionUrl = the_champ_get_login_redirection_url('', true);
 				global $theChampSteamLogin;
 				$html .= '<style type="text/css">#ss_openid{border:1px solid gray;display:inline;font-family:"Trebuchet MS";font-size:12px;width:98%;padding:.35em .325em .75em;margin-bottom:20px}#ss_openid form{margin-top:25px;margin-left:0;padding:0;background:transparent;-webkit-box-shadow:none;box-shadow:none}#ss_openid input{font-family:"Trebuchet MS";font-size:12px;width:100px;float:left}#ss_openid input[type=submit]{background:#767676;padding:.75em 2em;border:0;-webkit-border-radius:2px;border-radius:2px;-webkit-box-shadow:none;box-shadow:none;color:#fff;cursor:pointer;display:inline-block;font-weight:800;line-height:1;text-shadow:none;-webkit-transition:background .2s;transition:background .2s}#ss_openid legend{color:#FF6200;float:left;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:table;max-width:100%;padding:0;white-space:normal}#ss_openid input.openid_login{background-color:#fff;background-position:0 50%;color:#000;width:220px;margin-right:10px;height:30px;margin-bottom:5px;background:#fff;background-image:-webkit-linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0));border:1px solid #bbb;-webkit-border-radius:3px;border-radius:3px;display:block;padding:.7em;line-height:1.5}#ss_openid a{color:silver}#ss_openid a:hover{color:#5e5e5e}</style>';
-				$html .= '<script>var theChampLoadingImgPath = "' .$loadingImagePath. '"; var theChampAjaxUrl = "' .$theChampAjaxUrl. '"; var theChampRedirectionUrl = "' .$redirectionUrl. '"; var theChampRegRedirectionUrl = "' .$regRedirectionUrl. '", theChampSteamAuthUrl = "' .($theChampSteamLogin ? $theChampSteamLogin->url( esc_url(home_url()).'?SuperSocializerSteamAuth='.$twitterRedirect ) : ''). '"; var heateorMSEnabled = 0, theChampTwitterAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Twitter&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampLineAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Line&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampLiveAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Live&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampFacebookAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Facebook&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampYahooAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Yahoo&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampGoogleAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Google&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampYoutubeAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Youtube&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampVkontakteAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Vkontakte&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampLinkedinAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Linkedin&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampInstagramAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Instagram&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampWordpressAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Wordpress&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampDribbbleAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Dribbble&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampGithubAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Github&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampSpotifyAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Spotify&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampKakaoAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Kakao&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampTwitchAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Twitch&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampDropboxAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Dropbox&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampRedditAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Reddit&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampFoursquareAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Foursquare&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampDisqusAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Disqus&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampAmazonAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Amazon&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampStackoverflowAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Stackoverflow&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampDiscordAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Discord&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampMailruAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Mailru&super_socializer_redirect_to=" + theChampCurrentPageUrl</script>';
+				$html .= '<script>var theChampLoadingImgPath = "' .$loadingImagePath. '"; var theChampAjaxUrl = "' .$theChampAjaxUrl. '"; var theChampRedirectionUrl = "' .$redirectionUrl. '"; var theChampRegRedirectionUrl = "' .$regRedirectionUrl. '", theChampSteamAuthUrl = "' .($theChampSteamLogin ? $theChampSteamLogin->url( esc_url(home_url()).'?SuperSocializerSteamAuth='.$twitterRedirect ) : ''). '"; var heateorMSEnabled = 0, theChampTwitterAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Twitter&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampLineAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Line&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampLiveAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Live&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampFacebookAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Facebook&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampYahooAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Yahoo&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampGoogleAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Google&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampYoutubeAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Youtube&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampVkontakteAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Vkontakte&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampLinkedinAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Linkedin&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampInstagramAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Instagram&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampWordpressAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Wordpress&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampDribbbleAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Dribbble&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampGithubAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Github&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampSpotifyAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Spotify&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampKakaoAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Kakao&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampTwitchAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Twitch&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampDropboxAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Dropbox&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampRedditAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Reddit&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampFoursquareAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Foursquare&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampDisqusAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Disqus&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampAmazonAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Amazon&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampStackoverflowAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Stackoverflow&super_socializer_redirect_to=" + theChampCurrentPageUrl,theChampDiscordAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Discord&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampMailruAuthUrl = theChampSiteUrl + "?SuperSocializerAuth=Mailru&super_socializer_redirect_to=" + theChampCurrentPageUrl, theChampUnlinkNonce = "'. wp_create_nonce('heateor_ss_unlink_nonce') .'";</script>';
 				$userVerified = false;
 				$ajaxUrl = 'admin-ajax.php';
 				$notification = '';
 				wp_enqueue_script('the_champ_sl_common', plugins_url('js/front/social_login/common.js', __FILE__), array('jquery'), THE_CHAMP_SS_VERSION);
+				// linking functions
+				wp_enqueue_script('the_champ_ss_linking_script', plugins_url('js/front/social_login/linking.js', __FILE__), array('jquery'), THE_CHAMP_SS_VERSION);
 			}
-			// linking functions
-			wp_enqueue_script('the_champ_ss_linking_script', plugins_url('js/front/social_login/linking.js', __FILE__), array('jquery'), THE_CHAMP_SS_VERSION);
 			$html .= '<style type="text/css">table.heateor-ss-table td{padding: 10px;}div.heateor_ss_sl_optin_container a{color:blue}div.heateor_ss_sl_optin_container label{font-size:11px;font-weight:normal}input.heateor_ss_social_login_optin{vertical-align:middle}@media screen and (max-width:783px){div.heateor_ss_sl_optin_container{margin-top:10px}div.super-socializer-linking-container{width:99%}div.super-socializer-linking-container table td{display:table-cell}}</style>';
 
 			$html .= '<div class="metabox-holder columns-2 super-socializer-linking-container" id="post-body">
@@ -639,13 +639,13 @@ function the_champ_account_linking(){
 	                            		if($primarySocialNetwork && $primarySocialId){
 	                            			$current = get_user_meta($user_ID, 'thechamp_current_id', true) == get_user_meta($user_ID, 'thechamp_social_id', true);
 		                            		$html .= '<tr>
-		                            		<td style="padding: 0">'. ($current ? '<strong>'.__('Currently', 'super-socializer').' </strong>' : '').__('Connected with', 'super-socializer').' <strong>'. ucfirst($primarySocialNetwork).'</strong></td><td><input type="button" onclick="theChampUnlink(this, \''.$primarySocialNetwork .'\')" value="'.__('Remove', 'super-socializer').'" /></td></tr>';
+		                            		<td style="padding: 0">'. ($current ? '<strong>'.__('Currently', 'super-socializer').' </strong>' : '').__('Connected with', 'super-socializer').' <strong>'. ($primarySocialNetwork == 'twitter' ? 'X' : ucfirst($primarySocialNetwork)).'</strong></td><td><input type="button" onclick="theChampUnlink(this, \''.$primarySocialNetwork .'\')" value="'.__('Remove', 'super-socializer').'" /></td></tr>';
 	                            		}
 	                            		if(is_array($linkedAccounts) && count($linkedAccounts) > 0){
 	                            			foreach($linkedAccounts as $key => $value){
 		                            			$current = get_user_meta($user_ID, 'thechamp_current_id', true) == $value;
 		                            			$html .= '<tr>
-		                            			<td style="padding: 0">'. ($current ? '<strong>'.__('Currently', 'super-socializer').' </strong>' : '').__('Connected with', 'super-socializer').' <strong>'. ucfirst($key).'</strong></td><td><input type="button" onclick="theChampUnlink(this, \''.$key .'\')" value="'.__('Remove', 'super-socializer').'" /></td></tr>';
+		                            			<td style="padding: 0">'. ($current ? '<strong>'.__('Currently', 'super-socializer').' </strong>' : '').__('Connected with', 'super-socializer').' <strong>'. ($key == 'twitter' ? 'X' : ucfirst($key)) .'</strong></td><td><input type="button" onclick="theChampUnlink(this, \''.$key .'\')" value="'.__('Remove', 'super-socializer').'" /></td></tr>';
 		                            		}
 	                            		}
 	                            		$html .= '</tbody>
@@ -681,8 +681,8 @@ function the_champ_user_profile_account_linking(){
  * Unlink the social account
  */
 function the_champ_unlink(){
-	if(isset($_POST['provider'])){
-		global $user_ID;
+	global $user_ID;
+	if(isset($_POST['provider']) && check_ajax_referer('heateor_ss_unlink_nonce', 'nonce') !== false && isset($user_ID) && $user_ID > 0){
 		$linkedAccounts = get_user_meta($user_ID, 'thechamp_linked_accounts', true);
 		$primarySocialNetwork = get_user_meta($user_ID, 'thechamp_provider', true);
 		if($linkedAccounts || $primarySocialNetwork){
@@ -957,8 +957,10 @@ add_action('bp_before_profile_avatar_upload_content', 'the_champ_social_avatar_o
  * Clear short url cache
  */
 function the_champ_clear_shorturl_cache(){
-	global $wpdb;
-	$wpdb->query("DELETE FROM $wpdb->postmeta WHERE meta_key = '_the_champ_ss_bitly_url'");
+	if(current_user_can('administrator') && check_ajax_referer('the_champ_clear_shorturl_cache_nonce', 'nonce') !== false){
+		global $wpdb;
+		$wpdb->query("DELETE FROM $wpdb->postmeta WHERE meta_key = '_the_champ_ss_bitly_url'");	
+	}
 	die;
 }
 add_action('wp_ajax_the_champ_clear_shorturl_cache', 'the_champ_clear_shorturl_cache');
@@ -967,8 +969,10 @@ add_action('wp_ajax_the_champ_clear_shorturl_cache', 'the_champ_clear_shorturl_c
  * Clear share counts cache
  */
 function heateor_ss_clear_share_count_cache(){
-	global $wpdb;
-	$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_heateor_ss_share_count_%'" );
+	if(current_user_can('administrator') && check_ajax_referer('heateor_ss_clear_share_count_cache', 'nonce') !== false){
+		global $wpdb;
+		$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_heateor_ss_share_count_%'" );
+	}
 	die;
 }
 add_action('wp_ajax_heateor_ss_clear_share_count_cache', 'heateor_ss_clear_share_count_cache');
@@ -1071,6 +1075,7 @@ function heateor_ss_delete_social_profile_script(){
                     type: 'GET',
                     url: '<?php echo get_admin_url() ?>admin-ajax.php',
                     data: {
+                    	nonce: '<?php echo wp_create_nonce('heateor_ss_delete_social_profile_nonce') ?>',
                         action: 'heateor_ss_delete_social_profile',
                         user_id: userId
                     },
@@ -1093,7 +1098,7 @@ add_action('admin_head', 'heateor_ss_delete_social_profile_script');
  * Delete social profile of the user
  */
 function heateor_ss_delete_social_profile(){
-	if(isset($_GET['user_id'])){
+	if(current_user_can('administrator') && check_ajax_referer('heateor_ss_delete_social_profile_nonce', 'nonce') !== false && isset($_GET['user_id'])){
 		$userId = intval(trim($_GET['user_id']));
 		global $wpdb;
 		$wpdb->query($wpdb->prepare('DELETE FROM '.$wpdb->prefix.'usermeta WHERE user_id = %d and meta_key LIKE "thechamp%"', $userId));

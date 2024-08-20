@@ -4,7 +4,7 @@
  *
  * @param {string}   action   - the action to send
  * @param {*}        data     - data to send
- * @param {Function} callback - will be called with the results
+ * @param {Function} callback - if specified, will be called with the results
  * @param {object}   options  -further options. Relevant properties include:
  * - [json_parse=true] - whether to JSON parse the results
  * - [alert_on_error=true] - whether to show an alert box if there was a problem (otherwise, suppress it)
@@ -62,7 +62,10 @@ function updraft_send_command(action, data, callback, options) {
 					} else {
 						console.log(e);
 						console.log(response);
-						if (options.alert_on_error) { alert(updraftlion.unexpectedresponse+' '+response); }
+						if (options.alert_on_error) {
+							if ('string' === typeof response && response.match(/security\scheck\s?/i)) response += ' (' + updraftlion.expired_tokens + ' ' + updraftlion.reload_page + ')';
+							alert(updraftlion.unexpectedresponse+' '+response);
+						}
 						return;
 					}
 				}
@@ -443,14 +446,14 @@ function updraft_delete_old_dirs() {
 }
 
 function updraft_initiate_restore(whichset) {
-	jQuery('#updraft-navtab-backups-content .updraft_existing_backups button[data-backup_timestamp="'+whichset+'"]').trigger('click');
+	jQuery('#updraft-navtab-backups-content .updraft_existing_backups .restore-button button[data-backup_timestamp="'+whichset+'"]').trigger('click');
 }
 
 function updraft_restore_setoptions(entities) {
 	var howmany = 0;
 	jQuery('input[name="updraft_restore[]"]').each(function(x,y) {
 		var entity = jQuery(y).val();
-		var epat = entity+'=([0-9,]+)';
+		var epat = '\/'+entity+'=([0-9,]+)';
 		var eregex = new RegExp(epat);
 		var ematch = entities.match(eregex);
 		if (ematch) {
@@ -541,9 +544,14 @@ function update_file_entities_checkboxes(incremental, entities) {
 			var name = jQuery(this).attr('name');
 			if (name.substring(0, 16) != 'updraft_include_') { return; }
 			var entity = name.substring(16);
-			jQuery('#backupnow_files_updraft_include_' + entity).prop('disabled', false);
-			if (jQuery('#updraft_include_' + entity).is(':checked')) {
-				jQuery('#backupnow_files_updraft_include_' + entity).prop('checked', true);
+			if (typeof jQuery('#backupnow_files_updraft_include_' + entity).data('force_disabled') == 'undefined') {
+				jQuery('#backupnow_files_updraft_include_' + entity).prop('disabled', false);
+				if (jQuery('#updraft_include_' + entity).is(':checked')) {
+					jQuery('#backupnow_files_updraft_include_' + entity).prop('checked', true);
+				}
+			} else {
+				jQuery('#backupnow_files_updraft_include_' + entity).prop('disabled', true);
+				jQuery('#backupnow_files_updraft_include_' + entity).prop('checked', false);
 			}
 		});
 	}
@@ -570,6 +578,25 @@ var php_max_input_vars = 0;
 var skipped_db_scan = 0;
 
 var updraft_settings_form_changed = false;
+var save_button_added = false;
+
+function load_save_button() {
+	if (updraft_settings_form_changed && !save_button_added) {
+		save_button_added = true;
+		jQuery('#updraft-navtab-settings-content').prepend('<input style="position:fixed;top:46px; right:20px;z-index: 999999;" type="button" class="button-primary" id="updraftplus-floating-settings-save" value="'+updraftlion.save_changes+'">');
+		jQuery("#updraft-navtab-settings-content").on('click', '#updraftplus-floating-settings-save', function() {
+			jQuery("#updraftplus-settings-save").trigger('click');
+			jQuery("#updraftplus-floating-settings-save").remove();
+			save_button_added = false;
+		});
+		
+		jQuery("#updraftplus-settings-save").on('click', function() {
+			jQuery("#updraftplus-floating-settings-save").remove();
+			save_button_added = false;
+		});
+
+	}
+}
 window.onbeforeunload = function(e) {
 	if (updraft_settings_form_changed) return updraftlion.unsavedsettings;
 }
@@ -720,7 +747,7 @@ var updraft_backups_selection = {};
 	/**
 	 * Multiple range selection event handler that gets executed when hovering the mouse over the row of existing backups. This function highlights the rows with color
 	 */
-	updraft_backups_selection.hightlight_backup_rows = function() {
+	updraft_backups_selection.highlight_backup_rows = function() {
 		if ("undefined" === typeof updraft_backups_selection.firstMultipleSelectionIndex) return;
 		if (!$(this).hasClass('range-selection') && !$(this).hasClass('backuprowselected')) $(this).addClass('range-selection');
 		$(this).siblings().removeClass('range-selection');
@@ -739,8 +766,8 @@ var updraft_backups_selection = {};
 		if ("undefined" === typeof updraft_backups_selection.firstMultipleSelectionIndex) return;
 		delete updraft_backups_selection.firstMultipleSelectionIndex;
 		$('#updraft-navtab-backups-content .updraft_existing_backups .updraft_existing_backups_row').removeClass('range-selection range-selection-start');
-		$('#updraft-navtab-backups-content').off('mouseenter', '.updraft_existing_backups .updraft_existing_backups_row', this.hightlight_backup_rows);
-		$('#updraft-navtab-backups-content').off('mouseleave', '.updraft_existing_backups .updraft_existing_backups_row', this.hightlight_backup_rows);
+		$('#updraft-navtab-backups-content').off('mouseenter', '.updraft_existing_backups .updraft_existing_backups_row', this.highlight_backup_rows);
+		$('#updraft-navtab-backups-content').off('mouseleave', '.updraft_existing_backups .updraft_existing_backups_row', this.highlight_backup_rows);
 		$(document).off('mouseleave', this.unregister_highlight_mode);
 	}
 
@@ -749,8 +776,8 @@ var updraft_backups_selection = {};
 	 */
 	updraft_backups_selection.register_highlight_mode = function() {
 		$(document).on('mouseleave', updraft_backups_selection.unregister_highlight_mode);
-		$('#updraft-navtab-backups-content').on('mouseenter', '.updraft_existing_backups .updraft_existing_backups_row', updraft_backups_selection.hightlight_backup_rows);
-		$('#updraft-navtab-backups-content').on('mouseleave', '.updraft_existing_backups .updraft_existing_backups_row', updraft_backups_selection.hightlight_backup_rows);
+		$('#updraft-navtab-backups-content').on('mouseenter', '.updraft_existing_backups .updraft_existing_backups_row', updraft_backups_selection.highlight_backup_rows);
+		$('#updraft-navtab-backups-content').on('mouseleave', '.updraft_existing_backups .updraft_existing_backups_row', updraft_backups_selection.highlight_backup_rows);
 	}
 })(jQuery);
 // @codingStandardsIgnoreEnd
@@ -1556,7 +1583,7 @@ function updraft_downloader(base, backup_timestamp, what, whicharea, set_content
 		async: async
 	}
 
-	updraft_send_command('updraft_download_backup', data, function (response) {}, options);
+	updraft_send_command('updraft_download_backup', data, null, options);
 
 	// We don't want the form to submit as that replaces the document
 	return false;
@@ -1804,7 +1831,7 @@ function updraft_downloader_status_update(download_status, response_raw) {
 						timeout: 10000
 					};
 
-					updraft_send_command('updraft_download_backup', data, function (response) {}, options);
+					updraft_send_command('updraft_download_backup', data, null, options);
 
 					jQuery(stid_selector).data('lasttimebegan', (new Date).getTime());
 				}
@@ -1825,7 +1852,7 @@ function updraft_downloader_status_update(download_status, response_raw) {
 				} else if (dstatus.p < 100 || dstatus.base != 'uddlstatus_') {
 					jQuery(stid_selector + ' .raw').html(dstatus.m);
 				} else {
-					var file_ready_actions = updraftlion.fileready + ' ' + updraftlion.actions + ': \
+					var file_ready_actions = updraftlion.fileready + ' ' + '(size: ' + convert_numeric_size_to_text(dstatus.s) + '). ' + updraftlion.actions + ':\
 				<button class="button" type="button" onclick="updraftplus_downloadstage2(\''+ dstatus.timestamp + '\', \'' + dstatus.what + '\', \'' + dstatus.findex + '\')\">' + updraftlion.downloadtocomputer + '</button> \
 				<button class="button" id="uddownloaddelete_'+ dstatus.timestamp + '_' + dstatus.what + '" type="button" onclick="updraftplus_deletefromserver(\'' + dstatus.timestamp + '\', \'' + dstatus.what + '\', \'' + dstatus.findex + '\')\">' + updraftlion.deletefromserver + '</button>';
 
@@ -1846,6 +1873,24 @@ function updraft_downloader_status_update(download_status, response_raw) {
 	});
 
 	return cancel_repeat;
+}
+
+/**
+ * Converts a number of bytes into a suitable textual unit value
+ *
+ * @param {long} bytes
+ * @returns string
+ */
+function convert_numeric_size_to_text(bytes) {
+	if (1024 > bytes) {
+		return bytes + " b";
+	} else if (1024 * 1024 >bytes) {
+		return (bytes / 1024).toFixed(2) + " KB";
+	} else if (1024 * 1024 * 1024 > bytes ) {
+		return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+	} else {
+		return (bytes / (1024 * 1024 * 1024)).toFixed(2) + " GB";
+	}
 }
 
 /**
@@ -1888,11 +1933,15 @@ function updraft_backupnow_go(backupnow_nodb, backupnow_nofiles, backupnow_noclo
 	params.incremental = (typeof extradata.incremental !== 'undefined') ? extradata.incremental : 0;
 	delete extradata.incremental;
 
-	params.db_anon_all = (typeof extradata.db_anon_all !== 'undefined') ? extradata.db_anon_all : 0;
-	delete extradata.db_anon_all;
+	params.db_anon_all = (typeof extradata.db_anon !== 'undefined' && typeof extradata.db_anon.all !== 'undefined') ? extradata.db_anon.all : 0;
+	params.db_anon_non_staff = (typeof extradata.db_anon !== 'undefined' && typeof extradata.db_anon.non_staff !== 'undefined') ? extradata.db_anon.non_staff : 0;
+	params.db_anon_wc_orders = (typeof extradata.db_anon !== 'undefined' && typeof extradata.db_anon.wc_orders !== 'undefined') ? extradata.db_anon.wc_orders : 0;
+	if ('undefined' !== typeof extradata.db_anon) {
+		delete extradata.db_anon.all;
+		delete extradata.db_anon.non_staff;
+		delete extradata.db_anon.wc_orders;
+	}
 
-	params.db_anon_non_staff = (typeof extradata.db_anon_non_staff !== 'undefined') ? extradata.db_anon_non_staff : 0;
-	delete extradata.db_anon_non_staff;
 
 	// Display Request start message
 	if (!jQuery('.updraft_requeststart').length) {
@@ -1967,55 +2016,52 @@ jQuery(function($) {
 	
 	// Update WebDAV URL as user edits
 	$('#updraft-navtab-settings-content #remote-storage-holder').on('change keyup paste', '.updraft_webdav_settings', function() {
-		var updraft_webdav_settings = [];
-		$('.updraft_webdav_settings').each(function(index, item) {
-			
-			var id = $(item).attr('id');
-			
-			if (id && 'updraft_webdav_' == id.substring(0, 15)) {
-				var which_one = id.substring(15);
-				id_split = which_one.split('_');
-				which_one = id_split[0];
-				var instance_id = id_split[1];
-				if ('undefined' == typeof updraft_webdav_settings[instance_id]) updraft_webdav_settings[instance_id] = [];
-				updraft_webdav_settings[instance_id][which_one] = this.value;
-			}
-		});
-
-		var updraft_webdav_url = "";
-		var host = "@";
-		var slash = "/";
-		var colon = ":";
-		var colon_port = ":";
-
-		for (var instance_id in updraft_webdav_settings) {
-			
-			if (updraft_webdav_settings[instance_id]['host'].indexOf("@") >= 0 || "" === updraft_webdav_settings[instance_id]['host']) {
-				host = "";
-			}
-			if (updraft_webdav_settings[instance_id]['host'].indexOf("/") >= 0) {
+		var attr_id = $(this).attr('id');
+		if ('string' !== typeof attr_id) return;
+		var parsed_attr_id = attr_id.match(/updraft_webdav_(.+)_(s-[^_]+)$/i);
+		if (!parsed_attr_id || !parsed_attr_id[1] || !parsed_attr_id[2]) return;
+		var instance_id = parsed_attr_id[2],
+			webdav_input = parsed_attr_id[1].toLowerCase(),
+			masked_password = '';
+		
+		if ('host' === webdav_input) {
+			$('.webdav-'+instance_id+' .updraft_webdav_host_error').hide();
+			if ($(this).val().indexOf("@") >= 0) {
+				$(this).val($(this).val().replaceAll('@', encodeURIComponent('@')));
+			} else if ($(this).val().indexOf("/") >= 0) {
+				$(this).val($(this).val().replaceAll('/', ''));
 				$('.webdav-'+instance_id+' .updraft_webdav_host_error').show();
-			} else {
-				$('.webdav-'+instance_id+' .updraft_webdav_host_error').hide();
 			}
-			
-			if (0 == updraft_webdav_settings[instance_id]['path'].indexOf("/") || "" === updraft_webdav_settings[instance_id]['path']) {
-				slash = "";
-			}
-			
-			if ("" === updraft_webdav_settings[instance_id]['user'] || "" === updraft_webdav_settings[instance_id]['pass']) {
-				colon = "";
-			}
-			
-			if ("" === updraft_webdav_settings[instance_id]['host'] || "" === updraft_webdav_settings[instance_id]['port']) {
-				colon_port = "";
-			}
-			
-			updraft_webdav_url = updraft_webdav_settings[instance_id]['webdav'] + updraft_webdav_settings[instance_id]['user'] + colon + updraft_webdav_settings[instance_id]['pass'] + host +encodeURIComponent(updraft_webdav_settings[instance_id]['host']) + colon_port + updraft_webdav_settings[instance_id]['port'] + slash + updraft_webdav_settings[instance_id]['path'];
-			masked_webdav_url = updraft_webdav_settings[instance_id]['webdav'] + updraft_webdav_settings[instance_id]['user'] + colon + updraft_webdav_settings[instance_id]['pass'].replace(/./gi,'*') + host +encodeURIComponent(updraft_webdav_settings[instance_id]['host']) + colon_port + updraft_webdav_settings[instance_id]['port'] + slash + updraft_webdav_settings[instance_id]['path'];
-			$('#updraft_webdav_url_' + instance_id).val(updraft_webdav_url);
-			$('#updraft_webdav_masked_url_' + instance_id).val(masked_webdav_url);
+		} else if ('path' === webdav_input && 0 == $(this).val().indexOf('/')) {
+			$(this).val($(this).val().replace(/^[\/]+/, ''));
 		}
+
+		var	webdav = $('#updraft_webdav_webdav_' + instance_id).val(),
+			host = $('#updraft_webdav_host_' + instance_id).val() || '',
+			user = $('#updraft_webdav_user_' + instance_id).val() || '',
+			password = $('#updraft_webdav_pass_' + instance_id).val() || '',
+			port = $('#updraft_webdav_port_' + instance_id).val() || '',
+			path = $('#updraft_webdav_path_' + instance_id).val() || '';
+
+		if (password) {
+			masked_password = password.replace(/./gi,'*');
+		}
+		if (user && password) {
+			user += ':';
+		}
+		if ((user || password) && host) {
+			masked_password += '@';
+			password += '@';
+		}
+		if (host && port) {
+			host += ':';
+		}
+		if (path) {
+			path = '/' + path;
+		}
+
+		$('#updraft_webdav_url_' + instance_id).val(webdav + user + password + host + port + path);
+		$('#updraft_webdav_masked_url_' + instance_id).val(webdav + user + masked_password + host + port + path);
 	});
 	
 	$('div.ud-phpseclib-notice').on('click', 'button.notice-dismiss', function (event) {
@@ -2328,6 +2374,7 @@ jQuery(function($) {
 		var use_queue = $('#updraftplus_clone_use_queue').is(':checked') ? 1 : 0;
 		var db_anon_all = $('#updraft-navtab-migrate-content .updraft_migrate_widget_module_content #updraftplus_clone_backupnow_db_anon_all').is(':checked') ? 1 : 0;
 		var db_anon_non_staff = $('#updraft-navtab-migrate-content .updraft_migrate_widget_module_content #updraftplus_clone_backupnow_db_anon_non_staff').is(':checked') ? 1 : 0;
+		var db_anon_wc_orders = $('#updraft-navtab-migrate-content .updraft_migrate_widget_module_content #updraftplus_clone_backupnow_db_anon_wc_order_data').is(':checked') ? 1 : 0;
 
 		var backup_nonce = 'current';
 		var backup_timestamp = 'current';
@@ -2358,6 +2405,7 @@ jQuery(function($) {
 		var backup_options = {
 			db_anon_all: db_anon_all,
 			db_anon_non_staff: db_anon_non_staff,
+			db_anon_wc_orders: db_anon_wc_orders,
 			clone_region: region
 		}
 
@@ -2778,7 +2826,7 @@ jQuery(function($) {
 			backupnow_nodb: 0,
 			backupnow_nofiles: 0,
 			backupnow_nocloud: 0,
-			backupnow_label: 'UpdraftPlus Clone',
+			backupnow_label: 'UpdraftClone',
 			extradata: '',
 			onlythisfileentity: 'plugins,themes,uploads,others',
 			clone_id: clone_id,
@@ -2789,6 +2837,7 @@ jQuery(function($) {
 			backup_timestamp: backup_timestamp,
 			db_anon_all: backup_options['db_anon_all'],
 			db_anon_non_staff: backup_options['db_anon_non_staff'],
+			db_anon_wc_orders: backup_options['db_anon_wc_orders'],
 			clone_region: backup_options['clone_region']
 		};
 
@@ -2857,6 +2906,7 @@ jQuery(function($) {
 		e.preventDefault();
 
 		updraft_settings_form_changed = true;
+		load_save_button();
 		
 		var method = $(this).data('method');
 		add_new_instance(method);
@@ -2866,6 +2916,7 @@ jQuery(function($) {
 		e.preventDefault();
 
 		updraft_settings_form_changed = true;
+		load_save_button();
 
 		var method = $(this).data('method');
 		var instance_id = $(this).data('instance_id');
@@ -2914,7 +2965,7 @@ jQuery(function($) {
 	function add_new_instance(method) {
 		var template = Handlebars.compile(updraftlion.remote_storage_templates[method]);
 		var context = {}; // Initiate a reference by assigning an empty object to a variable (in this case the context variable) so that it can be used as a target of merging one or more other objects. Unlike basic values (boolean, string, integer, etc.), in Javascript objects and arrays are passed by reference
-		// copy what are in the template properties to the context overwriting the same object properties, and then copy what are in the default instance settings to the context overwriting all the same properties from the previous merging opeartion (if any). The context properties are overwritten by other objects that have the same properties later in the parameters order
+		// copy what are in the template properties to the context overwriting the same object properties, and then copy what are in the default instance settings to the context overwriting all the same properties from the previous merging operation (if any). The context properties are overwritten by other objects that have the same properties later in the parameters order
 		Object.assign(context, updraftlion.remote_storage_options[method]['template_properties'], updraftlion.remote_storage_options[method]['default']);
 		var method_name = updraftlion.remote_storage_methods[method];
 		context['instance_id'] = 's-' + generate_instance_id(32);
@@ -2952,6 +3003,7 @@ jQuery(function($) {
 
 	jQuery('#updraft-navtab-settings-content #remote-storage-holder').on("change", "input[class='updraft_instance_toggle']", function () {
 		updraft_settings_form_changed = true;
+		load_save_button();
 		if (jQuery(this).is(':checked')) {
 			jQuery(this).siblings('label').html(updraftlion.instance_enabled);
 		} else {
@@ -2961,6 +3013,7 @@ jQuery(function($) {
 
 	jQuery('#updraft-navtab-settings-content #remote-storage-holder').on("change", "select[class='logic_type']", function () {
 		updraft_settings_form_changed = true;
+		load_save_button();
 		if ('' !== this.value) {
 			jQuery('div.logic', jQuery(this).parents('tr.updraftplusmethod')).show();
 			jQuery(this).parents('tr.updraftplusmethod').find('div.logic ul.rules > li').each(function() {
@@ -2980,6 +3033,7 @@ jQuery(function($) {
 
 	jQuery('#updraft-navtab-settings-content #remote-storage-holder').on("change", "select[class='conditional_logic_operand']", function () {
 		updraft_settings_form_changed = true;
+		load_save_button();
 		jQuery(this).parent().find('select:nth(2)').empty();
 		if ('day_of_the_week' === jQuery(this).val()) {
 			for (var i=0; i<updraftlion.conditional_logic.day_of_the_week_options.length; i++) {
@@ -2994,6 +3048,7 @@ jQuery(function($) {
 
 	jQuery('#updraft-navtab-settings-content #remote-storage-holder').on("click", "div.conditional_remote_backup ul.rules li span", function () {
 		updraft_settings_form_changed = true;
+		load_save_button();
 		var $ul = jQuery(this).parents('ul.rules');
 		if (jQuery(this).hasClass('remove-rule')) {
 			jQuery(this).parent().slideUp(function() {
@@ -3133,10 +3188,17 @@ jQuery(function($) {
 		}, { json_parse: false });
 	});
 	
-	jQuery("#updraft-navtab-settings-content form input:not('.udignorechange'), #updraft-navtab-settings-content form select").on('change', function(e) {
+	jQuery("#updraft-navtab-settings-content").on('input', "form input:not('.udignorechange'), form textarea:not('.udignorechange')", function(e) {
 		updraft_settings_form_changed = true;
+		load_save_button();
 	});
-	jQuery("#updraft-navtab-settings-content form input[type='submit']").on('click', function (e) {
+
+	jQuery("#updraft-navtab-settings-content").on('change', "form select", function(e) {
+		updraft_settings_form_changed = true;
+		load_save_button();
+	});
+
+	jQuery("#updraft-navtab-settings-content").on('click', "form input[type='submit']", function (e) {
 		updraft_settings_form_changed = false;
 	});
 	
@@ -3188,17 +3250,26 @@ jQuery(function($) {
 	
 	var updraft_delete_modal_buttons = {};
 	updraft_delete_modal_buttons[updraftlion.deletebutton] = function() {
-		updraft_remove_backup_sets(0, 0, 0, 0);
+		updraft_remove_backup_sets(0, 0, 0, 0, [], false);
 	};
 
 
-	function updraft_remove_backup_sets(deleted_counter, backup_local, backup_remote, backup_sets) {
+	/**
+	 * Perform a manual backup sets deletion
+	 *
+	 * @param {integer} deleted_counter        - The total number of local and remote files that have successfully been removed already. This and the next three parameters are used recursively so that the final total can be displayed to the user in a display message.
+	 * @param {integer} backup_local           - The total number of local files that have been removed
+	 * @param {integer} backup_remote          - The total number of remote files that have successfully been removed
+	 * @param {integer} backup_sets            - The total number of backup sets that have been deleted
+	 * @param {array}   processed_instance_ids - An array that contains a group of storage instance IDs that have been processed
+	 * @param {boolean} is_continuation        - Whether or not the backup sets deletion is a continuation of an ongoing deletion
+	 */
+	function updraft_remove_backup_sets(deleted_counter, backup_local, backup_remote, backup_sets, processed_instance_ids, is_continuation) {
 		jQuery("#updraft-delete-modal").dialog('close');
 		var deleted_files_counter = deleted_counter;
 		var local_deleted = backup_local;
 		var remote_deleted = backup_remote;
 		var sets_deleted = backup_sets;
-		var timestamps = jQuery('#updraft_delete_timestamp').val().split(',');
 		var error_log_prompt = '';
 		
 		var form_data = jQuery('#updraft_delete_form').serializeArray();
@@ -3224,6 +3295,8 @@ jQuery(function($) {
 		jQuery('#updraft-delete-waitwarning').slideDown().addClass('active');
 
 		data.remote_delete_limit = updraftlion.remote_delete_limit;
+		data.processed_instance_ids = processed_instance_ids;
+		data.is_continuation = is_continuation;
 		
 		delete data.action;
 		delete data.subaction;
@@ -3249,7 +3322,7 @@ jQuery(function($) {
 				}
 				jQuery('#updraft_delete_timestamp').val(resp.timestamps);
 				jQuery('#updraft-deleted-files-total').text(deleted_files_counter + ' ' + updraftlion.remote_files_deleted);
-				updraft_remove_backup_sets(deleted_files_counter, local_deleted, remote_deleted, sets_deleted);
+				updraft_remove_backup_sets(deleted_files_counter, local_deleted, remote_deleted, sets_deleted, resp.processed_instance_ids, true);
 			} else if (resp.result == 'success') {
 
 				setTimeout(function() {
@@ -3266,9 +3339,10 @@ jQuery(function($) {
 				if (resp.hasOwnProperty('count_backups')) {
 					jQuery('#updraft-existing-backups-heading').html(updraftlion.existing_backups+' <span class="updraft_existing_backups_count">'+resp.count_backups+'</span>');
 				}
-				for (var i = 0; i < timestamps.length; i++) {
-					var timestamp = timestamps[i];
-					jQuery('#updraft-navtab-backups-content .updraft_existing_backups_row_'+timestamp).slideUp().remove();
+				var deleted_timestamps = resp.deleted_timestamps.split(',');
+				for (var i = 0; i < deleted_timestamps.length; i++) {
+					var timestamp = deleted_timestamps[i];
+					jQuery('#updraft-navtab-backups-content .updraft_existing_backups_row_' + timestamp).slideUp().remove();
 				}
 
 				updraft_backups_selection.checkSelectionStatus();
@@ -3386,57 +3460,59 @@ jQuery(function($) {
 					// whichselected.push([ 'wpcore', 0 ]);
 					// }
 					$('.updraft-restore--stages li').removeClass('active').eq(1).addClass('active');
-					$('#updraft-restore-modal-stage1').slideUp('slow');
-					$('#updraft-restore-modal-stage2').show();
-					updraft_restore_stage = 2;
-					var pretty_date = $('.updraft_restore_date').first().text();
-					// Create the downloader active widgets
-	
-					// See if we some are already known to be downloaded - in which case, skip creating the download widget. (That saves on HTTP round-trips, as each widget creates a new POST request. Of course, this is at the expense of one extra one here).
-					var which_to_download = whichselected;
-					var backup_timestamp = $('#updraft_restore_timestamp').val();
-	
-					try {
-						$('.updraft-restore--next-step').prop('disabled', true);
-						$('#updraft-restore-modal-stage2a').html('<span class="dashicons dashicons-update rotate"></span> '+updraftlion.maybe_downloading_entities);
-						updraft_send_command('whichdownloadsneeded', {
-							downloads: whichselected,
-							timestamp: backup_timestamp
-						}, function(response) {
-							$('.updraft-restore--next-step').prop('disabled', false);
-							if (response.hasOwnProperty('downloads')) {
-								console.log('UpdraftPlus: items which still require downloading follow');
-								which_to_download = response.downloads;
-								console.log(which_to_download);
-							}
-	
-							// Kick off any downloads, if needed
-							if (0 == which_to_download.length) {
-								updraft_restorer_checkstage2(0);
-							} else {
-								for (var i=0; i<which_to_download.length; i++) {
-									// updraft_downloader(base, backup_timestamp, what, whicharea, set_contents, prettydate, async)
-									updraft_downloader('udrestoredlstatus_', backup_timestamp, which_to_download[i][0], '#ud_downloadstatus2', which_to_download[i][1], pretty_date, false);
-								}
-							}
-
-						}, { alert_on_error: false, error_callback: function(response, status, error_code, resp) {
-								if (typeof resp !== 'undefined' && resp.hasOwnProperty('fatal_error')) {
-								console.error(resp.fatal_error_message);
-								$('#updraft-restore-modal-stage2a').html('<p style="color:red;">'+resp.fatal_error_message+'</p>');
-								} else {
-								var error_message = "updraft_send_command: error: "+status+" ("+error_code+")";
-								$('#updraft-restore-modal-stage2a').html('<p style="color:red; margin: 5px;">'+error_message+'</p>');
-								console.log(error_message);
-								console.log(response);
-								}
+					$('#updraft-restore-modal-stage1').slideUp('slow', function() {
+						$('#updraft-restore-modal-stage2').show(100, function() {
+							updraft_restore_stage = 2;
+							var pretty_date = $('.updraft_restore_date').first().text();
+							// Create the downloader active widgets
+			
+							// See if we some are already known to be downloaded - in which case, skip creating the download widget. (That saves on HTTP round-trips, as each widget creates a new POST request. Of course, this is at the expense of one extra one here).
+							var which_to_download = whichselected;
+							var backup_timestamp = $('#updraft_restore_timestamp').val();
+			
+							try {
+								$('.updraft-restore--next-step').prop('disabled', true);
+								$('#updraft-restore-modal-stage2a').html('<span class="dashicons dashicons-update rotate"></span> '+updraftlion.maybe_downloading_entities);
+								updraft_send_command('whichdownloadsneeded', {
+									downloads: whichselected,
+									timestamp: backup_timestamp
+								}, function(response) {
+									$('.updraft-restore--next-step').prop('disabled', false);
+									if (response.hasOwnProperty('downloads')) {
+										console.log('UpdraftPlus: items which still require downloading follow');
+										which_to_download = response.downloads;
+										console.log(which_to_download);
+									}
+			
+									// Kick off any downloads, if needed
+									if (0 == which_to_download.length) {
+										updraft_restorer_checkstage2(0);
+									} else {
+										for (var i=0; i<which_to_download.length; i++) {
+											// updraft_downloader(base, backup_timestamp, what, whicharea, set_contents, prettydate, async)
+											updraft_downloader('udrestoredlstatus_', backup_timestamp, which_to_download[i][0], '#ud_downloadstatus2', which_to_download[i][1], pretty_date, false);
+										}
+									}
+		
+								}, { alert_on_error: false, error_callback: function(response, status, error_code, resp) {
+										if (typeof resp !== 'undefined' && resp.hasOwnProperty('fatal_error')) {
+										console.error(resp.fatal_error_message);
+										$('#updraft-restore-modal-stage2a').html('<p style="color:red;">'+resp.fatal_error_message+'</p>');
+										} else {
+										var error_message = "updraft_send_command: error: "+status+" ("+error_code+")";
+										$('#updraft-restore-modal-stage2a').html('<p style="color:red; margin: 5px;">'+error_message+'</p>');
+										console.log(error_message);
+										console.log(response);
+										}
+									}
+								});
+							} catch (err) {
+								console.log("UpdraftPlus: error (follows) when looking for items needing downloading");
+								console.log(err);
+								alert(updraftlion.jsonnotunderstood);
 							}
 						});
-					} catch (err) {
-						console.log("UpdraftPlus: error (follows) when looking for items needing downloading");
-						console.log(err);
-						alert(updraftlion.jsonnotunderstood);
-					}
+					});
 	
 					// Make sure all are downloaded
 				} else if (2 == updraft_restore_stage) {
@@ -3618,6 +3694,7 @@ jQuery(function($) {
 		var backupnow_nocloud = jQuery('#backupnow_includecloud').is(':checked') ? 0 : 1;
 		var db_anon_all = jQuery('#backupnow_db_anon_all').is(':checked') ? 1 : 0;
 		var db_anon_non_staff = jQuery('#backupnow_db_anon_non_staff').is(':checked') ? 1 : 0;
+		var db_anon_wc_orders = jQuery('#backupnow_db_anon_wc_order_data').is(':checked') ? 1 : 0;
 		var onlythesetableentities = backupnow_whichtables_checked('');
 		var always_keep = jQuery('#always_keep').is(':checked') ? 1 : 0;
 		var incremental = ('incremental' == jQuery('#updraft-backupnow-modal').data('backup-type')) ? 1 : 0;
@@ -3675,7 +3752,7 @@ jQuery(function($) {
 			});
 		}, 1700);
 	
-		updraft_backupnow_go(backupnow_nodb, backupnow_nofiles, backupnow_nocloud, onlythesefileentities, {always_keep: always_keep, incremental: incremental, db_anon_all: db_anon_all, db_anon_non_staff: db_anon_non_staff}, jQuery('#backupnow_label').val(), onlythesetableentities, only_these_cloud_services);
+		updraft_backupnow_go(backupnow_nodb, backupnow_nofiles, backupnow_nocloud, onlythesefileentities, {always_keep: always_keep, incremental: incremental, db_anon: { all: db_anon_all, non_staff: db_anon_non_staff, wc_orders: db_anon_wc_orders }}, jQuery('#backupnow_label').val(), onlythesetableentities, only_these_cloud_services);
 	};
 	backupnow_modal_buttons[updraftlion.cancel] = function() {
 	jQuery(this).dialog("close"); };
@@ -3760,7 +3837,7 @@ jQuery(function($) {
 		var input = wrapper.find('input');
 		input.prop('readonly', false).trigger('focus');
 
-		// place carret at the end of the text
+		// place caret at the end of the text
 		var input_val = input.val();
 		input.val('');
 		input.val(input_val);
@@ -4361,7 +4438,7 @@ jQuery(function($) {
 			use_nonce: nonce,
 			use_timestamp: key,
 			services: services
-		}, function (response) {});
+		});
 
 	};
 
@@ -4500,11 +4577,56 @@ jQuery(function($) {
 	});
 	jQuery('.updraftmessage.admin-warning-litespeed').on('click', '.notice-dismiss', function(e) {
 		e.preventDefault();
-		updraft_send_command('dismiss_admin_warning_litespeed', 1, function (response) {});
+		updraft_send_command('dismiss_admin_warning_litespeed');
+	});
+	jQuery('.updraftmessage.admin-warning-pclzip').on('click', '.notice-dismiss', function(e) {
+		e.preventDefault();
+		updraft_send_command('dismiss_admin_warning_pclzip');
+	});
+	
+	function apply_search_on_db_size() {
+		var value = jQuery('.db-search').val().toLowerCase();
+		jQuery(".db-size-content tr").filter(function() {
+			jQuery(this).toggle(jQuery(this).text().toLowerCase().indexOf(value) > -1)
+		});
+	}
+
+	jQuery('#db_size.advanced_tools_button, .db-size-refresh').on('click', function(e) {
+		e.preventDefault();
+
+		var $total_size = jQuery('.advanced_settings_content .advanced_tools.db_size .total-size');
+		var $table_body = jQuery('.advanced_settings_content .advanced_tools.db_size tbody.db-size-content');
+
+		// trigger the ajax from the 'Database size' menu only for the first time
+		if (jQuery(this).hasClass('advanced_tools_button') && '' != $table_body.html()) { return; }
+		
+		$table_body.html('');
+
+		updraft_send_command('db_size', 1, function (response) {
+			$total_size.html(response.size);
+			$table_body.html(response.html);
+			apply_search_on_db_size();
+		});
+	});
+
+	jQuery('.db-search').on('input', function() {
+		apply_search_on_db_size();
+	});
+
+	jQuery('.db-search-clear').on('click', function(e) {
+		e.preventDefault();
+		jQuery('.db-search').val('');
+		apply_search_on_db_size();
+	});
+
+	jQuery('.updraft_restore_main').on('click', 'button#updraft_restore_abort', function(e) {
+		e.preventDefault();
+		jQuery('#updraft_restore_continue_action').val('updraft_restore_abort');
+		jQuery(this).parent('form').trigger('submit');
 	});
 });
 
-// UpdraftPlus Vault
+// UpdraftVault
 jQuery(function($) {
 	
 	var settings_css_prefix = '#updraft-navtab-settings-content ';
@@ -4817,7 +4939,7 @@ jQuery(function($) {
 	});
 
 	/**
-	 * Handlebars helper function to compare two values using a specifed operator
+	 * Handlebars helper function to compare two values using a specified operator
 	 *
 	 * @see https://stackoverflow.com/questions/8853396/logical-operator-in-a-handlebars-js-if-conditional#answer-16315366
 	 *
@@ -6023,4 +6145,133 @@ function updraft_process_status_check(resp, response_raw, original_parameters) {
 		console.log(updraftlion.unexpectedresponse+' '+response_raw);
 		console.log(err);
 	}
+}
+
+/**
+ * Creates an instance of the updraft_js_tree class.
+ *
+ * @constructor
+ * @param {string} remote_storage - The remote storage identifier.
+ */
+function updraft_js_tree(remote_storage) {
+
+	var self = this; // Store a reference to the object
+	self.remote_storage = remote_storage;
+
+	/**
+	 * Hides the jstree and related elements.
+	 *
+	 * @param {jQuery} parent - The parent element containing the jstree.
+	 */
+	this.hide_jstree = function(parent) {
+		parent.find('[id^="updraft_' + self.remote_storage + '_folder"]').removeAttr('readonly');
+			
+		parent.find('.updraft_' + self.remote_storage + '_select_folder').show();
+		parent.find('.updraft_' + self.remote_storage + '_container').hide();
+
+		// hide action buttons
+		parent.find('.updraft_jstree_cancel').hide();
+		parent.find('.updraft_jstree_confirm').hide();
+	};
+
+	/**
+	 * Gets the structured folder path based on the selected node in the jstree.
+	 *
+	 * @param {Object} selected_node - The selected node in the jstree.
+	 * @returns {string} The structured folder path.
+	 */
+	this.get_structured_folder = function(selected_node) {
+		var level = selected_node.node.parents.length;
+		var selected_id = selected_node.node.id;
+		var parent = jQuery("#" + selected_id);
+		var parents =  selected_node.node.text + '/';
+
+		for (var ln = 0; ln <= level -1; ln++) {
+			var parent = parent.parent().parent();
+			if (parent.children()[1] != undefined) {
+				parents = parent.children()[1].text + '/' + parents;
+			}
+		}
+		if (parents.length > 0) {
+			parents = parents.substring(0, parents.length - 1);
+		}
+
+		return parents;
+	};
+
+	/**
+	 * Lists folders from the remote storage and initializes the jstree.
+	 *
+	 * @param {string} entity - The entity type.
+	 * @param {jQuery} parent - The parent element where the jstree will be displayed.
+	 * @param {string} instance_id - The instance identifier.
+	 */
+	this.list_folders = function(entity, parent, instance_id) {
+		parent.find('[id^="updraft_' + self.remote_storage + '_folder"]').prop('readOnly', true);
+		parent.find('[id^="updraft_' + self.remote_storage + '_folder"]').attr('previous-value', parent.find('[id^="updraft_' + self.remote_storage + '_folder"]').val());
+
+		parent.find('.updraft_' + self.remote_storage + '_select_folder').hide();
+		parent.find('.updraft_' + self.remote_storage + '_container').show();
+
+		// show action buttons
+		parent.find('.updraft_jstree_cancel').show();
+		parent.find('.updraft_jstree_confirm').show();
+
+		// init jstree
+		parent.find('.updraft_' + self.remote_storage + '_jstree_container').jstree({
+			"core": {
+				"multiple": false,
+				"data": function (nodeid, callback) {
+					updraft_send_command('get_jstree_directory_nodes', {entity:entity, node:nodeid, instance_id:instance_id}, function(response) {
+						if (response.hasOwnProperty('error')) {
+							jQuery('.updraft_include_' + self.remote_storage + '_paths_error').text(response.error);
+						} else {
+							jQuery('.updraft_include_' + self.remote_storage + '_paths_error').text('');
+							callback.call(this, response.nodes);
+						}
+					});
+				}
+			},
+			'plugins' : ['sort','types'],
+			'sort' : function(a, b) {
+				a1 = this.get_node(a);
+				b1 = this.get_node(b);
+				if (a1.icon == b1.icon) {
+					return (a1.text > b1.text) ? 1 : -1;
+				} else {
+					return (a1.icon < b1.icon) ? 1 : -1;
+				}
+			},
+		});
+
+		// Detect change on the tree and update the input that has been marked as editing
+		parent.find('.updraft_' + self.remote_storage + '_jstree_container').on("changed.jstree", function (e, data) {
+			parent.find('[id^="updraft_' + self.remote_storage + '_folder"]').val(self.get_structured_folder(data));
+		});
+
+		parent.find('.updraft_' + self.remote_storage + '_jstree_confirm, .updraft_' + self.remote_storage + '_jstree_cancel').on('click', function(e) {
+			e.preventDefault();
+
+			if (jQuery(this).hasClass('updraft_' + self.remote_storage + '_jstree_cancel')) {
+				parent.find('[id^="updraft_' + self.remote_storage + '_folder"]').val(parent.find('[id^="updraft_' + self.remote_storage + '_folder"]').attr('previous-value'));
+			}
+			
+			self.hide_jstree(parent);
+		});
+	};
+
+	/**
+	 * Initializes the updraft_js_tree instance by setting up event handlers.
+	 */
+	this.init = function() {
+	  jQuery(function() {
+		jQuery('.updraft_' + self.remote_storage + '_select_folder').on('click', function(e) {
+		  e.preventDefault();
+		  var $parent = jQuery(this).closest('tr');
+		  var instance_id = $parent.find('[id^="updraft_' + self.remote_storage + '_folder_"]').attr('id').replace('updraft_' + self.remote_storage + '_folder_', '');
+		  self.list_folders(self.remote_storage, $parent, instance_id);
+		});
+	  });
+	};
+
 }

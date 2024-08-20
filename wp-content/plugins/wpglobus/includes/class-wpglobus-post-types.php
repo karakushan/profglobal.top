@@ -2,8 +2,8 @@
 /**
  * WPGlobus Post Types
  *
- * @package WPGlobus
  * @since   1.9.10
+ * @package WPGlobus
  */
 
 /**
@@ -19,6 +19,7 @@ class WPGlobus_Post_Types {
 	protected static $hidden_types_main = array(
 		/**
 		 * Built-in.
+		 *
 		 * @see create_initial_post_types() in wp-includes\post.php
 		 */
 		'attachment',
@@ -27,7 +28,8 @@ class WPGlobus_Post_Types {
 		'custom_css',
 		'customize_changeset',
 		'oembed_cache',
-		'user_request', // @since 1.9.17
+		'user_request',
+		// @since 1.9.17
 		// Custom types that do not need WPGlobus' tabbed interface or those that we cannot handle.
 		'scheduled-action',
 		'wp-types-group',
@@ -71,7 +73,8 @@ class WPGlobus_Post_Types {
 		// Elementor Pro: @since 2.3.1
 		'elementor_font',
 		'elementor_icons',
-		'elementor_snippet', // @since 2.7.11
+		'elementor_snippet',
+		// @since 2.7.11
 		// WPForms Lite: https://wordpress.org/plugins/wpforms-lite/ @since 2.3.6
 		'wpforms',
 		'wpforms_log',
@@ -130,7 +133,7 @@ class WPGlobus_Post_Types {
 		// Ninja Forms Contact Form - https://wordpress.org/plugins/ninja-forms/ @since 2.7.7
 		'nf_sub',
 		// Core - @see register_post_type `wp_navigation` in wp-includes\post.php  @since 2.8.10
-		'wp_navigation'
+		'wp_navigation',
 	);
 
 	/**
@@ -157,15 +160,17 @@ class WPGlobus_Post_Types {
 	public static function hidden_types() {
 
 		/**
+		 * Bodega
+		 *
 		 * @since 2.3.6
-		 * @see https://themeforest.net/item/bodega-a-stylish-theme-for-small-businesses/10276763
+		 * @link  https://themeforest.net/item/bodega-a-stylish-theme-for-small-businesses/10276763
 		 */
-		if ( defined('BODEGA_CORE_VERSION') ) {
+		if ( defined( 'BODEGA_CORE_VERSION' ) ) {
 			self::$hidden_types_main[] = 'testimonials';
 			self::$hidden_types_main[] = 'slides';
 			self::$hidden_types_main[] = 'carousels';
 		}
-		
+
 		$hidden_types = self::$hidden_types_main;
 
 		if ( class_exists( 'WooCommerce', false ) ) {
@@ -174,16 +179,12 @@ class WPGlobus_Post_Types {
 
 		/**
 		 * Filter for hidden post types.
-		 * @see filter `wpglobus_disabled_entities` in includes\class-wpglobus.php for admin.
+		 * See filter `wpglobus_disabled_entities` in includes\class-wpglobus.php for admin.
 		 *
 		 * @since 2.3.2
 		 *
 		 * @param array $hidden_types Array of hidden types.
 		 */
-		$hidden_types = apply_filters( 'wpglobus_hidden_types', $hidden_types );
-
-		return $hidden_types;
+		return apply_filters( 'wpglobus_hidden_types', $hidden_types );
 	}
 }
-
-# --- EOF

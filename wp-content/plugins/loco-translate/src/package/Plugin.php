@@ -118,7 +118,7 @@ class Loco_package_Plugin extends Loco_package_Bundle {
 
     /**
      * Get raw plugin data from WordPress registry, plus additional "basedir" field for resolving handle to actual file.
-     * @param string relative file path used as handle e.g. loco-translate/loco.php
+     * @param string $handle Relative file path used as handle e.g. loco-translate/loco.php
      * @return array
      */
     public static function get_plugin( $handle ){
@@ -180,23 +180,22 @@ class Loco_package_Plugin extends Loco_package_Bundle {
         ];
     }
 
-    
+
     /**
      * {@inheritdoc}
      */
-    public function setHandle( $slug ){
+    public function setHandle( $handle ){
         // plugin handles are relative paths from plugin directory to bootstrap file
         // so plugin is single file if its handle has no directory prefix
-        if( basename($slug) === $slug ){
+        if( basename($handle) === $handle ){
             $this->solo = true;
         }
         else {
             $this->solo = false;
         }
 
-        return parent::setHandle( $slug );
+        return parent::setHandle($handle);
     }
-
 
 
     /**
@@ -214,15 +213,14 @@ class Loco_package_Plugin extends Loco_package_Bundle {
                 $this->setBootstrapPath( $file->getPath() );
             }
         }
-
         return $this;
     }
 
 
     /**
-     * Create plugin bundle definition from WordPress plugin data 
+     * Create plugin bundle definition from WordPress plugin data.
      * 
-     * @param string plugin handle relative to plugin directory
+     * @param string $handle plugin handle relative to plugin directory
      * @return Loco_package_Plugin
      */
     public static function create( $handle ){
@@ -230,6 +228,7 @@ class Loco_package_Plugin extends Loco_package_Bundle {
         // plugin must be registered with at least a name and "basedir"
         $data = self::get_plugin($handle);
         if( ! $data ){
+            // translators: %s refers to the handle of a plugin, e.g. "loco-translate/loco.php"
             throw new Loco_error_Exception( sprintf( __('Plugin not found: %s','loco-translate'),$handle) );
         }
 
@@ -275,7 +274,7 @@ class Loco_package_Plugin extends Loco_package_Bundle {
             $boot->normalize( $data['basedir'] );
             // single file plugins can only match if given file is the plugin file itself.
             if( basename($handle) === $handle ){
-                if( $boot->getPath() === $file ){
+                if( $boot->getPath() === $find ){
                     return self::create($handle);
                 }
             }

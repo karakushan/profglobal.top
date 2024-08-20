@@ -1,8 +1,12 @@
 <?php
 
 /** COMMENTS WALKER */
-class WpdiscuzWalker extends Walker_Comment implements WpDiscuzConstants {
+class WpdiscuzWalker extends Walker_Comment implements WpDiscuzConstants
+{
 
+	/**
+	 * @var WpdiscuzHelper
+	 */
     private $helper;
     private $helperOptimization;
     private $dbManager;
@@ -12,7 +16,8 @@ class WpdiscuzWalker extends Walker_Comment implements WpDiscuzConstants {
     private $extra = [];
     private $feedbacks = [];
 
-    public function __construct($helper, $helperOptimization, $dbManager, $options, $cache) {
+    public function __construct($helper, $helperOptimization, $dbManager, $options, $cache)
+    {
         $this->helper = $helper;
         $this->helperOptimization = $helperOptimization;
         $this->dbManager = $dbManager;
@@ -21,7 +26,8 @@ class WpdiscuzWalker extends Walker_Comment implements WpDiscuzConstants {
     }
 
     /** START_EL */
-    public function start_el(&$output, $comment, $depth = 0, $args = [], $id = 0) {
+    public function start_el(&$output, $comment, $depth = 0, $args = [], $id = 0)
+    {
         $depth++;
         $GLOBALS["comment_depth"] = $depth;
         $GLOBALS["comment"] = $comment;
@@ -36,7 +42,7 @@ class WpdiscuzWalker extends Walker_Comment implements WpDiscuzConstants {
         $commentOutput = "";
         $depth = isset($args["addComment"]) ? $args["addComment"] : $depth;
         $uniqueId = $comment->comment_ID . "_" . $comment->comment_parent;
-        $commentWrapperClass = get_comment_class("wpd-comment",$comment->comment_ID, $comment->comment_post_ID);
+        $commentWrapperClass = get_comment_class("wpd-comment", $comment->comment_ID, $comment->comment_post_ID);
         $commentWrapClass = ["wpd-comment-wrap"];
 
         if (isset($this->extra[$comment->comment_ID]["metas"])) {
@@ -506,7 +512,8 @@ class WpdiscuzWalker extends Walker_Comment implements WpDiscuzConstants {
         $output .= apply_filters("wpdiscuz_comment_end", $commentOutput, $comment, $depth, $args);
     }
 
-    public function end_el(&$output, $comment, $depth = 0, $args = []) {
+    public function end_el(&$output, $comment, $depth = 0, $args = [])
+    {
         $output = apply_filters("wpdiscuz_thread_end", $output, $comment, $depth, $args);
         $output .= "</div>";
 

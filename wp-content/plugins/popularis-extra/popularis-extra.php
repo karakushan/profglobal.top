@@ -4,13 +4,13 @@
  * Plugin Name: Popularis Extra
  * Plugin URI: https://populariswp.com/
  * Description: Extra addon for Popularis Theme
- * Version: 1.2.1
+ * Version: 1.2.6
  * Author: Themes4WP
  * Author URI: https://themes4wp.com/
  * License: GPL-2.0+
  * WC requires at least: 3.3.0
- * WC tested up to: 7.0
- * Elementor tested up to: 3.8.0
+ * WC tested up to: 9.1
+ * Elementor tested up to: 3.23.0
  */
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
@@ -95,7 +95,7 @@ if (!popularis_extra_check_for_popularis_pro()) {
  * Register demo import
  */
 $theme = wp_get_theme();
-if ('Popularis' == $theme->name || 'popularis' == $theme->template ) {
+if ('Popularis' == $theme->name || 'popularis' == $theme->template || 'Popularis eCommerce' == $theme->name || 'popularis-ecommerce' == $theme->template ) {
     require_once( POPULARIS_EXTRA_PATH . 'includes/panel/demos.php' );
     require_once( POPULARIS_EXTRA_PATH . 'includes/wizard/wizard.php' );
     require_once( POPULARIS_EXTRA_PATH . 'includes/notify/notify.php' );
@@ -123,6 +123,7 @@ register_deactivation_hook(__FILE__, 'popularis_extra_deactivate');
 
 
 add_action('admin_init', 'popularis_extra_plugin_redirect');
+add_action( 'after_switch_theme', 'popularis_extra_plugin_redirect' );
 
 /**
  * Redirect after plugin activation
@@ -151,3 +152,10 @@ function popularis_extra_action_links($links) {
 
 remove_filter( 'wp_import_post_meta', 'Elementor\Compatibility::on_wp_import_post_meta');
 remove_filter( 'wxr_importer.pre_process.post_meta', 'Elementor\Compatibility::on_wxr_importer_pre_process_post_meta');
+
+// Declare support for features
+add_action( 'before_woocommerce_init', function () {
+	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+	}
+} );

@@ -50,23 +50,23 @@ final class REST_Routes {
 	public function register() {
 		add_action(
 			'rest_api_init',
-			function() {
+			function () {
 				$this->register_routes();
 			}
 		);
 
 		add_filter(
 			'do_parse_request',
-			function( $do_parse_request, $wp ) {
+			function ( $do_parse_request, $wp ) {
 				add_filter(
 					'query_vars',
-					function( $vars ) use ( $wp ) {
+					function ( $vars ) use ( $wp ) {
 						// Unsets standard public query vars to escape conflicts between WordPress core
 						// and Google Site Kit APIs which happen when WordPress incorrectly parses request
 						// arguments.
 
 						$unset_vars = ( $wp->request && stripos( $wp->request, trailingslashit( rest_get_url_prefix() ) . self::REST_ROOT ) !== false ) // Check regular permalinks.
-							|| ( empty( $wp->request ) && stripos( $this->context->input()->filter( INPUT_GET, 'rest_route' ), self::REST_ROOT ) !== false ); // Check plain permalinks.
+							|| ( empty( $wp->request ) && stripos( $this->context->input()->filter( INPUT_GET, 'rest_route' ) || '', self::REST_ROOT ) !== false ); // Check plain permalinks.
 
 						if ( $unset_vars ) {
 							// List of variable names to remove from public query variables list.

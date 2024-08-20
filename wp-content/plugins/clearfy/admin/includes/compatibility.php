@@ -22,8 +22,8 @@ add_action('plugins_loaded', function () {
 			 * Это необходимо, чтоб напомнить пользователю обновить конфигурацию компонентов плагина,
 			 * иначе вновь активированные компоненты не будет зайдествованы в работе плагина.
 			 *
-			 * @param Wbcr_Factory463_Plugin                   $plugin
-			 * @param Wbcr_FactoryPages463_ImpressiveThemplate $obj
+			 * @param Wbcr_Factory475_Plugin                   $plugin
+			 * @param Wbcr_FactoryPages475_ImpressiveThemplate $obj
 			 *
 			 * @return bool
 			 */
@@ -52,8 +52,8 @@ add_action('plugins_loaded', function () {
 			 * Это необходимо, чтоб напомнить пользователю обновить конфигурацию компонентов плагина,
 			 * иначе вновь активированные компоненты не будет зайдествованы в работе плагина.
 			 *
-			 * @param Wbcr_Factory463_Plugin                   $plugin
-			 * @param Wbcr_FactoryPages463_ImpressiveThemplate $obj
+			 * @param Wbcr_Factory475_Plugin                   $plugin
+			 * @param Wbcr_FactoryPages475_ImpressiveThemplate $obj
 			 *
 			 * @return bool
 			 */

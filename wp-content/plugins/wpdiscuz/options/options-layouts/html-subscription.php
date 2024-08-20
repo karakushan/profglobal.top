@@ -6,11 +6,15 @@ if (!defined("ABSPATH")) {
 <!-- Option start -->
 <div class="wpd-opt-row">
     <div class="wpd-opt-intro">
-        <img class="wpd-opt-img" src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/dashboard/" . $setting["icon"])); ?>" style="height: 64px; padding-top: 5px;"/>
+        <img class="wpd-opt-img"
+             src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/dashboard/" . $setting["icon"])); ?>"
+             style="height: 64px; padding-top: 5px;"/>
         <?php echo sprintf(__("wpDiscuz allows users to get all kind of news from your website comment system, such as new comments, new replies, double opt-in subscription, user mentioning, user following and new comments by followed users. You can manage all those options here. All those options are based on email notifications. You can manage email templates in wpDiscuz > Phrases > Email Tab. <br>In wpDiscuz > Dashboard page, you can find a quick overview of user subscriptions. For an advanced subscriptions management tool, please checkout %s addon.", "wpdiscuz"), "<a href='https://gvectors.com/product/wpdiscuz-subscribe-manager/'  target='_blank' style='color:#07B290;'>wpDiscuz Subscription Manager</a>"); ?>
     </div>
     <div class="wpd-opt-doc" style="padding-top: 10px;">
-        <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/subscription-and-user-following/" title="<?php esc_attr_e("Read the documentation", "wpdiscuz") ?>" target="_blank"><i class="far fa-question-circle"></i></a>
+        <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/subscription-and-user-following/"
+           title="<?php esc_attr_e("Read the documentation", "wpdiscuz") ?>" target="_blank"><i
+                    class="far fa-question-circle"></i></a>
     </div>
 </div>
 <!-- Option end -->
@@ -23,7 +27,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->subscription["enableUserMentioning"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[enableUserMentioning]" id="enableUserMentioning">
+            <input type="checkbox" <?php checked($this->subscription["enableUserMentioning"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[enableUserMentioning]"
+                   id="enableUserMentioning">
             <label for="enableUserMentioning"></label>
         </div>
     </div>
@@ -41,7 +47,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->subscription["sendMailToMentionedUsers"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[sendMailToMentionedUsers]" id="sendMailToMentionedUsers">
+            <input type="checkbox" <?php checked($this->subscription["sendMailToMentionedUsers"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[sendMailToMentionedUsers]"
+                   id="sendMailToMentionedUsers">
             <label for="sendMailToMentionedUsers"></label>
         </div>
     </div>
@@ -59,7 +67,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->subscription["isNotifyOnCommentApprove"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[isNotifyOnCommentApprove]" id="isNotifyOnCommentApprove">
+            <input type="checkbox" <?php checked($this->subscription["isNotifyOnCommentApprove"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[isNotifyOnCommentApprove]"
+                   id="isNotifyOnCommentApprove">
             <label for="isNotifyOnCommentApprove"></label>
         </div>
     </div>
@@ -77,7 +87,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->subscription["enableMemberConfirm"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[enableMemberConfirm]" id="enableMemberConfirm">
+            <input type="checkbox" <?php checked($this->subscription["enableMemberConfirm"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[enableMemberConfirm]"
+                   id="enableMemberConfirm">
             <label for="enableMemberConfirm"></label>
         </div>
     </div>
@@ -95,7 +107,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->subscription["enableGuestsConfirm"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[enableGuestsConfirm]" id="enableGuestsConfirm">
+            <input type="checkbox" <?php checked($this->subscription["enableGuestsConfirm"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[enableGuestsConfirm]"
+                   id="enableGuestsConfirm">
             <label for="enableGuestsConfirm"></label>
         </div>
     </div>
@@ -113,17 +127,23 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-radio">
-            <input type="radio" value="2" <?php checked(2 == $this->subscription["subscriptionType"]); ?> name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[subscriptionType]" id="subscriptionTypePost" />
+            <input type="radio" value="2" <?php checked(2 == $this->subscription["subscriptionType"]); ?>
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[subscriptionType]"
+                   id="subscriptionTypePost"/>
             <label for="subscriptionTypePost" class="wpd-radio-circle"></label>
             <label for="subscriptionTypePost"><?php esc_html_e("Subscribe to all comments of this post", "wpdiscuz") ?></label>
         </div>
         <div class="wpd-radio">
-            <input type="radio" value="3" <?php checked(3 == $this->subscription["subscriptionType"]); ?> name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[subscriptionType]" id="subscriptionTypeAllComments" />
+            <input type="radio" value="3" <?php checked(3 == $this->subscription["subscriptionType"]); ?>
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[subscriptionType]"
+                   id="subscriptionTypeAllComments"/>
             <label for="subscriptionTypeAllComments" class="wpd-radio-circle"></label>
             <label for="subscriptionTypeAllComments"><?php esc_html_e("Subscribe to all replies to my comments", "wpdiscuz") ?></label>
         </div>
         <div class="wpd-radio">
-            <input type="radio" value="1" <?php checked(1 == $this->subscription["subscriptionType"]); ?> name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[subscriptionType]" id="subscriptionTypeBoth" />
+            <input type="radio" value="1" <?php checked(1 == $this->subscription["subscriptionType"]); ?>
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[subscriptionType]"
+                   id="subscriptionTypeBoth"/>
             <label for="subscriptionTypeBoth" class="wpd-radio-circle"></label>
             <label for="subscriptionTypeBoth"><?php esc_html_e("Both", "wpdiscuz") ?></label>
         </div>
@@ -142,7 +162,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->subscription["showReplyCheckbox"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[showReplyCheckbox]" id="showReplyCheckbox">
+            <input type="checkbox" <?php checked($this->subscription["showReplyCheckbox"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[showReplyCheckbox]"
+                   id="showReplyCheckbox">
             <label for="showReplyCheckbox"></label>
         </div>
     </div>
@@ -160,7 +182,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->subscription["isReplyDefaultChecked"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[isReplyDefaultChecked]" id="isReplyDefaultChecked">
+            <input type="checkbox" <?php checked($this->subscription["isReplyDefaultChecked"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[isReplyDefaultChecked]"
+                   id="isReplyDefaultChecked">
             <label for="isReplyDefaultChecked"></label>
         </div>
     </div>
@@ -179,7 +203,10 @@ if (!defined("ABSPATH")) {
         </div>
         <div class="wpd-opt-input">
             <div class="wpd-switcher">
-                <input type="checkbox" <?php checked($this->subscription["usePostmaticForCommentNotification"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[usePostmaticForCommentNotification]" id="usePostmaticForCommentNotification" />
+                <input type="checkbox" <?php checked($this->subscription["usePostmaticForCommentNotification"] == 1) ?>
+                       value="1"
+                       name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[usePostmaticForCommentNotification]"
+                       id="usePostmaticForCommentNotification"/>
                 <label for="usePostmaticForCommentNotification"></label>
             </div>
         </div>
@@ -198,7 +225,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->subscription["isFollowActive"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[isFollowActive]" id="isFollowActive">
+            <input type="checkbox" <?php checked($this->subscription["isFollowActive"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[isFollowActive]" id="isFollowActive">
             <label for="isFollowActive"></label>
         </div>
     </div>
@@ -216,7 +244,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->subscription["disableFollowConfirmForUsers"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[disableFollowConfirmForUsers]" id="disableFollowConfirmForUsers">
+            <input type="checkbox" <?php checked($this->subscription["disableFollowConfirmForUsers"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SUBSCRIPTION); ?>[disableFollowConfirmForUsers]"
+                   id="disableFollowConfirmForUsers">
             <label for="disableFollowConfirmForUsers"></label>
         </div>
     </div>
@@ -230,7 +260,8 @@ if (!defined("ABSPATH")) {
 
     <div class="wpd-accordion-item">
 
-        <div class="wpd-subtitle fas wpd-accordion-title" style="margin-top: 20px;" data-wpd-selector="wpd-subscription-templates">
+        <div class="wpd-subtitle fas wpd-accordion-title" style="margin-top: 20px;"
+             data-wpd-selector="wpd-subscription-templates">
             <p><?php esc_html_e("Subscription email templates", "wpdiscuz") ?></p>
         </div>
 
@@ -249,11 +280,14 @@ if (!defined("ABSPATH")) {
                     <p class="wpd-desc">
                         <span class="wc_available_variable" data-wpd-clipboard="[BLOG_TITLE]">[BLOG_TITLE]</span>
                         <span class="wc_available_variable" data-wpd-clipboard="[POST_TITLE]">[POST_TITLE]</span>
-                        <span class="wc_available_variable" data-wpd-clipboard="[COMMENT_AUTHOR]">[COMMENT_AUTHOR]</span>
+                        <span class="wc_available_variable"
+                              data-wpd-clipboard="[COMMENT_AUTHOR]">[COMMENT_AUTHOR]</span>
                     </p>
                 </div>
                 <div class="wpd-opt-input">
-                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectPostComment"]); ?>" name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectPostComment]" id="emailSubjectPostComment" />
+                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectPostComment"]); ?>"
+                           name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectPostComment]"
+                           id="emailSubjectPostComment"/>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailSubjectPostComment"]["docurl"]) ?>
@@ -280,14 +314,14 @@ if (!defined("ABSPATH")) {
                 </div>
                 <div class="wpd-opt-input">
                     <?php
-                    wp_editor($this->subscription["emailContentPostComment"], "emailContentPostComment", [
+                    wp_editor(wp_kses_post($this->subscription["emailContentPostComment"]), "emailContentPostComment", [
                         "textarea_name" => WpdiscuzCore::TAB_SUBSCRIPTION . "[emailContentPostComment]",
                         "textarea_rows" => 10,
                         "teeny" => true,
                         "media_buttons" => true,
                         "default_editor" => "tmce"
                     ]);
-                    ?>                    
+                    ?>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailContentPostComment"]["docurl"]) ?>
@@ -308,11 +342,14 @@ if (!defined("ABSPATH")) {
                     <p class="wpd-desc">
                         <span class="wc_available_variable" data-wpd-clipboard="[BLOG_TITLE]">[BLOG_TITLE]</span>
                         <span class="wc_available_variable" data-wpd-clipboard="[POST_TITLE]">[POST_TITLE]</span>
-                        <span class="wc_available_variable" data-wpd-clipboard="[COMMENT_AUTHOR]">[COMMENT_AUTHOR]</span>
+                        <span class="wc_available_variable"
+                              data-wpd-clipboard="[COMMENT_AUTHOR]">[COMMENT_AUTHOR]</span>
                     </p>
                 </div>
                 <div class="wpd-opt-input">
-                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectAllCommentReply"]); ?>" name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectAllCommentReply]" id="emailSubjectAllCommentReply" />
+                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectAllCommentReply"]); ?>"
+                           name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectAllCommentReply]"
+                           id="emailSubjectAllCommentReply"/>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailSubjectAllCommentReply"]["docurl"]) ?>
@@ -339,14 +376,14 @@ if (!defined("ABSPATH")) {
                 </div>
                 <div class="wpd-opt-input">
                     <?php
-                    wp_editor($this->subscription["emailContentAllCommentReply"], "emailContentAllCommentReply", [
+                    wp_editor(wp_kses_post($this->subscription["emailContentAllCommentReply"]), "emailContentAllCommentReply", [
                         "textarea_name" => WpdiscuzCore::TAB_SUBSCRIPTION . "[emailContentAllCommentReply]",
                         "textarea_rows" => 10,
                         "teeny" => true,
                         "media_buttons" => true,
                         "default_editor" => "tmce"
                     ]);
-                    ?>                    
+                    ?>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailContentAllCommentReply"]["docurl"]) ?>
@@ -367,11 +404,14 @@ if (!defined("ABSPATH")) {
                     <p class="wpd-desc">
                         <span class="wc_available_variable" data-wpd-clipboard="[BLOG_TITLE]">[BLOG_TITLE]</span>
                         <span class="wc_available_variable" data-wpd-clipboard="[POST_TITLE]">[POST_TITLE]</span>
-                        <span class="wc_available_variable" data-wpd-clipboard="[COMMENT_AUTHOR]">[COMMENT_AUTHOR]</span>
+                        <span class="wc_available_variable"
+                              data-wpd-clipboard="[COMMENT_AUTHOR]">[COMMENT_AUTHOR]</span>
                     </p>
                 </div>
                 <div class="wpd-opt-input">
-                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectCommentReply"]); ?>" name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectCommentReply]" id="emailSubjectCommentReply" />
+                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectCommentReply"]); ?>"
+                           name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectCommentReply]"
+                           id="emailSubjectCommentReply"/>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailSubjectCommentReply"]["docurl"]) ?>
@@ -398,14 +438,14 @@ if (!defined("ABSPATH")) {
                 </div>
                 <div class="wpd-opt-input">
                     <?php
-                    wp_editor($this->subscription["emailContentCommentReply"], "emailContentCommentReply", [
+                    wp_editor(wp_kses_post($this->subscription["emailContentCommentReply"]), "emailContentCommentReply", [
                         "textarea_name" => WpdiscuzCore::TAB_SUBSCRIPTION . "[emailContentCommentReply]",
                         "textarea_rows" => 10,
                         "teeny" => true,
                         "media_buttons" => true,
                         "default_editor" => "tmce"
                     ]);
-                    ?>                    
+                    ?>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailContentCommentReply"]["docurl"]) ?>
@@ -429,7 +469,10 @@ if (!defined("ABSPATH")) {
                     </p>
                 </div>
                 <div class="wpd-opt-input">
-                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectSubscriptionConfirmation"]); ?>" name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectSubscriptionConfirmation]" id="emailSubjectSubscriptionConfirmation" />
+                    <input type="text"
+                           value="<?php esc_attr_e($this->subscription["emailSubjectSubscriptionConfirmation"]); ?>"
+                           name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectSubscriptionConfirmation]"
+                           id="emailSubjectSubscriptionConfirmation"/>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailSubjectSubscriptionConfirmation"]["docurl"]) ?>
@@ -452,14 +495,14 @@ if (!defined("ABSPATH")) {
                 </div>
                 <div class="wpd-opt-input">
                     <?php
-                    wp_editor($this->subscription["emailContentSubscriptionConfirmation"], "emailContentSubscriptionConfirmation", [
+                    wp_editor(wp_kses_post($this->subscription["emailContentSubscriptionConfirmation"]), "emailContentSubscriptionConfirmation", [
                         "textarea_name" => WpdiscuzCore::TAB_SUBSCRIPTION . "[emailContentSubscriptionConfirmation]",
                         "textarea_rows" => 10,
                         "teeny" => true,
                         "media_buttons" => true,
                         "default_editor" => "tmce"
                     ]);
-                    ?>                    
+                    ?>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailContentSubscriptionConfirmation"]["docurl"]) ?>
@@ -473,7 +516,8 @@ if (!defined("ABSPATH")) {
 
     <div class="wpd-accordion-item">
 
-        <div class="wpd-subtitle fas wpd-accordion-title" style="margin-top: 20px;" data-wpd-selector="wpd-comment-status-templates">
+        <div class="wpd-subtitle fas wpd-accordion-title" style="margin-top: 20px;"
+             data-wpd-selector="wpd-comment-status-templates">
             <p><?php esc_html_e("Comment status email templates", "wpdiscuz") ?></p>
         </div>
 
@@ -495,7 +539,9 @@ if (!defined("ABSPATH")) {
                     </p>
                 </div>
                 <div class="wpd-opt-input">
-                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectCommentApproved"]); ?>" name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectCommentApproved]" id="emailSubjectCommentApproved" />
+                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectCommentApproved"]); ?>"
+                           name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectCommentApproved]"
+                           id="emailSubjectCommentApproved"/>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailSubjectCommentApproved"]["docurl"]) ?>
@@ -519,14 +565,14 @@ if (!defined("ABSPATH")) {
                 </div>
                 <div class="wpd-opt-input">
                     <?php
-                    wp_editor($this->subscription["emailContentCommentApproved"], "emailContentCommentApproved", [
+                    wp_editor(wp_kses_post($this->subscription["emailContentCommentApproved"]), "emailContentCommentApproved", [
                         "textarea_name" => WpdiscuzCore::TAB_SUBSCRIPTION . "[emailContentCommentApproved]",
                         "textarea_rows" => 10,
                         "teeny" => true,
                         "media_buttons" => true,
                         "default_editor" => "tmce"
                     ]);
-                    ?>                    
+                    ?>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailContentCommentApproved"]["docurl"]) ?>
@@ -539,7 +585,8 @@ if (!defined("ABSPATH")) {
 
     <div class="wpd-accordion-item">
 
-        <div class="wpd-subtitle fas wpd-accordion-title" style="margin-top: 20px;" data-wpd-selector="wpd-user-mentioned-templates">
+        <div class="wpd-subtitle fas wpd-accordion-title" style="margin-top: 20px;"
+             data-wpd-selector="wpd-user-mentioned-templates">
             <p><?php esc_html_e("Mentioning email templates", "wpdiscuz") ?></p>
         </div>
 
@@ -561,7 +608,9 @@ if (!defined("ABSPATH")) {
                     </p>
                 </div>
                 <div class="wpd-opt-input">
-                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectUserMentioned"]); ?>" name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectUserMentioned]" id="emailSubjectUserMentioned" />
+                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectUserMentioned"]); ?>"
+                           name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectUserMentioned]"
+                           id="emailSubjectUserMentioned"/>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailSubjectUserMentioned"]["docurl"]) ?>
@@ -581,18 +630,19 @@ if (!defined("ABSPATH")) {
                     <span class="wc_available_variable" data-wpd-clipboard="[POST_TITLE]">[POST_TITLE]</span>
                     <span class="wc_available_variable" data-wpd-clipboard="[COMMENT_URL]">[COMMENT_URL]</span>
                     <span class="wc_available_variable" data-wpd-clipboard="[COMMENT_AUTHOR]">[COMMENT_AUTHOR]</span>
-                    <span class="wc_available_variable" data-wpd-clipboard="[MENTIONED_USER_NAME]">[MENTIONED_USER_NAME]</span>
+                    <span class="wc_available_variable"
+                          data-wpd-clipboard="[MENTIONED_USER_NAME]">[MENTIONED_USER_NAME]</span>
                 </div>
                 <div class="wpd-opt-input">
                     <?php
-                    wp_editor($this->subscription["emailContentUserMentioned"], "emailContentUserMentioned", [
+                    wp_editor(wp_kses_post($this->subscription["emailContentUserMentioned"]), "emailContentUserMentioned", [
                         "textarea_name" => WpdiscuzCore::TAB_SUBSCRIPTION . "[emailContentUserMentioned]",
                         "textarea_rows" => 10,
                         "teeny" => true,
                         "media_buttons" => true,
                         "default_editor" => "tmce"
                     ]);
-                    ?>                    
+                    ?>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailContentUserMentioned"]["docurl"]) ?>
@@ -605,7 +655,8 @@ if (!defined("ABSPATH")) {
 
     <div class="wpd-accordion-item">
 
-        <div class="wpd-subtitle fas wpd-accordion-title" style="margin-top: 20px;" data-wpd-selector="wpd-follow-templates">
+        <div class="wpd-subtitle fas wpd-accordion-title" style="margin-top: 20px;"
+             data-wpd-selector="wpd-follow-templates">
             <p><?php esc_html_e("Follow email templates", "wpdiscuz") ?></p>
         </div>
 
@@ -627,13 +678,16 @@ if (!defined("ABSPATH")) {
                     </p>
                 </div>
                 <div class="wpd-opt-input">
-                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectFollowConfirmation"]); ?>" name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectFollowConfirmation]" id="emailSubjectFollowConfirmation" />
+                    <input type="text"
+                           value="<?php esc_attr_e($this->subscription["emailSubjectFollowConfirmation"]); ?>"
+                           name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectFollowConfirmation]"
+                           id="emailSubjectFollowConfirmation"/>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailSubjectFollowConfirmation"]["docurl"]) ?>
                 </div>
             </div>
-            <!-- Option end -->            
+            <!-- Option end -->
 
             <!-- Option start -->
             <div class="wpd-opt-row" data-wpd-opt="emailContentFollowConfirmation">
@@ -650,14 +704,14 @@ if (!defined("ABSPATH")) {
                 </div>
                 <div class="wpd-opt-input">
                     <?php
-                    wp_editor($this->subscription["emailContentFollowConfirmation"], "emailContentFollowConfirmation", [
+                    wp_editor(wp_kses_post($this->subscription["emailContentFollowConfirmation"]), "emailContentFollowConfirmation", [
                         "textarea_name" => WpdiscuzCore::TAB_SUBSCRIPTION . "[emailContentFollowConfirmation]",
                         "textarea_rows" => 10,
                         "teeny" => true,
                         "media_buttons" => true,
                         "default_editor" => "tmce"
                     ]);
-                    ?>                    
+                    ?>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailContentFollowConfirmation"]["docurl"]) ?>
@@ -678,18 +732,21 @@ if (!defined("ABSPATH")) {
                     <p class="wpd-desc">
                         <span class="wc_available_variable" data-wpd-clipboard="[BLOG_TITLE]">[BLOG_TITLE]</span>
                         <span class="wc_available_variable" data-wpd-clipboard="[POST_TITLE]">[POST_TITLE]</span>
-                        <span class="wc_available_variable" data-wpd-clipboard="[COMMENT_AUTHOR]">[COMMENT_AUTHOR]</span>
+                        <span class="wc_available_variable"
+                              data-wpd-clipboard="[COMMENT_AUTHOR]">[COMMENT_AUTHOR]</span>
                     </p>
                 </div>
                 <div class="wpd-opt-input">
-                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectFollowComment"]); ?>" name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectFollowComment]" id="emailSubjectFollowComment" />
+                    <input type="text" value="<?php esc_attr_e($this->subscription["emailSubjectFollowComment"]); ?>"
+                           name="<?php echo WpdiscuzCore::TAB_SUBSCRIPTION; ?>[emailSubjectFollowComment]"
+                           id="emailSubjectFollowComment"/>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailSubjectFollowComment"]["docurl"]) ?>
                 </div>
             </div>
             <!-- Option end -->
-            
+
             <!-- Option start -->
             <div class="wpd-opt-row" data-wpd-opt="emailContentFollowComment">
                 <div class="wpd-opt-name">
@@ -708,14 +765,14 @@ if (!defined("ABSPATH")) {
                 </div>
                 <div class="wpd-opt-input">
                     <?php
-                    wp_editor($this->subscription["emailContentFollowComment"], "emailContentFollowComment", [
+                    wp_editor(wp_kses_post($this->subscription["emailContentFollowComment"]), "emailContentFollowComment", [
                         "textarea_name" => WpdiscuzCore::TAB_SUBSCRIPTION . "[emailContentFollowComment]",
                         "textarea_rows" => 10,
                         "teeny" => true,
                         "media_buttons" => true,
                         "default_editor" => "tmce"
                     ]);
-                    ?>                    
+                    ?>
                 </div>
                 <div class="wpd-opt-doc">
                     <?php $this->printDocLink($setting["options"]["emailContentFollowComment"]["docurl"]) ?>

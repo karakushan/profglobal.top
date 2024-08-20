@@ -3,6 +3,7 @@
  * The MIT License
  * Copyright (c) 2007 Andy Smith
  */
+
 namespace wpdFormAttr\Login\twitter;
 
 class Request
@@ -15,8 +16,8 @@ class Request
     /**
      * Constructor
      *
-     * @param string     $httpMethod
-     * @param string     $httpUrl
+     * @param string $httpMethod
+     * @param string $httpUrl
      * @param array|null $parameters
      */
     public function __construct($httpMethod, $httpUrl, array $parameters = [])
@@ -31,20 +32,21 @@ class Request
      * pretty much a helper function to set up the request
      *
      * @param Consumer $consumer
-     * @param Token    $token
-     * @param string   $httpMethod
-     * @param string   $httpUrl
-     * @param array    $parameters
+     * @param Token $token
+     * @param string $httpMethod
+     * @param string $httpUrl
+     * @param array $parameters
      *
      * @return Request
      */
     public static function fromConsumerAndToken(
         Consumer $consumer,
-        Token $token = null,
-        $httpMethod,
-        $httpUrl,
-        array $parameters = []
-    ) {
+        Token    $token = null,
+                 $httpMethod,
+                 $httpUrl,
+        array    $parameters = []
+    )
+    {
         $defaults = [
             "oauth_version" => Request::$version,
             "oauth_nonce" => Request::generateNonce(),
@@ -222,8 +224,8 @@ class Request
 
     /**
      * @param SignatureMethod $signatureMethod
-     * @param Consumer        $consumer
-     * @param Token           $token
+     * @param Consumer $consumer
+     * @param Token $token
      */
     public function signRequest(SignatureMethod $signatureMethod, Consumer $consumer, Token $token = null)
     {
@@ -234,8 +236,8 @@ class Request
 
     /**
      * @param SignatureMethod $signatureMethod
-     * @param Consumer        $consumer
-     * @param Token           $token
+     * @param Consumer $consumer
+     * @param Token $token
      *
      * @return string
      */

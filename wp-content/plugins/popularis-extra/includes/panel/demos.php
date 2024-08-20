@@ -122,47 +122,172 @@ if (!class_exists('Popularis_Extra_Demos')) {
             $theme_slug = get_stylesheet();
             // Demos url
             $url = 'https://populariswp.com/wp-content/uploads/demo-import/' . $theme_slug . '/';
-
-            $data = array(
-                $theme_slug => array(
-                    'demo_name' => $theme->name,
-                    'categories' => array('WooCommerce', 'Business', 'Creative', 'Free', 'Elementor'),
-                    'xml_file' => $url . 'default/default-content.xml',
-                    'theme_settings' => $url . 'default/default-customizer.dat',
-                    'widgets_file' => $url . 'default/default-widgets.wie',
-                    'screenshot' => $url . 'default/screenshot.jpg',
-                    'demo_template' => $theme_slug . '-demo',
-                    'home_title' => 'Homepage',
-                    'blog_title' => 'Blog',
-                    'posts_to_show' => '6',
-                    'elementor_width' => '1140',
-                    'is_shop' => true,
-                    'woo_image_size' => '600',
-                    'woo_thumb_size' => '300',
-                    'woo_crop_width' => '1',
-                    'woo_crop_height' => '1',
-                    'required_plugins' => array(
-                        'free' => array(
-                            array(
-                                'slug' => 'popularis-extra',
-                                'init' => 'popularis-extra/popularis-extra.php',
-                                'name' => 'Popularis Extra',
-                            ),
-                            array(
-                                'slug' => 'elementor',
-                                'init' => 'elementor/elementor.php',
-                                'name' => 'Elementor',
-                            ),
-                            array(
-                                'slug' => 'woocommerce',
-                                'init' => 'woocommerce/woocommerce.php',
-                                'name' => 'WooCommerce',
-                            ),
-                        ),
-                    //'premium' => array( ),
-                    ),
-                ),
-            );
+			if ('popularis-verse' == $theme_slug ) {
+				$url = 'https://populariswp.com/wp-content/uploads/demo-import/';
+				$data = array(
+					$theme_slug => array(
+						'demo_name' => $theme->name,
+						'categories' => array('WooCommerce', 'Business', 'Creative', 'Free', 'Elementor'),
+						'xml_file' => $url . 'popularis-verse/default/default-content.xml',
+						'theme_settings' => $url . 'popularis-verse/default/default-customizer.dat',
+						'widgets_file' => $url . 'popularis-verse/default/default-widgets.wie',
+						'screenshot' => $url . 'popularis-verse/default/screenshot.jpg',
+						'demo_template' => $theme_slug . '-demo',
+						'home_title' => 'Homepage',
+						'blog_title' => 'Blog',
+						'posts_to_show' => '6',
+						'elementor_width' => '1140',
+						'elementor_experiment-container' => 'active',
+						'is_shop' => true,
+						'woo_image_size' => '600',
+						'woo_thumb_size' => '300',
+						'woo_crop_width' => '1',
+						'woo_crop_height' => '1',
+						'required_plugins' => array(
+							'free' => array(
+								array(
+									'slug' => 'popularis-extra',
+									'init' => 'popularis-extra/popularis-extra.php',
+									'name' => 'Popularis Extra',
+								),
+								array(
+									'slug' => 'elementor',
+									'init' => 'elementor/elementor.php',
+									'name' => 'Elementor',
+								),
+								array(
+									'slug' => 'woocommerce',
+									'init' => 'woocommerce/woocommerce.php',
+									'name' => 'WooCommerce',
+								),
+							),
+						//'premium' => array( ),
+						),
+					),
+					$theme_slug . '-2' => array(
+						'demo_name' => 'Popularis Verse #2',
+						'categories' => array('WooCommerce', 'Business', 'Creative', 'Free', 'Elementor'),
+						'xml_file' => $url . 'popularis-verse/default/default-content.xml',
+						'theme_settings' => $url . 'popularis-verse/default/default-customizer.dat',
+						'widgets_file' => $url . 'popularis-verse/default/default-widgets.wie',
+						'screenshot' => $url . 'popularis-verse/default/screenshot-2.jpg',
+						'demo_template' => $theme_slug . '-demo-2',
+						'demo_url' => $theme_slug . '-demo/homepage-2',
+						'home_title' => 'Homepage #2',
+						'blog_title' => 'Blog',
+						'posts_to_show' => '6',
+						'elementor_width' => '1140',
+						'elementor_experiment-container' => 'active',
+						'is_shop' => true,
+						'woo_image_size' => '600',
+						'woo_thumb_size' => '300',
+						'woo_crop_width' => '1',
+						'woo_crop_height' => '1',
+						'required_plugins' => array(
+							'free' => array(
+								array(
+									'slug' => 'popularis-extra',
+									'init' => 'popularis-extra/popularis-extra.php',
+									'name' => 'Popularis Extra',
+								),
+								array(
+									'slug' => 'elementor',
+									'init' => 'elementor/elementor.php',
+									'name' => 'Elementor',
+								),
+								array(
+									'slug' => 'woocommerce',
+									'init' => 'woocommerce/woocommerce.php',
+									'name' => 'WooCommerce',
+								),
+							),
+						//'premium' => array( ),
+						),
+					),
+					$theme_slug . '-3' => array(
+						'demo_name' => 'Popularis Verse #3',
+						'categories' => array('WooCommerce', 'Business', 'Creative', 'Free', 'Elementor'),
+						'xml_file' => $url . 'popularis-verse/default/default-content.xml',
+						'theme_settings' => $url . 'popularis-verse/default/default-customizer.dat',
+						'widgets_file' => $url . 'popularis-verse/default/default-widgets.wie',
+						'screenshot' => $url . 'popularis-verse/default/screenshot-3.jpg',
+						'demo_template' => $theme_slug . '-demo-3',
+						'demo_url' => $theme_slug . '-demo/homepage-3',
+						'home_title' => 'Homepage #3',
+						'blog_title' => 'Blog',
+						'posts_to_show' => '6',
+						'elementor_width' => '1140',
+						'elementor_experiment-container' => 'active',
+						'is_shop' => true,
+						'woo_image_size' => '600',
+						'woo_thumb_size' => '300',
+						'woo_crop_width' => '1',
+						'woo_crop_height' => '1',
+						'required_plugins' => array(
+							'free' => array(
+								array(
+									'slug' => 'popularis-extra',
+									'init' => 'popularis-extra/popularis-extra.php',
+									'name' => 'Popularis Extra',
+								),
+								array(
+									'slug' => 'elementor',
+									'init' => 'elementor/elementor.php',
+									'name' => 'Elementor',
+								),
+								array(
+									'slug' => 'woocommerce',
+									'init' => 'woocommerce/woocommerce.php',
+									'name' => 'WooCommerce',
+								),
+							),
+						//'premium' => array( ),
+						),
+					),
+				);
+			} else {
+				$data = array(
+					$theme_slug => array(
+						'demo_name' => $theme->name,
+						'categories' => array('WooCommerce', 'Business', 'Creative', 'Free', 'Elementor'),
+						'xml_file' => $url . 'default/default-content.xml',
+						'theme_settings' => $url . 'default/default-customizer.dat',
+						'widgets_file' => $url . 'default/default-widgets.wie',
+						'screenshot' => $url . 'default/screenshot.jpg',
+						'demo_template' => $theme_slug . '-demo',
+						'home_title' => 'Homepage',
+						'blog_title' => 'Blog',
+						'posts_to_show' => '6',
+						'elementor_width' => '1140',
+						'elementor_experiment-container' => 'active',
+						'is_shop' => true,
+						'woo_image_size' => '600',
+						'woo_thumb_size' => '300',
+						'woo_crop_width' => '1',
+						'woo_crop_height' => '1',
+						'required_plugins' => array(
+							'free' => array(
+								array(
+									'slug' => 'popularis-extra',
+									'init' => 'popularis-extra/popularis-extra.php',
+									'name' => 'Popularis Extra',
+								),
+								array(
+									'slug' => 'elementor',
+									'init' => 'elementor/elementor.php',
+									'name' => 'Elementor',
+								),
+								array(
+									'slug' => 'woocommerce',
+									'init' => 'woocommerce/woocommerce.php',
+									'name' => 'WooCommerce',
+								),
+							),
+						//'premium' => array( ),
+						),
+					),
+				);
+			}
 
             // Return
             return apply_filters('popularis_demos_data', $data);
@@ -305,13 +430,13 @@ if (!class_exists('Popularis_Extra_Demos')) {
                     </div>
 
                 </div>
-                <?php if (!defined('TWP_PRO_CURRENT_VERSION') && $premium['0']['slug'] == 'popularis-pro') { ?>
+                <?php if (!defined('TWP_PRO_CURRENT_VERSION') && !empty($premium) && $premium['0']['slug'] == 'popularis-pro') { ?>
                     <div class="popularis-button popularis-plugins-pro">
                         <a href="<?php echo esc_url('https://populariswp.com/product/popularis-pro/'); ?>" target="_blank" >
                             <?php esc_html_e('Install and activate Popularis PRO', 'popularis-extra'); ?>
                         </a>
                     </div>
-                <?php } elseif (defined('TWP_PRO_CURRENT_VERSION') && !defined('TWP_SLT_PRO') && $premium['0']['slug'] == 'popularis-pro') { ?>
+                <?php } elseif (defined('TWP_PRO_CURRENT_VERSION') && !defined('TWP_SLT_PRO') && !empty($premium) && $premium['0']['slug'] == 'popularis-pro') { ?>
                     <div class="popularis-button popularis-plugins-pro">
                         <a href="<?php echo esc_url(network_admin_url('options-general.php?page=popularis-license-options')) ?>" >
                             <?php esc_html_e('Activate Popularis PRO license', 'popularis-extra'); ?>
@@ -649,6 +774,9 @@ if (!class_exists('Popularis_Extra_Demos')) {
 
                 // Elementor width setting
                 $elementor_width = isset($demo['elementor_width']) ? $demo['elementor_width'] : '';
+				
+				// Elementor experiment container
+				$elementor_container = isset( $demo[ 'elementor_experiment-container' ] ) ? $demo[ 'elementor_experiment-container' ] : '';
 
                 // Reading settings
                 $homepage_title = isset($demo['home_title']) ? $demo['home_title'] : 'Home';
@@ -717,6 +845,9 @@ if (!class_exists('Popularis_Extra_Demos')) {
                         if ($menu->name == 'Homepage') {
                             $locations['main_menu_home'] = $menu->term_id;
                         }
+						if ($menu->name == 'Homepage Main Menu') {
+                            $locations['main_menu_home'] = $menu->term_id;
+                        }
                     }
                 }
 
@@ -729,6 +860,9 @@ if (!class_exists('Popularis_Extra_Demos')) {
                 if (!empty($elementor_width)) {
                     update_option('elementor_container_width', $elementor_width);
                 }
+				if ( !empty( $elementor_container ) ) {
+					update_option( 'elementor_experiment-container', $elementor_container );
+				}
 
                 // Assign front page and posts page (blog page).
                 $home_page = get_page_by_title($homepage_title);

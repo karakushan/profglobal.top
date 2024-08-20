@@ -233,7 +233,7 @@ class Popularis_Extra_Posts extends Widget_Base {
                             <?php the_title(sprintf('<h4 class="entry-title"><a href="%s" rel="bookmark">', esc_url(get_permalink())), '</a></h4>'); ?>
                             <div class="f-line"></div>
                             <div class="post-excerpt">
-                                <?php echo wp_trim_words(wp_strip_all_tags(get_the_excerpt()), $limit); ?>
+                                <?php echo wp_kses_post(wp_trim_words(wp_strip_all_tags(get_the_excerpt()), $limit)); ?>
                             </div>
                         </article>
                     <?php endwhile; ?>

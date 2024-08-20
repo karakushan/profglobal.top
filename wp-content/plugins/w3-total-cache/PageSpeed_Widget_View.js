@@ -42,7 +42,6 @@ jQuery(document).ready(function ($) {
 				$('.w3tcps_buttons').removeClass('w3tc_none');
 				$('.w3tc-gps-widget').html(data.w3tcps_widget);
 				$('.w3tc-gps-widget').removeClass('w3tc_none').fadeIn('slow');
-				$('#normal-sortables').masonry();
 			}
 		).fail(function (jqXHR, textStatus, errorThrown) {
 			$('.w3tcps_error').html(w3tcData.lang.pagespeed_widget_data_error + jqXHR.responseText);
@@ -51,37 +50,6 @@ jQuery(document).ready(function ($) {
 			$('.w3tcps_loading').addClass('w3tc_none').find('.spinner').removeClass('is-active');
 		});
 	}
-
-	/**
-	 * Toggle mobile view.
-	 *
-	 * @since 2.3.0
-	 *
-	 * @return void
-	 */
-	function w3tcps_mobile_toggle() {
-		$('#w3tcps_control_desktop').removeClass('nav-tab-active');
-		$('#w3tcps_desktop').hide();
-		$('#w3tcps_control_mobile').addClass('nav-tab-active');
-		$('#w3tcps_mobile').show();
-	}
-
-	/**
-	 * Toggle desktop view.
-	 *
-	 * @since 2.3.0
-	 *
-	 * @return void
-	 */
-	function w3tcps_desktop_toggle() {
-		$('#w3tcps_control_mobile').removeClass('nav-tab-active');
-		$('#w3tcps_mobile').hide();
-		$('#w3tcps_control_desktop').addClass('nav-tab-active');
-		$('#w3tcps_desktop').show();
-	}
-
-	$(document).on('click', '#w3tcps_control_mobile', w3tcps_mobile_toggle);
-	$(document).on('click', '#w3tcps_control_desktop', w3tcps_desktop_toggle);
 
 	$('.w3tcps_buttons').on('click', '.w3tcps_refresh', function () {
 		w3tcps_load(true);

@@ -45,27 +45,30 @@ if (!class_exists("nxs_snapClassXI")) { class nxs_snapClassXI extends nxs_snapCl
     }
   }
   
-  function getPgsList($networks){ $opVal = array(); $pass = 'g9c1a'.nsx_doEncode($_POST['p']); $opNm = 'nxs_snap_xi_'.sha1('nxs_snap_xi'.$_POST['u'].$pass); $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']); $nt = new nxsAPI_XI();// $nt->debug = true; // prr($opVal);
+  function getPgsList($networks){ $opVal = array(); $u = sanitize_text_field($_POST['u']); $p = sanitize_text_field($_POST['p']);
+     $pass = 'g9c1a'.nsx_doEncode($p); $opNm = 'nxs_snap_xi_'.sha1('nxs_snap_xi'.$u.$pass); $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']); $nt = new nxsAPI_XI();// $nt->debug = true; // prr($opVal);
      $currPstAs = !empty($_POST['pgcID'])?$_POST['pgcID']:(!empty($networks['xi'][$ii])?$networks['xi'][$ii]['pgcID']:'');
-     if (empty($_POST['force']) && !empty($opVal['ck']) && !empty($opVal['pgsList']) ) $pgs = $opVal['pgsList']; else { if (!empty($opVal['ck'])) $nt->ck = $opVal['ck']; $loginError=$nt->connect(sanitize_user($_POST['u']),$_POST['p']);
+     if (empty($_POST['force']) && !empty($opVal['ck']) && !empty($opVal['pgsList']) ) $pgs = $opVal['pgsList']; else { if (!empty($opVal['ck'])) $nt->ck = $opVal['ck']; $loginError=$nt->connect(sanitize_user($u),$p);
        if (!$loginError){ $opVal['ck'] = $nt->ck;  $pgs = $nt->getPgsList($currPstAs); }
          else { $outMsg = '<b style="color:red;">'.__('Login Problem').'&nbsp;-&nbsp;'.$loginError.'</b>'; if (!empty($_POST['isOut'])) echo $outMsg; return $outMsg; }
      } $pgCust = (!empty($pgs) && !empty($currPstAs) && stripos($pgs,$currPstAs)===false)?'<option selected="selected" value="'.$currPstAs.'">'.$currPstAs.'</option>':'';     
      if (!empty($_POST['isOut'])) echo $pgCust.$pgs.'<option style="color:#BD5200" value="a">'.__('...enter the Company Page ID').'</option>';
      $opVal['pgsList'] = $pgs; nxs_saveOption($opNm, $opVal); return $opVal;
   }
-  function getGrpList($networks){ $opVal = array(); $pass = 'g9c1a'.nsx_doEncode($_POST['p']); $opNm = 'nxs_snap_xi_'.sha1('nxs_snap_xi'.$_POST['u'].$pass); $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']); $nt = new nxsAPI_XI(); // prr($opVal);
-     $currPstAs = !empty($_POST['pggID'])?$_POST['pggID']:(!empty($networks['xi'][$ii]['pggID'])?$networks['xi'][$ii]['pggID']:'');
-     if (empty($_POST['force']) && !empty($opVal['ck']) && !empty($opVal['grpList']) ) $pgs = $opVal['grpList']; else { if (!empty($opVal['ck'])) $nt->ck = $opVal['ck']; $loginError=$nt->connect(sanitize_user($_POST['u']),$_POST['p']);
+  function getGrpList($networks){ $opVal = array(); $u = sanitize_text_field($_POST['u']); $p = sanitize_text_field($_POST['p']);
+	 $pass = 'g9c1a'.nsx_doEncode($p); $opNm = 'nxs_snap_xi_'.sha1('nxs_snap_xi'.$u.$pass); $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']); $nt = new nxsAPI_XI(); // prr($opVal);
+     $currPstAs = !empty($_POST['pggID'])?sanitize_text_field($_POST['pggID']):(!empty($networks['xi'][$ii]['pggID'])?$networks['xi'][$ii]['pggID']:'');
+     if (empty($_POST['force']) && !empty($opVal['ck']) && !empty($opVal['grpList']) ) $pgs = $opVal['grpList']; else { if (!empty($opVal['ck'])) $nt->ck = $opVal['ck']; $loginError=$nt->connect(sanitize_user($u),$p);
        if (!$loginError){ $opVal['ck'] = $nt->ck;  $pgs = $nt->getGrpList($currPstAs); }
          else { $outMsg = '<b style="color:red;">'.__('Login Problem').'&nbsp;-&nbsp;'.$loginError.'</b>'; if (!empty($_POST['isOut'])) echo $outMsg; return $outMsg; }
      } $pgCust = (!empty($pgs) && !empty($currPstAs) && stripos($pgs,$currPstAs)===false)?'<option selected="selected" value="'.$currPstAs.'">'.$currPstAs.'</option>':'';     
      if (!empty($_POST['isOut'])) echo $pgCust.$pgs.'<option style="color:#BD5200" value="a">'.__('...enter the Group ID').'</option>';
      $opVal['grpList'] = $pgs; nxs_saveOption($opNm, $opVal); return $opVal;
   }
-  function getGrpForums($networks){ $opVal = array(); $pass = 'g9c1a'.nsx_doEncode($_POST['p']); $opNm = 'nxs_snap_xi_'.sha1('nxs_snap_xi'.$_POST['u'].$pass); $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']); $nt = new nxsAPI_XI();  $nt->debug = true;// prr($opVal);
-     $currPstAs = !empty($_POST['pggID'])?$_POST['pggID']:(!empty($networks['xi'][$ii]['pggID'])?$networks['xi'][$ii]['pggID']:''); $currForum = !empty($_POST['gpfID'])?$_POST['gpfID']:(!empty($networks['xi'][$ii]['gpfID'])?$networks['xi'][$ii]['gpfID']:'');
-     if (empty($_POST['force']) && !empty($opVal['ck']) && !empty($opVal['grpForums']) ) $pgs = $opVal['grpForums']; else { if (!empty($opVal['ck'])) $nt->ck = $opVal['ck']; $loginError=$nt->connect(sanitize_user($_POST['u']),$_POST['p']);
+  function getGrpForums($networks){ $opVal = array(); $u = sanitize_text_field($_POST['u']); $p = sanitize_text_field($_POST['p']);
+	 $pass = 'g9c1a'.nsx_doEncode($p); $opNm = 'nxs_snap_xi_'.sha1('nxs_snap_xi'.$u.$pass); $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']); $nt = new nxsAPI_XI();  $nt->debug = true;// prr($opVal);
+     $currPstAs = !empty($_POST['pggID'])?sanitize_text_field($_POST['pggID']):(!empty($networks['xi'][$ii]['pggID'])?$networks['xi'][$ii]['pggID']:''); $currForum = !empty($_POST['gpfID'])?sanitize_text_field($_POST['gpfID']):(!empty($networks['xi'][$ii]['gpfID'])?$networks['xi'][$ii]['gpfID']:'');
+     if (empty($_POST['force']) && !empty($opVal['ck']) && !empty($opVal['grpForums']) ) $pgs = $opVal['grpForums']; else { if (!empty($opVal['ck'])) $nt->ck = $opVal['ck']; $loginError=$nt->connect(sanitize_user($u),$p);
        if (!$loginError){ $opVal['ck'] = $nt->ck;  $pgs = $nt->getGrpForums('https://www.xing.com/communities/groups/'.$currPstAs, $currForum); }
          else { $outMsg = '<b style="color:red;">'.__('Login Problem').'&nbsp;-&nbsp;'.$loginError.'</b>'; if (!empty($_POST['isOut'])) echo $outMsg; return $outMsg; }
      } $pgCust = (!empty($pgs) && !empty($currForum) && stripos($pgs,$currForum)===false)?'<option selected="selected" value="'.$currForum.'">'.$currForum.'</option>':'';     

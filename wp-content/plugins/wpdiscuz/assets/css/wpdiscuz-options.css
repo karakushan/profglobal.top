@@ -56,7 +56,7 @@
 .wpdiscuz_options_page .widefat a:hover{color:#10b493;}
 
 /*addons*/
-#menu-comments ul > li:nth-child(3) a{ color:#25ACEA!important; text-shadow: 1px 1px 1px #000; } 
+#menu-comments ul > li:nth-child(3) a{ color:#25ACEA!important; text-shadow: 1px 1px 1px #000; }
 .wpdiscuz_addons_page .wpdiscuz-addons-wrapper {box-sizing: border-box;}
 .wpdiscuz_addons_page .wpdiscuz-addon-block {width: 260px; padding-top:10px; height:auto; float: left; margin-right: 1%; margin-bottom: 20px; background: #fff; border: 2px solid #e5e5e5; box-shadow: 0 3px 3px rgba(0, 0, 0, 0.04);}
 .wpdiscuz_addons_page .wpdiscuz-addon-block .addon-thumb {float:none; width: 242px; padding:10px; margin-top:2px; height:180px;}
@@ -77,7 +77,7 @@
 .wpd-social-login td input[type="text"]{width: 50%; padding: 5px 10px; font-size: 14px;}
 
 .wpd-social-login .wpd-social-lable.wpd-facebook{color: #4267B2; border-bottom: 2px solid #9fbbff; }
-.wpd-social-login .wpd-social-lable.wpd-twitter{color: #1DA1F2; border-bottom: 2px solid #97dafe; }
+.wpd-social-login .wpd-social-lable.wpd-twitter{color: #000000; border-bottom: 2px solid #000000; }
 .wpd-social-login .wpd-social-lable.wpd-google{color: #D84538; border-bottom: 2px solid #ffa48e;}
 .wpd-social-login .wpd-social-lable.wpd-disqus{color: #2e9fff; border-bottom: 2px solid #2e9fff;}
 .wpd-social-login .wpd-social-lable.wpd-wordpress{color: #0087be; border-bottom: 2px solid #0087be;}
@@ -98,7 +98,7 @@
 .wpdiscuz-item.wpd-field-group.wpd-field-rating{ border-bottom:1px dotted #ddd; height:77px; margin-bottom:0px;}
 .postbox-container .wpdiscuz-item.wpd-field-group.wpd-field-rating{height:40px;}
 .wpdiscuz-item .wpdiscuz-rating {border: none; float: left; margin:0px; padding:5px 0px 5px 1px; margin-left:-5px;}
-.wpdiscuz-item .wpdiscuz-rating > input { visibility:hidden; position:absolute;} 
+.wpdiscuz-item .wpdiscuz-rating > input { visibility:hidden; position:absolute;}
 .wpdiscuz-item .wpdiscuz-rating > label:before { margin: 3px; line-height: 18px; font-size: 1.4em;  cursor:pointer;}
 .wpdiscuz-item .wpdiscuz-rating > .half:before {position: absolute; cursor:pointer;}
 .wpdiscuz-item .wpdiscuz-rating > label { float: right; }
@@ -148,7 +148,7 @@
 .wpdiscuz-item .wpdiscuz-rating > label[type="radio"]:hover ~ input:checked ~ label,
 .wpdiscuz-item .wpdiscuz-rating > input[type="radio"]:checked + label:hover ~ label,
 .wpdiscuz-item .wpdiscuz-rating > input[type="radio"]:checked + label::before,
-.wpdiscuz-item .wpdiscuz-rating > input[type="radio"]:checked ~ label:hover ~ label, 
+.wpdiscuz-item .wpdiscuz-rating > input[type="radio"]:checked ~ label:hover ~ label,
 .wpd-custom-field .wcf-activ-star,
 .wpdiscuz-item .wpdiscuz-rating > input[type="radio"]:checked ~ label{ color:#FFD700;}
 .wpd-custom-field .wcf-pasiv-star, .wpdiscuz-item .wpdiscuz-rating > label {color: #DDDDDD;}
@@ -267,8 +267,8 @@
 #wpd-setbox .wpd-setbox-body .wpd-opt-search #wpd-opt-search-results a:hover, #wpd-setbox .wpd-setbox-body .wpd-opt-search #wpd-opt-search-results a:focus{-webkit-transition: color .3s linear;-moz-transition: color .3s linear;-o-transition: color .3s linear;-ms-transition: color .3s linear;transition: color .3s linear;color: #00B38F;}
 #wpd-setbox .wpd-setbox-body .wpd-opt-search #wpd-opt-search-results a.wpd-opt-search-tabtitle{margin-left: 5px; width: 90%; font-weight: 600; font-size: 14px;}
 #wpd-setbox .wpd-setbox-body .wpd-opt-search #wpd-opt-search-results a.wpd-opt-search-taboption{margin-left: 20px;width: 90%; font-size: 13px;}
-#wpd-setbox .wpd-setbox-body .dashicons-search{display: inline-block; position: absolute; bottom: 4px; right: 4px; font-size: 20px; color: #07b290; cursor: pointer;}
-#wpd-setbox .wpd-setbox-body .dashicons-search[dir=rtl]{right: auto; left: 4px;}
+#wpd-setbox .wpd-setbox-body .dashicons-search, #wpd-setbox .wpd-setbox-body .dashicons-update{display: inline-block; position: absolute; bottom: 4px; right: 4px; font-size: 20px; color: #07b290; cursor: pointer;}
+#wpd-setbox .wpd-setbox-body .dashicons-search[dir=rtl], #wpd-setbox .wpd-setbox-body .dashicons-update[dir=rtl]{right: auto; left: 4px;}
 #wpd-setbox .wpd-setbox-body input[type="text"]{width: 318px; font-size: 14px; line-height: 20px; padding: 3px 10px; display: inline-block;}
 #wpd-setbox .wpd-setbox-body .wpd-box-wrap{display: block; align-items: center; padding: 25px 0px 10px 0px; }
 #wpd-setbox .wpd-setbox-body .wpd-box{background: #FFF; box-shadow: 0px 0px 2px #bbb; position: relative; float: left;}
@@ -383,8 +383,9 @@
 
 #wpd-setbox .wpd-setcon .wpd-social-label{font-size: 18px;}
 #wpd-setbox .wpd-setcon .wpd-social-label.wpd-facebook{color: #4267B2; border-bottom: 2px solid #9fbbff; }
-#wpd-setbox .wpd-setcon .wpd-social-label.wpd-twitter{color: #1DA1F2; border-bottom: 2px solid #97dafe; }
+#wpd-setbox .wpd-setcon .wpd-social-label.wpd-twitter{color: #000000; border-bottom: 2px solid #000000; }
 #wpd-setbox .wpd-setcon .wpd-social-label.wpd-google{color: #D84538; border-bottom: 2px solid #ffa48e;}
+#wpd-setbox .wpd-setcon .wpd-social-label.wpd-telegram{color: #239cd7; border-bottom: 2px solid #239cd7;}
 #wpd-setbox .wpd-setcon .wpd-social-label.wpd-disqus{color: #2E9FFF; border-bottom: 2px solid #2E9FFF;}
 #wpd-setbox .wpd-setcon .wpd-social-label.wpd-wordpress{color: #333; border-bottom: 2px solid #666;}
 #wpd-setbox .wpd-setcon .wpd-social-label.wpd-ok{color: #EE7808; border-bottom: 2px solid #ffc369;}
@@ -490,7 +491,7 @@
 .wpdtool-accordion-title p {
     margin: 7px 0 10px 15px;
     font-weight: normal;
-    font-size: 18px;    
+    font-size: 18px;
 }
 .wpdtool-accordion-title:after {
     content: "\f054";
@@ -524,7 +525,7 @@
 
 .wpdtool {
     background-color: #f9f9f9;
-    border: 1px solid #ccc;    
+    border: 1px solid #ccc;
     margin: 7px 0;
 }
 
@@ -534,10 +535,10 @@
 }
 
 .wpdtool-desc {
-    font-size:13px; 
-    color:#666; 
-    width:90%; 
-    padding-left:0px; 
+    font-size:13px;
+    color:#666;
+    width:90%;
+    padding-left:0px;
     margin:15px 25px;
 }
 
@@ -646,3 +647,19 @@
 }
 
 /* NOTICES END */
+
+/* SETTINGS SEARCH ---START */
+.dashicons.spin {
+    animation: dashicons-spin 1s infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes dashicons-spin {
+    0% {
+        transform: rotate( 0deg );
+    }
+    100% {
+        transform: rotate( 360deg );
+    }
+}
+/* SETTINGS SEARCH ---END */

@@ -198,7 +198,6 @@ function the_champ_prepare_sharing_html($postUrl, $shareCountUrl, $sharingType, 
 					'%twitter_username%',
 					'%via_twitter_username%',
 					'%language%',
-					'%buffer_username%',
 					'%style%',
 					'%inner_style%',
 					'%li_class%',
@@ -224,7 +223,6 @@ function the_champ_prepare_sharing_html($postUrl, $shareCountUrl, $sharingType, 
 					$twitterUsername,
 					$twitterUsername ? 'via=' . $twitterUsername . '&' : '',
 					$language,
-					$theChampSharingOptions['buffer_username'] != '' ? $theChampSharingOptions['buffer_username'] : '',
 					$style,
 					$innerStyle . ($shareCount[$provider] || ($issetStartingShareCount && $shareCounts != '&nbsp;') ? $innerStyleConditional : ''),
 					$liClass,
@@ -417,7 +415,7 @@ function the_champ_prepare_counter_html($postUrl, $sharingType, $shortUrl, $stan
 			}elseif($provider == 'yummly'){
 				$html .= '<li style="padding:7.35px 0 !important" class="the_champ_yummly"><a href="https://www.yummly.com" class="YUMMLY-YUM-BUTTON">Yum</a><script src="https://www.yummly.com/js/widget.js?wordpress"></script></li>';
 			}elseif($provider == 'buffer'){
-				$html .= '<li style="padding:7.35px 0 !important" class="the_champ_buffer"><a href="http://bufferapp.com/add" class="buffer-add-button" data-text="' . $postTitle . '" data-url="' . $postUrl . '" data-count="horizontal" data-via="'. (isset($theChampCounterOptions['buffer_username']) && $theChampCounterOptions['buffer_username'] != '' ? $theChampCounterOptions['buffer_username'] : '') .'" ></a><script type="text/javascript" src="https://d389zggrogs7qo.cloudfront.net/js/button.js"></script></li>';
+				$html .= '<li style="padding:7.35px 0 !important" class="the_champ_buffer"><a href="http://bufferapp.com/add" class="buffer-add-button" data-text="' . $postTitle . '" data-url="' . $postUrl . '" data-count="horizontal"></a><script type="text/javascript" src="https://d389zggrogs7qo.cloudfront.net/js/button.js"></script></li>';
 			}elseif($provider == 'xing'){
 				$html .= '<li style="padding:7.35px 0 !important" class="the_champ_xing"><div data-type="XING/Share" data-counter="right" data-url="'. $postUrl .'" data-lang="'. $language .'"></div><script>(function (d, s){var x = d.createElement(s), s = d.getElementsByTagName(s)[0]; x.src = "https://www.xing-share.com/js/external/share.js"; s.parentNode.insertBefore(x, s); })(document, "script");</script></li>';
 			}
@@ -874,7 +872,7 @@ function the_champ_render_sharing($content){
 			$offset = (isset($theChampSharingOptions['alignment']) && $theChampSharingOptions['alignment'] != '' && isset($theChampSharingOptions[$theChampSharingOptions['alignment'].'_offset']) && $theChampSharingOptions[$theChampSharingOptions['alignment'].'_offset'] != '' ? $theChampSharingOptions['alignment'].': '.$theChampSharingOptions[$theChampSharingOptions['alignment'].'_offset'].'px;' : '').(isset($theChampSharingOptions['top_offset']) && $theChampSharingOptions['top_offset'] != '' ? 'top: '.$theChampSharingOptions['top_offset'].'px;' : '');
 			$verticalDiv = "<div class='the_champ_sharing_container the_champ_vertical_sharing" . (isset($theChampSharingOptions['hide_mobile_sharing']) ? ' the_champ_hide_sharing' : '') . (isset($theChampSharingOptions['bottom_mobile_sharing']) ? ' the_champ_bottom_sharing' : '') . "' style='width:" . ($theChampSharingOptions['vertical_sharing_size'] + 4) . "px;" . $offset . (isset($theChampSharingOptions['vertical_bg']) && $theChampSharingOptions['vertical_bg'] != '' ? 'background-color: '.$theChampSharingOptions['vertical_bg'] : '-webkit-box-shadow:none;box-shadow:none;') . "' " . ( the_champ_is_amp_page() ? '' : 'data-super-socializer-href="' . (isset($shareCountUrl) && $shareCountUrl ? $shareCountUrl : $postUrl) . '"') . ( heateor_ss_get_cached_share_count($shareCountTransientId ) === false || the_champ_is_amp_page() ? "" : 'data-super-socializer-no-counts="1"') . ">".$sharingDiv."</div>";
 			// show vertical sharing
-			if((isset($theChampSharingOptions['vertical_home']) && is_front_page()) || (isset($theChampSharingOptions['vertical_category']) && is_category()) || (isset($theChampSharingOptions['vertical_archive']) && is_archive()) || (isset($theChampSharingOptions['vertical_post']) && is_single() && isset($post->post_type) && $post->post_type == 'post') || (isset($theChampSharingOptions['vertical_page']) && is_page() && isset($post->post_type) && $post->post_type == 'page') || (isset($theChampSharingOptions['vertical_excerpt']) && (is_home() || current_filter() == 'the_excerpt')) || (isset($theChampSharingOptions['vertical_bb_forum']) && current_filter() == 'bbp_template_before_single_forum') || (isset($theChampSharingOptions['vertical_bb_topic']) && in_array(current_filter(), array('bbp_template_before_single_topic', 'bbp_template_before_lead_topic'))) || (current_filter() == 'bp_before_group_header' && isset($theChampSharingOptions['vertical_bp_group']))){
+			if((isset($theChampSharingOptions['vertical_home']) && is_front_page()) || (isset($theChampSharingOptions['vertical_category']) && is_category()) || (isset($theChampSharingOptions['vertical_archive']) && is_archive()) || (isset($theChampSharingOptions['vertical_post']) && is_single() && isset($post->post_type) && $post->post_type == 'post') || (isset($theChampSharingOptions['vertical_page']) && is_page() && isset($post->post_type) && $post->post_type == 'page') || (isset($theChampSharingOptions['vertical_excerpt']) && (is_home() || current_filter() == 'the_excerpt')) || (isset($theChampSharingOptions['vertical_bb_forum']) && current_filter() == 'bbp_template_before_single_forum') || (isset($theChampSharingOptions['vertical_bb_topic']) && in_array(current_filter(), array('bbp_template_before_single_topic', 'bbp_template_before_lead_topic'))) || (current_filter() == 'bp_before_group_header' && isset($theChampSharingOptions['vertical_bp_group'])) || (isset($theChampSharingOptions['vertical_woocom_shop']) && current_filter() == 'woocommerce_after_shop_loop_item') || (isset($theChampSharingOptions['vertical_woocom_product']) && current_filter() == 'woocommerce_share') || (isset($theChampSharingOptions['vertical_woocom_thankyou']) && current_filter() == 'woocommerce_thankyou')){
 				if(in_array( current_filter(), array('bbp_template_before_single_topic', 'bbp_template_before_lead_topic', 'bbp_template_before_single_forum', 'bp_before_group_header'))){
 					global $heateorSsAllowedTags;
 					echo wp_kses($verticalDiv, $heateorSsAllowedTags);
@@ -961,6 +959,12 @@ function the_champ_sharing_count(){
 		$targetUrls = array_map('the_champ_sanitize_url_array', array_unique($_GET['urls']));
 		if(!is_array($targetUrls)){
 			$targetUrls = array();
+		}else{
+			foreach($targetUrls as $key => $value){
+				if(gettype($key) != 'integer'){
+					unset($targetUrls[$key]);
+				}
+			}	
 		}
 	}else{
 		the_champ_ajax_response(array('status' => 0, 'message' => __('Invalid request')));

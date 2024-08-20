@@ -37,5 +37,17 @@ if(isset($theChampGeneralOptions['delete_options'])){
 		foreach($theChampOptions as $option){
 			delete_option( $option );
 		}
+		try {
+			// delete heateor folder from wp-content/uploads 
+			$heateorSsUploadsDir = wp_upload_dir();
+			global $wp_filesystem;
+            require_once ABSPATH . 'wp-admin/includes/file.php';
+            WP_Filesystem();
+            // check whether the directory exists
+            if($wp_filesystem->exists($heateorSsUploadsDir['basedir'] . '/heateor')){
+            	// delete
+            	$wp_filesystem->delete($heateorSsUploadsDir['basedir'] . '/heateor', true, 'd');
+            }
+		}catch(Exception $e){}
 	}
 }

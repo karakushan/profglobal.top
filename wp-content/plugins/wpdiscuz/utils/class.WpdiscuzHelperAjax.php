@@ -3,9 +3,11 @@ if (!defined("ABSPATH")) {
     exit();
 }
 
-class WpdiscuzHelperAjax implements WpDiscuzConstants {
+class WpdiscuzHelperAjax implements WpDiscuzConstants
+{
 
     private $options;
+
     /**
      * @var WpdiscuzDBManager
      */
@@ -14,7 +16,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
     private $helperEmail;
     private $wpdiscuzForm;
 
-    public function __construct($options, $dbManager, $helper, $helperEmail, $wpdiscuzForm) {
+    public function __construct($options, $dbManager, $helper, $helperEmail, $wpdiscuzForm)
+    {
         $this->options = $options;
         $this->dbManager = $dbManager;
         $this->helper = $helper;
@@ -37,7 +40,7 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
             add_action("wp_ajax_wpdDeleteComment", [&$this, "deleteComment"]);
             add_action("wp_ajax_wpdCancelSubscription", [&$this, "deleteSubscription"]);
             add_action("wp_ajax_wpdCancelFollow", [&$this, "deleteFollow"]);
-            add_action("wp_ajax_wpdEmailDeleteLinks", [&$this, "emailDeleteLinks"]);
+            add_action("wp_ajax_wpdEmailDeleteLinks", [&$this->helperEmail, "emailDeleteLinksAction"]);
             add_action("wp_ajax_nopriv_wpdGuestAction", [&$this, "guestAction"]);
         }
         if ($this->options->content["commentReadMoreLimit"]) {
@@ -69,7 +72,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         add_action("wp_ajax_wpdResetFieldsRatings", [&$this, "resetFieldsRatings"]);
     }
 
-    public function stickComment() {
+    public function stickComment()
+    {
         $this->helper->validateNonce();
         $postId = WpdiscuzHelper::sanitize(INPUT_POST, "postId", FILTER_SANITIZE_NUMBER_INT, 0);
         $commentId = WpdiscuzHelper::sanitize(INPUT_POST, "commentId", FILTER_SANITIZE_NUMBER_INT, 0);
@@ -99,7 +103,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         }
     }
 
-    public function closeThread() {
+    public function closeThread()
+    {
         $this->helper->validateNonce();
         $postId = WpdiscuzHelper::sanitize(INPUT_POST, "postId", FILTER_SANITIZE_NUMBER_INT, 0);
         $commentId = WpdiscuzHelper::sanitize(INPUT_POST, "commentId", FILTER_SANITIZE_NUMBER_INT, 0);
@@ -138,7 +143,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         }
     }
 
-    public function deactivate() {
+    public function deactivate()
+    {
         $response = ["code" => 0];
         $json = filter_input(INPUT_POST, "deactivateData");
         if ($json) {
@@ -186,7 +192,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
     /**
      * Import subscriptions from "Subscribe To Comments Reloaded" plugin
      */
-    public function importSTCR() {
+    public function importSTCR()
+    {
         $this->helper->validateNonce();
         $response = ["progress" => 0];
         $stcrData = isset($_POST["stcrData"]) ? sanitize_textarea_field($_POST["stcrData"]) : "";
@@ -218,7 +225,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
     /**
      * Import subscriptions from "Lightweight Subscribe To Comments" plugin
      */
-    public function importLSTC() {
+    public function importLSTC()
+    {
         $this->helper->validateNonce();
         $response = ["progress" => 0];
         $lstcData = isset($_POST["lstcData"]) ? sanitize_textarea_field($_POST["lstcData"]) : "";
@@ -247,7 +255,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         wp_die(json_encode($response));
     }
 
-    public function deleteComment() {
+    public function deleteComment()
+    {
         $this->helper->validateNonce();
         $commentId = WpdiscuzHelper::sanitize(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT, 0);
         $currentUser = WpdiscuzHelper::getCurrentUser();
@@ -257,7 +266,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         }
     }
 
-    public function deleteSubscription() {
+    public function deleteSubscription()
+    {
         $this->helper->validateNonce();
         $subscriptionId = WpdiscuzHelper::sanitize(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT, 0);
         $currentUser = WpdiscuzHelper::getCurrentUser();
@@ -267,59 +277,20 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         }
     }
 
-    public function deleteFollow() {
+    public function deleteFollow()
+    {
         $this->helper->validateNonce();
         $followId = WpdiscuzHelper::sanitize(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT, 0);
         $currentUser = WpdiscuzHelper::getCurrentUser();
         if ($followId && !empty($currentUser->ID) && $this->options->login["showFollowsTab"] && ($follow = $this->dbManager->getFollowById($followId)) && $currentUser->ID === intval($follow->follower_id)) {
             $this->dbManager->unfollowById($followId);
-            do_action("wpdiscuz_follow_cancelled", (array) $follow);
+            do_action("wpdiscuz_follow_cancelled", (array)$follow);
             $this->helper->getFollowsPage();
         }
     }
 
-    public function emailDeleteLinks() {
-        global $wp_rewrite;
-        $this->helper->validateNonce();
-        $postId = WpdiscuzHelper::sanitize(INPUT_POST, "postId", FILTER_SANITIZE_NUMBER_INT, 0);
-        $post = get_post($postId);
-        $currentUser = WpdiscuzHelper::getCurrentUser();
-        if ($post && $currentUser->exists()) {
-            $currentUserEmail = $currentUser->user_email;
-
-            if ($currentUserEmail) {
-                $siteUrl = get_site_url();
-                $blogTitle = html_entity_decode(get_option("blogname"), ENT_QUOTES);
-                $hashValue = $this->generateUserActionHash($currentUserEmail);
-                $mainUrl = !$wp_rewrite->using_permalinks() ? get_permalink($post) . "&" : get_permalink($post) . "?";
-                $deleteCommentsUrl = $mainUrl . "wpdiscuzUrlAnchor&deleteComments=$hashValue";
-                $unsubscribeUrl = $mainUrl . "wpdiscuzUrlAnchor&deleteSubscriptions=$hashValue";
-                $unfollowUrl = $mainUrl . "wpdiscuzUrlAnchor&deleteFollows=$hashValue";
-
-                $subject = $this->options->getPhrase("wc_user_settings_delete_links");
-
-                $message = str_replace(["[SITE_URL]", "[BLOG_TITLE]", "[DELETE_COMMENTS_URL]"], [$siteUrl, $blogTitle, $deleteCommentsUrl], $this->options->getPhrase("wc_user_settings_delete_all_comments_message"));
-
-                $message .= $this->options->getPhrase("wc_user_settings_delete_all_subscriptions_message");
-
-                if (strpos($message, "[DELETE_SUBSCRIPTIONS_URL]") !== false) {
-                    $message = str_replace("[DELETE_SUBSCRIPTIONS_URL]", $unsubscribeUrl, $message);
-                }
-
-                $message .= $this->options->getPhrase("wc_user_settings_delete_all_follows_message");
-
-                if (strpos($message, "[DELETE_FOLLOWS_URL]") !== false) {
-                    $message = str_replace("[DELETE_FOLLOWS_URL]", $unfollowUrl, $message);
-                }
-
-                $this->userActionMail($currentUserEmail, $subject, $message);
-            }
-        }
-        wp_die();
-    }
-
-    public function guestAction() {
-        global $wp_rewrite;
+    public function guestAction()
+    {
         $this->helper->validateNonce();
         $guestEmail = isset($_COOKIE["comment_author_email_" . COOKIEHASH]) ? $_COOKIE["comment_author_email_" . COOKIEHASH] : "";
         $guestAction = WpdiscuzHelper::sanitize(INPUT_POST, "guestAction", "FILTER_SANITIZE_STRING");
@@ -330,14 +301,14 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
             "message" => "<div class='wpd-guest-action-message wpd-guest-action-error'>" . esc_html($this->options->getPhrase("wc_user_settings_email_error")) . "</div>"
         ];
         if ($post && $guestEmail) {
-            $hashValue = $this->generateUserActionHash($guestEmail);
-            $mainUrl = !$wp_rewrite->using_permalinks() ? get_permalink($post) . "&" : get_permalink($post) . "?";
+            $hashValue = $this->helperEmail->generateUserActionHash($guestEmail);
+            $mainUrl = site_url("/wpdiscuzsubscription/");
             $link = "";
             $message = "";
             $siteUrl = get_site_url();
             $blogTitle = html_entity_decode(get_option("blogname"), ENT_QUOTES);
             if ($guestAction === "deleteComments") {
-                $link = $mainUrl . "wpdiscuzUrlAnchor&deleteComments=$hashValue";
+                $link = $mainUrl . "deleteComments/?key=$hashValue";
                 $subject = $this->options->getPhrase("wc_user_settings_delete_all_comments");
                 $message = $this->options->getPhrase("wc_user_settings_delete_all_comments_message");
                 if (strpos($message, "[DELETE_COMMENTS_URL]") !== false) {
@@ -345,7 +316,7 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
                 }
             } elseif ($guestAction === "deleteSubscriptions") {
                 $subject = $this->options->getPhrase("wc_user_settings_delete_all_subscriptions");
-                $link = $mainUrl . "wpdiscuzUrlAnchor&deleteSubscriptions=$hashValue";
+                $link = $mainUrl . "/deleteSubscriptions/?key=$hashValue";
                 $message = $this->options->getPhrase("wc_user_settings_delete_all_subscriptions_message");
                 if (strpos($message, "[DELETE_SUBSCRIPTIONS_URL]") !== false) {
                     $message = str_replace("[DELETE_SUBSCRIPTIONS_URL]", $link, $message);
@@ -355,7 +326,7 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
             $subject = str_replace(["[SITE_URL]", "[BLOG_TITLE]"], [$siteUrl, $blogTitle], $subject);
             $message = str_replace(["[SITE_URL]", "[BLOG_TITLE]"], [$siteUrl, $blogTitle], $message);
 
-            if ($this->userActionMail($guestEmail, $subject, $message)) {
+            if ($this->helperEmail->userActionMail($guestEmail, $subject, $message)) {
                 $response["code"] = 1;
                 $parts = explode("@", $guestEmail);
                 $guestEmail = substr($parts[0], 0, min(1, strlen($parts[0]) - 1)) . str_repeat("*", max(1, strlen($parts[0]) - 1)) . "@" . $parts[1];
@@ -365,29 +336,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         wp_die(json_encode($response));
     }
 
-    private function generateUserActionHash($email) {
-        $hashedEmail = hash_hmac("sha256", $email, get_option(self::OPTION_SLUG_HASH_KEY));
-        $hashKey = self::TRS_USER_HASH . $hashedEmail;
-        $hashExpire = apply_filters("wpdiscuz_delete_all_content", 3 * DAY_IN_SECONDS);
-        set_transient($hashKey, $email, $hashExpire);
-        return $hashedEmail;
-    }
-
-    private function userActionMail($email, $subject, $message) {
-        $siteUrl = get_site_url();
-        $blogTitle = get_option("blogname");
-        $fromName = html_entity_decode($blogTitle, ENT_QUOTES);
-        $parsedUrl = parse_url($siteUrl);
-        $domain = isset($parsedUrl["host"]) ? WpdiscuzHelper::fixEmailFrom($parsedUrl["host"]) : "";
-        $fromEmail = "no-reply@" . $domain;
-        $headers[] = "Content-Type: text/html; charset=UTF-8";
-        $headers[] = "From: " . $fromName . " <" . $fromEmail . "> \r\n";
-        $subject = html_entity_decode($subject, ENT_QUOTES);
-        $message = html_entity_decode($message, ENT_QUOTES);
-        return wp_mail($email, $subject, do_shortcode($message), $headers);
-    }
-
-    public function followUser() {
+    public function followUser()
+    {
         $this->helper->validateNonce();
         $postId = WpdiscuzHelper::sanitize(INPUT_POST, "postId", FILTER_SANITIZE_NUMBER_INT, 0);
         $commentId = WpdiscuzHelper::sanitize(INPUT_POST, "commentId", FILTER_SANITIZE_NUMBER_INT, 0);
@@ -436,7 +386,7 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
                                 $response["followTip"] = esc_attr($this->options->getPhrase("wc_unfollow_user", ["comment" => $comment]));
                                 do_action("wpdiscuz_follow_added", $args);
                                 $response["callbackFunctions"] = [];
-                                $response = apply_filters("wpdiscuz_ajax_callbacks", $response);
+                                $response = apply_filters("wpdiscuz_ajax_callbacks", $response, $action = "wpdFollowUser");
                                 wp_send_json_success($response);
                             } else {
                                 $this->followConfirmAction($comment->comment_post_ID, $followData["id"], $followData["activation_key"], $args["follower_email"]);
@@ -454,7 +404,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         }
     }
 
-    private function followConfirmAction($postId, $id, $key, $email) {
+    private function followConfirmAction($postId, $id, $key, $email)
+    {
         $send = $this->helperEmail->followConfirmEmail($postId, $id, $key, $email);
         if ($send) {
             wp_send_json_success(["code" => "wc_follow_email_confirm"]);
@@ -464,7 +415,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         }
     }
 
-    public function regenerateVoteMetas() {
+    public function regenerateVoteMetas()
+    {
         $this->helper->validateNonce();
         $response = ["progress" => 0];
         $voteRegenerateData = isset($_POST["voteRegenerateData"]) ? $_POST["voteRegenerateData"] : "";
@@ -497,7 +449,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         wp_die(json_encode($response));
     }
 
-    public function regenerateClosedComments() {
+    public function regenerateClosedComments()
+    {
         $this->helper->validateNonce();
         $response = ["progress" => 0];
         $closedRegenerateData = isset($_POST["closedRegenerateData"]) ? sanitize_textarea_field($_POST["closedRegenerateData"]) : "";
@@ -530,7 +483,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         wp_die(json_encode($response));
     }
 
-    public function regenerateVoteData() {
+    public function regenerateVoteData()
+    {
         $response = ["progress" => 0];
         $regenerateVoteData = isset($_POST["regenerateVoteData"]) ? sanitize_textarea_field($_POST["regenerateVoteData"]) : "";
         if ($regenerateVoteData) {
@@ -562,7 +516,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         wp_die(json_encode($response));
     }
 
-    public function syncCommenterData() {
+    public function syncCommenterData()
+    {
         $this->helper->validateNonce();
         $syncCommenterData = !empty($_POST["syncCommenterData"]) ? sanitize_textarea_field($_POST["syncCommenterData"]) : "";
         if ($syncCommenterData) {
@@ -577,7 +532,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         wp_send_json_error();
     }
 
-    public function rebuildRatings() {
+    public function rebuildRatings()
+    {
         $this->helper->validateNonce();
         $response = ["progress" => 0];
         $rebuildRatings = isset($_POST["rebuildRatings"]) ? sanitize_textarea_field($_POST["rebuildRatings"]) : "";
@@ -610,7 +566,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         wp_die(json_encode($response));
     }
 
-    public function fixTables() {
+    public function fixTables()
+    {
         $this->helper->validateNonce();
         $fixTables = isset($_POST["fixTables"]) ? sanitize_textarea_field($_POST["fixTables"]) : "";
         if ($fixTables) {
@@ -627,7 +584,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
     /**
      * loads the comment content on click via ajax
      */
-    public function readMore() {
+    public function readMore()
+    {
         $commentId = WpdiscuzHelper::sanitize(INPUT_POST, "commentId", FILTER_SANITIZE_NUMBER_INT, 0);
         if ($commentId) {
             $comment = get_comment($commentId);
@@ -649,10 +607,10 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
                     "message" => str_replace(["{TEXT_WRAPPER_CLASSES}", "{TEXT}"], [
                         "wpd-comment-text",
                         $inlineContent . $commentContent
-                            ], $components["text.html"]),
+                    ], $components["text.html"]),
                     "callbackFunctions" => [],
                 ];
-                $response = apply_filters("wpdiscuz_ajax_callbacks", $response);
+                $response = apply_filters("wpdiscuz_ajax_callbacks", $response, $action = "wpdReadMore");
                 wp_send_json_success($response);
             } else {
                 wp_send_json_error("error");
@@ -665,7 +623,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
     /**
      * redirect first commenter to the selected page from options
      */
-    public function redirect() {
+    public function redirect()
+    {
         $commentId = WpdiscuzHelper::sanitize(INPUT_POST, "commentId", FILTER_SANITIZE_NUMBER_INT, 0);
         if ($this->options->general["redirectPage"] && $commentId) {
             $comment = get_comment($commentId);
@@ -678,7 +637,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         }
     }
 
-    public function voteOnComment() {
+    public function voteOnComment()
+    {
         $this->helper->validateNonce();
         $isUserLoggedIn = is_user_logged_in();
         if (!$this->options->thread_layouts["isGuestCanVote"] && !$isUserLoggedIn) {
@@ -773,7 +733,7 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
                 $response["curUserReaction"] = $voteType;
             }
             $response["callbackFunctions"] = [];
-            $response = apply_filters("wpdiscuz_ajax_callbacks", $response);
+            $response = apply_filters("wpdiscuz_ajax_callbacks", $response, $action = "wpdVoteOnComment");
             $response = apply_filters("wpdiscuz_comment_vote", $response);
             if ($this->options->thread_display["mostVotedByDefault"]) {
                 do_action("wpdiscuz_reset_comments_cache", $comment->comment_post_ID);
@@ -787,7 +747,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         }
     }
 
-    public function getInlineCommentForm() {
+    public function getInlineCommentForm()
+    {
         $post_id = WpdiscuzHelper::sanitize(INPUT_POST, "postId", FILTER_SANITIZE_NUMBER_INT, 0);
         if ($post_id && apply_filters("wpdiscuz_enable_feedback_shortcode_button", true) && $this->dbManager->postHasFeedbackForms($post_id)) {
             $currentUser = WpdiscuzHelper::getCurrentUser();
@@ -813,13 +774,15 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         }
     }
 
-    public function getLastInlineComments() {
+    public function getLastInlineComments()
+    {
         $inline_form_id = WpdiscuzHelper::sanitize(INPUT_POST, "inline_form_id", FILTER_SANITIZE_NUMBER_INT, 0);
         if ($inline_form_id && apply_filters("wpdiscuz_enable_feedback_shortcode_button", true) && ($inline_form = $this->dbManager->getFeedbackForm($inline_form_id))) {
             $args = [
                 "orderby" => $this->options->thread_display["orderCommentsBy"],
                 "order" => "DESC",
                 "number" => 3,
+                "status" => !$this->options->wp["isPaginate"] && current_user_can("moderate_comments") ? "all" : "approve",
                 "meta_query" => [
                     [
                         "key" => self::META_KEY_FEEDBACK_FORM_ID,
@@ -862,7 +825,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
     /**
      * get comment text from db
      */
-    public function editComment() {
+    public function editComment()
+    {
         $this->helper->validateNonce();
         $commentId = WpdiscuzHelper::sanitize(INPUT_POST, "commentId", FILTER_SANITIZE_NUMBER_INT, 0);
         if ($commentId) {
@@ -883,7 +847,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         }
     }
 
-    public function userRate() {
+    public function userRate()
+    {
         $this->helper->validateNonce();
         $rating = WpdiscuzHelper::sanitize(INPUT_POST, "rating", FILTER_SANITIZE_NUMBER_INT, 0);
         $post_id = WpdiscuzHelper::sanitize(INPUT_POST, "postId", FILTER_SANITIZE_NUMBER_INT, 0);
@@ -903,7 +868,7 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
                     do_action("wpdiscuz_add_rating", $rating, $post_id);
                     do_action("wpdiscuz_clean_post_cache", $post_id, "user_rated");
                     $response = ["callbackFunctions" => []];
-                    $response = apply_filters("wpdiscuz_ajax_callbacks", $response);
+                    $response = apply_filters("wpdiscuz_ajax_callbacks", $response, $action = "wpdUserRate");
                     wp_send_json_success($response);
                 } else {
                     wp_send_json_error("wc_cannot_rate_again");
@@ -923,7 +888,7 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
                     do_action("wpdiscuz_add_rating", $rating, $post_id);
                     do_action("wpdiscuz_clean_post_cache", $post_id, "user_rated");
                     $response = ["callbackFunctions" => []];
-                    $response = apply_filters("wpdiscuz_ajax_callbacks", $response);
+                    $response = apply_filters("wpdiscuz_ajax_callbacks", $response, $action = "wpdUserRate");
                     wp_send_json_success($response);
                 } else {
                     wp_send_json_error("wc_cannot_rate_again");
@@ -936,7 +901,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         }
     }
 
-    public function unsubscribe() {
+    public function unsubscribe()
+    {
         $this->helper->validateNonce();
         $sid = WpdiscuzHelper::sanitize(INPUT_POST, "sid", FILTER_SANITIZE_NUMBER_INT, 0);
         $skey = WpdiscuzHelper::sanitize(INPUT_POST, "skey", "FILTER_SANITIZE_STRING");
@@ -947,26 +913,59 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         wp_send_json_error("Something is wrong");
     }
 
-    public function wpd_stat_brief() {
+    public function wpd_stat_brief()
+    {
+        check_ajax_referer("wpd-option-nonce", "security");
+        if (!current_user_can("manage_options")) {
+            wp_send_json_error("Permission denied");
+        }
         wp_send_json_success(["all" => esc_html($this->dbManager->getCommentsCount()), "inline" => esc_html($this->dbManager->getInlineCommentsCount()), "threads" => esc_html($this->dbManager->getThreadsCount()), "replies" => esc_html($this->dbManager->getRepliesCount()), "users" => esc_html($this->dbManager->getUserCommentersCount()), "guests" => esc_html($this->dbManager->getGuestCommentersCount())]);
     }
 
-    public function wpd_stat_subs() {
+    public function wpd_stat_subs()
+    {
+        check_ajax_referer("wpd-option-nonce", "security");
+        if (!current_user_can("manage_options")) {
+            wp_die("Permission denied");
+        }
         ob_start();
         ?>
         <ul class="wpd-box-list">
-            <li><div class="wpd-list-label"><?php esc_html_e("Subscribers", "wpdiscuz") ?></div><div class="wpd-list-val"><?php echo esc_html($this->dbManager->getAllSubscribersCount()); ?></div></li>
-            <li><div class="wpd-list-label"><?php esc_html_e("Subscription - posts", "wpdiscuz") ?></div><div class="wpd-list-val"><?php echo esc_html($this->dbManager->getPostSubscribersCount()); ?></div></li>
-            <li><div class="wpd-list-label"><?php esc_html_e("Subscription - all comments", "wpdiscuz") ?></div><div class="wpd-list-val"><?php echo esc_html($this->dbManager->getAllCommentSubscribersCount()); ?></div></li>
-            <li><div class="wpd-list-label"><?php esc_html_e("Subscription - comment", "wpdiscuz") ?></div><div class="wpd-list-val"><?php echo esc_html($this->dbManager->getCommentSubscribersCount()); ?></div></li>
-            <li><div class="wpd-list-label"><?php esc_html_e("Followers", "wpdiscuz") ?></div><div class="wpd-list-val"><?php echo esc_html($this->dbManager->getFollowersCount()); ?></div></li>
-            <li><div class="wpd-list-label"><?php esc_html_e("Following", "wpdiscuz") ?></div><div class="wpd-list-val"><?php echo esc_html($this->dbManager->getFollowingCount()); ?></div></li>
+            <li>
+                <div class="wpd-list-label"><?php esc_html_e("Subscribers", "wpdiscuz") ?></div>
+                <div class="wpd-list-val"><?php echo esc_html($this->dbManager->getAllSubscribersCount()); ?></div>
+            </li>
+            <li>
+                <div class="wpd-list-label"><?php esc_html_e("Subscription - posts", "wpdiscuz") ?></div>
+                <div class="wpd-list-val"><?php echo esc_html($this->dbManager->getPostSubscribersCount()); ?></div>
+            </li>
+            <li>
+                <div class="wpd-list-label"><?php esc_html_e("Subscription - all comments", "wpdiscuz") ?></div>
+                <div class="wpd-list-val"><?php echo esc_html($this->dbManager->getAllCommentSubscribersCount()); ?></div>
+            </li>
+            <li>
+                <div class="wpd-list-label"><?php esc_html_e("Subscription - comment", "wpdiscuz") ?></div>
+                <div class="wpd-list-val"><?php echo esc_html($this->dbManager->getCommentSubscribersCount()); ?></div>
+            </li>
+            <li>
+                <div class="wpd-list-label"><?php esc_html_e("Followers", "wpdiscuz") ?></div>
+                <div class="wpd-list-val"><?php echo esc_html($this->dbManager->getFollowersCount()); ?></div>
+            </li>
+            <li>
+                <div class="wpd-list-label"><?php esc_html_e("Following", "wpdiscuz") ?></div>
+                <div class="wpd-list-val"><?php echo esc_html($this->dbManager->getFollowingCount()); ?></div>
+            </li>
         </ul>
         <?php
         wp_die(ob_get_clean());
     }
 
-    public function wpd_stat_graph() {
+    public function wpd_stat_graph()
+    {
+        check_ajax_referer("wpd-option-nonce", "security");
+        if (!current_user_can("manage_options")) {
+            wp_send_json_error("Permission denied");
+        }
         $interval = WpdiscuzHelper::sanitize(INPUT_POST, "interval", "FILTER_SANITIZE_STRING");
         if ($interval) {
             $all = $this->dbManager->getGraphAllComments($interval);
@@ -996,7 +995,12 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         wp_send_json_error();
     }
 
-    public function wpd_stat_user() {
+    public function wpd_stat_user()
+    {
+        check_ajax_referer("wpd-option-nonce", "security");
+        if (!current_user_can("manage_options")) {
+            wp_send_json_error("Permission denied");
+        }
         $orderby = WpdiscuzHelper::sanitize(INPUT_POST, "orderby", "FILTER_SANITIZE_STRING");
         $order = WpdiscuzHelper::sanitize(INPUT_POST, "order", "FILTER_SANITIZE_STRING");
         $page = WpdiscuzHelper::sanitize(INPUT_POST, "page", "FILTER_SANITIZE_STRING");
@@ -1008,23 +1012,28 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
                     <th>
                         <?php esc_html_e("Comment Author", "wpdiscuz") ?>
                     </th>
-                    <th class="wpd-sort-field<?php echo esc_attr("comments" === $orderby ? " wpd-active" : ""); ?>" data-orderby="comments">
+                    <th class="wpd-sort-field<?php echo esc_attr("comments" === $orderby ? " wpd-active" : ""); ?>"
+                        data-orderby="comments">
                         <?php esc_html_e("Comments", "wpdiscuz") ?>
                         <span<?php echo "comments" !== $orderby ? " style='display:none;'" : ""; ?> class="dashicons <?php echo esc_attr("comments" === $orderby && "desc" === $order ? "dashicons-arrow-down-alt2" : "dashicons-arrow-up-alt2"); ?>"></span>
                     </th>
-                    <th class="wpd-sort-field<?php echo esc_attr("subscriptions" === $orderby ? " wpd-active" : ""); ?>" data-orderby="subscriptions">
+                    <th class="wpd-sort-field<?php echo esc_attr("subscriptions" === $orderby ? " wpd-active" : ""); ?>"
+                        data-orderby="subscriptions">
                         <?php esc_html_e("Subscriptions", "wpdiscuz") ?>
                         <span<?php echo "subscriptions" !== $orderby ? " style='display:none;'" : ""; ?> class="dashicons <?php echo esc_attr("subscriptions" === $orderby && "desc" === $order ? "dashicons-arrow-down-alt2" : "dashicons-arrow-up-alt2"); ?>"></span>
                     </th>
-                    <th class="wpd-sort-field<?php echo esc_attr("following" === $orderby ? " wpd-active" : ""); ?>" data-orderby="following">
+                    <th class="wpd-sort-field<?php echo esc_attr("following" === $orderby ? " wpd-active" : ""); ?>"
+                        data-orderby="following">
                         <?php esc_html_e("Following", "wpdiscuz") ?>
                         <span<?php echo "following" !== $orderby ? " style='display:none;'" : ""; ?> class="dashicons <?php echo esc_attr("following" === $orderby && "desc" === $order ? "dashicons-arrow-down-alt2" : "dashicons-arrow-up-alt2"); ?>"></span>
                     </th>
-                    <th class="wpd-sort-field<?php echo esc_attr("followers" === $orderby ? " wpd-active" : ""); ?>" data-orderby="followers">
+                    <th class="wpd-sort-field<?php echo esc_attr("followers" === $orderby ? " wpd-active" : ""); ?>"
+                        data-orderby="followers">
                         <?php esc_html_e("Followers", "wpdiscuz") ?>
                         <span<?php echo "followers" !== $orderby ? " style='display:none;'" : ""; ?> class="dashicons <?php echo esc_attr("followers" === $orderby && "desc" === $order ? "dashicons-arrow-down-alt2" : "dashicons-arrow-up-alt2"); ?>"></span>
                     </th>
-                    <th class="wpd-sort-field<?php echo esc_attr("last_activity" === $orderby ? " wpd-active" : ""); ?>" data-orderby="last_activity">
+                    <th class="wpd-sort-field<?php echo esc_attr("last_activity" === $orderby ? " wpd-active" : ""); ?>"
+                        data-orderby="last_activity">
                         <?php esc_html_e("Last Activity", "wpdiscuz") ?>
                         <span<?php echo "last_activity" !== $orderby ? " style='display:none;'" : ""; ?> class="dashicons <?php echo esc_attr("last_activity" === $orderby && "desc" === $order ? "dashicons-arrow-down-alt2" : "dashicons-arrow-up-alt2"); ?>"></span>
                     </th>
@@ -1062,7 +1071,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         wp_send_json_error(esc_html__("Something is wrong"));
     }
 
-    public function searchOption() {
+    public function searchOption()
+    {
         $search = WpdiscuzHelper::sanitize(INPUT_POST, "s", "FILTER_SANITIZE_STRING");
         if ($search) {
             $optionsObject = $this->options;
@@ -1079,10 +1089,10 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
                         }
 
                         if ((isset($val["label"]) && stripos($val["label"], $search) !== false) ||
-                                (isset($val["description"]) && stripos($val["description"], $search) !== false) ||
-                                (isset($val["label_original"]) && stripos($val["label_original"], $search) !== false) ||
-                                (isset($val["description_original"]) && stripos($val["description_original"], $search) !== false) ||
-                                stripos($optKey, $search)) {
+                            (isset($val["description"]) && stripos($val["description"], $search) !== false) ||
+                            (isset($val["label_original"]) && stripos($val["label_original"], $search) !== false) ||
+                            (isset($val["description_original"]) && stripos($val["description_original"], $search) !== false) ||
+                            stripos($optKey, $search)) {
 
                             $fragment = empty($val["accordion"]) ? "wpd_tab={$tabKey}#wpdOpt-{$optKey}" : "&wpd_tab={$tabKey}#{$val["accordion"]}#wpdOpt-{$optKey}";
 
@@ -1112,10 +1122,12 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         }
     }
 
-    public function resetPostRating() {
-        if (current_user_can("edit_posts")) {
-            $postId = WpdiscuzHelper::sanitize(INPUT_POST, "postId", FILTER_SANITIZE_NUMBER_INT, 0);
-            if ($postId) {
+    public function resetPostRating()
+    {
+        check_ajax_referer("wpd-reset-rating", "security");
+        $postId = WpdiscuzHelper::sanitize(INPUT_POST, "postId", FILTER_SANITIZE_NUMBER_INT, 0);
+        if ($postId) {
+            if (current_user_can("edit_post", $postId)) {
                 delete_post_meta($postId, self::POSTMETA_POST_RATING);
                 delete_post_meta($postId, self::POSTMETA_POST_RATING_COUNT);
                 $this->dbManager->removeRatings($postId);
@@ -1126,10 +1138,12 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants {
         wp_send_json_error();
     }
 
-    public function resetFieldsRatings() {
-        if (current_user_can("edit_posts")) {
-            $postId = WpdiscuzHelper::sanitize(INPUT_POST, "postId", FILTER_SANITIZE_NUMBER_INT, 0);
-            if ($postId) {
+    public function resetFieldsRatings()
+    {
+        check_ajax_referer("wpd-reset-rating", "security");
+        $postId = WpdiscuzHelper::sanitize(INPUT_POST, "postId", FILTER_SANITIZE_NUMBER_INT, 0);
+        if ($postId) {
+            if (current_user_can("edit_post", $postId)) {
                 $postMeta = get_post_meta($postId, self::POSTMETA_RATING_COUNT, true);
                 if ($postMeta) {
                     foreach ($postMeta as $key => $value) {

@@ -3,7 +3,7 @@
 Plugin Name: Super Socializer
 Plugin URI: https://super-socializer-wordpress.heateor.com
 Description: A complete 360 degree solution to provide all the social features like Social Login, Social Commenting, Social Sharing, Social Media follow and more
-Version: 7.13.46
+Version: 7.13.65
 Author: Team Heateor
 Author URI: https://www.heateor.com
 Text Domain: super-socializer
@@ -11,7 +11,7 @@ Domain Path: /languages
 License: GPL2+
 */
 defined('ABSPATH') or die("Cheating........Uh!!");
-define('THE_CHAMP_SS_VERSION', '7.13.46');
+define('THE_CHAMP_SS_VERSION', '7.13.65');
 
 // attributes to allow in the HTML of the social share and social media follow icons
 $heateorSsDefaultAttribs = array(
@@ -151,7 +151,7 @@ require 'helper.php';
 
 $theChampLoginOptions = get_option('the_champ_login');
 if(the_champ_social_login_enabled()){
-	if(isset($theChampLoginOptions['providers']) && in_array('twitter', $theChampLoginOptions['providers']) && !class_exists('Abraham\TwitterOAuth\Config')){
+	if(isset($theChampLoginOptions['providers']) && in_array('x', $theChampLoginOptions['providers']) && !class_exists('Abraham\TwitterOAuth\Config')){
 		require 'library/Twitter/src/Config.php';
 		require 'library/Twitter/src/Response.php';
 		require 'library/Twitter/src/SignatureMethod.php';
@@ -278,6 +278,7 @@ function the_champ_load_event(){
  * Check querystring variables
  */
 function the_champ_connect(){
+
 	global $theChampLoginOptions;
 
 	// verify email
@@ -296,6 +297,7 @@ function the_champ_connect(){
 	}
 
 	if(isset($_GET['SuperSocializerAuth'])){
+		$siteUrlForCallback = isset($theChampLoginOptions['domain_callback']) ? the_champ_get_http() . $_SERVER["HTTP_HOST"] : home_url();
 		if(sanitize_text_field($_GET['SuperSocializerAuth']) == 'Vkontakte'){
 			if(isset($theChampLoginOptions['providers']) && in_array('vkontakte', $theChampLoginOptions['providers']) && isset($theChampLoginOptions['vk_key']) && $theChampLoginOptions['vk_key'] != '' && isset($theChampLoginOptions['vk_secure_key']) && $theChampLoginOptions['vk_secure_key'] != ''){
 				if(function_exists('session_start')){
@@ -321,7 +323,7 @@ function the_champ_connect(){
 				$instagramLoginState = mt_rand();
 				// save referrer url in state
 				update_user_meta($instagramLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
-				wp_redirect("https://api.instagram.com/oauth/authorize?client_id=".$theChampLoginOptions['insta_id']."&scope=user_profile,user_media&response_type=code&language=en-us&state=".$instagramLoginState."&redirect_uri=".urlencode(home_url()."/SuperSocializerAuth/Instagram"));
+				wp_redirect("https://api.instagram.com/oauth/authorize?client_id=".$theChampLoginOptions['insta_id']."&scope=user_profile,user_media&response_type=code&language=en-us&state=".$instagramLoginState."&redirect_uri=".urlencode($siteUrlForCallback."/SuperSocializerAuth/Instagram"));
 				die;
 			}
 			// Steam auth
@@ -334,7 +336,11 @@ function the_champ_connect(){
 	                if(isset($_GET['heateorMSEnabled'])){
 	                	update_user_meta($linkedinAuthState, 'heateor_ss_linkedin_mc_sub', 1);
 	                }
-				    $linkedinScope = 'r_liteprofile,r_emailaddress';
+				    if($theChampLoginOptions['linkedin_login_type'] == 'oauth'){
+	                	$linkedinScope = 'r_liteprofile,r_emailaddress';
+	                }else{
+	                	$linkedinScope = 'openid,profile,email';
+	                }
 				    wp_redirect('https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id='.$theChampLoginOptions['li_key'].'&redirect_uri='.urlencode(home_url().'/?SuperSocializerAuth=Linkedin').'&state='. $linkedinAuthState .'&scope='.$linkedinScope);
 				    die;
 				}
@@ -360,61 +366,77 @@ function the_champ_connect(){
 					if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
 						$body = json_decode(wp_remote_retrieve_body($response));
 						if(is_object($body) && isset($body->access_token)){
-							// fetch profile data
-							$firstLastName = wp_remote_get('https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))', array(
-									'method' => 'GET',
-									'timeout' => 15,
-									'headers' => array('Authorization' => "Bearer ".$body->access_token),
-							    )
-							);
-							$email = wp_remote_get('https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))', array(
-									'method' => 'GET',
-									'timeout' => 15,
-									'headers' => array('Authorization' => "Bearer ".$body->access_token),
-							    )
-							);
-							if(!is_wp_error($firstLastName) && isset($firstLastName['response']['code']) && 200 === $firstLastName['response']['code'] && !is_wp_error($email) && isset($email['response']['code']) && 200 === $email['response']['code']){
-								$firstLastNameBody = json_decode(wp_remote_retrieve_body($firstLastName));
-								$emailBody = json_decode(wp_remote_retrieve_body($email));
-								if(is_object($firstLastNameBody) && isset($firstLastNameBody->id) && $firstLastNameBody->id && is_object($emailBody) && isset($emailBody->elements)){
-									$firstLastNameBody = json_decode(json_encode($firstLastNameBody), true);
-									$emailBody = json_decode(json_encode($emailBody), true);
-									$firstName = isset($firstLastNameBody['firstName']) && isset($firstLastNameBody['firstName']['localized']) && isset($firstLastNameBody['firstName']['preferredLocale']) && isset($firstLastNameBody['firstName']['preferredLocale']['language']) && isset($firstLastNameBody['firstName']['preferredLocale']['country']) ? $firstLastNameBody['firstName']['localized'][$firstLastNameBody['firstName']['preferredLocale']['language'].'_'.$firstLastNameBody['firstName']['preferredLocale']['country']] : '';
-									$lastName = isset($firstLastNameBody['lastName']) && isset($firstLastNameBody['lastName']['localized']) && isset($firstLastNameBody['lastName']['preferredLocale']) && isset($firstLastNameBody['lastName']['preferredLocale']['language']) && isset($firstLastNameBody['lastName']['preferredLocale']['country']) ? $firstLastNameBody['lastName']['localized'][$firstLastNameBody['lastName']['preferredLocale']['language'].'_'.$firstLastNameBody['lastName']['preferredLocale']['country']] : '';
-									$smallAvatar = isset($firstLastNameBody['profilePicture']) && isset($firstLastNameBody['profilePicture']['displayImage~']) && isset($firstLastNameBody['profilePicture']['displayImage~']['elements']) && is_array($firstLastNameBody['profilePicture']['displayImage~']['elements']) && isset($firstLastNameBody['profilePicture']['displayImage~']['elements'][0]['identifiers']) && is_array($firstLastNameBody['profilePicture']['displayImage~']['elements'][0]['identifiers'][0]) && isset($firstLastNameBody['profilePicture']['displayImage~']['elements'][0]['identifiers'][0]['identifier']) ? $firstLastNameBody['profilePicture']['displayImage~']['elements'][0]['identifiers'][0]['identifier'] : '';
-									$largeAvatar = isset($firstLastNameBody['profilePicture']) && isset($firstLastNameBody['profilePicture']['displayImage~']) && isset($firstLastNameBody['profilePicture']['displayImage~']['elements']) && is_array($firstLastNameBody['profilePicture']['displayImage~']['elements']) && isset($firstLastNameBody['profilePicture']['displayImage~']['elements'][3]['identifiers']) && is_array($firstLastNameBody['profilePicture']['displayImage~']['elements'][3]['identifiers'][0]) && isset($firstLastNameBody['profilePicture']['displayImage~']['elements'][3]['identifiers'][0]['identifier']) ? $firstLastNameBody['profilePicture']['displayImage~']['elements'][3]['identifiers'][0]['identifier'] : '';
-			                     	$emailAddress = isset($emailBody['elements']) && is_array($emailBody['elements']) && isset($emailBody['elements'][0]['handle~']) && isset($emailBody['elements'][0]['handle~']['emailAddress']) ? $emailBody['elements'][0]['handle~']['emailAddress'] : '';
-			                     	$user = array(
-			                     		'firstName' => $firstName,
-			                     		'lastName' => $lastName,
-			                     		'email' => $emailAddress,
-			                     		'id' => $firstLastNameBody['id'],
-			                     		'smallAvatar' => $smallAvatar,
-			                     		'largeAvatar' => $largeAvatar
-			                     	);
-			                     	
-									$profileData = the_champ_sanitize_profile_data($user, 'linkedin');
-									$linkedinAuthState = sanitize_text_field($_GET['state']);
-									if(get_user_meta($linkedinAuthState, 'heateor_ss_linkedin_mc_sub', true)){
-										$profileData['mc_subscribe'] = 1;
-										delete_user_meta($linkedinAuthState, 'heateor_ss_linkedin_mc_sub');
+							if($theChampLoginOptions['linkedin_login_type'] == 'oauth'){
+								// fetch profile data
+								$firstLastName = wp_remote_get('https://api.linkedin.com/v2/me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams))', array(
+										'method' => 'GET',
+										'timeout' => 15,
+										'headers' => array('Authorization' => "Bearer ".$body->access_token),
+								    )
+								);
+								$email = wp_remote_get('https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))', array(
+										'method' => 'GET',
+										'timeout' => 15,
+										'headers' => array('Authorization' => "Bearer ".$body->access_token),
+								    )
+								);
+								if(!is_wp_error($firstLastName) && isset($firstLastName['response']['code']) && 200 === $firstLastName['response']['code'] && !is_wp_error($email) && isset($email['response']['code']) && 200 === $email['response']['code']){
+									$firstLastNameBody = json_decode(wp_remote_retrieve_body($firstLastName));
+									$emailBody = json_decode(wp_remote_retrieve_body($email));
+									if(is_object($firstLastNameBody) && isset($firstLastNameBody->id) && $firstLastNameBody->id && is_object($emailBody) && isset($emailBody->elements)){
+										$firstLastNameBody = json_decode(json_encode($firstLastNameBody), true);
+										$emailBody = json_decode(json_encode($emailBody), true);
+										$firstName = isset($firstLastNameBody['firstName']) && isset($firstLastNameBody['firstName']['localized']) && isset($firstLastNameBody['firstName']['preferredLocale']) && isset($firstLastNameBody['firstName']['preferredLocale']['language']) && isset($firstLastNameBody['firstName']['preferredLocale']['country']) ? $firstLastNameBody['firstName']['localized'][$firstLastNameBody['firstName']['preferredLocale']['language'].'_'.$firstLastNameBody['firstName']['preferredLocale']['country']] : '';
+										$lastName = isset($firstLastNameBody['lastName']) && isset($firstLastNameBody['lastName']['localized']) && isset($firstLastNameBody['lastName']['preferredLocale']) && isset($firstLastNameBody['lastName']['preferredLocale']['language']) && isset($firstLastNameBody['lastName']['preferredLocale']['country']) ? $firstLastNameBody['lastName']['localized'][$firstLastNameBody['lastName']['preferredLocale']['language'].'_'.$firstLastNameBody['lastName']['preferredLocale']['country']] : '';
+										$smallAvatar = isset($firstLastNameBody['profilePicture']) && isset($firstLastNameBody['profilePicture']['displayImage~']) && isset($firstLastNameBody['profilePicture']['displayImage~']['elements']) && is_array($firstLastNameBody['profilePicture']['displayImage~']['elements']) && isset($firstLastNameBody['profilePicture']['displayImage~']['elements'][0]['identifiers']) && is_array($firstLastNameBody['profilePicture']['displayImage~']['elements'][0]['identifiers'][0]) && isset($firstLastNameBody['profilePicture']['displayImage~']['elements'][0]['identifiers'][0]['identifier']) ? $firstLastNameBody['profilePicture']['displayImage~']['elements'][0]['identifiers'][0]['identifier'] : '';
+										$largeAvatar = isset($firstLastNameBody['profilePicture']) && isset($firstLastNameBody['profilePicture']['displayImage~']) && isset($firstLastNameBody['profilePicture']['displayImage~']['elements']) && is_array($firstLastNameBody['profilePicture']['displayImage~']['elements']) && isset($firstLastNameBody['profilePicture']['displayImage~']['elements'][3]['identifiers']) && is_array($firstLastNameBody['profilePicture']['displayImage~']['elements'][3]['identifiers'][0]) && isset($firstLastNameBody['profilePicture']['displayImage~']['elements'][3]['identifiers'][0]['identifier']) ? $firstLastNameBody['profilePicture']['displayImage~']['elements'][3]['identifiers'][0]['identifier'] : '';
+				                     	$emailAddress = isset($emailBody['elements']) && is_array($emailBody['elements']) && isset($emailBody['elements'][0]['handle~']) && isset($emailBody['elements'][0]['handle~']['emailAddress']) ? $emailBody['elements'][0]['handle~']['emailAddress'] : '';
+				                     	$user = array(
+				                     		'firstName' => $firstName,
+				                     		'lastName' => $lastName,
+				                     		'email' => $emailAddress,
+				                     		'id' => $firstLastNameBody['id'],
+				                     		'smallAvatar' => $smallAvatar,
+				                     		'largeAvatar' => $largeAvatar
+				                     	);
 									}
-									$linkedinRedirectUrl = get_user_meta($linkedinAuthState, 'super_socializer_redirect_to', true);
-									$response = the_champ_user_auth($profileData, 'linkedin', $linkedinRedirectUrl);
-									if(is_array($response) && isset($response['message']) && $response['message'] == 'register' && (!isset($response['url']) || $response['url'] == '')){
-										$redirectTo = the_champ_get_login_redirection_url($linkedinRedirectUrl, true);
-									}elseif(isset($response['message']) && $response['message'] == 'linked'){
-										$redirectTo = $linkedinRedirectUrl.(strpos($linkedinRedirectUrl, '?') !== false ? '&' : '?').'linked=1';
-									}elseif(isset($response['message']) && $response['message'] == 'not linked'){
-										$redirectTo = $linkedinRedirectUrl.(strpos($linkedinRedirectUrl, '?') !== false ? '&' : '?').'linked=0';
-									}elseif(isset($response['url']) && $response['url'] != ''){
-										$redirectTo = $response['url'];
-									}else{
-										$redirectTo = the_champ_get_login_redirection_url($linkedinRedirectUrl);
+								}
+							}else{
+								$profileData = wp_remote_get('https://api.linkedin.com/v2/userinfo', array(
+										'method' => 'GET',
+										'timeout' => 15,
+										'headers' => array('Authorization' => "Bearer " . $body->access_token),
+								    )
+								);
+								$user = '';
+								if(!is_wp_error($profileData) && isset($profileData['response']['code']) && 200 === $profileData['response']['code']){
+									$profileDataBody = json_decode(wp_remote_retrieve_body($profileData));
+									if(is_object($profileDataBody) && isset($profileDataBody->sub) && $profileDataBody->sub){
+										$user = $profileDataBody;
 									}
-									the_champ_close_login_popup($redirectTo);
 								}
 							}
+			                     	
+							$profileData = the_champ_sanitize_profile_data($user, 'linkedin');
+							$linkedinAuthState = sanitize_text_field($_GET['state']);
+							if(get_user_meta($linkedinAuthState, 'heateor_ss_linkedin_mc_sub', true)){
+								$profileData['mc_subscribe'] = 1;
+								delete_user_meta($linkedinAuthState, 'heateor_ss_linkedin_mc_sub');
+							}
+							$linkedinRedirectUrl = get_user_meta($linkedinAuthState, 'super_socializer_redirect_to', true);
+							$response = the_champ_user_auth($profileData, 'linkedin', $linkedinRedirectUrl);
+							if(is_array($response) && isset($response['message']) && $response['message'] == 'register' && (!isset($response['url']) || $response['url'] == '')){
+								$redirectTo = the_champ_get_login_redirection_url($linkedinRedirectUrl, true);
+							}elseif(isset($response['message']) && $response['message'] == 'linked'){
+								$redirectTo = $linkedinRedirectUrl.(strpos($linkedinRedirectUrl, '?') !== false ? '&' : '?').'linked=1';
+							}elseif(isset($response['message']) && $response['message'] == 'not linked'){
+								$redirectTo = $linkedinRedirectUrl.(strpos($linkedinRedirectUrl, '?') !== false ? '&' : '?').'linked=0';
+							}elseif(isset($response['url']) && $response['url'] != ''){
+								$redirectTo = $response['url'];
+							}else{
+								$redirectTo = the_champ_get_login_redirection_url($linkedinRedirectUrl);
+							}
+							the_champ_close_login_popup($redirectTo);
 						}
 					}
 				}
@@ -427,7 +449,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($lineLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://access.line.me/oauth2/v2.1/authorize?client_id=".$theChampLoginOptions['line_channel_id']."&response_type=code&scope=openid%20profile%20email&state=". $lineLoginState ."&redirect_uri=".urlencode(home_url()."/SuperSocializerAuth/Line"));
+				wp_redirect("https://access.line.me/oauth2/v2.1/authorize?client_id=".$theChampLoginOptions['line_channel_id']."&response_type=code&scope=profile%20openid%20email&state=". $lineLoginState ."&redirect_uri=".urlencode($siteUrlForCallback."/SuperSocializerAuth/Line"));
 				die;
 			}
 			// mail.ru
@@ -442,7 +464,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($mailruLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://oauth.mail.ru/login?client_id=". $theChampLoginOptions['mailru_client_id'] ."&scope=userinfo&state=". $mailruLoginState ."&response_type=code&redirect_uri=". home_url() ."/SuperSocializerAuth/Mailru");
+				wp_redirect("https://oauth.mail.ru/login?client_id=". $theChampLoginOptions['mailru_client_id'] ."&scope=userinfo&state=". $mailruLoginState ."&response_type=code&redirect_uri=". $siteUrlForCallback ."/SuperSocializerAuth/Mailru");
 				die;
 			}
 			// yahoo
@@ -453,7 +475,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($yahooLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://api.login.yahoo.com/oauth2/request_auth?client_id=".$theChampLoginOptions['yahoo_channel_id']."&response_type=code&language=en-us&state=".$yahooLoginState."&redirect_uri=".home_url()."/SuperSocializerAuth/Yahoo");
+				wp_redirect("https://api.login.yahoo.com/oauth2/request_auth?client_id=".$theChampLoginOptions['yahoo_channel_id']."&response_type=code&language=en-us&state=".$yahooLoginState."&redirect_uri=".$siteUrlForCallback."/SuperSocializerAuth/Yahoo");
 				die;
 			}
 			// Discord
@@ -464,7 +486,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($discordLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://discord.com/oauth2/authorize/request_auth?client_id=".$theChampLoginOptions['discord_channel_id']."&response_type=code&state=".$discordLoginState."&scope=identify%20email&redirect_uri=".home_url()."/SuperSocializerAuth/Discord");
+				wp_redirect("https://discord.com/oauth2/authorize/request_auth?client_id=".$theChampLoginOptions['discord_channel_id']."&response_type=code&state=".$discordLoginState."&scope=identify%20email&redirect_uri=".$siteUrlForCallback."/SuperSocializerAuth/Discord");
 				die;
 			}
 			// Wordpress
@@ -475,7 +497,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($wordpressLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://public-api.wordpress.com/oauth2/authorize?client_id=".$theChampLoginOptions['wordpress_client_id']."&scope=auth&response_type=code&state=".$wordpressLoginState."&redirect_uri=".home_url()."/SuperSocializerAuth/Wordpress");
+				wp_redirect("https://public-api.wordpress.com/oauth2/authorize?client_id=".$theChampLoginOptions['wordpress_client_id']."&scope=auth&response_type=code&state=".$wordpressLoginState."&redirect_uri=".$siteUrlForCallback."/SuperSocializerAuth/Wordpress");
 				die;
 			}
 			// windows live
@@ -484,7 +506,7 @@ function the_champ_connect(){
 				$liveLoginState = mt_rand();
 				// save referrer url in state
 				update_user_meta($liveLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
-				wp_redirect("https://login.live.com/oauth20_authorize.srf?client_id=".$theChampLoginOptions['live_channel_id']."&scope=wl.emails,wl.basic&response_type=code&state=".$liveLoginState."&redirect_uri=".home_url()."/SuperSocializerAuth/Live");
+				wp_redirect("https://login.live.com/oauth20_authorize.srf?client_id=".$theChampLoginOptions['live_channel_id']."&scope=wl.emails,wl.basic&response_type=code&state=".$liveLoginState."&redirect_uri=".$siteUrlForCallback."/SuperSocializerAuth/Live");
 				die;
 			}
 			// twitch
@@ -495,7 +517,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($twitchLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://id.twitch.tv/oauth2/authorize?client_id=".$theChampLoginOptions['twitch_client_id']."&scope=user:read:email&response_type=code&state=".$twitchLoginState."&redirect_uri=".urlencode(home_url()."/SuperSocializerAuth/Twitch"));
+				wp_redirect("https://id.twitch.tv/oauth2/authorize?client_id=".$theChampLoginOptions['twitch_client_id']."&scope=user:read:email&response_type=code&state=".$twitchLoginState."&redirect_uri=".urlencode($siteUrlForCallback."/SuperSocializerAuth/Twitch"));
 				die;
 			}
 			// reddit
@@ -504,7 +526,7 @@ function the_champ_connect(){
 		        $redditLoginState = mt_rand();
 				// save referrer url in state
 				update_user_meta($redditLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
-		        wp_redirect("https://ssl.reddit.com/api/v1/authorize?client_id=" . $theChampLoginOptions['reddit_client_id'] . "&scope=identity&state=" . $redditLoginState . "&duration=temporary&response_type=code&redirect_uri=" . home_url() . "/SuperSocializerAuth/Reddit");
+		        wp_redirect("https://ssl.reddit.com/api/v1/authorize?client_id=" . $theChampLoginOptions['reddit_client_id'] . "&scope=identity&state=" . $redditLoginState . "&duration=temporary&response_type=code&redirect_uri=" . $siteUrlForCallback . "/SuperSocializerAuth/Reddit");
 		        die;
 		    }
 		    //disqus
@@ -513,7 +535,7 @@ function the_champ_connect(){
 		        $disqusLoginState = mt_rand();
 				// save referrer url in state
 				update_user_meta($disqusLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
-		        wp_redirect("https://disqus.com/api/oauth/2.0/authorize/?client_id=" . $theChampLoginOptions['disqus_public_key'] . "&scope=read,email&response_type=code&state=". $disqusLoginState ."&redirect_uri=" . home_url() . "/SuperSocializerAuth/Disqus");
+		        wp_redirect("https://disqus.com/api/oauth/2.0/authorize/?client_id=" . $theChampLoginOptions['disqus_public_key'] . "&scope=read,email&response_type=code&state=". $disqusLoginState ."&redirect_uri=" . $siteUrlForCallback . "/SuperSocializerAuth/Disqus");
 		        die;
 		    }
 		    // dropbox
@@ -522,7 +544,7 @@ function the_champ_connect(){
 		    	$dropboxLoginState = mt_rand();
 				// save referrer url in state
 				update_user_meta($dropboxLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
-		        wp_redirect("https://www.dropbox.com/1/oauth2/authorize?client_id=" . $theChampLoginOptions['dropbox_app_key'] . "&scope=account_info.read&state=" . $dropboxLoginState . "&response_type=code&redirect_uri=" . home_url() . "/SuperSocializerAuth/Dropbox");
+		        wp_redirect("https://www.dropbox.com/1/oauth2/authorize?client_id=" . $theChampLoginOptions['dropbox_app_key'] . "&scope=account_info.read&state=" . $dropboxLoginState . "&response_type=code&redirect_uri=" . $siteUrlForCallback . "/SuperSocializerAuth/Dropbox");
 		        die;
 		    }
 		    // foursquare
@@ -531,7 +553,7 @@ function the_champ_connect(){
 		        $foursquareLoginState = mt_rand();
 				// save referrer url in state
 				update_user_meta($foursquareLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
-		        wp_redirect("https://foursquare.com/oauth2/authenticate/?client_id=" . $theChampLoginOptions['foursquare_client_id'] . "&response_type=code&state=". $foursquareLoginState ."&redirect_uri=" . home_url() . "/SuperSocializerAuth/Foursquare");
+		        wp_redirect("https://foursquare.com/oauth2/authenticate/?client_id=" . $theChampLoginOptions['foursquare_client_id'] . "&response_type=code&state=". $foursquareLoginState ."&redirect_uri=" . $siteUrlForCallback . "/SuperSocializerAuth/Foursquare");
 		        die;
 		    }
 		    // odnoklassniki
@@ -542,7 +564,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($odnoklassnikiLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://connect.ok.ru/oauth/authorize?client_id=" . $theChampLoginOptions['odnoklassniki_client_id'] . "&scope=GET_EMAIL%20PHOTO_CONTENT&response_type=code&state=" . $odnoklassnikiLoginState . "&redirect_uri=" . urlencode(home_url()."/SuperSocializerAuth/Odnoklassniki"));
+				wp_redirect("https://connect.ok.ru/oauth/authorize?client_id=" . $theChampLoginOptions['odnoklassniki_client_id'] . "&scope=GET_EMAIL%20PHOTO_CONTENT&response_type=code&state=" . $odnoklassnikiLoginState . "&redirect_uri=" . urlencode($siteUrlForCallback."/SuperSocializerAuth/Odnoklassniki"));
 				die;
 			}
 			// Dribbble
@@ -553,7 +575,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($dribbbleLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://dribbble.com/oauth/authorize?client_id=".$theChampLoginOptions['dribbble_client_id']."&scope=public&state=". $dribbbleLoginState ."&redirect_uri=".urlencode(home_url()."/SuperSocializerAuth/Dribbble"));
+				wp_redirect("https://dribbble.com/oauth/authorize?client_id=".$theChampLoginOptions['dribbble_client_id']."&scope=public&state=". $dribbbleLoginState ."&redirect_uri=".urlencode($siteUrlForCallback."/SuperSocializerAuth/Dribbble"));
 				die;
 			}
 			// Spotify
@@ -564,7 +586,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($spotifyLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://accounts.spotify.com/authorize?client_id=".$theChampLoginOptions['spotify_client_id']."&scope=user-read-email&response_type=code&state=". $spotifyLoginState ."&redirect_uri=".home_url()."/SuperSocializerAuth/Spotify");
+				wp_redirect("https://accounts.spotify.com/authorize?client_id=".$theChampLoginOptions['spotify_client_id']."&scope=user-read-email&response_type=code&state=". $spotifyLoginState ."&redirect_uri=".$siteUrlForCallback."/SuperSocializerAuth/Spotify");
 				die;
 			}
 			// kakao
@@ -575,7 +597,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($kakaoLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://kauth.kakao.com/oauth/authorize?client_id=".$theChampLoginOptions['kakao_client_id']."&response_type=code&state=". $kakaoLoginState ."&redirect_uri=".home_url()."/SuperSocializerAuth/Kakao");
+				wp_redirect("https://kauth.kakao.com/oauth/authorize?client_id=".$theChampLoginOptions['kakao_client_id']."&response_type=code&state=". $kakaoLoginState ."&redirect_uri=".$siteUrlForCallback."/SuperSocializerAuth/Kakao");
 				die;
 			}
 			// yandex
@@ -586,7 +608,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($yandexLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://oauth.yandex.com/authorize?client_id=" . $theChampLoginOptions['yandex_client_id'] . "&response_type=code&state=" . $yandexLoginState . "&redirect_uri=".urlencode(home_url() . "/SuperSocializerAuth/Yandex"));
+				wp_redirect("https://oauth.yandex.ru/authorize?client_id=" . $theChampLoginOptions['yandex_client_id'] . "&response_type=code&state=" . $yandexLoginState . "&redirect_uri=".urlencode($siteUrlForCallback . "/SuperSocializerAuth/Yandex"));
 				die;
 			}
 			// Github
@@ -597,7 +619,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($githubLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://github.com/login/oauth/authorize?client_id=".$theChampLoginOptions['github_client_id']."&scope=read:user user:email&state=". $githubLoginState ."&response_type=code&redirect_uri=".home_url()."/SuperSocializerAuth/Github");
+				wp_redirect("https://github.com/login/oauth/authorize?client_id=".$theChampLoginOptions['github_client_id']."&scope=read:user user:email&state=". $githubLoginState ."&response_type=code&redirect_uri=".$siteUrlForCallback."/SuperSocializerAuth/Github");
 				die;
 			}
 			// amazon
@@ -608,7 +630,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($amazonLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://www.amazon.com/ap/oa?client_id=".$theChampLoginOptions['amazon_client_id']."&response_type=code&scope=profile&state=".$amazonLoginState."&redirect_uri=".urlencode(home_url()."/SuperSocializerAuth/Amazon"));
+				wp_redirect("https://www.amazon.com/ap/oa?client_id=".$theChampLoginOptions['amazon_client_id']."&response_type=code&scope=profile&state=".$amazonLoginState."&redirect_uri=".urlencode($siteUrlForCallback."/SuperSocializerAuth/Amazon"));
 				die;
 			}
 			// Stack Overflow
@@ -619,7 +641,7 @@ function the_champ_connect(){
 					// save referrer url in state
 					update_user_meta($stackoverflowLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 				}
-				wp_redirect("https://stackexchange.com/oauth?client_id=".$theChampLoginOptions['stackoverflow_client_id']."&response_type=code&scope=private_info&state=".$stackoverflowLoginState."&redirect_uri=".urlencode(home_url()."/SuperSocializerAuth/Stackoverflow"));
+				wp_redirect("https://stackexchange.com/oauth?client_id=".$theChampLoginOptions['stackoverflow_client_id']."&response_type=code&scope=private_info&state=".$stackoverflowLoginState."&redirect_uri=".urlencode($siteUrlForCallback."/SuperSocializerAuth/Stackoverflow"));
 				die;
 			}
 			// Google
@@ -629,7 +651,7 @@ function the_champ_connect(){
 	            // save referrer url in state
 	            update_user_meta($googleLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 	            update_user_meta($googleLoginState, 'super_socializer_temp_network', 'Google');
-		        wp_redirect("https://accounts.google.com/o/oauth2/auth?client_id=" . $theChampLoginOptions['google_key'] . "&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&state=". $googleLoginState ."&response_type=code&prompt=select_account&redirect_uri=" . home_url());
+		        wp_redirect("https://accounts.google.com/o/oauth2/auth?client_id=" . $theChampLoginOptions['google_key'] . "&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile&state=". $googleLoginState ."&response_type=code&prompt=select_account&redirect_uri=" . $siteUrlForCallback);
 		        die;
 		    }
 		}elseif(sanitize_text_field($_GET['SuperSocializerAuth']) == 'Youtube'){
@@ -638,7 +660,7 @@ function the_champ_connect(){
 	            // save referrer url in state
 	            update_user_meta($youtubeLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
 	            update_user_meta($youtubeLoginState, 'super_socializer_temp_network', 'Youtube');
-	            wp_redirect("https://accounts.google.com/o/oauth2/auth?client_id=" . $theChampLoginOptions['google_key'] . "&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/youtube.readonly&state=". $youtubeLoginState ."&response_type=code&prompt=select_account&redirect_uri=" . home_url());
+	            wp_redirect("https://accounts.google.com/o/oauth2/auth?client_id=" . $theChampLoginOptions['google_key'] . "&scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/youtube.readonly&state=". $youtubeLoginState ."&response_type=code&prompt=select_account&redirect_uri=" . $siteUrlForCallback);
 		        die;
 		    }
 		}elseif(sanitize_text_field($_GET['SuperSocializerAuth']) == 'Twitter' && !isset($_REQUEST['oauth_token'])){
@@ -654,9 +676,13 @@ function the_champ_connect(){
 				/* Build TwitterOAuth object with client credentials. */
 				$connection = new Abraham\TwitterOAuth\TwitterOAuth($theChampLoginOptions['twitter_key'], $theChampLoginOptions['twitter_secret']);
 				$requestToken = $connection->oauth('oauth/request_token', ['oauth_callback' => esc_url(home_url())]);
-				/* Get temporary credentials. */
-				//$requestToken = $connection->getRequestToken(esc_url(home_url()));
-				if($connection->getLastHttpCode() == 200){
+				if(isset($requestToken->code) && $requestToken->code == 32){
+				    $twitterLoginState = mt_rand();
+				    // save referrer url in state
+	                update_user_meta($twitterLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
+				    wp_redirect("https://twitter.com/i/oauth2/authorize?response_type=code&client_id=". $theChampLoginOptions['twitter_key'] ."&redirect_uri=". urlencode(esc_url($siteUrlForCallback) ."/SuperSocializerAuth/Twitter") ."&scope=tweet.read%20users.read&state=". $twitterLoginState ."&code_challenge=challenge&code_challenge_method=plain");
+			        die;
+				}elseif($connection->getLastHttpCode() == 200){
 					// generate unique ID
 					$uniqueId = mt_rand();
 					// save oauth token and secret in db temporarily
@@ -694,7 +720,7 @@ function the_champ_connect(){
 		            $facebookLoginState = mt_rand();
 		            // save referrer url in state
 		            update_user_meta($facebookLoginState, 'super_socializer_redirect_to', isset($_GET['super_socializer_redirect_to']) ? esc_url_raw($_GET['super_socializer_redirect_to']) : home_url());
-		            wp_redirect("https://www.facebook.com/v10.0/dialog/oauth?scope=email&client_id=" . $theChampLoginOptions['fb_key'] . "&state=" . $facebookLoginState . "&redirect_uri=" . home_url() . "/?SuperSocializerAuth=Facebook");
+		            wp_redirect("https://www.facebook.com/v18.0/dialog/oauth?scope=email&client_id=" . $theChampLoginOptions['fb_key'] . "&state=" . $facebookLoginState . "&redirect_uri=" . $siteUrlForCallback . "/?SuperSocializerAuth=Facebook");
 		            die;
 		        }elseif(isset($_GET['code']) && isset($_GET['state']) && get_user_meta(sanitize_text_field($_GET['state']), 'super_socializer_redirect_to', true) !== false){
 		            $postData = array(
@@ -703,7 +729,7 @@ function the_champ_connect(){
 		                'client_id' => $theChampLoginOptions['fb_key'],
 		                'client_secret' => $theChampLoginOptions['fb_secret']
 		            );
-		            $response  = wp_remote_post("https://graph.facebook.com/v10.0/oauth/access_token", array(
+		            $response  = wp_remote_post("https://graph.facebook.com/v18.0/oauth/access_token", array(
 		                'method' => 'POST',
 		                'timeout' => 15,
 		                'redirection' => 5,
@@ -717,34 +743,42 @@ function the_champ_connect(){
 		            if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
 		                $body     = json_decode(wp_remote_retrieve_body($response));
 		                if(!empty($body->access_token)){
-			                $response = wp_remote_get("https://graph.facebook.com/me?fields=id,name,about,link,email,first_name,last_name,picture.width(60).height(60).as(picture_small),picture.width(320).height(320).as(picture_large)&access_token=" . $body->access_token, array(
+			                $verifyToken = wp_remote_get("https://graph.facebook.com/me?access_token=" . $body->access_token, array(
 			                    'timeout' => 15
 			                ));
-			                if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
-			                    $profileData = json_decode(wp_remote_retrieve_body($response));
-			                    if(is_object($profileData) && isset($profileData->id)){
-			                        $profileData           = the_champ_sanitize_profile_data($profileData, 'facebook');
-			                        $facebookLoginState    = sanitize_text_field($_GET['state']);
-			                        $facebook_redirect_url = get_user_meta($facebookLoginState, 'super_socializer_redirect_to', true);
-			                        delete_user_meta($facebookLoginState, 'super_socializer_redirect_to');
-			                        $response = the_champ_user_auth($profileData, 'faceboook', $facebook_redirect_url);
-			                        if($response == 'show form'){
-			                            return;
-			                        }
-			                        if(is_array($response) && isset($response['message']) && $response['message'] == 'register' && (!isset($response['url']) || $response['url'] == '')){
-			                            $redirectTo = the_champ_get_login_redirection_url($facebook_redirect_url, true);
-			                        }elseif(isset($response['message']) && $response['message'] == 'linked'){
-			                            $redirectTo = $facebook_redirect_url . (strpos($facebook_redirect_url, '?') !== false ? '&' : '?') . 'linked=1';
-			                        }elseif(isset($response['message']) && $response['message'] == 'not linked'){
-			                            $redirectTo = $facebook_redirect_url . (strpos($facebook_redirect_url, '?') !== false ? '&' : '?') . 'linked=0';
-			                        }elseif(isset($response['url']) && $response['url'] != ''){
-			                            $redirectTo = $response['url'];
-			                        }else{
-			                            $redirectTo = the_champ_get_login_redirection_url($facebook_redirect_url);
-			                        }
-			                        the_champ_close_login_popup($redirectTo);
+			                if(!is_wp_error($verifyToken) && isset($verifyToken['response']['code']) && 200 === $verifyToken['response']['code']){
+			                    $verifyTokenData = json_decode(wp_remote_retrieve_body($verifyToken));
+			                    if(is_object($verifyTokenData) && isset($verifyTokenData->id) && $verifyTokenData->id){
+			                    	$response = wp_remote_get("https://graph.facebook.com/me?fields=id,name,about,link,email,first_name,last_name&access_token=" . $body->access_token, array(
+					                    	'timeout' => 15
+					                ));
+					                if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
+					                    $profileData = json_decode(wp_remote_retrieve_body($response));
+					                    if(is_object($profileData) && isset($profileData->id)){
+					                        $profileData           = the_champ_sanitize_profile_data($profileData, 'facebook');
+					                        $facebookLoginState    = sanitize_text_field($_GET['state']);
+					                        $facebook_redirect_url = get_user_meta($facebookLoginState, 'super_socializer_redirect_to', true);
+					                        delete_user_meta($facebookLoginState, 'super_socializer_redirect_to');
+					                        $response = the_champ_user_auth($profileData, 'faceboook', $facebook_redirect_url);
+					                        if($response == 'show form'){
+					                            return;
+					                        }
+					                        if(is_array($response) && isset($response['message']) && $response['message'] == 'register' && (!isset($response['url']) || $response['url'] == '')){
+					                            $redirectTo = the_champ_get_login_redirection_url($facebook_redirect_url, true);
+					                        }elseif(isset($response['message']) && $response['message'] == 'linked'){
+					                            $redirectTo = $facebook_redirect_url . (strpos($facebook_redirect_url, '?') !== false ? '&' : '?') . 'linked=1';
+					                        }elseif(isset($response['message']) && $response['message'] == 'not linked'){
+					                            $redirectTo = $facebook_redirect_url . (strpos($facebook_redirect_url, '?') !== false ? '&' : '?') . 'linked=0';
+					                        }elseif(isset($response['url']) && $response['url'] != ''){
+					                            $redirectTo = $response['url'];
+					                        }else{
+					                            $redirectTo = the_champ_get_login_redirection_url($facebook_redirect_url);
+					                        }
+					                        the_champ_close_login_popup($redirectTo);
+					                    }
+					                }
 			                    }
-			                }
+				            }
 			            }
 		            }
 		        }
@@ -838,9 +872,7 @@ function the_champ_connect(){
 					}
 				}
 	 		}
-		}
-
-		if(remove_query_arg(array('code','scope', 'state'), strtok(the_champ_get_http().$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'?')) == home_url().'/SuperSocializerAuth/Line'){
+		}elseif(remove_query_arg(array('code','scope', 'state'), strtok(the_champ_get_http().$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'?')) == home_url().'/SuperSocializerAuth/Line'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -861,44 +893,48 @@ function the_champ_connect(){
 			
 			if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
 				$body = json_decode(wp_remote_retrieve_body($response));
-				$authorization = "Bearer ".$body->access_token;
+				if(is_object($body) && isset($body->id_token) && $body->id_token){
+					$response = wp_remote_post("https://api.line.me/oauth2/v2.1/verify", array(
+	    					'method' => 'POST',
+	    					'timeout' => 15,
+	    					'redirection' => 5,
+	    					'httpversion' => '1.0',
+	    					'sslverify' => false,
+	    					'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+	    					'body' => http_build_query( array(
+	    					    'id_token'  => $body->id_token,
+	    					    'client_id' => $theChampLoginOptions['line_channel_id']
+	    					 ) )
+	    			    )
+	    			);
 
-				$response = wp_remote_get("https://api.line.me/v2/profile", array(
-					'timeout' => 15,
-					'headers' =>  array(
-						'Accept' => 'application/json',
-						'Authorization' => $authorization
-					)
-				));
-
-				if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
-					$profileData = json_decode(wp_remote_retrieve_body($response));
-					if(is_object($profileData) && isset($profileData->userId)){
-						$profileData      = the_champ_sanitize_profile_data($profileData, 'line');
-						$lineLoginState   = sanitize_text_field($_GET['state']);
-						$lineRedirectUrl  = get_user_meta($lineLoginState, 'super_socializer_redirect_to', true);
-						$response = the_champ_user_auth($profileData, 'line', $lineRedirectUrl);
-						if($response == 'show form'){
-							return;
-						}
-						if(is_array($response) && isset($response['message']) && $response['message'] == 'register' && (!isset($response['url']) || $response['url'] == '')){
-							$redirectTo = the_champ_get_login_redirection_url($lineRedirectUrl, true);
-						}elseif(isset($response['message']) && $response['message'] == 'linked'){
-							$redirectTo = $lineRedirectUrl . (strpos($lineRedirectUrl, '?') !== false ? '&' : '?') . 'linked=1';
-						}elseif(isset($response['message']) && $response['message'] == 'not linked'){
-							$redirectTo = $lineRedirectUrl . (strpos($lineRedirectUrl, '?') !== false ? '&' : '?') . 'linked=0';
-						}elseif(isset($response['url']) && $response['url'] != ''){
-							$redirectTo = $response['url'];
-						}else{
-							$redirectTo = the_champ_get_login_redirection_url($lineRedirectUrl);
-						}
-						the_champ_close_login_popup($redirectTo);
-					}			
+					if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
+						$profileData = json_decode(wp_remote_retrieve_body($response));
+						if(is_object($profileData) && isset($profileData->sub) && $profileData->sub){
+							$profileData      = the_champ_sanitize_profile_data($profileData, 'line');
+							$lineLoginState   = sanitize_text_field($_GET['state']);
+							$lineRedirectUrl  = get_user_meta($lineLoginState, 'super_socializer_redirect_to', true);
+							$response = the_champ_user_auth($profileData, 'line', $lineRedirectUrl);
+							if($response == 'show form'){
+								return;
+							}
+							if(is_array($response) && isset($response['message']) && $response['message'] == 'register' && (!isset($response['url']) || $response['url'] == '')){
+								$redirectTo = the_champ_get_login_redirection_url($lineRedirectUrl, true);
+							}elseif(isset($response['message']) && $response['message'] == 'linked'){
+								$redirectTo = $lineRedirectUrl . (strpos($lineRedirectUrl, '?') !== false ? '&' : '?') . 'linked=1';
+							}elseif(isset($response['message']) && $response['message'] == 'not linked'){
+								$redirectTo = $lineRedirectUrl . (strpos($lineRedirectUrl, '?') !== false ? '&' : '?') . 'linked=0';
+							}elseif(isset($response['url']) && $response['url'] != ''){
+								$redirectTo = $response['url'];
+							}else{
+								$redirectTo = the_champ_get_login_redirection_url($lineRedirectUrl);
+							}
+							the_champ_close_login_popup($redirectTo);
+						}			
+					}
 				}
 	 		}
-		}
-	
-		if(remove_query_arg(array('code', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Mailru'){
+		}elseif(remove_query_arg(array('code', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Mailru'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -957,9 +993,7 @@ function the_champ_connect(){
 					}
 				}
 			}
-		}
-
-		if(remove_query_arg(array('code', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Yahoo'){
+		}elseif(remove_query_arg(array('code', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Yahoo'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -1011,9 +1045,7 @@ function the_champ_connect(){
 					}
 				}
 	 		}
-		}
-
-		if(remove_query_arg(array('code', 'scope', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Discord'){
+		}elseif(remove_query_arg(array('code', 'scope', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Discord'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -1065,9 +1097,7 @@ function the_champ_connect(){
 					}
 				}
 	 		}
-		}
-
-		if(remove_query_arg(array('code','state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Wordpress'){
+		}elseif(remove_query_arg(array('code','state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Wordpress'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -1088,41 +1118,39 @@ function the_champ_connect(){
 			
 			if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
 				$body = json_decode(wp_remote_retrieve_body($response));
-				$authorization = "Bearer ".$body->access_token;
-
-				$response = wp_remote_get("https://public-api.wordpress.com/rest/v1/me/", array('timeout' => 15, 'headers' =>  array('Accept' => 'application/json', 'Authorization' => $authorization )));
-					
-				if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
-					$profileData = json_decode(wp_remote_retrieve_body($response));
-				
-					if(is_object($profileData) && isset($profileData->ID)){	
-						$profileData = the_champ_sanitize_profile_data($profileData, 'wordpress');
-						$wordpressLoginState  = sanitize_text_field($_GET['state']);
-						$wordpressRedirectUrl = get_user_meta($wordpressLoginState, 'super_socializer_redirect_to', true);
-						$response = the_champ_user_auth($profileData, 'wordpress', $wordpressRedirectUrl);
-						if($response == 'show form'){
-							return;
+				if(isset($body->access_token) && $body->access_token){
+					$authorization = "Bearer ". $body->access_token;
+					$response = wp_remote_get("https://public-api.wordpress.com/rest/v1/me/", array('timeout' => 15, 'headers' =>  array('Accept' => 'application/json', 'Authorization' => $authorization )));
+						
+					if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
+						$profileData = json_decode(wp_remote_retrieve_body($response));
+						if(is_object($profileData) && isset($profileData->ID)){	
+							$profileData = the_champ_sanitize_profile_data($profileData, 'wordpress');
+							$wordpressLoginState  = sanitize_text_field($_GET['state']);
+							$wordpressRedirectUrl = get_user_meta($wordpressLoginState, 'super_socializer_redirect_to', true);
+							$response = the_champ_user_auth($profileData, 'wordpress', $wordpressRedirectUrl);
+							if($response == 'show form'){
+								return;
+							}
+							delete_user_meta($wordpressLoginState, 'super_socializer_redirect_to', true);
+							if(is_array($response) && isset($response['message']) && $response['message'] == 'register' && (!isset($response['url']) || $response['url'] == '')){
+								$redirectTo = the_champ_get_login_redirection_url($wordpressRedirectUrl, true);
+							}elseif(isset($response['message']) && $response['message'] == 'linked'){
+								$redirectTo = $wordpressRedirectUrl.(strpos($wordpressRedirectUrl, '?') !== false ? '&' : '?').'linked=1';
+							}elseif(isset($response['message']) && $response['message'] == 'not linked'){
+								$redirectTo = $wordpressRedirectUrl.(strpos($wordpressRedirectUrl, '?') !== false ? '&' : '?').'linked=0';
+							}elseif(isset($response['url']) && $response['url'] != ''){
+								$redirectTo = $response['url'];
+							}else{
+								$redirectTo = the_champ_get_login_redirection_url($wordpressRedirectUrl);
+							}
+							the_champ_close_login_popup($redirectTo);
 						}
-						delete_user_meta($wordpressLoginState, 'super_socializer_redirect_to', true);
-						if(is_array($response) && isset($response['message']) && $response['message'] == 'register' && (!isset($response['url']) || $response['url'] == '')){
-							$redirectTo = the_champ_get_login_redirection_url($wordpressRedirectUrl, true);
-						}elseif(isset($response['message']) && $response['message'] == 'linked'){
-							$redirectTo = $wordpressRedirectUrl.(strpos($wordpressRedirectUrl, '?') !== false ? '&' : '?').'linked=1';
-						}elseif(isset($response['message']) && $response['message'] == 'not linked'){
-							$redirectTo = $wordpressRedirectUrl.(strpos($wordpressRedirectUrl, '?') !== false ? '&' : '?').'linked=0';
-						}elseif(isset($response['url']) && $response['url'] != ''){
-							$redirectTo = $response['url'];
-						}else{
-							$redirectTo = the_champ_get_login_redirection_url($wordpressRedirectUrl);
-						}
-						the_champ_close_login_popup($redirectTo);
+									
 					}
-								
 				}
 	 		}
-		}
-
-		if(remove_query_arg(array('code', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Live'){
+		}elseif(remove_query_arg(array('code', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Live'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -1147,7 +1175,6 @@ function the_champ_connect(){
 					
 				if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
 					$profileData = json_decode(wp_remote_retrieve_body($response ));
-					
 					if(is_object($profileData) && isset($profileData->id)){	
 						$profileData = the_champ_sanitize_profile_data($profileData, 'microsoft');
 						$liveLoginState = sanitize_text_field($_GET['state']);
@@ -1173,9 +1200,7 @@ function the_champ_connect(){
 								
 				}
 	 		}
-		}
-
-		if(remove_query_arg(array('code', 'scope', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Twitch'){
+		}elseif(remove_query_arg(array('code', 'scope', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Twitch'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -1202,7 +1227,6 @@ function the_champ_connect(){
 				));
 				if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
 					$profileData = json_decode(wp_remote_retrieve_body($response ));
-					
 					if(is_object($profileData) && isset($profileData->data) && is_array($profileData->data) && isset($profileData->data[0]) && isset($profileData->data[0]->id)){	
 						$profileData = the_champ_sanitize_profile_data($profileData->data[0], 'twitch');
 						$twitchLoginState = sanitize_text_field($_GET['state']);
@@ -1227,8 +1251,7 @@ function the_champ_connect(){
 					}			
 				}
 	 		}
-		}
-		if(remove_query_arg(array(
+		}elseif(remove_query_arg(array(
 		    'code',
 		    'state',
 		    'scope'
@@ -1284,9 +1307,7 @@ function the_champ_connect(){
 		            }
 		        }
 		    }
-		}
-
-		if(remove_query_arg(array(
+		}elseif(remove_query_arg(array(
 		    'code',
 		    'scope',
 		    'state'
@@ -1343,8 +1364,7 @@ function the_champ_connect(){
 		            }
 		        }
 		    }
-		}
-		if(remove_query_arg(array(
+		}elseif(remove_query_arg(array(
 		    'code',
 		    'scope',
 		    'state'
@@ -1402,9 +1422,7 @@ function the_champ_connect(){
 		            }
 		        }
 		    }
-		}
-
-		if(remove_query_arg(array(
+		}elseif(remove_query_arg(array(
 		    'code', 'state'
 		), esc_url_raw(the_champ_get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"])) == home_url() . '/SuperSocializerAuth/Foursquare'){
 		    $postData = array(
@@ -1459,9 +1477,7 @@ function the_champ_connect(){
 		            }
 		        }
 		    }
-		}
-
-		if(remove_query_arg(array('code', 'scope', 'state'), esc_url_raw(the_champ_get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"])) == home_url() . '/SuperSocializerAuth/Odnoklassniki'){
+		}elseif(remove_query_arg(array('code', 'scope', 'state'), esc_url_raw(the_champ_get_http() . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"])) == home_url() . '/SuperSocializerAuth/Odnoklassniki'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -1512,9 +1528,7 @@ function the_champ_connect(){
 					}			
 				}
 	 		}
-		}
-
-		if(remove_query_arg(array('code','scope', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Dribbble'){
+		}elseif(remove_query_arg(array('code','scope', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Dribbble'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -1564,9 +1578,7 @@ function the_champ_connect(){
 					}			
 				}
 	 		}
-		}
-
-		if(remove_query_arg(array('code', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Yandex'){
+		}elseif(remove_query_arg(array('code', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Yandex'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -1617,8 +1629,7 @@ function the_champ_connect(){
 					}			
 				}
 	 		}
-		}
-		if(remove_query_arg(array('code', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Spotify'){
+		}elseif(remove_query_arg(array('code', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Spotify'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -1668,8 +1679,7 @@ function the_champ_connect(){
 					}
 		 		}
 			}
-		}
-		if(remove_query_arg(array('code','state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Kakao'){
+		}elseif(remove_query_arg(array('code','state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Kakao'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -1719,8 +1729,7 @@ function the_champ_connect(){
 					}
 		 		}
 			}
-		}
-		if(remove_query_arg(array('code','state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Github'){
+		}elseif(remove_query_arg(array('code','state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Github'){
 		 	$postData = array(
 				'state' => 'state',
 				'code' => sanitize_text_field($_GET['code']),
@@ -1750,12 +1759,12 @@ function the_champ_connect(){
 					if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
 						$profileData = json_decode(wp_remote_retrieve_body($response));
 						if(is_object($profileData) && isset($profileData->id)){
-							$emailsResponse = wp_remote_get('https://api.github.com/user/emails',  array('timeout' => 15, 'headers' =>  array('Accept' => 'application/json' , 'Authorization' => $authorization)));
+							$emailsResponse = wp_remote_get('https://api.github.com/user/public_emails',  array('timeout' => 15, 'headers' =>  array('Accept' => 'application/json' , 'Authorization' => $authorization)));
 							if(!is_wp_error($emailsResponse) && isset($emailsResponse['response']['code']) && 200 === $emailsResponse['response']['code']){
 								$emails = json_decode(wp_remote_retrieve_body($emailsResponse ));
 								if(is_array($emails)){
 									foreach($emails as $email){
-										if(isset($email->primary) && isset($email->verified) && $email->primary == 1 && $email->verified == 1 && !empty($email->email)){
+										if(isset($email->primary) && isset($email->verified) && $email->primary == 'true' && $email->verified == 'true' && !empty($email->email)){
 											$profileData = (array)$profileData;
 											$profileData['email'] = $email->email;
 											$profileData = (object)$profileData;
@@ -1763,32 +1772,31 @@ function the_champ_connect(){
 										}
 									}
 								}
-								$profileData         = the_champ_sanitize_profile_data($profileData, 'github');
-								$githubLoginState    = sanitize_text_field($_GET['state']);
-								$githubRedirectUrl   = get_user_meta($githubLoginState, 'super_socializer_redirect_to', true);
-								$response = the_champ_user_auth($profileData, 'github', $githubRedirectUrl);
-								if($response == 'show form'){
-									return;
-								}
-								if(is_array($response) && isset($response['message']) && $response['message'] == 'register' && (!isset($response['url']) || $response['url'] == '')){
-									$redirectTo = the_champ_get_login_redirection_url($githubRedirectUrl, true);
-								}elseif(isset($response['message']) && $response['message'] == 'linked'){
-									$redirectTo = $githubRedirectUrl . (strpos($githubRedirectUrl, '?') !== false ? '&' : '?') . 'linked=1';
-								}elseif(isset($response['message']) && $response['message'] == 'not linked'){
-									$redirectTo = $githubRedirectUrl . (strpos($githublRedirectUrl, '?') !== false ? '&' : '?') . 'linked=0';
-								}elseif(isset($response['url']) && $response['url'] != ''){
-									$redirectTo = $response['url'];
-								}else{
-									$redirectTo = the_champ_get_login_redirection_url($githubRedirectUrl);
-								}
-								the_champ_close_login_popup($redirectTo);
 							}
+							$profileData         = the_champ_sanitize_profile_data($profileData, 'github');
+							$githubLoginState    = sanitize_text_field($_GET['state']);
+							$githubRedirectUrl   = get_user_meta($githubLoginState, 'super_socializer_redirect_to', true);
+							$response = the_champ_user_auth($profileData, 'github', $githubRedirectUrl);
+							if($response == 'show form'){
+								return;
+							}
+							if(is_array($response) && isset($response['message']) && $response['message'] == 'register' && (!isset($response['url']) || $response['url'] == '')){
+								$redirectTo = the_champ_get_login_redirection_url($githubRedirectUrl, true);
+							}elseif(isset($response['message']) && $response['message'] == 'linked'){
+								$redirectTo = $githubRedirectUrl . (strpos($githubRedirectUrl, '?') !== false ? '&' : '?') . 'linked=1';
+							}elseif(isset($response['message']) && $response['message'] == 'not linked'){
+								$redirectTo = $githubRedirectUrl . (strpos($githublRedirectUrl, '?') !== false ? '&' : '?') . 'linked=0';
+							}elseif(isset($response['url']) && $response['url'] != ''){
+								$redirectTo = $response['url'];
+							}else{
+								$redirectTo = the_champ_get_login_redirection_url($githubRedirectUrl);
+							}
+							the_champ_close_login_popup($redirectTo);
 						}			
 					}
 		 		}
 			}
-		}
-		if(remove_query_arg(array('code','scope', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Amazon'){
+		}elseif(remove_query_arg(array('code','scope', 'state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Amazon'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -1812,6 +1820,7 @@ function the_champ_connect(){
 				$authorization = "Bearer ".$body->access_token;
 				$response = wp_remote_get("https://api.amazon.com/user/profile",  array('timeout' => 15, 'headers' =>  array('Accept' => 'application/json' , 'Authorization' => $authorization )));
 				if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
+					
 					$profileData = json_decode(wp_remote_retrieve_body($response));
 					if(is_object($profileData) && isset($profileData->user_id)){
 						$profileData        = the_champ_sanitize_profile_data($profileData, 'amazon');
@@ -1836,8 +1845,59 @@ function the_champ_connect(){
 					}			
 				}
 	 		}
-		}
-		if(remove_query_arg(array('code','scope','state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Stackoverflow'){
+		}elseif(remove_query_arg(array('code','state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Twitter'){
+            $postData = array(
+    			'grant_type' => 'authorization_code',
+    			'code' => sanitize_text_field($_GET['code']),
+    			'redirect_uri' => home_url()."/SuperSocializerAuth/Twitter",
+    			'client_id' => $theChampLoginOptions['twitter_key'],
+    			'code_verifier' => 'challenge'
+    		);
+    		$auth = base64_encode($theChampLoginOptions['twitter_key']. ":" .$theChampLoginOptions['twitter_secret']);
+    		$response = wp_remote_post("https://api.twitter.com/2/oauth2/token", array(
+        			'method' => 'POST',
+        			'timeout' => 15,
+        			'redirection' => 5,
+        			'httpversion' => '1.0',
+        			'sslverify' => false,
+        			'headers' => array(
+        			    'Content-Type' => 'application/x-www-form-urlencoded',
+    					'User-Agent' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.89 Safari/537.36",
+    					'Authorization' => "Basic $auth"
+        			),
+        			'body' => http_build_query($postData)
+    		    )
+    		);
+    		if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
+    			$body = json_decode(wp_remote_retrieve_body($response));
+    			$authorization = "Bearer ".$body->access_token;
+    			$response = wp_remote_get("https://api.twitter.com/2/users/me?user.fields=profile_image_url,url,description",  array('timeout' => 15, 'headers' =>  array('Accept' => 'application/json' , 'Authorization' => $authorization )));
+    			if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
+    				$profileData = json_decode(wp_remote_retrieve_body($response));
+    				if(is_object($profileData) && isset($profileData->data) && isset($profileData->data->id)){
+    					$profileData         = the_champ_sanitize_profile_data($profileData->data, 'twitter');
+    					$twitterLoginState   = sanitize_text_field($_GET['state']);
+    					$twitterRedirectUrl  = get_user_meta($twitterLoginState, 'super_socializer_redirect_to', true);
+    					$response 			 = the_champ_user_auth($profileData, 'twitter', $twitterRedirectUrl);
+    					if($response == 'show form'){
+    						return;
+    					}
+    					if(is_array($response) && isset($response['message']) && $response['message'] == 'register' && (!isset($response['url']) || $response['url'] == '')){
+    						$redirectTo = the_champ_get_login_redirection_url($twitterRedirectUrl, true);
+    					}elseif(isset($response['message']) && $response['message'] == 'linked'){
+    						$redirectTo = $twitterRedirectUrl . (strpos($twitterRedirectUrl, '?') !== false ? '&' : '?') . 'linked=1';
+    					}elseif(isset($response['message']) && $response['message'] == 'not linked'){
+    						$redirectTo = $twitterRedirectUrl . (strpos($twitterRedirectUrl, '?') !== false ? '&' : '?') . 'linked=0';
+    					}elseif(isset($response['url']) && $response['url'] != ''){
+    						$redirectTo = $response['url'];
+    					}else{
+    						$redirectTo = the_champ_get_login_redirection_url($twitterRedirectUrl);
+    					}
+    					the_champ_close_login_popup($redirectTo);
+    				}			
+    			}
+     		}
+    	}elseif(remove_query_arg(array('code','scope','state'), esc_url_raw(the_champ_get_http().$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])) == home_url().'/SuperSocializerAuth/Stackoverflow'){
 		 	$postData = array(
 				'grant_type' => 'authorization_code',
 				'code' => sanitize_text_field($_GET['code']),
@@ -1915,26 +1975,21 @@ function the_champ_connect(){
         if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
             $body = json_decode(wp_remote_retrieve_body($response));
             if(isset($body->access_token)){
-            	$googleLoginState = sanitize_text_field($_GET['state']);
-            	$network          = get_user_meta($googleLoginState, 'super_socializer_temp_network', true);
-            	if($network == 'Google'){
-            		$api = 'https://www.googleapis.com/oauth2/v3/userinfo';
-            	}else{
-            		$api = 'https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&mine=true&key='. $theChampLoginOptions['youtube_key'];
-            	}
-                $authorization = "Bearer " . $body->access_token;
-                $response      = wp_remote_get($api, array(
-                    'timeout' => 15,
-                    'headers' => array(
-                        'Accept' => 'application/json',
-                        'Authorization' => $authorization
-                    )
+            	$tokenInfo      = wp_remote_get('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token='. $body->access_token, array(
+                    'timeout' => 15
                 ));
-                if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
-                    $profileData = json_decode(wp_remote_retrieve_body($response));
-                    if($network == 'Youtube'){
+                if(!is_wp_error($tokenInfo) && isset($tokenInfo['response']['code']) && 200 === $tokenInfo['response']['code']){
+                    $tokenInfoData = json_decode(wp_remote_retrieve_body($tokenInfo));
+                    if(is_object($tokenInfoData) && isset($tokenInfoData->issued_to) && $tokenInfoData->issued_to == $theChampLoginOptions['google_key']){
+                    	$googleLoginState = sanitize_text_field($_GET['state']);
+		            	$network          = get_user_meta($googleLoginState, 'super_socializer_temp_network', true);
+		            	if($network == 'Google'){
+		            		$api = 'https://www.googleapis.com/oauth2/v3/userinfo';
+		            	}else{
+		            		$api = 'https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&mine=true&key='. $theChampLoginOptions['youtube_key'];
+		            	}
 		                $authorization = "Bearer " . $body->access_token;
-		                $response      = wp_remote_get('https://www.googleapis.com/oauth2/v3/userinfo', array(
+		                $response      = wp_remote_get($api, array(
 		                    'timeout' => 15,
 		                    'headers' => array(
 		                        'Accept' => 'application/json',
@@ -1942,33 +1997,46 @@ function the_champ_connect(){
 		                    )
 		                ));
 		                if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
-		                    $emailProfileData = json_decode(wp_remote_retrieve_body($response));
-		                    if(is_object($emailProfileData) && isset($emailProfileData->email_verified) && $emailProfileData->email_verified == 1 && isset($emailProfileData->email)){
-		                    	$profileData = (array) $profileData;
-		                    	$profileData['email'] = $emailProfileData->email;
-		                    	$profileData = (object) $profileData;
+		                    $profileData = json_decode(wp_remote_retrieve_body($response));
+		                    if($network == 'Youtube'){
+				                $authorization = "Bearer " . $body->access_token;
+				                $response      = wp_remote_get('https://www.googleapis.com/oauth2/v3/userinfo', array(
+				                    'timeout' => 15,
+				                    'headers' => array(
+				                        'Accept' => 'application/json',
+				                        'Authorization' => $authorization
+				                    )
+				                ));
+				                if(!is_wp_error($response) && isset($response['response']['code']) && 200 === $response['response']['code']){
+				                    $emailProfileData = json_decode(wp_remote_retrieve_body($response));
+				                    if(is_object($emailProfileData) && isset($emailProfileData->email_verified) && $emailProfileData->email_verified == 1 && isset($emailProfileData->email)){
+				                    	$profileData = (array) $profileData;
+				                    	$profileData['email'] = $emailProfileData->email;
+				                    	$profileData = (object) $profileData;
+				                    }
+				                }
+		                    }
+		                    if(is_object($profileData) && (($network == 'Google' && isset($profileData->sub)) || ($network == 'Youtube' && isset($profileData->etag) || (isset($profileData->items) && is_array($profileData->items) && isset($profileData->items[0]) && isset($profileData->items[0]->id))))){
+		                        $profileData           = the_champ_sanitize_profile_data($profileData, strtolower($network));
+			                    $googleRedirectUrl     = get_user_meta($googleLoginState, 'super_socializer_redirect_to', true);
+		                        $response 			   = the_champ_user_auth($profileData, strtolower($network), $googleRedirectUrl);
+		                        if($response == 'show form'){
+		                            return;
+		                        }
+		                        if(is_array($response) && isset($response['message']) && $response['message'] == 'register' && (!isset($response['url']) || $response['url'] == '')){
+		                            $redirectTo = the_champ_get_login_redirection_url($googleRedirectUrl, true);
+		                        }elseif(isset($response['message']) && $response['message'] == 'linked'){
+		                            $redirectTo = $googleRedirectUrl . (strpos($googleRedirectUrl, '?') !== false ? '&' : '?') . 'linked=1';
+		                        }elseif(isset($response['message']) && $response['message'] == 'not linked'){
+		                            $redirectTo = $googleRedirectUrl . (strpos($googleRedirectUrl, '?') !== false ? '&' : '?') . 'linked=0';
+		                        }elseif(isset($response['url']) && $response['url'] != ''){
+		                            $redirectTo = $response['url'];
+		                        }else{
+		                            $redirectTo = the_champ_get_login_redirection_url($googleRedirectUrl);
+		                        }
+		                        the_champ_close_login_popup($redirectTo);
 		                    }
 		                }
-                    }
-                    if(is_object($profileData) && (($network == 'Google' && isset($profileData->sub)) || ($network == 'Youtube' && isset($profileData->items) && is_array($profileData->items) && isset($profileData->items[0]) && isset($profileData->items[0]->id)))){
-                        $profileData           = the_champ_sanitize_profile_data($profileData, strtolower($network));
-	                    $googleRedirectUrl     = get_user_meta($googleLoginState, 'super_socializer_redirect_to', true);
-                        $response 			   = the_champ_user_auth($profileData, strtolower($network), $googleRedirectUrl);
-                        if($response == 'show form'){
-                            return;
-                        }
-                        if(is_array($response) && isset($response['message']) && $response['message'] == 'register' && (!isset($response['url']) || $response['url'] == '')){
-                            $redirectTo = the_champ_get_login_redirection_url($googleRedirectUrl, true);
-                        }elseif(isset($response['message']) && $response['message'] == 'linked'){
-                            $redirectTo = $googleRedirectUrl . (strpos($googleRedirectUrl, '?') !== false ? '&' : '?') . 'linked=1';
-                        }elseif(isset($response['message']) && $response['message'] == 'not linked'){
-                            $redirectTo = $googleRedirectUrl . (strpos($googleRedirectUrl, '?') !== false ? '&' : '?') . 'linked=0';
-                        }elseif(isset($response['url']) && $response['url'] != ''){
-                            $redirectTo = $response['url'];
-                        }else{
-                            $redirectTo = the_champ_get_login_redirection_url($googleRedirectUrl);
-                        }
-                        the_champ_close_login_popup($redirectTo);
                     }
                 }
             }
@@ -2121,7 +2189,7 @@ function the_champ_get_http(){
  */
 function the_champ_get_valid_url($url){
 	$decodedUrl = urldecode($url);
-	if(esc_url_raw(remove_query_arg(array('ss_message', 'SuperSocializerVerified', 'SuperSocializerUnverified', 'wp_lang', 'loggedout'), $decodedUrl)) == wp_login_url() || $decodedUrl == home_url().'/wp-login.php?action=register'){ 
+	if(esc_url_raw(remove_query_arg(array('ss_message', 'SuperSocializerVerified', 'SuperSocializerUnverified', 'wp_lang', 'loggedout', 'heateor_ua', 'hum'), $decodedUrl)) == wp_login_url() || $decodedUrl == home_url().'/wp-login.php?action=register'){ 
 		$url = esc_url(home_url()).'/';
 	}elseif(isset($_GET['redirect_to'])){
 		$redirectTo = esc_url($_GET['redirect_to']);
@@ -2746,6 +2814,7 @@ function the_champ_save_default_options(){
 	add_option('the_champ_general', array(
 		'footer_script' => '1',
 		'delete_options' => '1',
+		'combined_script' => '1',
 		'custom_css' => ''
 	));
 
@@ -2797,7 +2866,9 @@ function the_champ_save_default_options(){
 		'yandex_client_secret' => '',
 		'youtube_key' => '',
 		'same_tab_login' => '1',
-		'allow_cyrillic' => array()
+		'allow_cyrillic' => array(),
+		'disable_sl_admin' => '1',
+		'linkedin_login_type' => 'oauth'
 	));
 	
 	// social commenting options
@@ -2858,7 +2929,7 @@ function the_champ_save_default_options(){
 		'vertical_rutube_url' => '',
 		'rutube_url' => '',
 		'comment_container_id' => 'respond',
-		'horizontal_re_providers' => array('facebook', 'twitter', 'linkedin', 'pinterest', 'reddit', 'whatsapp'),
+		'horizontal_re_providers' => array('facebook', 'X', 'linkedin', 'pinterest', 'reddit', 'whatsapp'),
 		'hor_sharing_alignment' => 'left',
 		'top' => '1',
 		'post' => '1',
@@ -2869,7 +2940,7 @@ function the_champ_save_default_options(){
 		'vertical_target_url_custom' => '',
 		'vertical_instagram_username' => '',
 		'vertical_comment_container_id' => 'respond',
-		'vertical_re_providers' => array('facebook', 'twitter', 'linkedin', 'pinterest', 'reddit', 'whatsapp'),
+		'vertical_re_providers' => array('facebook', 'X', 'linkedin', 'pinterest', 'reddit', 'whatsapp'),
 		'vertical_bg' => '',
 		'alignment' => 'left',
 		'left_offset' => '-10',
@@ -2891,9 +2962,10 @@ function the_champ_save_default_options(){
 		'share_count_cache_refresh_unit' => 'minutes',
 		'language' => get_locale(),
 		'twitter_username' => '',
-		'buffer_username' => '',
 		'fb_key' => '',
-		'fb_secret' => ''
+		'fb_secret' => '',
+		'google_news_url' => '',
+       	'vertical_google_news_url' => ''
 	));
 
 	// counter options
@@ -2949,8 +3021,10 @@ add_action('wpmu_new_blog', 'the_champ_new_subsite_default_options', 10, 6);
  * Set flag in database if Twitcount notification has been read
  */
 function heateor_ss_twitcount_notification_read(){
-	update_option('heateor_ss_twitcount_notification_read', '1');
-	die;
+	if(current_user_can('administrator') && check_ajax_referer('heateor_ss_twitcount_notification_nonce', 'nonce') !== false){
+		update_option('heateor_ss_twitcount_notification_read', '1');
+		die;
+	}
 }
 add_action('wp_ajax_heateor_ss_twitcount_notification_read', 'heateor_ss_twitcount_notification_read');
 
@@ -2958,8 +3032,10 @@ add_action('wp_ajax_heateor_ss_twitcount_notification_read', 'heateor_ss_twitcou
  * Set flag in database if GDPR notification has been read
  */
 function heateor_ss_gdpr_notification_read(){
-	update_option('heateor_ss_gdpr_notification_read', '1');
-	die;
+	if(current_user_can('administrator') && check_ajax_referer('heateor_ss_gdpr_notification_nonce', 'nonce') !== false){
+		update_option('heateor_ss_gdpr_notification_read', '1');
+		die;
+	}
 }
 add_action('wp_ajax_heateor_ss_gdpr_notification_read', 'heateor_ss_gdpr_notification_read');
 
@@ -2967,8 +3043,10 @@ add_action('wp_ajax_heateor_ss_gdpr_notification_read', 'heateor_ss_gdpr_notific
  * Set flag in database if Facebook redirection notification has been read
  */
 function heateor_ss_fb_redirection_notification_read(){
-	update_option('heateor_ss_fb_redirection_notification_read', '1');
-	die;
+	if(current_user_can('administrator') && check_ajax_referer('heateor_ss_fb_redirection_notification_nonce', 'nonce') !== false){
+		update_option('heateor_ss_fb_redirection_notification_read', '1');
+		die;
+	}
 }
 add_action('wp_ajax_heateor_ss_fb_redirection_notification_read', 'heateor_ss_fb_redirection_notification_read');
 
@@ -2976,8 +3054,10 @@ add_action('wp_ajax_heateor_ss_fb_redirection_notification_read', 'heateor_ss_fb
  * Set flag in database if Twitter callback notification has been read
  */
 function heateor_ss_twitter_callback_notification_read(){
-	update_option('heateor_ss_twitter_callback_notification_read', '1');
-	die;
+	if(current_user_can('administrator') && check_ajax_referer('heateor_ss_twitter_callback_notification_nonce', 'nonce') !== false){
+		update_option('heateor_ss_twitter_callback_notification_read', '1');
+		die;
+	}
 }
 add_action('wp_ajax_heateor_ss_twitter_callback_notification_read', 'heateor_ss_twitter_callback_notification_read');
 
@@ -2985,8 +3065,10 @@ add_action('wp_ajax_heateor_ss_twitter_callback_notification_read', 'heateor_ss_
  * Set flag in database if Linkedin redirect url notification has been read
  */
 function heateor_ss_linkedin_redirect_url_notification_read(){
-	update_option('heateor_ss_linkedin_redirect_url_notification_read', '1');
-	die;
+	if(current_user_can('administrator') && check_ajax_referer('heateor_ss_linkedin_redirect_url_notification_nonce', 'nonce') !== false){
+		update_option('heateor_ss_linkedin_redirect_url_notification_read', '1');
+		die;
+	}
 }
 add_action('wp_ajax_heateor_ss_linkedin_redirect_url_notification_read', 'heateor_ss_linkedin_redirect_url_notification_read');
 
@@ -2994,8 +3076,10 @@ add_action('wp_ajax_heateor_ss_linkedin_redirect_url_notification_read', 'heateo
  * Set flag in database if FB share count notification has been read
  */
 function heateor_ss_fb_count_notification_read(){
-	update_option('heateor_ss_fb_count_notification_read', '1');
-	die;
+	if(current_user_can('administrator') && check_ajax_referer('heateor_ss_fb_count_notification_nonce', 'nonce') !== false){
+		update_option('heateor_ss_fb_count_notification_read', '1');
+		die;
+	}
 }
 add_action('wp_ajax_heateor_ss_fb_count_notification_read', 'heateor_ss_fb_count_notification_read');
 
@@ -3003,8 +3087,10 @@ add_action('wp_ajax_heateor_ss_fb_count_notification_read', 'heateor_ss_fb_count
  * Set flag in database if new Twitter callback notification has been read
  */
 function heateor_ss_twitter_new_callback_notification_read(){
-	update_option('heateor_ss_twitter_new_callback_notification_read', '1');
-	die;
+	if(current_user_can('administrator') && check_ajax_referer('heateor_ss_twitter_new_callback_notification_nonce', 'nonce') !== false){
+		update_option('heateor_ss_twitter_new_callback_notification_read', '1');
+		die;
+	}
 }
 add_action('wp_ajax_heateor_ss_twitter_new_callback_notification_read', 'heateor_ss_twitter_new_callback_notification_read');
 
@@ -3012,8 +3098,10 @@ add_action('wp_ajax_heateor_ss_twitter_new_callback_notification_read', 'heateor
  * Set flag in database if Linkedin redirection notification has been read
  */
 function heateor_ss_linkedin_redirection_notification_read(){
-	update_option('heateor_ss_linkedin_redirection_notification_read', '1');
-	die;
+	if(current_user_can('administrator') && check_ajax_referer('heateor_ss_linkedin_redirection_notification_nonce', 'nonce') !== false){
+		update_option('heateor_ss_linkedin_redirection_notification_read', '1');
+		die;
+	}
 }
 add_action('wp_ajax_heateor_ss_linkedin_redirection_notification_read', 'heateor_ss_linkedin_redirection_notification_read');
 
@@ -3021,8 +3109,10 @@ add_action('wp_ajax_heateor_ss_linkedin_redirection_notification_read', 'heateor
  * Set flag in database if Google redirection notification has been read
  */
 function heateor_ss_google_redirection_notification_read(){
-	update_option('heateor_ss_google_redirection_notification_read', '1');
-	die;
+	if(current_user_can('administrator') && check_ajax_referer('heateor_ss_google_redirection_notification_nonce', 'nonce') !== false){
+		update_option('heateor_ss_google_redirection_notification_read', '1');
+		die;
+	}
 }
 add_action('wp_ajax_heateor_ss_google_redirection_notification_read', 'heateor_ss_google_redirection_notification_read');
 
@@ -3079,11 +3169,11 @@ function the_champ_addon_update_notification(){
 			<?php
 		}
 
-		if(defined('HEATEOR_SOCIAL_LOGIN_BUTTONS_VERSION') && version_compare('1.2.13', HEATEOR_SOCIAL_LOGIN_BUTTONS_VERSION) > 0){
+		if(defined('HEATEOR_SOCIAL_LOGIN_BUTTONS_VERSION') && version_compare('1.2.14', HEATEOR_SOCIAL_LOGIN_BUTTONS_VERSION) > 0){
 			?>
 			<div class="error notice">
 				<h3>Social Login Buttons</h3>
-				<p><?php _e('Update "Social Login Buttons" add-on to version 1.2.13 or above for compatibility with the current version of Super Socializer', 'super-socializer') ?></p>
+				<p><?php _e('Update "Social Login Buttons" add-on to version 1.2.14 or above for compatibility with the current version of Super Socializer', 'super-socializer') ?></p>
 			</div>
 			<?php
 		}
@@ -3169,6 +3259,7 @@ function the_champ_addon_update_notification(){
 						type: 'GET',
 						url: '<?php echo get_admin_url() ?>admin-ajax.php',
 						data: {
+							nonce: '<?php echo wp_create_nonce('heateor_ss_fb_redirection_notification_nonce') ?>',
 							action: 'heateor_ss_fb_redirection_notification_read'
 						},
 						success: function(data, textStatus, XMLHttpRequest){
@@ -3194,6 +3285,7 @@ function the_champ_addon_update_notification(){
 						type: 'GET',
 						url: '<?php echo get_admin_url() ?>admin-ajax.php',
 						data: {
+							nonce: '<?php echo wp_create_nonce('heateor_ss_twitter_callback_notification_nonce') ?>',
 							action: 'heateor_ss_twitter_callback_notification_read'
 						},
 						success: function(data, textStatus, XMLHttpRequest){
@@ -3219,6 +3311,7 @@ function the_champ_addon_update_notification(){
 						type: 'GET',
 						url: '<?php echo get_admin_url() ?>admin-ajax.php',
 						data: {
+							nonce: '<?php echo wp_create_nonce('heateor_ss_linkedin_redirection_notification_nonce') ?>',
 							action: 'heateor_ss_linkedin_redirection_notification_read'
 						},
 						success: function(data, textStatus, XMLHttpRequest){
@@ -3244,6 +3337,7 @@ function the_champ_addon_update_notification(){
 						type: 'GET',
 						url: '<?php echo get_admin_url() ?>admin-ajax.php',
 						data: {
+							nonce: '<?php echo wp_create_nonce('heateor_ss_google_redirection_notification_nonce') ?>',
 							action: 'heateor_ss_google_redirection_notification_read'
 						},
 						success: function(data, textStatus, XMLHttpRequest){
@@ -3277,6 +3371,7 @@ function the_champ_addon_update_notification(){
 						type: 'GET',
 						url: '<?php echo get_admin_url() ?>admin-ajax.php',
 						data: {
+							nonce: '<?php echo wp_create_nonce('heateor_ss_gdpr_notification_nonce') ?>',
 							action: 'heateor_ss_gdpr_notification_read'
 						},
 						success: function(data, textStatus, XMLHttpRequest){
@@ -3305,6 +3400,7 @@ function the_champ_addon_update_notification(){
 							type: 'GET',
 							url: '<?php echo get_admin_url() ?>admin-ajax.php',
 							data: {
+								nonce: '<?php echo wp_create_nonce('heateor_ss_twitcount_notification_nonce') ?>',
 								action: 'heateor_ss_twitcount_notification_read'
 							},
 							success: function(data, textStatus, XMLHttpRequest){
@@ -3332,6 +3428,7 @@ function the_champ_addon_update_notification(){
 						type: 'GET',
 						url: '<?php echo get_admin_url() ?>admin-ajax.php',
 						data: {
+							nonce: '<?php echo wp_create_nonce('heateor_ss_twitter_new_callback_notification_nonce') ?>',
 							action: 'heateor_ss_twitter_new_callback_notification_read'
 						},
 						success: function(data, textStatus, XMLHttpRequest){
@@ -3357,6 +3454,7 @@ function the_champ_addon_update_notification(){
 						type: 'GET',
 						url: '<?php echo get_admin_url() ?>admin-ajax.php',
 						data: {
+							nonce: '<?php echo wp_create_nonce('heateor_ss_linkedin_redirect_url_notification_nonce') ?>',
 							action: 'heateor_ss_linkedin_redirect_url_notification_read'
 						},
 						success: function(data, textStatus, XMLHttpRequest){
@@ -3382,6 +3480,7 @@ function the_champ_addon_update_notification(){
 						type: 'GET',
 						url: '<?php echo get_admin_url() ?>admin-ajax.php',
 						data: {
+							nonce: '<?php echo wp_create_nonce('heateor_ss_fb_count_notification_nonce') ?>',
 							action: 'heateor_ss_fb_count_notification_read'
 						},
 						success: function(data, textStatus, XMLHttpRequest){
@@ -3411,6 +3510,24 @@ function the_champ_update_db_check(){
 	$currentVersion = get_option('the_champ_ss_version');
 
 	if($currentVersion && $currentVersion != THE_CHAMP_SS_VERSION){
+		if(version_compare("7.13.58", $currentVersion) > 0){
+			global $theChampLoginOptions, $theChampSharingOptions;
+			if(isset($theChampLoginOptions['providers']) && is_array($theChampLoginOptions['providers']) && count($theChampLoginOptions['providers']) > 0){
+				$theChampLoginOptions['providers'] = the_champ_replace_array_value($theChampLoginOptions['providers'], 'twitter', 'x');
+			}
+			if(!isset($theChampSharingOptions['linkedin_login_type'])){
+				$theChampLoginOptions['linkedin_login_type'] = 'oauth';
+			}
+			update_option('the_champ_login', $theChampLoginOptions);
+			if(!isset($theChampSharingOptions['google_news_url'])){
+				$theChampSharingOptions['google_news_url'] = '';
+			}
+			if(!isset($theChampSharingOptions['vertical_google_news_url'])){
+				$theChampSharingOptions['vertical_google_news_url'] = '';
+			}
+			update_option('the_champ_sharing', $theChampSharingOptions);
+		}
+
 		if(version_compare("7.13.40", $currentVersion) > 0){
 			global $theChampLoginOptions;
 			$theChampLoginOptions['youtube_key'] = '';
@@ -3795,7 +3912,7 @@ function the_champ_frontend_amp_css(){
 	}
 
 	// background color of amp icons
-	$css .= 'a.the_champ_amp{padding:0 4px;}div.the_champ_horizontal_sharing a amp-img{display:inline-block;margin:0 4px;}.the_champ_amp_parler img{background-color:#C63240}.the_champ_amp_instagram img{background-color:#624E47}.the_champ_amp_yummly img{background-color:#E16120}.the_champ_amp_buffer img{background-color:#000}.the_champ_amp_facebook img{background-color:#3C589A}.the_champ_amp_digg img{background-color:#006094}.the_champ_amp_email img{background-color:#649A3F}.the_champ_amp_float_it img{background-color:#53BEEE}.the_champ_amp_google img{background-color:#dd4b39}.the_champ_amp_google_plus img{background-color:#dd4b39}.the_champ_amp_linkedin img{background-color:#0077B5}.the_champ_amp_pinterest img{background-color:#CC2329}.the_champ_amp_print img{background-color:#FD6500}.the_champ_amp_reddit img{background-color:#FF5700}.the_champ_amp_stocktwits img{background-color: #40576F}.the_champ_amp_mix img{background-color:#ff8226}.the_champ_amp_tumblr img{background-color:#29435D}.the_champ_amp_twitter img{background-color:#55acee}.the_champ_amp_vkontakte img{background-color:#0077FF}.the_champ_amp_yahoo img{background-color:#8F03CC}.the_champ_amp_xing img{background-color:#00797D}.the_champ_amp_mastodon img{background-color:#2b90d9}.the_champ_amp_instagram img{background-color:#527FA4}.the_champ_amp_whatsapp img{background-color:#55EB4C}.the_champ_amp_aim img{background-color: #10ff00}.the_champ_amp_amazon_wish_list img{background-color: #ffe000}.the_champ_amp_aol_mail img{background-color: #2A2A2A}.the_champ_amp_app_net img{background-color: #5D5D5D}.the_champ_amp_balatarin img{background-color: #fff}.the_champ_amp_bibsonomy img{background-color: #000}.the_champ_amp_bitty_browser img{background-color: #EFEFEF}.the_champ_amp_blinklist img{background-color: #3D3C3B}.the_champ_amp_blogger_post img{background-color: #FDA352}.the_champ_amp_blogmarks img{background-color: #535353}.the_champ_amp_bookmarks_fr img{background-color: #E8EAD4}.the_champ_amp_box_net img{background-color: #1A74B0}.the_champ_amp_buddymarks img{background-color: #ffd400}.the_champ_amp_care2_news img{background-color: #6EB43F}.the_champ_amp_citeulike img{background-color: #2781CD}.the_champ_amp_comment img{background-color: #444}.the_champ_amp_diary_ru img{background-color: #E8D8C6}.the_champ_amp_diaspora img{background-color: #2E3436}.the_champ_amp_diigo img{background-color: #4A8BCA}.the_champ_amp_douban img{background-color: #497700}.the_champ_amp_draugiem img{background-color: #ffad66}.the_champ_amp_dzone img{background-color: #fff088}.the_champ_amp_evernote img{background-color: #8BE056}.the_champ_amp_facebook_messenger img{background-color: #0084FF}.the_champ_amp_fark img{background-color: #555}.the_champ_amp_fintel img{background-color:#087515}.the_champ_amp_flipboard img{background-color: #CC0000}.the_champ_amp_folkd img{background-color: #0F70B2}.the_champ_amp_google_classroom img{background-color: #FFC112}.the_champ_amp_google_bookmarks img{background-color: #CB0909}.the_champ_amp_google_gmail img{background-color: #E5E5E5}.the_champ_amp_hacker_news img{background-color: #F60}.the_champ_amp_hatena img{background-color: #00A6DB}.the_champ_amp_instapaper img{background-color: #EDEDED}.the_champ_amp_jamespot img{background-color: #FF9E2C}.the_champ_amp_kakao img{background-color: #FCB700}.the_champ_amp_kik img{background-color: #2A2A2A}.the_champ_amp_kindle_it img{background-color: #2A2A2A}.the_champ_amp_known img{background-color: #fff101}.the_champ_amp_line img{background-color: #00C300}.the_champ_amp_livejournal img{background-color: #EDEDED}.the_champ_amp_mail_ru img{background-color: #356FAC}.the_champ_amp_mendeley img{background-color: #A70805}.the_champ_amp_meneame img{background-color: #FF7D12}.the_champ_amp_mewe img{background-color: #007da1}.the_champ_amp_mixi img{background-color: #EDEDED}.the_champ_amp_myspace img{background-color: #2A2A2A}.the_champ_amp_netvouz img{background-color: #c0ff00}.the_champ_amp_odnoklassniki img{background-color: #F2720C}.the_champ_amp_outlook_com img{background-color: #0072C6}.the_champ_amp_papaly img{background-color: #3AC0F6}.the_champ_amp_pinboard img{background-color: #1341DE}.the_champ_amp_plurk img{background-color: #CF682F}.the_champ_amp_pocket img{background-color: #f0f0f0}.the_champ_amp_printfriendly img{background-color: #61D1D5}.the_champ_amp_protopage_bookmarks img{background-color: #413FFF}.the_champ_amp_pusha img{background-color: #0072B8}.the_champ_amp_qzone img{background-color: #2B82D9}.the_champ_amp_refind img{background-color: #1492ef}.the_champ_amp_rediff_mypage img{background-color: #D20000}.the_champ_amp_renren img{background-color: #005EAC}.the_champ_amp_sina_weibo img{background-color: #ff0}.the_champ_amp_sitejot img{background-color: #ffc800}.the_champ_amp_skype img{background-color: #00AFF0}.the_champ_amp_sms img{background-color: #6ebe45}.the_champ_amp_slashdot img{background-color: #004242}.the_champ_amp_svejo img{background-color: #fa7aa3}.the_champ_amp_symbaloo_feeds img{background-color: #6DA8F7}.the_champ_amp_telegram img{background-color: #3DA5f1}.the_champ_amp_trello img{background-color: #1189CE}.the_champ_amp_tuenti img{background-color: #0075C9}.the_champ_amp_twiddla img{background-color: #EDEDED}.the_champ_amp_typepad_post img{background-color: #2A2A2A}.the_champ_amp_viadeo img{background-color: #2A2A2A}.the_champ_amp_viber img{background-color: #8B628F}.the_champ_amp_wanelo img{background-color: #fff}.the_champ_amp_webnews img{background-color: #CC2512}.the_champ_amp_wordpress img{background-color: #464646}.the_champ_amp_wykop img{background-color: #367DA9}.the_champ_amp_yahoo_mail img{background-color: #400090}.the_champ_amp_yahoo_messenger img{background-color: #400090}.the_champ_amp_yoolink img{background-color: #A2C538}.the_champ_amp_threema img{background-color: #2A2A2A}.the_champ_amp_youmob img{background-color: #3B599D}.the_champ_amp_youtube img{background-color:red}.the_champ_amp_rutube img{background-color:#14191f}.the_champ_amp_gentlereader img{background-color: #46aecf}.the_champ_amp_goodreads img{background-color:#ce6f2d}.the_champ_amp_gab img{background-color:#25CC80}.the_champ_amp_gettr img{background-color:#E50000}';
+	$css .= 'a.the_champ_amp{padding:0 4px;}div.the_champ_horizontal_sharing a amp-img{display:inline-block;margin:0 4px;}.the_champ_amp_parler img{background-color:#892E5E}.the_champ_amp_instagram img{background-color:#624E47}.the_champ_amp_yummly img{background-color:#E16120}.the_champ_amp_buffer img{background-color:#000}.the_champ_amp_teams img{background-color:#5059c9}.the_champ_amp_google_translate img{background-color:#528ff5}.the_champ_amp_rss img{background-color:#e3702d}.the_champ_amp_x img{background-color:#2a2a2a}.the_champ_amp_facebook img{background-color:#0765FE}.the_champ_amp_digg img{background-color:#006094}.the_champ_amp_email img{background-color:#649A3F}.the_champ_amp_float_it img{background-color:#53BEEE}.the_champ_amp_google img{background-color:#dd4b39}.the_champ_amp_google_plus img{background-color:#dd4b39}.the_champ_amp_linkedin img{background-color:#0077B5}.the_champ_amp_pinterest img{background-color:#CC2329}.the_champ_amp_print img{background-color:#FD6500}.the_champ_amp_reddit img{background-color:#FF5700}.the_champ_amp_stocktwits img{background-color:#40576F}.the_champ_amp_mix img{background-color:#ff8226}.the_champ_amp_tumblr img{background-color:#29435D}.the_champ_amp_twitter img{background-color:#55acee}.the_champ_amp_vkontakte img{background-color:#0077FF}.the_champ_amp_yahoo img{background-color:#8F03CC}.the_champ_amp_xing img{background-color:#00797D}.the_champ_amp_mastodon img{background-color:#2b90d9}.the_champ_amp_instagram img{background-color:#527FA4}.the_champ_amp_whatsapp img{background-color:#55EB4C}.the_champ_amp_aim img{background-color:#10ff00}.the_champ_amp_amazon_wish_list img{background-color:#ffe000}.the_champ_amp_aol_mail img{background-color:#2A2A2A}.the_champ_amp_app_net img{background-color:#5D5D5D}.the_champ_amp_balatarin img{background-color:#fff}.the_champ_amp_bibsonomy img{background-color:#000}.the_champ_amp_bitty_browser img{background-color:#EFEFEF}.the_champ_amp_blinklist img{background-color:#3D3C3B}.the_champ_amp_blogger_post img{background-color:#FDA352}.the_champ_amp_blogmarks img{background-color:#535353}.the_champ_amp_bookmarks_fr img{background-color:#E8EAD4}.the_champ_amp_box_net img{background-color:#1A74B0}.the_champ_amp_buddymarks img{background-color:#ffd400}.the_champ_amp_care2_news img{background-color:#6EB43F}.the_champ_amp_citeulike img{background-color:#2781CD}.the_champ_amp_comment img{background-color:#444}.the_champ_amp_diary_ru img{background-color:#E8D8C6}.the_champ_amp_diaspora img{background-color:#2E3436}.the_champ_amp_diigo img{background-color:#4A8BCA}.the_champ_amp_douban img{background-color:#497700}.the_champ_amp_draugiem img{background-color:#ffad66}.the_champ_amp_dzone img{background-color:#fff088}.the_champ_amp_evernote img{background-color:#8BE056}.the_champ_amp_facebook_messenger img{background-color:#0084FF}.the_champ_amp_fark img{background-color:#555}.the_champ_amp_fintel img{background-color:#087515}.the_champ_amp_flipboard img{background-color:#CC0000}.the_champ_amp_folkd img{background-color:#0F70B2}.the_champ_amp_google_classroom img{background-color:#FFC112}.the_champ_amp_google_bookmarks img{background-color:#CB0909}.the_champ_amp_google_gmail img{background-color:#E5E5E5}.the_champ_amp_hacker_news img{background-color:#F60}.the_champ_amp_hatena img{background-color:#00A6DB}.the_champ_amp_instapaper img{background-color:#EDEDED}.the_champ_amp_jamespot img{background-color:#FF9E2C}.the_champ_amp_kakao img{background-color:#FCB700}.the_champ_amp_kik img{background-color:#2A2A2A}.the_champ_amp_kindle_it img{background-color:#2A2A2A}.the_champ_amp_known img{background-color:#fff101}.the_champ_amp_line img{background-color:#00C300}.the_champ_amp_livejournal img{background-color:#EDEDED}.the_champ_amp_mail_ru img{background-color:#356FAC}.the_champ_amp_mendeley img{background-color:#A70805}.the_champ_amp_meneame img{background-color:#FF7D12}.the_champ_amp_mewe img{background-color:#007da1}.the_champ_amp_mixi img{background-color:#EDEDED}.the_champ_amp_myspace img{background-color:#2A2A2A}.the_champ_amp_netvouz img{background-color:#c0ff00}.the_champ_amp_odnoklassniki img{background-color:#F2720C}.the_champ_amp_outlook_com img{background-color:#0072C6}.the_champ_amp_papaly img{background-color:#3AC0F6}.the_champ_amp_pinboard img{background-color:#1341DE}.the_champ_amp_plurk img{background-color:#CF682F}.the_champ_amp_pocket img{background-color:#ee4056}.the_champ_amp_printfriendly img{background-color:#61D1D5}.the_champ_amp_protopage_bookmarks img{background-color:#413FFF}.the_champ_amp_pusha img{background-color:#0072B8}.the_champ_amp_qzone img{background-color:#2B82D9}.the_champ_amp_refind img{background-color:#1492ef}.the_champ_amp_rediff_mypage img{background-color:#D20000}.the_champ_amp_renren img{background-color:#005EAC}.the_champ_amp_sina_weibo img{background-color:#ff0}.the_champ_amp_sitejot img{background-color:#ffc800}.the_champ_amp_skype img{background-color:#00AFF0}.the_champ_amp_sms img{background-color:#6ebe45}.the_champ_amp_slashdot img{background-color:#004242}.the_champ_amp_svejo img{background-color:#fa7aa3}.the_champ_amp_symbaloo_feeds img{background-color:#6DA8F7}.the_champ_amp_telegram img{background-color:#3DA5f1}.the_champ_amp_trello img{background-color:#1189CE}.the_champ_amp_tuenti img{background-color:#0075C9}.the_champ_amp_twiddla img{background-color:#EDEDED}.the_champ_amp_typepad_post img{background-color:#2A2A2A}.the_champ_amp_viadeo img{background-color:#2A2A2A}.the_champ_amp_viber img{background-color:#8B628F}.the_champ_amp_wanelo img{background-color:#fff}.the_champ_amp_webnews img{background-color:#CC2512}.the_champ_amp_wordpress img{background-color:#464646}.the_champ_amp_wykop img{background-color:#367DA9}.the_champ_amp_yahoo_mail img{background-color:#400090}.the_champ_amp_yahoo_messenger img{background-color:#400090}.the_champ_amp_yoolink img{background-color:#A2C538}.the_champ_amp_threema img{background-color:#2A2A2A}.the_champ_amp_youmob img{background-color:#3B599D}.the_champ_amp_youtube img{background-color:red}.the_champ_amp_rutube img{background-color:#14191f}.the_champ_amp_gentlereader img{background-color:#46aecf}.the_champ_amp_goodreads img{background-color:#ce6f2d}.the_champ_amp_gab img{background-color:#25CC80}.the_champ_amp_gettr img{background-color:#E50000}';
 
 	// css for horizontal sharing bar
 	if($theChampSharingOptions['horizontal_sharing_shape'] == 'round'){

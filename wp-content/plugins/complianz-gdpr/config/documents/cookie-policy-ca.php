@@ -40,7 +40,6 @@ $this->pages['ca']['cookie-statement']['document_elements'] = array(
         'content' => _x('Some cookies ensure that certain parts of the website work properly and that your user preferences remain known. By placing functional cookies, we make it easier for you to visit our website. This way, you do not need to repeatedly enter the same information when visiting our website and, for example, the items remain in your shopping cart until you have paid.','Legal document cookie policy', 'complianz-gdpr'),
     ),
 
-    //statistics
     array(
         'subtitle' => _x('Statistics cookies', 'Legal document cookie policy:paragraph title', 'complianz-gdpr'),
         'content' => _x('We use statistics cookies to optimize the website experience for our users. With these statistics cookies we get insights in the usage of our website.','Legal document cookie policy', 'complianz-gdpr'),
@@ -124,7 +123,17 @@ $this->pages['ca']['cookie-statement']['document_elements'] = array(
   array(
       'title' => _x('Consent', 'Legal document cookie policy:paragraph title', 'complianz-gdpr'),
       'content' => _x('When you visit our website for the first time, we will show you a pop-up with an explanation about cookies. You do have the right to opt-out and to object against the further use of non-functional cookies.',"Legal document cookie policy","complianz-gdpr"),
+      'condition' => array(
+	      'ca_targets_quebec' => 'no',
+      ),
   ),
+	array(
+		'title' => _x('Consent', 'Legal document cookie policy:paragraph title', 'complianz-gdpr'),
+		'content' => cmplz_sprintf(_x('When you visit our website for the first time, we will show you a pop-up with an explanation about cookies. As soon as you click on "%s", you consent to us using all cookies and plug-ins as described in the pop-up and this Cookie Policy. You can disable the use of cookies via your browser, but please note that our website may no longer work properly.', 'Legal document cookie policy', 'complianz-gdpr'), '[cookie_accept_text]'),
+		'condition' => array(
+			'ca_targets_quebec' => 'yes',
+		),
+	  ),
   array(
 	  'p' => false,
 	  'subtitle' => _x('Manage your consent settings', 'Legal document cookie policy:paragraph title', 'complianz-gdpr'),
@@ -141,20 +150,17 @@ array(
     'cmplz_tcf_active',
     'cmplz_site_shares_data',
   ),
-  'condition' => array(
-    'sensitive_information_processed' => 'yes'
-  ),
-
 ),
 
 
 	array(
 		'title' => _x('Enabling/disabling and deleting cookies', 'Legal document cookie policy:paragraph title', 'complianz-gdpr'),
-		'content' => _x('You can use your internet browser to automatically or manually delete cookies. You can also specify that certain cookies may not be placed. Another option is to change the settings of your internet browser so that you receive a message each time a cookie is placed. For more information about these options, please refer to the instructions in the Help section of your browser. Or you can indicate your preferences on the following page: https://youradchoices.ca ' ,'Legal document cookie policy', 'complianz-gdpr'),
+      'content' => cmplz_sprintf(_x('You can use your internet browser to automatically or manually delete cookies. You can also specify that certain cookies may not be placed. Another option is to change the settings of your internet browser so that you receive a message each time a cookie is placed. For more information about these options, please refer to the instructions in the Help section of your browser. Or you can indicate your preferences on the following page: %syouradchoices.ca%s', 'Legal document cookie policy', 'complianz-gdpr'),'<a href="https://youradchoices.ca" rel="noopener noreferrer nofollow" target="_blank">', '</a>'),
+
 	),
 
 	'enable-disable-removal-cookies-2' => array(
-		'content' => _x('Please note that our website may not work properly if all cookies are disabled. If you do delete the cookies in your browser, they will be placed again after your consent when you visit our websites again.', 'Legal document cookie policy', 'complianz-gdpr'),
+		'content' => _x('Please note that our website may not work properly if all cookies are disabled. If you do delete the cookies in your browser, they will be placed again after your consent when you visit our website again.', 'Legal document cookie policy', 'complianz-gdpr'),
 	),
 
     array(
@@ -183,13 +189,13 @@ array(
         'content' => '<span class="cmplz-contact-organisation">[organisation_name]</span><br />
                     <span class="cmplz-contact-address">[address_company]</span><br />
                     <span class="cmplz-contact-country">[country_company]</span><br />
-                    Website: <span class="cmplz-contact-domain">[domain]</span><br />
-                    Email: <span class="cmplz-contact-email">[email_company]</span><br />
+                    ' . _x('Website:', 'Legal document cookie policy', 'complianz-gdpr') . ' <span class="cmplz-contact-domain">[domain]</span><br>
+                    ' . _x('Email:', 'Legal document cookie policy', 'complianz-gdpr') . '  <span class="cmplz-contact-email">[email_company]</span><br>
                     <span class="cmplz-contact-telephone">[telephone_company]</span>',
     ),
 
     array(
-        'content' => cmplz_sprintf(_x('This Cookie Policy was synchronized with %scookiedatabase.org%s on %s', 'Legal document cookie policy', 'complianz-gdpr'),'<a href="https://cookiedatabase.org/" target="_blank">', '</a>', '[sync_date]'),
+        'content' => cmplz_sprintf(_x('This Cookie Policy was synchronized with %scookiedatabase.org%s on %s.', 'Legal document cookie policy', 'complianz-gdpr'),'<a href="https://cookiedatabase.org/" target="_blank">', '</a>', '[sync_date]'),
         'callback_condition' => array(
 	        'cmplz_cdb_reference_in_policy',
         )

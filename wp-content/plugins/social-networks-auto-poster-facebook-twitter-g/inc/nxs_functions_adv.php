@@ -69,7 +69,7 @@ if (!function_exists("nxs_snapAjax")) { function nxs_snapAjax() { check_ajax_ref
   if ($_POST['nxsact']=='saveRpst'){ if (!empty($_POST['pid'])) { $pid = sanitize_key($_POST['pid']);  }
       $post = array(
         // 'ID'             => [ <post id> ] // Are you updating an existing post?
-        'post_name'      => sanitize_title($_POST['post_title']),
+        'post_name'      => sanitize_text_field($_POST['post_title']),
         'post_title'     => $_POST['post_title'],
         'post_status'    => 'publish',
         'post_type'      => 'nxs_filter',
@@ -81,7 +81,13 @@ if (!function_exists("nxs_snapAjax")) { function nxs_snapAjax() { check_ajax_ref
      if ($newReposter) $pid = wp_insert_post($post); else { $post['ID'] = $pid; $pid = wp_update_post($post); }
      if (!empty($pid)) { $flt = nxs_Filters::save_filter($pid);  $rpstrOpts = nxs_Filters::save_schinfo($pid); 
        if (!empty($_POST['resetStats'])) { delete_post_meta($pid, 'nxs_rpstr_stats'); global $wpdb;
-           $wpdb->query( "DELETE FROM ". $wpdb->postmeta ." WHERE meta_key = 'snap_isRpstd".$pid."'" );
+	       $wpdb->query(
+		       $wpdb->prepare(
+			       "DELETE FROM %s WHERE meta_key = %s",
+			       $wpdb->postmeta,
+			       'snap_isRpstd' . $pid
+		       )
+	       );
        }
        
        $stats = nxs_Filters::getStats($pid, '', $rpstrOpts); if ($newReposter) die('OK'); else  echo $stats['statsText']; 
@@ -111,13 +117,86 @@ if (!function_exists("nxs_snapAjax")) { function nxs_snapAjax() { check_ajax_ref
      }
   } 
   //### Evil Buttons
-  if ($_POST['nxsact']=='resetSNAPInfoPosts') { global $wpdb; $wpdb->query( "DELETE FROM ". $wpdb->postmeta ." WHERE meta_key LIKE 'snap%'" ); $wpdb->query( "DELETE FROM ". $wpdb->postmeta ." WHERE meta_key LIKE '_nxs_slinks'" ); 
+  if ($_POST['nxsact']=='resetSNAPInfoPosts') {
+      global $wpdb;
+	  $wpdb->query(
+		  $wpdb->prepare(
+			  "DELETE FROM %s WHERE meta_key LIKE %s",
+			  $wpdb->postmeta,
+			  'snap%'
+		  )
+	  );
+
+	  $wpdb->query(
+		  $wpdb->prepare(
+			  "DELETE FROM %s WHERE meta_key LIKE %s",
+			  $wpdb->postmeta,
+			  '_nxs_slinks'
+		  )
+	  );
       _e('Done. All SNAP data has been removed from posts.', 'social-networks-auto-poster-facebook-twitter-g');
   }
-  if ($_POST['nxsact']=='deleteAllSNAPInfo') { global $wpdb; $wpdb->query( "DELETE FROM ". $wpdb->options ." WHERE option_name = 'nxsSNAPOptions'" );  $wpdb->query( "DELETE FROM ". $wpdb->options ." WHERE option_name = 'nxsSNAPNetworks'" );  
-    $wpdb->query( "DELETE FROM ". $wpdb->options ." WHERE option_name = 'NS_SNriPosts'" );  $wpdb->query( "DELETE FROM ". $wpdb->postmeta ." WHERE meta_key LIKE 'snap%'" ); $wpdb->query( "DELETE FROM ". $wpdb->prefix . "nxs_query" ); 
-    $wpdb->query( "DELETE FROM ". $wpdb->posts ." WHERE post_type = 'nxs_filter'" ); $wpdb->query( "DELETE FROM ". $wpdb->posts ." WHERE post_type = 'nxs_qp'" );    
-    $wpdb->query( "DELETE FROM ". $wpdb->postmeta ." WHERE meta_key LIKE '_nxs_slinks'" ); 
+  if ($_POST['nxsact']=='deleteAllSNAPInfo') {
+      global $wpdb;
+
+	  $sql1 = $wpdb->prepare(
+		  "DELETE FROM {$wpdb->options} WHERE option_name = %s",
+		  'nxsSNAPOptions'
+	  );
+	  $wpdb->query($sql1);
+
+	  $sql2 = $wpdb->prepare(
+		  "DELETE FROM {$wpdb->options} WHERE option_name = %s",
+		  'nxsSNAPNetworks'
+	  );
+	  $wpdb->query($sql2);
+
+      $wpdb->query(
+		  $wpdb->prepare(
+			  "DELETE FROM %s WHERE option_name = %s",
+			  $wpdb->options,
+			  'NS_SNriPosts'
+		  )
+	  );
+
+	  $wpdb->query(
+		  $wpdb->prepare(
+			  "DELETE FROM %s WHERE meta_key LIKE %s",
+			  $wpdb->postmeta,
+			  'snap%'
+		  )
+	  );
+
+	  $wpdb->query(
+		  $wpdb->prepare(
+			  "DELETE FROM %s",
+			  $wpdb->prefix . 'nxs_query'
+		  )
+	  );
+
+	  $wpdb->query(
+		  $wpdb->prepare(
+			  "DELETE FROM %s WHERE post_type = %s",
+			  $wpdb->posts,
+			  'nxs_filter'
+		  )
+	  );
+
+	  $wpdb->query(
+		  $wpdb->prepare(
+			  "DELETE FROM %s WHERE post_type = %s",
+			  $wpdb->posts,
+			  'nxs_qp'
+		  )
+	  );
+
+	  $wpdb->query(
+		  $wpdb->prepare(
+			  "DELETE FROM %s WHERE meta_key LIKE %s",
+			  $wpdb->postmeta,
+			  '_nxs_slinks'
+		  )
+	  );
     if (((defined('MULTISITE') && MULTISITE!=false && !empty($_POST['nt']) && $_POST['nt']=='mu' && current_user_can('manage_network_options'))) || !defined('MULTISITE') || MULTISITE!=true){ 
         delete_site_option('nxsSNAPOptions');  delete_site_option('__plugins_cache_242'); delete_site_option('__plugins_cache_244');         
         if (defined('MULTISITE') && MULTISITE!=false) echo '-=MU=- <script> setTimeout(function () { location = "'.network_admin_url().'admin.php?page=nxssnap-ntadmin"; }, 3000); </script>'; else echo '<script> setTimeout(function () { location.reload(1); }, 3000); </script>';
@@ -133,14 +212,28 @@ if (!function_exists("nxs_snapAjax")) { function nxs_snapAjax() { check_ajax_ref
   if ($_POST['nxsact']=='restBackup') { $dbNts = get_option('nxsSNAPNetworks_bck4'); $dbOpts = get_option('nxsSNAPOptions_bck4'); $nxs_SNAP->saveNetworksOptions($dbNts, $dbOpts); 
       _e('Done. Backup has been restored. <script> setTimeout(function () { location.reload(1); }, 3000); </script>', 'social-networks-auto-poster-facebook-twitter-g');
   }  
-  if ($_POST['nxsact']=='resetSNAPQuery') { global $wpdb;  $wpdb->query( "DELETE FROM ". $wpdb->prefix . "nxs_query" ); 
+  if ($_POST['nxsact']=='resetSNAPQuery') { global $wpdb;  $table_name = $wpdb->prefix . "nxs_query";
+	  $sql = $wpdb->prepare("DELETE FROM $table_name"); $wpdb->query($sql);
       _e('Done. SNAP query has been cleared.', 'social-networks-auto-poster-facebook-twitter-g');
   }
   if ($_POST['nxsact']=='resetSNAPCron') { $cron = maybe_unserialize(get_option('cron')); $cronX = $cron;
     foreach ($cron as $itsk=>$tsk) if (!empty($tsk) && is_array($tsk)) { $nm = key($tsk); if (stripos($nm, 'ns_doPublishTo')!==false) unset($cronX[$itsk]); }  update_option('cron',$cronX, false);   
     _e('Done. All SNAP Crons has been deleted.', 'social-networks-auto-poster-facebook-twitter-g');
   }
-  if ($_POST['nxsact']=='resetSNAPCache') { global $wpdb; $wpdb->query( "DELETE FROM ". $wpdb->options ." WHERE option_name LIKE 'nxs_snap_%'" ); $wpdb->query( "DELETE FROM ". $wpdb->postmeta ." WHERE meta_key LIKE '_nxs_slinks'" ); 
+  if ($_POST['nxsact']=='resetSNAPCache') { global $wpdb;
+	  $options_table = $wpdb->options;
+	  $sql1 = $wpdb->prepare(
+		  "DELETE FROM $options_table WHERE option_name LIKE %s",
+		  'nxs_snap_%'
+	  );
+	  $wpdb->query($sql1);
+
+	  $postmeta_table = $wpdb->postmeta;
+	  $sql2 = $wpdb->prepare(
+		  "DELETE FROM $postmeta_table WHERE meta_key LIKE %s",
+		  '_nxs_slinks'
+	  );
+	  $wpdb->query($sql2);
       _e('Done. All SNAP Cache has been cleared.', 'social-networks-auto-poster-facebook-twitter-g');
   } 
   //###
@@ -175,12 +268,12 @@ if (!function_exists("nsFormatMessage")) { function nsFormatMessage($msg, $postI
     $nxs_urlLen = nxs_strLen($url); $msg = str_ireplace("%URL%", $url, $msg);
   }
   if (stripos($msg, '%SLUG%')!==false) { $msg = str_ireplace("%SLUG%", $post->post_name, $msg); }
-  if (stripos($msg, '%MYURL%')!==false) { $url =  get_post_meta($postID, 'snap_MYURL', true); if($addURLParams!='') $url .= (strpos($url,'?')!==false?'&':'?').$addURLParams;  $nxs_urlLen = nxs_strLen($url); $msg = str_ireplace("%MYURL%", $url, $msg);} 
-  if (stripos($msg, '%SURL%')!==false) { if (!empty($ntOpts) && !empty($ntOpts['surlToUse'])) $url = $ntOpts['surlToUse']; else {    
-      if (!empty($ntOpts) && !empty($ntOpts['urlToUse'])) $url = $ntOpts['urlToUse']; else { $oo=array(); $oo = nxs_getURL($oo, $postID, $addURLParams); $url = $oo['urlToUse']; } $url = nxs_mkShortURL($url, $postID); 
+  if (stripos($msg, '%MYURL%')!==false) { $url =  get_post_meta($postID, 'snap_MYURL', true); if($addURLParams!='') $url .= (strpos($url,'?')!==false?'&':'?').$addURLParams;  $nxs_urlLen = nxs_strLen($url); $msg = str_ireplace("%MYURL%", $url, $msg);}
+  if (stripos($msg, '%SURL%')!==false) { if (!empty($ntOpts) && !empty($ntOpts['surlToUse'])) $url = $ntOpts['surlToUse']; else {
+      if (!empty($ntOpts) && !empty($ntOpts['urlToUse'])) $url = $ntOpts['urlToUse']; else { $oo=array(); $oo = nxs_getURL($oo, $postID, $addURLParams); $url = $oo['urlToUse']; } $url = nxs_mkShortURL($url, $postID);
     } $nxs_urlLen = nxs_strLen($url); $msg = str_ireplace("%SURL%", $url, $msg);  
-  } 
-  if (stripos($msg, '%ORID%')!==false) { $msg = str_ireplace("%ORID%", $postID, $msg); } 
+  }
+  if (stripos($msg, '%ORID%')!==false) { $msg = str_ireplace("%ORID%", $postID, $msg); }
   if (stripos($msg, '%IMG%')!==false) { $imgURL = nxs_getPostImage($postID, !empty($ntOpts['wpImgSize'])?$ntOpts['wpImgSize']:'full'); $msg = str_ireplace("%IMG%", $imgURL, $msg); } 
   if (stripos($msg, '%TITLE%')!==false) { $title = nxs_doQTrans($post->post_title, $lng); $msg = str_ireplace("%TITLE%", $title, $msg); }                    
   if (stripos($msg, '%FULLTITLE%')!==false) { $title = apply_filters('the_title', nxs_doQTrans($post->post_title, $lng));  $msg = str_ireplace("%FULLTITLE%", $title, $msg); }                    
@@ -314,7 +407,7 @@ if (!function_exists("nxs_memCheck")) { function nxs_memCheck() { $mLimit = (int
 if (!function_exists("nxs_cron_check")){function nxs_cron_check() { if (stripos($_SERVER["REQUEST_URI"], 'wp-cron.php')!==false) {  
   $cronCheckArray = get_option('NXS_cronCheck'); if (empty($cronCheckArray)) $cronCheckArray = array('cronCheckStartTime'=>time(), 'cronChecks'=>array());    
   if (($cronCheckArray['cronCheckStartTime']+900)>time()) {  ( $offset = get_option( 'gmt_offset' ) * HOUR_IN_SECONDS );
-    $cronCheckArray['cronChecks'][] = '['.date_i18n('Y-m-d H:i:s', $_SERVER["REQUEST_TIME"]+$offset).'] - WP Cron called from '.(!empty($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:'Unknown IP').' ('.(!empty($_SERVER["HTTP_USER_AGENT"])?$_SERVER["HTTP_USER_AGENT"]:'Unknown UA').')';
+    $cronCheckArray['cronChecks'][] = '['.date_i18n('Y-m-d H:i:s', $_SERVER["REQUEST_TIME"]+$offset).'] - WP Cron called from '.(!empty($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:'Unknown IP').' ('.(!empty($_SERVER["HTTP_USER_AGENT"])?esc_html(strip_tags($_SERVER["HTTP_USER_AGENT"])):'Unknown UA').')';
     //nxs_addToLogN('S', 'Cron Check', '', 'WP Cron called from '.(!empty($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:'Unknown IP').' ('.$_SERVER["HTTP_USER_AGENT"].')', date_i18n('Y-m-d H:i:s', $_SERVER["REQUEST_TIME"]+$offset));
   } elseif (empty($cronCheckArray['status']) &&  is_array($cronCheckArray['cronChecks'])) $cronCheckArray['status'] = (count($cronCheckArray['cronChecks'])<17 && count($cronCheckArray['cronChecks'])>1)?1:0;
   update_option("NXS_cronCheck", $cronCheckArray, false);    

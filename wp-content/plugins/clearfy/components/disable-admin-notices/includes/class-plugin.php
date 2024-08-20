@@ -9,16 +9,16 @@
  */
 
 // Exit if accessed directly
-//use WBCR\Factory_Adverts_140\Base;
+//use WBCR\Factory_Adverts_153\Base;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-class WDN_Plugin extends Wbcr_Factory463_Plugin {
+class WDN_Plugin extends Wbcr_Factory475_Plugin {
 
 	/**
-	 * @var Wbcr_Factory463_Plugin
+	 * @var Wbcr_Factory475_Plugin
 	 */
 	private static $app;
 	private $plugin_data;
@@ -44,7 +44,7 @@ class WDN_Plugin extends Wbcr_Factory463_Plugin {
 	}
 
 	/**
-	 * @return Wbcr_Factory463_Plugin
+	 * @return Wbcr_Factory475_Plugin
 	 */
 	public static function app() {
 		return self::$app;

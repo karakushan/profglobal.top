@@ -28,6 +28,7 @@ if (!function_exists('nxs_convertEntity')){ function nxs_convertEntity($matches,
 if (!function_exists('nsTrnc')){ function nsTrnc($string, $limit, $break=" ", $pad=" ...") { if(nxs_strLen($string) <= $limit) return $string; if(nxs_strLen($pad) >= $limit) return ''; $string = nxs_substr($string, 0, $limit-nxs_strLen($pad)); 
   $brLoc = strripos($string, $break);  if ($brLoc===false) return $string.$pad; else return nxs_substr($string, 0, $brLoc).$pad; 
 }}
+
 if (!function_exists("nxs_mkRandomStr")) { function nxs_mkRandomStr($l=32){ $rStr = ''; $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; $cl = strlen($chars); for ($i = 0; $i < $l; $i++) $rStr .= $chars[rand(0, $cl - 1)]; return $rStr; }}
 if (!function_exists("nxs_mkRndLStr")) { function nxs_mkRndLStr($l=3){ $rStr = ''; $chars = '0123456789abcdefghijklmnopqrstuvwxyz'; $cl = strlen($chars); for ($i = 0; $i < $l; $i++) $rStr .= $chars[rand(0, $cl - 1)]; return $rStr; }}
 if (!function_exists("nxs_mkRndNum")) { function nxs_mkRndNum($l=3){ $rStr = ''; $chars = '0123456789'; $cl = strlen($chars); for ($i = 0; $i < $l; $i++) $rStr .= $chars[rand(0, $cl - 1)]; return $rStr; }}
@@ -265,7 +266,7 @@ class NXS_HtmlFixer { public $dirtyhtml; public $fixedhtml; public $allowed_styl
     }
     private function findSonsOfDisplayCode($parentTag) { $out= "";
         for ($i=1;$i<count($this->matrix);$i++) {
-            if ($this->matrix[$i]["parentTag"]==$parentTag) { $out.= "<div style=\"padding-left:15\"><span style='float:left;background-color:#FFFF99;color:#000;'>{$i}:</span>";
+            if ($this->matrix[$i]["parentTag"]==$parentTag) { $out.= "<div style=\"padding-left:15px\"><span style='float:left;background-color:#FFFF99;color:#000;'>{$i}:</span>";
                 if ($this->matrix[$i]["tag"]!="") { if ($this->matrix[$i]["pre"]!="") $out.=htmlspecialchars($this->matrix[$i]["pre"])."<br>";
                     $out.="".htmlspecialchars($this->matrix[$i]["tag"])."<span style='background-color:red; color:white'>{$i} <em>".$this->matrix[$i]["tagType"]."</em></span>";
                     $out.=htmlspecialchars($this->matrix[$i]["post"]);
@@ -318,7 +319,7 @@ class NXS_HtmlFixer { public $dirtyhtml; public $fixedhtml; public $allowed_styl
 
 //## URL Shortener
 if (!function_exists("nxs_mkShortURL")) { function nxs_mkShortURL($url, $postID=''){ $rurl = '';  global $nxs_SNAP;  if (!isset($nxs_SNAP)) return; $options = $nxs_SNAP->nxs_options; if (empty($options['nxsURLShrtnr'])) $options['nxsURLShrtnr'] = 'G'; $exSLinks = array();
-    ///$ar = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT,3); $ar = print_r($ar, true); nxs_LogIt('W','SURLX','','','SURLX',$ar); echo '<pre>'; echo $ar; echo '</pre>'; nxs_LogIt('W','SURL','','','SURL','NUI');     
+    ///$ar = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT,3); $ar = print_r($ar, true); nxs_LogIt('W','SURLX','','','SURLX',$ar); echo '<pre>'; echo $ar; echo '</pre>'; nxs_LogIt('W','SURL','','','SURL','NUI');
     $murl =  md5($options['nxsURLShrtnr'].'-'.$url); $exSLinks = get_post_meta( $postID, '_nxs_slinks', true ); if (!empty($exSLinks) && is_array($exSLinks) && !empty($exSLinks[$murl])) return $exSLinks[$murl]; if (!is_array($exSLinks)) $exSLinks = array();
     if ($options['nxsURLShrtnr']=='B' && !empty($options['bitlyAPIToken'])) { $hdrsArr=nxs_getNXSHeaders();  $hdrsArr['Authorization'] = 'Bearer '.$options['bitlyAPIToken'];  $hdrsArr['content-type'] = "application/json";
       $response  = nxs_remote_post('https://api-ssl.bitly.com/v4/shorten', array('body' => '{"long_url":"'.$url.'"}',  'headers' => $hdrsArr));
@@ -346,7 +347,17 @@ if (!function_exists("nxs_mkShortURL")) { function nxs_mkShortURL($url, $postID=
       if (is_nxs_error($response)) { nxs_addToLogN('E', 'u.to', '', '-=ERROR (SYS)=- '.print_r($response, true)); return $url; }  $r = $response['body'];
       if (empty($r) || stripos($r, "#shurlout').val('")===false) { nxs_addToLogN('E', 'x.co', '', '-=ERROR (RES)=- '.print_r($r, true)); return $url; } else $rurl = CutFromTo($r,"#shurlout').val('","'");
     }
-    
+
+    if ($options['nxsURLShrtnr']=='L') {
+        $urlR =   'https://go2ln.com/api/url/add'; $argArr['extraHeaders']['Authorization'] = 'Bearer '.$options['g2lnAPIKey'];
+        $argArr['flds'] = ['url'=>$url];
+        if (!empty($options['g2lnDomain']) && strpos($options['g2lnDomain'], "https://") !== 0) $options['g2lnDomain'] = "https://" . $options['g2lnDomain'];
+        if (!empty($options['g2lnDomain'])) $argArr['flds']['domain'] = $options['g2lnDomain']; $argArr['flds'] = json_encode($argArr['flds']);
+        $args = nxs_mkRmReqArgs($argArr); $rq = new nxsHttp; $response = $rq->request($urlR, $args); //prr($args); prr($response);
+        if (is_nxs_error($response)) { nxs_addToLogN('E', 'Go2Ln', '', '-=ERROR (SYS)=- '.print_r($response, true)); return $url; }  $rtr = json_decode($response['body'],true); // prr($rtr);
+        if (!is_array($rtr) || empty($rtr['shorturl']) ) {   nxs_addToLogN('E', 'Go2Ln', '', '-=ERROR=- '.print_r($response, true));  return $url; } $rurl = urldecode($rtr['shorturl']);
+    }
+
     if ($options['nxsURLShrtnr']=='R') { $urlR =   'https://api.rebrandly.com/v1/links/new?destination='.urlencode($url).'&domain[fullName]='.$options['rblyDomain']; 
       $hdrsArr = array('Content-Type'=>'application/json', 'apikey'=>$options['rblyAPIKey']); $advSet = nxs_mkRemOptsArr($hdrsArr); $response  = nxs_remote_get($urlR, $advSet);
       if (is_nxs_error($response)) { nxs_addToLogN('E', 'Rebrandly', '', '-=ERROR (SYS)=- '.print_r($response, true)); return $url; }  $rtr = json_decode($response['body'],true); // prr($rtr);
@@ -382,7 +393,7 @@ if (!function_exists("nxs_mkShortURL")) { function nxs_mkShortURL($url, $postID=
 //## Format Message (API)
 if (!function_exists('nxs_doFormatMsg')){ function nxs_doFormatMsg($format, $message, $addURLParams=''){ global $nxs_urlLen; $msg = nxs_doSpin($format);
   $msgDef = array('title'=>'','announce'=>'','text'=>'','url'=>'','surl'=>'','urlDescr'=>'','urlTitle'=>'','imageURL' => array(),'videoCode'=>'','videoURL'=>'','siteName'=>'','tags'=>'','cats'=>'','authorName'=>'','orID'=>''); $message = array_merge($msgDef, $message);
-  if (preg_match('/%URL%/', $msg)) { $url = $message['url']; if($addURLParams!='') $url .= (strpos($url,'?')!==false?'&':'?').$addURLParams;  $nxs_urlLen = nxs_strLen($url); $msg = str_ireplace("%URL%", $url, $msg);}
+    if (preg_match('/%URL%/', $msg)) { $url = $message['url']; if($addURLParams!='') $url .= (strpos($url,'?')!==false?'&':'?').$addURLParams;  $nxs_urlLen = nxs_strLen($url); $msg = str_ireplace("%URL%", $url, $msg);}
   if (preg_match('/%SURL%/', $msg)) { 
     if (isset($message['surl']) && $message['surl']!='') $url = $message['surl']; else { $url = $message['url']; if($addURLParams!='') $url .= (strpos($url,'?')!==false?'&':'?').$addURLParams; $url = nxs_mkShortURL($url); } 
     $nxs_urlLen = nxs_strLen($url); $msg = str_ireplace("%SURL%", $url, $msg);

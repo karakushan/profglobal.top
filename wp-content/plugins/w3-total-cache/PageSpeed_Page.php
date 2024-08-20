@@ -38,7 +38,7 @@ class PageSpeed_Page {
 	public static function admin_print_scripts_w3tc_pagespeed() {
 		wp_register_script(
 			'w3tc-pagespeed',
-			esc_url( plugin_dir_url( __FILE__ ) . 'PageSpeed_Page_View.js' ),
+			esc_url( plugins_url( 'PageSpeed_Page_View.js', W3TC_FILE ) ),
 			array(),
 			W3TC_VERSION,
 			true
@@ -57,7 +57,7 @@ class PageSpeed_Page {
 
 		wp_enqueue_style(
 			'w3tc-pagespeed',
-			plugins_url( 'PageSpeed_Page_View.css', W3TC_FILE ),
+			esc_url( plugins_url( 'PageSpeed_Page_View.css', W3TC_FILE ) ),
 			array(),
 			W3TC_VERSION
 		);
@@ -110,7 +110,7 @@ class PageSpeed_Page {
 								'Before you can get started using the Google PageSpeed tool, you’ll first need to authorize access. Please click %1$s.',
 								'w3-total-cache'
 							),
-							'<a href="' . esc_url( Util_Ui::admin_url( 'admin.php?page=w3tc_general#google_page_speed' ) ) . '" target="_blank">' . esc_html__( 'here', 'w3-total-cache' ) . '</a>'
+							'<a href="' . esc_url( Util_Ui::admin_url( 'admin.php?page=w3tc_general#google_pagespeed' ) ) . '" target="_blank">' . esc_html__( 'here', 'w3-total-cache' ) . '</a>'
 						),
 					)
 				);
@@ -155,7 +155,7 @@ class PageSpeed_Page {
 			} else {
 				$api_response['time']         = time();
 				$api_response['display_time'] = \current_time( 'M jS, Y g:ia', false );
-				update_option( 'w3tc_pagespeed_data_' . $encoded_url, wp_json_encode( $api_response ), Util_PageSpeed::get_cache_life() );
+				update_option( 'w3tc_pagespeed_data_' . $encoded_url, wp_json_encode( $api_response ), 'no' );
 			}
 		}
 

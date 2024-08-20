@@ -45,6 +45,15 @@ class WP_Optimize_Host extends UpdraftCentral_Host {
 	}
 
 	/**
+	 * Whether the current user can perform key control AJAX actions
+	 *
+	 * @return Boolean
+	 */
+	public function current_user_can_ajax() {
+		return current_user_can(WP_Optimize()->capability_required());
+	}
+	
+	/**
 	 * Loads the UpdraftCentral_Main instance
 	 *
 	 * @return void
@@ -117,7 +126,7 @@ class WP_Optimize_Host extends UpdraftCentral_Host {
 	 *
 	 * @return void
 	 */
-	public function log($line, $level = 'notice', $uniq_id = false) {// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+	public function log($line, $level = 'notice', $uniq_id = false) {// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Unused parameter is present because the the abstract UpdraftCentral_Host class uses 3 arguments.
 		global $wp_optimize;
 
 		if ($wp_optimize) {

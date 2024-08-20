@@ -5,7 +5,7 @@ if (!defined("ABSPATH")) {
 ?>
 <div class="wpdtool-accordion-item">
     <div class="fas wpdtool-accordion-title" data-wpdtool-selector="wpdtool-<?php echo $tool["selector"]; ?>">
-        <p><?php esc_html_e("Export / Import phrases", "wpdiscuz"); ?></p>                
+        <p><?php esc_html_e("Export / Import phrases", "wpdiscuz"); ?></p>
     </div>
 
 
@@ -17,15 +17,16 @@ if (!defined("ABSPATH")) {
                 <?php wp_nonce_field("wc_tools_form", "wpd-phrases-export"); ?>
                 <div class="wpdtool-block">
                     <div class="wpdtool-right">
-                        <input type="submit" name="wpdiscuz-export-submit" class="button button-primary" value="<?php esc_attr_e("Backup Phrases", "wpdiscuz"); ?>">
+                        <input type="submit" name="wpdiscuz-export-submit" class="button button-primary"
+                               value="<?php esc_attr_e("Backup Phrases", "wpdiscuz"); ?>">
                     </div>
                     <div class="clearfix"></div>
-                    <input type="hidden" name="tools-action" value="export-phrases" />
+                    <input type="hidden" name="tools-action" value="export-phrases"/>
                 </div>
             </form>
         </div>
 
-        <div class="wpdtool wpdtool-import-phrases">            
+        <div class="wpdtool wpdtool-import-phrases">
             <p class="wpdtool-desc"><?php esc_html_e("Here you can import and restore wpDiscuz phrases. You just need to choose backup file and click import phrases.", "wpdiscuz"); ?></p>
             <form action="" method="post" class="wc-tools-settings-form wc-form" enctype="multipart/form-data">
                 <?php wp_nonce_field("wc_tools_form", "wpd-phrases-import"); ?>
@@ -34,10 +35,11 @@ if (!defined("ABSPATH")) {
                         <input type="file" name="wpdiscuz-phrases-file" class=""/>
                     </div>
                     <div class="wpdtool-right">
-                        <input type="submit" name="wpdiscuz-import-submit" class="button button-primary" value="<?php esc_attr_e("Import Phrases", "wpdiscuz"); ?>">
+                        <input type="submit" name="wpdiscuz-import-submit" class="button button-primary"
+                               value="<?php esc_attr_e("Import Phrases", "wpdiscuz"); ?>">
                     </div>
                     <div class="clearfix"></div>
-                    <input type="hidden" name="tools-action" value="import-phrases" />
+                    <input type="hidden" name="tools-action" value="import-phrases"/>
                 </div>
             </form>
         </div>

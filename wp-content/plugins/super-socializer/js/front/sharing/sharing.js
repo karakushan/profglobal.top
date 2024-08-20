@@ -8,10 +8,10 @@ function theChampMoreSharingPopup(elem, postUrl, postTitle, twitterTitle){
 	concate = '</ul></div><div class="footer-panel"><p></p></div></div>';
 	var theChampMoreSharingServices = {
 	  facebook: {
-	  	background_color: "#3c589a",
+	  	background_color: "#0765FE",
 		title: "Facebook",
 		redirect_url: "https://www.facebook.com/sharer.php?u=" + postUrl + "&t=" + postTitle + "&v=3",
-		svg: '<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-5 -5 42 42"><path d="M17.78 27.5V17.008h3.522l.527-4.09h-4.05v-2.61c0-1.182.33-1.99 2.023-1.99h2.166V4.66c-.375-.05-1.66-.16-3.155-.16-3.123 0-5.26 1.905-5.26 5.405v3.016h-3.53v4.09h3.53V27.5h4.223z" fill="#fff"></path></svg>'
+		svg: '<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32"><path fill="#fff" d="M28 16c0-6.627-5.373-12-12-12S4 9.373 4 16c0 5.628 3.875 10.35 9.101 11.647v-7.98h-2.474V16H13.1v-1.58c0-4.085 1.849-5.978 5.859-5.978.76 0 2.072.15 2.608.298v3.325c-.283-.03-.775-.045-1.386-.045-1.967 0-2.728.745-2.728 2.683V16h3.92l-.673 3.667h-3.247v8.245C23.395 27.195 28 22.135 28 16Z"></path></svg>'
 	  },
 	  mastodon: {
 	  	background_color: "#2b90d9",
@@ -25,18 +25,36 @@ function theChampMoreSharingPopup(elem, postUrl, postTitle, twitterTitle){
 		redirect_url: "https://twitter.com/intent/tweet?text=" + (twitterTitle ? twitterTitle : postTitle) + " " + postUrl,
 		svg: '<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-4 -4 39 39"><path d="M28 8.557a9.913 9.913 0 0 1-2.828.775 4.93 4.93 0 0 0 2.166-2.725 9.738 9.738 0 0 1-3.13 1.194 4.92 4.92 0 0 0-3.593-1.55 4.924 4.924 0 0 0-4.794 6.049c-4.09-.21-7.72-2.17-10.15-5.15a4.942 4.942 0 0 0-.665 2.477c0 1.71.87 3.214 2.19 4.1a4.968 4.968 0 0 1-2.23-.616v.06c0 2.39 1.7 4.38 3.952 4.83-.414.115-.85.174-1.297.174-.318 0-.626-.03-.928-.086a4.935 4.935 0 0 0 4.6 3.42 9.893 9.893 0 0 1-6.114 2.107c-.398 0-.79-.023-1.175-.068a13.953 13.953 0 0 0 7.55 2.213c9.056 0 14.01-7.507 14.01-14.013 0-.213-.005-.426-.015-.637.96-.695 1.795-1.56 2.455-2.55z" fill="#fff"></path></svg>'
 	  },
+	  x: {
+		background_color: "#2a2a2a", 
+		title: "X",
+		redirect_url: "https://twitter.com/intent/tweet?text=" + (twitterTitle ? twitterTitle : postTitle) + " " + postUrl,
+		svg: '<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#fff" d="M21.751 7h3.067l-6.7 7.658L26 25.078h-6.172l-4.833-6.32-5.531 6.32h-3.07l7.167-8.19L6 7h6.328l4.37 5.777L21.75 7Zm-1.076 16.242h1.7L11.404 8.74H9.58l11.094 14.503Z"></path></svg>'
+	  },
+	  teams: {
+	  	background_color: "#5059c9",
+		title: "Teams",
+		redirect_url: "https://teams.microsoft.com/share?href=" + postUrl + "&msgText=" + (twitterTitle ? twitterTitle : postTitle),
+		svg: '<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#fff" d="M24.63 12.14a2.63 2.63 0 1 0 0-5.26 2.63 2.63 0 0 0 0 5.26Zm2.25.74h-3.29c.18.34.32.72.32 1.12v7.13c0 .74-.11 1.47-.34 2.14 2.01.36 3.94-.93 4.34-2.93.04-.25.09-.52.09-.76V14c0-.63-.52-1.12-1.12-1.12ZM16.75 4.87a3.515 3.515 0 0 0-3.49 3.87h1.73c1.19 0 2.14.97 2.14 2.14v.97c1.75-.2 3.1-1.69 3.1-3.49a3.48 3.48 0 0 0-3.49-3.49h.01Zm4.86 8.01h-4.48v8.01c0 1.19-.97 2.14-2.14 2.14h-3.94c.04.11.07.25.11.36.11.26.22.52.38.74a6.004 6.004 0 0 0 5.2 2.99c3.31 0 5.98-2.68 5.98-6.01v-7.14c0-.61-.49-1.09-1.12-1.09h.01Z"></path><path fill="#fff" d="M15 9.86H4.99c-.56 0-.99.45-.99.99v10.02c0 .56.45.99.99.99h10.02c.56 0 .99-.45.99-.99v-9.99c-.01-.56-.44-1.02-1-1.02Zm-2.02 3.74h-2.23v6.01H9.28V13.6H7.03v-1.49h5.96v1.49h-.02.01Z"></path></svg>'
+	  },
+	  Google_Translate: {
+	  	background_color: "#528ff5",
+		title: "Google Translate",
+		redirect_url: "https://translate.google.com/translate?js=n&sl=auto&tl=en&u=" + postUrl,
+		svg: '<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#fff" fill-rule="evenodd" d="M5.597 4C4.719 4 4 4.719 4 5.599v16.279c0 .878.719 1.597 1.597 1.597h10l1.477 4.53h9.33c.877 0 1.596-.707 1.596-1.573v-16.04c0-.866-.719-1.573-1.597-1.573h-9.93L14.927 4h-9.33Zm15.58 19.475-3.45 3.808h8.676a.88.88 0 0 0 .62-.254.825.825 0 0 0 .256-.597v-16.04a.834.834 0 0 0-.255-.597.881.881 0 0 0-.62-.255h-9.698l1.595 4.968h2.204v-1.52h1.472v1.52h4.532v.94h-.002v-.002h-2.035c-.197 1.252-1.13 2.62-2.048 3.708.685.735 1.618 1.651 2.89 2.806l-.772.772a52.625 52.625 0 0 1-2.818-2.806c-.71.752-1.277 1.24-1.277 1.24l-.375-1.173s.407-.325.943-.873c-1.65-1.933-1.7-2.611-1.7-2.611h1.221s.005.452 1.18 1.844c.665-.796 1.345-1.82 1.653-2.905h-4.766l2.578 8.027h-.005Zm-8.246-9.12c-.06.728-.683 1.807-2.191 1.807-1.306 0-2.364-1.08-2.364-2.41 0-1.329 1.058-2.408 2.364-2.408.743 0 1.238.322 1.522.584l.99-.952a3.632 3.632 0 0 0-2.512-.977 3.753 3.753 0 0 0-3.751 3.752c0 2.07 1.68 3.75 3.751 3.75 2.169 0 3.602-1.521 3.602-3.669a3.3 3.3 0 0 0-.089-.764h-3.51v1.284l2.188.002Z" clip-rule="evenodd"></path></svg>'
+	  },
 	  linkedin: {
 	  	background_color: "#0077b5",
 		title: "Linkedin",
-		redirect_url: "https://www.linkedin.com/shareArticle?mini=true&url=" + postUrl + "&title=" + postTitle,
+		redirect_url: "https://www.linkedin.com/sharing/share-offsite/?url=" + postUrl,
 		svg: '<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32"><path d="M6.227 12.61h4.19v13.48h-4.19V12.61zm2.095-6.7a2.43 2.43 0 0 1 0 4.86c-1.344 0-2.428-1.09-2.428-2.43s1.084-2.43 2.428-2.43m4.72 6.7h4.02v1.84h.058c.56-1.058 1.927-2.176 3.965-2.176 4.238 0 5.02 2.792 5.02 6.42v7.395h-4.183v-6.56c0-1.564-.03-3.574-2.178-3.574-2.18 0-2.514 1.7-2.514 3.46v6.668h-4.187V12.61z" fill="#fff"></path></svg>'
 
 	  },
 	  parler: {
-	  	background_color: "#C63240",
+	  	background_color: "#892E5E",
 		title: "Parler",
 		redirect_url: "https://parler.com/new-post?message=" + postTitle + "&url=" + postUrl,
-		svg: '<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" viewBox="-24 -30 140 160"><g fill="#fff"><path d="M58.34 83.31h-25v-8.49c0-4.5 3.64-8.14 8.14-8.14h16.87c13.8 0 25.02-11.19 25.02-24.94 0-13.75-11.23-24.94-25.03-24.94h-.26l-5.3-.16H0C0 7.45 7.45 0 16.63 0h36.41l5.44.17C81.39.24 100 18.86 100 41.74c0 22.92-18.69 41.57-41.66 41.57z"></path><path d="M16.65 100C7.46 100 .02 92.55.02 83.37V49.49c0-8.92 7.23-16.16 16.16-16.16h42.19a8.32 8.32 0 010 16.64h-33.5c-4.53 0-8.21 3.67-8.21 8.21V100z"></path></g></svg>'
+		svg: '<svg focusable="false" aria-hidden="true" version="1.1" width="100%" height="100%" viewBox="-245 -140 947 800" xmlns="http://www.w3.org/2000/svg"><path d="M200 300V249.7H300.1C327.6 249.7 350 227.4 350 199.8C350 172.3 327.7 149.9 300.1 149.9H0C0 67.2 67.2 0 150 0H300C410.5 0 500 89.5 500 200C500 310.5 410.5 400 300 400C244.8 400 200 355.2 200 300ZM150 350V200C67.2 200 0 267.2 0 350V500C82.8 500 150 432.8 150 350Z" fill="#fff"></path></svg>'
 	  },
 	  gab: {
 	  	background_color: "#25CC80",
@@ -48,7 +66,7 @@ function theChampMoreSharingPopup(elem, postUrl, postTitle, twitterTitle){
 	  	background_color: "#E50000",
 		title: "Gettr",
 		redirect_url: "https://gettr.com/share?text="+postTitle+"&url="+postUrl,
-		svg: '<svg width="100%" height="100%" viewBox="-178 -102 1380 1380" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="1024" height="1024" rx="240"></rect><path d="M620.01 810.414C548.28 810.414 476.551 810.414 405.435 810.414C407.274 820.836 409.113 831.871 410.952 842.293C426.279 842.293 439.154 853.329 441.606 868.042C450.189 920.154 459.385 971.652 467.968 1023.76C498.008 1023.76 528.049 1023.76 557.476 1023.76C566.059 971.652 575.256 920.154 583.839 868.042C586.291 853.329 599.165 842.293 614.492 842.293C616.331 831.871 618.171 820.836 620.01 810.414C618.171 820.836 616.331 831.871 614.492 842.293Z" fill="#fff"></path><path fill="#fff" d="M789.83 628.333C604.682 628.333 420.148 628.333 235 628.333C235 636.303 235 644.273 235 652.243C344.74 677.992 379.072 718.455 394.399 762.596C472.872 762.596 551.958 762.596 630.431 762.596C645.145 718.455 680.09 677.992 789.83 652.243C789.83 644.273 789.83 636.303 789.83 628.333Z"></path><path fill="#fff" d="M610.2 250.68C640.241 298.499 659.246 345.093 652.502 388.008C640.241 471.999 534.179 529.014 512.722 581.126C435.475 502.039 388.268 448.089 380.911 398.43C369.263 305.243 502.912 229.835 512.722 125C536.631 155.041 543.988 208.378 543.988 238.418C555.637 223.092 562.38 204.086 562.994 184.468C585.677 211.443 593.034 258.037 593.034 292.982C602.843 281.333 609.587 266.62 610.2 250.68Z"></path></svg>'
+		svg: '<svg width="100%" height="100%" viewBox="-178 -112 1380 1380" fill="none" xmlns="http://www.w3.org/2000/svg"><rect class="the_champ_no_fill" width="1024" height="1024" rx="240"></rect><path d="M620.01 810.414C548.28 810.414 476.551 810.414 405.435 810.414C407.274 820.836 409.113 831.871 410.952 842.293C426.279 842.293 439.154 853.329 441.606 868.042C450.189 920.154 459.385 971.652 467.968 1023.76C498.008 1023.76 528.049 1023.76 557.476 1023.76C566.059 971.652 575.256 920.154 583.839 868.042C586.291 853.329 599.165 842.293 614.492 842.293C616.331 831.871 618.171 820.836 620.01 810.414C618.171 820.836 616.331 831.871 614.492 842.293Z" fill="#fff"></path><path fill="#fff" d="M789.83 628.333C604.682 628.333 420.148 628.333 235 628.333C235 636.303 235 644.273 235 652.243C344.74 677.992 379.072 718.455 394.399 762.596C472.872 762.596 551.958 762.596 630.431 762.596C645.145 718.455 680.09 677.992 789.83 652.243C789.83 644.273 789.83 636.303 789.83 628.333Z"></path><path fill="#fff" d="M610.2 250.68C640.241 298.499 659.246 345.093 652.502 388.008C640.241 471.999 534.179 529.014 512.722 581.126C435.475 502.039 388.268 448.089 380.911 398.43C369.263 305.243 502.912 229.835 512.722 125C536.631 155.041 543.988 208.378 543.988 238.418C555.637 223.092 562.38 204.086 562.994 184.468C585.677 211.443 593.034 258.037 593.034 292.982C602.843 281.333 609.587 266.62 610.2 250.68Z"></path></svg>'
 	  },
 	  MeWe: {
 	  	background_color: "#007da1",
@@ -324,7 +342,7 @@ function theChampMoreSharingPopup(elem, postUrl, postTitle, twitterTitle){
 	  pocket: {
 	  	background_color:"#f0f0f0",
 		title: "Pocket",
-		redirect_url: "https://readitlaterlist.com/save?url=" + postUrl + "&title=" + postTitle,
+		redirect_url: "https://getpocket.com/edit?url=" + postUrl + "&title=" + postTitle,
 		svg: '<svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32"><path fill="#EE4056" d="M16.005 6.244c2.927 0 5.854-.002 8.782 0 1.396.002 2.195.78 2.188 2.165-.015 2.483.116 4.985-.11 7.454-.75 8.204-10.027 12.607-16.91 8.064-3.086-2.037-4.82-4.926-4.917-8.673-.06-2.34-.034-4.684-.018-7.025.008-1.214.812-1.98 2.056-1.983 2.975-.01 5.952-.005 8.93-.007zm-5.037 5.483c-.867.093-1.365.396-1.62 1.025-.27.67-.078 1.256.417 1.732a529.74 529.74 0 0 0 5.09 4.838c.745.695 1.537.687 2.278-.01a473.74 473.74 0 0 0 4.93-4.686c.827-.797.91-1.714.252-2.38-.694-.704-1.583-.647-2.447.17-1.097 1.04-2.215 2.06-3.266 3.143-.485.492-.77.432-1.227-.027a87.392 87.392 0 0 0-3.39-3.225c-.325-.29-.77-.448-1.017-.584z"></path></svg>'
 	  },
 	  fark: {
@@ -362,7 +380,7 @@ function theChampMoreSharingPopup(elem, postUrl, postTitle, twitterTitle){
 	  	background_color:"#0072c6",
 		title: "Outlook.com",
 		redirect_url: "https://mail.live.com/default.aspx?rru=compose?subject="+postTitle+"&body="+postUrl+"&lc=1033&id=64855&mkt=en-us&cbcxt=mai",
-		svg: '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 32 32"><path fill="#fff" d="M19.52 8.29v5.5l1.92 1.208c.053.016.163.016.212 0l8.27-5.574c0-.66-.613-1.134-.962-1.134h-9.44z"/><path fill="#fff" d="M19.52 15.84l1.755 1.204c.246.183.543 0 .543 0-.297.183 8.104-5.397 8.104-5.397V21.75c0 1.102-.704 1.562-1.496 1.562H19.52V15.84z"/><g fill="#fff"><path d="M10.445 13.305c-.6 0-1.073.282-1.426.842-.355.56-.53 1.305-.53 2.23 0 .936.175 1.677.53 2.22.347.546.813.82 1.38.82.59 0 1.055-.266 1.4-.795.344-.53.517-1.266.517-2.206 0-.984-.17-1.744-.502-2.288-.333-.55-.79-.823-1.37-.823z"/><path d="M2.123 5.5v21.51l16.362 3.428V2.33L2.123 5.5zm10.95 14.387c-.693.91-1.594 1.367-2.706 1.367-1.082 0-1.967-.442-2.65-1.324-.68-.88-1.02-2.03-1.02-3.448 0-1.496.343-2.707 1.037-3.63.693-.926 1.614-1.388 2.754-1.388 1.08 0 1.955.438 2.62 1.324.667.885 1 2.05 1 3.495.004 1.496-.345 2.695-1.034 3.604z"/></g></svg>'
+		svg: '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="-4 -3.5 40 40"><path fill="#fff" d="M19.52 8.29v5.5l1.92 1.208c.053.016.163.016.212 0l8.27-5.574c0-.66-.613-1.134-.962-1.134h-9.44z"/><path fill="#fff" d="M19.52 15.84l1.755 1.204c.246.183.543 0 .543 0-.297.183 8.104-5.397 8.104-5.397V21.75c0 1.102-.704 1.562-1.496 1.562H19.52V15.84z"/><g fill="#fff"><path d="M10.445 13.305c-.6 0-1.073.282-1.426.842-.355.56-.53 1.305-.53 2.23 0 .936.175 1.677.53 2.22.347.546.813.82 1.38.82.59 0 1.055-.266 1.4-.795.344-.53.517-1.266.517-2.206 0-.984-.17-1.744-.502-2.288-.333-.55-.79-.823-1.37-.823z"/><path d="M2.123 5.5v21.51l16.362 3.428V2.33L2.123 5.5zm10.95 14.387c-.693.91-1.594 1.367-2.706 1.367-1.082 0-1.967-.442-2.65-1.324-.68-.88-1.02-2.03-1.02-3.448 0-1.496.343-2.707 1.037-3.63.693-.926 1.614-1.388 2.754-1.388 1.08 0 1.955.438 2.62 1.324.667.885 1 2.05 1 3.495.004 1.496-.345 2.695-1.034 3.604z"/></g></svg>'
 	  },
 	  balatarin: {
 	  	background_color:"#fff",
@@ -633,6 +651,25 @@ function theChampMoreSharingPopup(elem, postUrl, postTitle, twitterTitle){
 		mainDiv.parentNode.removeChild(mainDiv);
 		bgDiv.parentNode.removeChild(bgDiv);
 	}
+	jQuery('#the_champ_sharing_more_content a[alt=Mastodon]').click(function(){
+	    event.preventDefault();
+	    heateorSsMastodonPopup(jQuery(this).attr("href"));
+	});
+}
+
+function heateorSsMastodonPopup(targetUrl) {
+  var moreSharingServicesHtml = '<button id="heateor_ss_mastodon_popup_close" class="close-button separated"><img src="'+ theChampCloseIconPath +'" /></button><div id="the_champ_sharing_more_content"><div class="all-services" style="height:auto"><div class="filter"><center>Your Mastodon Instance</center><input type="text" id="heateor_ss_mastodon_instance" placeholder="https://mastodon.social" class="search"><center><input type="button" class="heateor_ss_mastodon_popup_button" value="Submit" onclick="var heateorMastodonInstance = jQuery(\'#heateor_ss_mastodon_instance\').val().trim(), heateorMastodonAnchor = jQuery(\'a.the_champ_button_mastodon\').length > 0 ? jQuery(\'a.the_champ_button_mastodon\').attr(\'href\') : \''+ targetUrl +'\'; heateorMastShareURL = heateorMastodonInstance ? heateorMastodonAnchor.replace(\'https://mastodon.social\', heateorMastodonInstance) : heateorMastodonAnchor;window.open(heateorMastShareURL,\'_blank\',\'height=520,width=770,left=315,top=80,resizable,scrollbars,toolbar=0,personalbar=0,menubar=no,location=no,directories=no,status\');" /></center></div></div><div class="footer-panel"></div></div>';
+  var mainDiv = document.createElement('div');
+  mainDiv.innerHTML = moreSharingServicesHtml;
+  mainDiv.setAttribute('id', 'the_champ_sharing_more_providers');
+  mainDiv.style.height = 'auto';
+  var bgDiv = document.createElement('div');
+  bgDiv.setAttribute('id', 'heateor_ss_mastodon_popup_bg');
+  jQuery('body').append(mainDiv).append(bgDiv);
+  document.getElementById('heateor_ss_mastodon_popup_bg').onclick = document.getElementById('heateor_ss_mastodon_popup_close').onclick = function(){
+    mainDiv.parentNode.removeChild(mainDiv);
+    bgDiv.parentNode.removeChild(bgDiv);
+  }
 }
 
 if(typeof theChampHorizontalSharingCountEnable == 'undefined'){
@@ -672,6 +709,9 @@ var heateorSsFacebookTargetUrls = [];
  * Get sharing counts
  */
 function theChampGetSharingCounts(){
+	if(typeof theChampSaveSharesLocally != 'undefined' && theChampSaveSharesLocally == 1){
+	    return;
+	}
 	var targetUrls = [];
 	jQuery('.the_champ_sharing_container').each(function(){
 		if(typeof jQuery(this).attr('data-super-socializer-no-counts') == 'undefined'){
@@ -725,7 +765,7 @@ function theChampGetSharingCounts(){
 						var totalCountContainer = jQuery(this).find('.theChampTCBackground');
 						jQuery(totalCountContainer).each(function(){
 							var containerHeight = jQuery(this).css('height');
-							jQuery(this).html('<div class="theChampTotalShareCount" style="font-size: '+ (parseInt(containerHeight) * 62/100) +'px">' + theChampCalculateApproxCount(totalCount) + '</div><div class="theChampTotalShareText" style="font-size: '+ (parseInt(containerHeight) * 38/100) +'px">' + (totalCount == 0 || totalCount > 1 ? heateorSsSharesText : theChamphareText) + '</div>').css('visibility', 'visible');
+							jQuery(this).html('<div class="theChampTotalShareCount" style="font-size: '+ (parseInt(containerHeight) * 62/100) +'px">' + theChampCalculateApproxCount(totalCount) + '</div><div class="theChampTotalShareText" style="font-size: '+ (parseInt(containerHeight) * 38/100) +'px">' + (totalCount == 0 || totalCount > 1 ? heateorSsSharesText : heateorSsShareText) + '</div>').css('visibility', 'visible');
 						});
 					});
 				}
@@ -781,7 +821,7 @@ function theChampFBShareJSONCall(targetUrl, loopCounter, targetUrlsLength, dataH
 						var totalShareCount = jQuery(totalShareCountElem).text();
 						var newTotalCount = theChampCalculateActualCount(totalShareCount) + sharingCount;
 						jQuery(totalShareCountElem).text(theChampCalculateApproxCount(newTotalCount));
-						jQuery(this).find('.theChampTotalShareText').text(newTotalCount == 0 || newTotalCount > 1 ? heateorSsSharesText : theChamphareText);
+						jQuery(this).find('.theChampTotalShareText').text(newTotalCount == 0 || newTotalCount > 1 ? heateorSsSharesText : heateorSsShareText);
 					});
 				}
 			});
@@ -856,6 +896,10 @@ function theChampCapitaliseFirstLetter(e) {
 }
 
 jQuery(function(){
+	jQuery(document).on('click', 'a.the_champ_button_mastodon', function(){
+	    event.preventDefault();
+	    heateorSsMastodonPopup('');
+	});
 	var heateorSsWhatsappJSAPI = heateorSsDetermineWhatsappShareAPI(false);
 	var classes = ['the_champ_vertical_sharing', 'the_champ_vertical_counter'];
 	for(var i = 0; i < classes.length; i++){

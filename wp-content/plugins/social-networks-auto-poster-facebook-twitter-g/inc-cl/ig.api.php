@@ -8,7 +8,7 @@ if (!class_exists("nxs_class_SNAP_IG")) { class nxs_class_SNAP_IG {
     var $ntLCode = 'ig';     
     
     function nxsCptCheck(){ if (function_exists('nxs_getOption')) { $opVal = array(); $opNm = sanitize_key($_POST['svc']); $opVal = nxs_getOption($opNm); $nt = new nxsAPI_IG(); if(!empty($opVal['ck'])) $nt->ck = $opVal['ck'];
-      if (!empty($opVal['proxy'])&&!empty($opVal['proxyOn'])){ $nt->proxy['proxy'] = $opVal['proxy']['proxy']; if (!empty($opVal['proxy']['up'])) $nt->proxy['up'] = $opVal['proxy']['up']; }; $ck = $nt->checkCode($opVal['url'], $_POST['code']);  
+      if (!empty($opVal['proxy'])&&!empty($opVal['proxyOn'])){ $nt->proxy['proxy'] = $opVal['proxy']['proxy']; if (!empty($opVal['proxy']['up'])) $nt->proxy['up'] = $opVal['proxy']['up']; }; $ck = $nt->checkCode($opVal['url'], sanitize_text_field($_POST['code']));
       if ($ck!==false){ $opVal['ck'] = $ck;  nxs_saveOption($opNm, $opVal); 
         echo '<br/><br/> Your Code has been accepted. You can post to this account now. Reloading the page.....<script type="text/javascript">setTimeout(function(){ window.location = window.location; }, 3000);</script>'; die('All OK');
       } else die('Your code is incorrect');

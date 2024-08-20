@@ -26,7 +26,13 @@ if (!function_exists("nxs_snapPublishTo")) { function nxs_snapPublishTo($postIDo
 
     if (!isset($options['nxsHTDP']) || $options['nxsHTDP']=='S') { if(isset($NXS_POST["snapEdIT"]) && $NXS_POST["snapEdIT"]=='1') { $publtype='S'; $delay = rand(2,10); } else $publtype='A';
         if (!$aj && !empty($options['quLimit']) && $options['quLimit']=='1') { global $wpdb; //## Add to posting query
-            $quNxTime=$wpdb->get_var("SELECT timetorun FROM ".$wpdb->prefix."nxs_query WHERE type='Q' ORDER BY timetorun DESC LIMIT 1"); if (empty($quNxTime)) $quNxTime = time()+5; $quNxTime=strtotime($quNxTime);
+	        $table_name = $wpdb->prefix . "nxs_query";
+	        $sql = $wpdb->prepare(
+		        "SELECT timetorun FROM $table_name WHERE type = %s ORDER BY timetorun DESC LIMIT 1",
+		        'Q'
+	        );
+	        $quNxTime = $wpdb->get_var($sql);
+			if (empty($quNxTime)) $quNxTime = time()+5; $quNxTime=strtotime($quNxTime);
             $rndSec=$options['quLimitRndMins']*60; $pstEvrySec=$options['quDays']*86400+$options['quHrs']*3600+$options['quMins']*60; $rndTime=rand(0-$rndSec, $rndSec); $quNxTime=$quNxTime + $pstEvrySec + $rndTime;
             $dbItem = array('datecreated'=>date_i18n('Y-m-d H:i:s'), 'type'=>'Q', 'postid'=>$postID, 'timetorun'=> date_i18n('Y-m-d H:i:s', $quNxTime), 'descr'=> 'Post ID:('.$postID.')', 'uid'=>$postUser);
             $nxDB = $wpdb->insert( $wpdb->prefix . "nxs_query", $dbItem );  $lid = $wpdb->insert_id; nxs_recountQueryTimes(); nxs_LogIt('I', 'Queried', '','', $lid.'| Post ID:('.$postID.')','','snap',$uid );
@@ -79,7 +85,8 @@ if (!function_exists('nxs_getFromGlobalOpt')){ function nxs_getFromGlobalOpt($op
 
 //## Recount Query/Timeline
 if (!function_exists("nxs_recountQueryTimes")) { function nxs_recountQueryTimes($force=false){ global $wpdb, $nxs_SNAP; if (!isset($nxs_SNAP)) return; $options = $nxs_SNAP->nxs_options; $currTime = nxs_getCurrTime();
-    $quPosts = $wpdb->get_results( "SELECT * FROM ". $wpdb->prefix . "nxs_query WHERE type='Q' ORDER BY timetorun ASC", ARRAY_A );  // var_dump($quPosts);   prr($quPosts);
+	$sql = $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}nxs_query WHERE type = %s ORDER BY timetorun ASC",'Q' );
+	$quPosts = $wpdb->get_results($sql, ARRAY_A);  // var_dump($quPosts);   prr($quPosts);
     if (count($quPosts)>0) { $pstEvrySec = $options['quDays']*86400+$options['quHrs']*3600+$options['quMins']*60; $rndSec = $options['quLimitRndMins']*60; $ttr = time(); //$ttr = strtotime('2050-10-15 10:10:10'); 
         //$ttr = $quPosts[0]['timetorun']; $quNxTime = ($ttr>'2050-10-15 10:10:00')?(time()+(get_option('gmt_offset')*HOUR_IN_SECONDS)):strtotime($ttr); //## ????? why did I do that row?
         $quNxTime = $ttr+(get_option('gmt_offset')*HOUR_IN_SECONDS)+$pstEvrySec;
@@ -88,7 +95,8 @@ if (!function_exists("nxs_recountQueryTimes")) { function nxs_recountQueryTimes(
             $quNxTimeTxt = date_i18n('Y-m-d H:i:s', $quNxTime); $wpdb->update($wpdb->prefix."nxs_query", array('timetorun' => $quNxTimeTxt), array('id' => $id));  //prr($quNxTimeTxt);
             $rndTime = rand(0-$rndSec, $rndSec); $quNxTime = $quNxTime + $pstEvrySec + $rndTime;
         }
-    } $quPosts = $wpdb->get_results( "SELECT * FROM ". $wpdb->prefix . "nxs_query WHERE type='R' ORDER BY timetorun ASC", ARRAY_A ); // prr($quPosts, 'KKKKKKKKKKKKKKKKKKKK');  // var_dump($quPosts);   
+    } $sql = $wpdb->prepare( "SELECT * FROM {$wpdb->prefix}nxs_query WHERE type = %s ORDER BY timetorun ASC", 'R' );
+	$quPosts = $wpdb->get_results($sql, ARRAY_A); // prr($quPosts, 'KKKKKKKKKKKKKKKKKKKK');  // var_dump($quPosts);
     if (count($quPosts)>0) foreach ($quPosts as $row){ $id = $row['id'];  if ($force || $row['timetorun'] > date_i18n('Y-m-d H:i:s', $currTime-600)) {
         $rpstrOpts = maybe_unserialize(get_post_meta( $id, 'nxs_rpstr', true ));
         if (!empty($rpstrOpts) && is_array($rpstrOpts)) { $rpstrOpts['rpstNxTime'] = nxs_getNextPostTime( $rpstrOpts['rpstDays'], $rpstrOpts['rpstHrs'], $rpstrOpts['rpstMins'],$rpstrOpts['rpstRndMins']);
@@ -120,9 +128,9 @@ if (!function_exists("nxs_checkQuery")){ function nxs_checkQuery(){ set_time_lim
     if (isset($_GET['nxs-cronrun'])) { $_GET['nxs-cronrun'] = sanitize_text_field($_GET['nxs-cronrun']); $contCron = get_option('nxs_contCron'); if ($isDebug) echo wp_kses($_GET['nxs-cronrun'],'('.$contCron.')', wp_kses_allowed_html( 'post' )); //## Manual/Forced cron request.
         nxs_addToLogN('L','NXS Cron Request (Forced)','',number_format(($tm-$tmL), 2,'.','').'s after the previous one. ', 'CNT: '.$_GET['nxs-cronrun'].'('.$contCron.')');
     } else { //## Cron request from WP itself
-        if ($tm<$tmL2) { nxs_addToLogN('W', '**WARNING. Unhealthy Cron Request**', ' [<a target="_blank" href="https://nxs.fyi/uhcr">More info</a>] ', 'Too close ('.number_format(($tm-$tmL), 2,'.','').'s) to the previous one. ', 'Now - '.date_i18n('H:i:s',$currTime).' | Previous - '.date_i18n('H:i:s',$tmL+$tmCorr).  '| Cron called from '.(!empty($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:'Unknown IP').' ('.nsTrnc((!empty($_SERVER["HTTP_USER_AGENT"])?$_SERVER["HTTP_USER_AGENT"]:'Unknown UA'), 70).')', 'cron');  /* return; */ }
-        elseif ($tm>$tmL3) { nxs_addToLogN('W', '**WARNING. Unhealthy Cron Request**', ' [<a target="_blank" href="https://nxs.fyi/uhcr">More info</a>] ', 'Too far ('.number_format(($tm-$tmL), 2,'.','').'s) from the previous one. ', 'Now - '.date_i18n('H:i:s',$currTime).' | Previous - '.date_i18n('H:i:s',$tmL+$tmCorr).  '| Cron called from '.(!empty($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:'Unknown IP').' ('.nsTrnc((!empty($_SERVER["HTTP_USER_AGENT"])?$_SERVER["HTTP_USER_AGENT"]:'Unknown UA'), 70).')', 'cron');  /* return; */ }
-        else nxs_addToLogN('L','Cron Request','',number_format(($tm-$tmL), 2,'.','').'s after the previous one. ', '| Cron called from '.(!empty($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:'Unknown IP').' ('.nsTrnc((!empty($_SERVER["HTTP_USER_AGENT"])?$_SERVER["HTTP_USER_AGENT"]:'Unknown UA'), 70).')', 'cron');
+        if ($tm<$tmL2) { nxs_addToLogN('W', '**WARNING. Unhealthy Cron Request**', ' [<a target="_blank" href="https://nxs.fyi/uhcr">More info</a>] ', 'Too close ('.number_format(($tm-$tmL), 2,'.','').'s) to the previous one. ', 'Now - '.date_i18n('H:i:s',$currTime).' | Previous - '.date_i18n('H:i:s',$tmL+$tmCorr).  '| Cron called from '.(!empty($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:'Unknown IP').' ('.nsTrnc((!empty($_SERVER["HTTP_USER_AGENT"])?esc_html(strip_tags($_SERVER["HTTP_USER_AGENT"])):'Unknown UA'), 70).')', 'cron');  /* return; */ }
+        elseif ($tm>$tmL3) { nxs_addToLogN('W', '**WARNING. Unhealthy Cron Request**', ' [<a target="_blank" href="https://nxs.fyi/uhcr">More info</a>] ', 'Too far ('.number_format(($tm-$tmL), 2,'.','').'s) from the previous one. ', 'Now - '.date_i18n('H:i:s',$currTime).' | Previous - '.date_i18n('H:i:s',$tmL+$tmCorr).  '| Cron called from '.(!empty($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:'Unknown IP').' ('.nsTrnc((!empty($_SERVER["HTTP_USER_AGENT"])?esc_html(strip_tags($_SERVER["HTTP_USER_AGENT"])):'Unknown UA'), 70).')', 'cron');  /* return; */ }
+        else nxs_addToLogN('L','Cron Request','',number_format(($tm-$tmL), 2,'.','').'s after the previous one. ', '| Cron called from '.(!empty($_SERVER["REMOTE_ADDR"])?$_SERVER["REMOTE_ADDR"]:'Unknown IP').' ('.nsTrnc((!empty($_SERVER["HTTP_USER_AGENT"])?esc_html(strip_tags($_SERVER["HTTP_USER_AGENT"])):'Unknown UA'), 70).')', 'cron');
     }
 
     global $nxs_SNAP; if (!isset($nxs_SNAP)) return; $options = $nxs_SNAP->nxs_options; if (empty($options['numOfTasks']) || !is_int($options['numOfTasks']) || $options['numOfTasks']<10) $options['numOfTasks'] = 30;
@@ -135,13 +143,68 @@ if (!function_exists("nxs_checkQuery")){ function nxs_checkQuery(){ set_time_lim
     if ($isDebug) echo "==-- CRON --==";
 
     //## Debug only - delete later - shows all reords in the Query
-    $sqql = "SELECT * FROM ". $wpdb->prefix . "nxs_query ORDER BY timetorun DESC LIMIT ".$options['numOfTasks']; $quPosts = $wpdb->get_results( $sqql, ARRAY_A ); if ($isDebug) { prr($sqql); prr($quPosts); prr(date_i18n('Y-m-d H:i:s')); }
+	$sqql = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}nxs_query ORDER BY timetorun DESC LIMIT %d", $options['numOfTasks']);
+	$quPosts = $wpdb->get_results($sqql, ARRAY_A);
+	if ($isDebug) { prr($sqql); prr($quPosts); prr(date_i18n('Y-m-d H:i:s')); }
     //## / Debug only - delete later - shows all reords in the Query
 
     //## Get count of tasks
-    $ttr = "FROM ". $wpdb->prefix . "nxs_query WHERE timetorun<'".date_i18n('Y-m-d H:i:s')."'"; $quPostsCnt = $wpdb->get_var( "SELECT COUNT(id) ".$ttr ); if ($isDebug) prr($ttr, 'TTR:'); if ($isDebug) prr($quPostsCnt, 'COUNT:'); if ((int)$quPostsCnt<1) return; //## Nothing in Query - return; 
+    $ttr = "FROM ". $wpdb->prefix . "nxs_query WHERE timetorun<'".date_i18n('Y-m-d H:i:s')."'";
+	$quPostsCnt = $wpdb->get_var($wpdb->prepare("SELECT COUNT(id) %s", $ttr));
+	if ($isDebug) prr($ttr, 'TTR:');
+	if ($isDebug) prr($quPostsCnt, 'COUNT:');
+	if ((int)$quPostsCnt<1) return; //## Nothing in Query - return;
     //## Get 20 tasks
-    $quPosts = $wpdb->get_results( "SELECT * ".$ttr." ORDER BY timetorun DESC LIMIT ".$options['numOfTasks'], ARRAY_A );  if ($isDebug) { var_dump($quPosts); prr($quPosts); } $quPosts = array_reverse($quPosts);
+	$sql = $wpdb->prepare( "SELECT * %s ORDER BY timetorun DESC LIMIT %d", $ttr, $options['numOfTasks'] );
+	$quPosts = $wpdb->get_results($sql, ARRAY_A);
+
+	// Assuming you have access to the $wpdb object and $options array
+
+	$current_datetime = date_i18n('Y-m-d H:i:s');
+	$ttr = "FROM {$wpdb->prefix}nxs_query WHERE timetorun < %s";
+	$prepared_count_query = $wpdb->prepare("SELECT COUNT(id) {$ttr}", $current_datetime);
+	$quPostsCnt = $wpdb->get_var($prepared_count_query);
+	if ($isDebug) {
+		prr($ttr, 'TTR:');
+		prr($quPostsCnt, 'COUNT:');
+	}
+	if ((int)$quPostsCnt < 1) {
+		return; // Nothing in Query - return
+	}
+// Define the query to get 20 tasks
+	$sql = $wpdb->prepare( "SELECT * %s ORDER BY timetorun DESC LIMIT %d", $ttr, $options['numOfTasks'] );
+	$quPosts = $wpdb->get_results($sql, ARRAY_A);
+
+	$current_time = date_i18n('Y-m-d H:i:s');
+	$sql_count = $wpdb->prepare("SELECT COUNT(id) FROM {$wpdb->prefix}nxs_query WHERE timetorun < %s", $current_time);
+	$quPostsCnt = $wpdb->get_var($sql_count);
+
+	if ($isDebug) {
+		prr($sql_count, 'TTR:');
+		prr($quPostsCnt, 'COUNT:');
+	}
+
+	if ((int) $quPostsCnt < 1) {
+		return; // Nothing in query - return
+	}
+
+// Get 20 tasks with prepared query
+	$sql_select = $wpdb->prepare(
+		"SELECT * FROM {$wpdb->prefix}nxs_query WHERE timetorun < %s ORDER BY timetorun DESC LIMIT %d",
+		$current_time,
+		$options['numOfTasks']
+	);
+	$quPosts = $wpdb->get_results($sql_select, ARRAY_A);
+
+
+
+
+
+
+
+
+
+	if ($isDebug) { var_dump($quPosts); prr($quPosts); } $quPosts = array_reverse($quPosts);
     if (count($quPosts)>0) {
         foreach ($quPosts as $row){ $id = $row['id']; if (!empty($row['postid'])) $postID = $row['postid']; else $postID = ''; //prr($row); prr($row['type']);
             switch ( $row['type'] ) {
@@ -209,7 +272,12 @@ if (!function_exists("nxs_checkQuery")){ function nxs_checkQuery(){ set_time_lim
                             //## Turn Reposting off
                             if ($rpstrOpts['rpstStop']=='O') { $rpstrOpts['rpstOn'] = 'F'; $wpdb->delete( $wpdb->prefix . "nxs_query", array( 'postid' => $row['postid'] ) ); nxs_LogIt('INF', 'Reposter Finished: End of the line', 'RP','','Reposter ID:'.$row['postid'].' ', '-=[ '.print_r($rpstrOpts, true).' ]=-'); nxs_Filters::save_meta($row['postid'], 'nxs_rpstr', $rpstrOpts );  break; }
                             //## Loop it - restart from the beginning
-                            if ($rpstrOpts['rpstStop']=='R') {  $wpdb->query( "DELETE FROM ". $wpdb->postmeta ." WHERE meta_key = 'snap_isRpstd".$row['postid']."'" );  //delete_post_meta($row['postid'], 'nxs_rpstr_stats');
+                            if ($rpstrOpts['rpstStop']=='R') {
+	                            $sql = $wpdb->prepare(
+		                            "DELETE FROM {$wpdb->postmeta} WHERE meta_key = %s",
+		                            'snap_isRpstd' . $row['postid']
+	                            );
+	                            $wpdb->query($sql);
                                 nxs_LogIt('INF', 'Reposter Finished: Restarting...', 'RP','','Reposter ID:'.$row['postid'].' ', '-=[ '.print_r($rpstrOpts, true).' ]=-');
                             }
                             //## Wait for new posts (Do nothing)

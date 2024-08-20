@@ -37,10 +37,11 @@ if (!class_exists("nxs_snapClassFB")) { class nxs_snapClassFB extends nxs_snapCl
   public function checkIfSetupFinished($options) { return ((!empty($options['appKey']) && !empty($options['accessToken'])) ||  !empty($options['uPass'])) && (!empty($options['pgID']) || !empty($options['fbURL']) ); }
   public function makeUName($options, $ii) { return !empty($options['pgName'])?$options['pgName']: $this->ntInfo['name'].' #'.$ii; }
   public function doAuth() { $ntInfo = $this->ntInfo; global $nxs_snapSetPgURL; 
-    if ( !empty($_GET['code']) && isset($_GET['state']) && substr($_GET['state'], 0, 7) == 'nxs-fb-'){ $this->showAuthTop(); echo "--== Auth ==--"; $at = sanitize_text_field($_GET['code']);  $ii = str_replace('nxs-fb-','',$_GET['state']); $gGet = array();
+    if ( !empty($_GET['code']) && isset($_GET['state']) && substr($_GET['state'], 0, 7) == 'nxs-fb-'){
+      $this->showAuthTop(); echo "--== Auth ==--"; $at = sanitize_text_field($_GET['code']);  $ii = sanitize_text_field(str_replace('nxs-fb-','',$_GET['state'])); $gGet = array();
       if (!empty($_SERVER['QUERY_STRING'])) parse_str($_SERVER['QUERY_STRING'], $gGet); elseif (!empty($_SERVER['argv'][0])) parse_str($_SERVER['argv'][0], $gGet); else { $gGet = $_GET; unset($gGet['post_type']);}  unset($gGet['code']); unset($gGet['state']); prr($gGet);
       $sturl = explode('?',$nxs_snapSetPgURL); $nxs_snapSetPgURL = $sturl[0].((!empty($gGet))?'?'.http_build_query($gGet):''); $fbo = $this->nt[$ii]; $advSet = nxs_mkRemOptsArr(nxs_getNXSHeaders()); prr($fbo); $fbo['uMsg'] = ''; 
-      $tknURL = 'https://graph.facebook.com/oauth/access_token?client_id='.nxs_gak($fbo['appKey']).'&state=nxs-fb-'.$ii.'&redirect_uri='.urlencode($nxs_snapSetPgURL).'&client_secret='.nxs_gas($fbo['appSec']).'&code='.$at; $response  = nxs_remote_get($tknURL, $advSet); echo "<br/>TKN URL: "; prr($tknURL);   
+      $tknURL = 'https://graph.facebook.com/oauth/access_token?client_id='.nxs_gak($fbo['appKey']).'&state=nxs-fb-'.esc_attr($ii).'&redirect_uri='.urlencode($nxs_snapSetPgURL).'&client_secret='.nxs_gas($fbo['appSec']).'&code='.esc_attr($at); $response  = nxs_remote_get($tknURL, $advSet); echo "<br/>TKN URL: "; prr($tknURL);
       if ( (is_object($response) && (isset($response->errors))) || (is_array($response) && stripos($response['body'],'"error":')!==false )) { prr($response); die('</div></div>'); }      
       if (substr($response['body'],0,1)=='{') $params = json_decode($response['body'], true); else parse_str($response['body'], $params);  $at = $params['access_token']; echo "<br/>TKN PARAMS: "; prr($params); echo "<br/>TKN RESP: "; prr($response);  
       $response  = nxs_remote_get('https://graph.facebook.com/oauth/access_token?client_secret='.nxs_gas($fbo['appSec']).'&client_id='.nxs_gak($fbo['appKey']).'&grant_type=fb_exchange_token&fb_exchange_token='.$at, $advSet); 
@@ -118,14 +119,16 @@ if (!class_exists("nxs_snapClassFB")) { class nxs_snapClassFB extends nxs_snapCl
       } $fbo['uMsg'] = $errMsg; return $fbo;
   }
   
-  function getListOfPagesNX(){  $opVal = array(); $opNm = 'nxs_snap_fb_'.sha1('nxs_snap_fb'.$_POST['u'].$_POST['p']); $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']);
+  function getListOfPagesNX(){  $opVal = array(); $u = sanitize_text_field($_POST['u']); $p = sanitize_text_field($_POST['p']);
+     $opNm = 'nxs_snap_fb_'.sha1('nxs_snap_fb'.$u.$p); $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']);
      global $nxs_SNAP; $networks = (!current_user_can( 'manage_options' ) && current_user_can( 'haveown_snap_accss' ) ) ? $nxs_SNAP->nxs_acctsU : $nxs_SNAP->nxs_accts;  $options = $networks['fb'][$ii];
      if ($options['apiToUse'] =='nxv2') return $this->getListOfPages($networks);
      $pgsA = array('id'=>'', 't'=>'u', 'l'=>'Profile');
-     $pgs = '<option class="nxsBlue" '.($options['pgID']=='u' ? 'selected="selected"':'').' value="u">&nbsp;&nbsp;&nbsp;Profile</option>';  $currPstAs = !empty($_POST['pgID'])?$_POST['pgID']:(!empty($options)?$options['pgID']:'');
+     $pgs = '<option class="nxsBlue" '.($options['pgID']=='u' ? 'selected="selected"':'').' value="u">&nbsp;&nbsp;&nbsp;Profile</option>';  $currPstAs = !empty($_POST['pgID'])?sanitize_text_field($_POST['pgID']):(!empty($options)?$options['pgID']:'');
      if (empty($_POST['force']) && !empty($opVal['pageList']) ) $pgs = $opVal['pageList']; else { 
         //## Groups
-        $nt = new nxsAPI_FB(); if (!empty($options['proxy'])&&!empty($options['proxyOn'])){ $nt->proxy['proxy'] = $options['proxy']['proxy']; if (!empty($options['proxy']['up'])) $nt->proxy['up'] = $options['proxy']['up'];};  $nt->sid = array('cn'=>$_POST['u'],'xs'=>$_POST['p']); 
+        $nt = new nxsAPI_FB(); if (!empty($options['proxy'])&&!empty($options['proxyOn'])){ $nt->proxy['proxy'] = $options['proxy']['proxy'];
+        if (!empty($options['proxy']['up'])) $nt->proxy['up'] = $options['proxy']['up'];};  $nt->sid = array('cn'=>$u,'xs'=>$p);
         $lpg = $nt->getPages();  if (!empty($nt->errMsg)) { echo $nt->errMsg; return; }
         if (!empty($lpg)) {  $pgs .= '<option disabled>'.__('Pages', 'social-networks-auto-poster-facebook-twitter-g').'</option>';
           foreach ($lpg as $gid=>$gName) $pgs .= '<option class="nxsBlue" '.($options['pgID']==$gid ? 'selected="selected"':'').' value="'.$gid.'">&nbsp;&nbsp;&nbsp;'.$gName.' ('.$gid.')</option>'; 
@@ -138,35 +141,35 @@ if (!class_exists("nxs_snapClassFB")) { class nxs_snapClassFB extends nxs_snapCl
      if (!empty($_POST['isOut'])) echo $pgCust.$pgs.'<option style="color:#BD5200" value="a">'.__('...enter the Page or Group ID').'</option>'; // .'<option style="color:#BD5200" value="a">'.__('...enter the SubReddit ID').'</option>';
      $opVal['pageList'] = $pgs; array_walk_recursive($opVal,'nxs_uarr_string'); nxs_saveOption($opNm, $opVal); return $opVal;     
   }
-  function getListOfPages($networks){  $opVal = array(); $opNm = 'nxs_snap_fb_'.sha1('nxs_snap_fb'.$_POST['u'].$_POST['p']); $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']); $pgs = '';
-     $currPstAs = !empty($_POST['pgID'])?$_POST['pgID']:(!empty($networks['fb'][$ii])?$networks['fb'][$ii]['pgID']:'');
+  function getListOfPages($networks){  $opVal = array(); $u = sanitize_text_field($_POST['u']); $p = sanitize_text_field($_POST['p']); $isOut = !empty($_POST['isOut']);
+     $opNm = 'nxs_snap_fb_'.sha1('nxs_snap_fb'.$u.$p); $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']); $pgs = '';
+     $currPstAs = !empty($_POST['pgID'])?sanitize_text_field($_POST['pgID']):(!empty($networks['fb'][$ii])?$networks['fb'][$ii]['pgID']:'');
      if (empty($_POST['force']) && !empty($opVal['pageList']) ) $pgs = $opVal['pageList']; else { $options = $networks['fb'][$ii];  
        if ($options['apiToUse'] =='nxv2') {$nt = new nxsAPI_FB();        
        if (!empty($options['proxy'])&&!empty($options['proxyOn'])){ $nt->proxy['proxy'] = $options['proxy']['proxy']; if (!empty($options['proxy']['up'])) $nt->proxy['up'] = $options['proxy']['up'];};       
-       $ui = $nt->_authUP($_POST['u'],$_POST['p']); if (!empty($ui)) { $opVal['uInfo'] = $nt->uInfo; $opVal['tpt'] = $nt->uInfo['access_token']; $opVal['accessToken'] = $nt->uInfo['access_token']; $opVal['authUser'] = 'me'; }}
+       $ui = $nt->_authUP($u,$p); if (!empty($ui)) { $opVal['uInfo'] = $nt->uInfo; $opVal['tpt'] = $nt->uInfo['access_token']; $opVal['accessToken'] = $nt->uInfo['access_token']; $opVal['authUser'] = 'me'; }}
        if (!empty($opVal) & is_array($opVal)) $options = array_merge($options, $opVal); if (empty($options['pgID'])) $options['pgID'] = '';
        $advSet = nxs_mkRemOptsArr(nxs_getNXSHeaders()); $aacct = array('access_token'=>$options['accessToken']); if (empty($options['tpt'])) $aacct['appsecret_proof'] = hash_hmac('sha256', $options['accessToken'], nxs_gas($options['appSec'])); 
        //## Account Info 
        $ua = 'Mozilla/5.0 (iPhone; CPU iPhone OS 4_3_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 [FBAN/FBIOS;FBDV/iPhone3,1;FBMD/iPhone;FBSN/iOS;FBSV/4.3.3;FBSS/3;FBID/phone;FBLC/en_US;FBOP/5;FBCR/AT&T]'; $advSet['headers']['User-Agent'] = $ua; $advSet['user-agent'] = $ua;
        $resP = nxs_remote_get('https://graph.facebook.com/'.$options['authUser'].'/?'.http_build_query($aacct, null, '&'), $advSet); //prr('https://graph.facebook.com/'.$options['authUser'].'/?'.http_build_query($aacct, null, '&')); //prr($resP); // die(); //prr($resP, 'ACCOUNT'); 
-       if (is_nxs_error($resP) || empty($resP['body'])) { $outMsg= 'Auth Error Account #1: '.print_r($resP, true);  if (!empty($_POST['isOut'])) echo $outMsg; return $outMsg; }
-       $accInfo = json_decode($resP['body'], true); if ((is_array($accInfo) && !empty($accInfo['error']))) { $outMsg = 'Auth Error Account #2: '.print_r($accInfo['error'], true); if (!empty($_POST['isOut'])) echo $outMsg; return $outMsg; }       
+       if (is_nxs_error($resP) || empty($resP['body'])) { $outMsg= 'Auth Error Account #1: '.print_r($resP, true);  if ($isOut) echo $outMsg; return $outMsg; }
+       $accInfo = json_decode($resP['body'], true); if ((is_array($accInfo) && !empty($accInfo['error']))) { $outMsg = 'Auth Error Account #2: '.print_r($accInfo['error'], true); if ($isOut) echo $outMsg; return $outMsg; }
        if ($options['apiToUse'] =='nxv2') $pgs .= '<option class="nxsTeal" '.($options['pgID']==$accInfo['id'] ? 'selected="selected"':'').' value="'.$accInfo['id'].'">Profile: '.$accInfo['name'].' ('.$accInfo['id'].')</option>'; 
        $nxPgL = array( array('id'=>(!empty($accInfo)&&!empty($accInfo['id']))?$accInfo['id']:$options['authUser'], 't'=>'u', 'nm'=>'Profile - '.(!empty($accInfo)&&!empty($accInfo['name']))?$accInfo['name']:$options['authUserName']) );
        //## List of pages       
        $resP = nxs_remote_get('https://graph.facebook.com/'.$options['authUser'].'/accounts?fields=about,description,access_token,name&'.http_build_query($aacct, null, '&'), $advSet); // prr($resP, 'PAGES'); echo 'https://graph.facebook.com/'.$options['authUser'].'/accounts?'.http_build_query($aacct, null, '&');
-       if (is_nxs_error($resP) || empty($resP['body'])) { $outMsg= 'Auth Error #1: '.print_r($resP, true);  if (!empty($_POST['isOut'])) echo $outMsg; return $outMsg; }
-       $pages = json_decode($resP['body'], true); if ((is_array($pages) && !empty($pages['error']))) { $outMsg = 'Auth Error #2: '.print_r($pages['error'], true); if (!empty($_POST['isOut'])) echo $outMsg; return $outMsg; }       
+       if (is_nxs_error($resP) || empty($resP['body'])) { $outMsg= 'Auth Error #1: '.print_r($resP, true);  if ($isOut) echo $outMsg; return $outMsg; }
+       $pages = json_decode($resP['body'], true); if ((is_array($pages) && !empty($pages['error']))) { $outMsg = 'Auth Error #2: '.print_r($pages['error'], true); if ($isOut) echo $outMsg; return $outMsg; }
        if (!empty($pages['data'])) { $pages = $pages['data']; if (empty($opVal)) $opVal = array(); //prr($pages);
          foreach ($pages as $pg) $nxPgL[] = array('id'=>$pg['id'], 't'=>'p', 'nm'=>$pg['name'], 'tk'=>$pg['access_token']);           
          if (!empty($nxPgL)) { uasort($nxPgL, array($this, 'pgCmp')); $pgs .= '<option disabled>'.__('Pages', 'social-networks-auto-poster-facebook-twitter-g').'</option>'; 
            foreach ($nxPgL as $pg) if (!empty($pg['t'])&& $pg['t']=='p') $pgs .= '<option class="nxsBlue" '.($options['pgID']==$pg['id'] ? 'selected="selected"':'').' value="p'.$pg['id'].'">&nbsp;&nbsp;&nbsp;'.$pg['nm'].' ('.$pg['id'].')</option>';
          }
        }
-       //## List of Groups    
-       
+       //## List of Groups
        $resP = nxs_remote_get('https://graph.facebook.com/'.$options['authUser'].'/groups?'.http_build_query($aacct, null, '&'), $advSet); // prr($resP, 'GROUPS'); 
-       if (is_nxs_error($resP) || empty($resP['body'])) { $outMsg= 'Auth Error #1: '.print_r($resP, true);  if (!empty($_POST['isOut'])) echo $outMsg; return $outMsg; } $pages = json_decode($resP['body'], true); 
+       if (is_nxs_error($resP) || empty($resP['body'])) { $outMsg= 'Auth Error #1: '.print_r($resP, true);  if ($isOut) echo $outMsg; return $outMsg; } $pages = json_decode($resP['body'], true);
        
        if ((is_array($pages) && !empty($pages['error'])) && !empty($pages['error']['message']) && stripos($pages['error']['message'],'endpoint')>0) {
           if ($options['apiToUse'] =='nxv2') {  $nt->sid = array('cn'=>$nt->uInfo['uID'], 'xs'=>$nt->uInfo['xs']); $lpg = $nt->getPagesGroups(); 
@@ -175,9 +178,6 @@ if (!class_exists("nxs_snapClassFB")) { class nxs_snapClassFB extends nxs_snapCl
             }
           }
        }
-       
-       //if ((is_array($pages) && !empty($pages['error']))) { $outMsg = 'Auth Error #2 (GPP): '.print_r($pages['error'], true); if (!empty($_POST['isOut'])) echo $outMsg; return $outMsg; }       
-       
        if (!empty($pages['data'])) { $pages = $pages['data']; if (empty($opVal)) $opVal = array();
          $nxGpO = array(); $nxGpC = array(); $nxGpS = array(); foreach ($pages as $pg) { $arr = array('id'=>$pg['id'], 'nm'=>$pg['name']); $nxPgL[] = array('id'=>$pg['id'], 't'=>'g', 'nm'=>$pg['name'], 'prv'=>$pg['privacy']);            //prr($pg);
          if ($pg['privacy']=='OPEN') $nxGpO[] = $arr; elseif ($pg['privacy']=='SECRET' && (!isset($pg['administrator']) || !empty($pg['administrator']))) $nxGpS[] = $arr; 
@@ -191,12 +191,10 @@ if (!class_exists("nxs_snapClassFB")) { class nxs_snapClassFB extends nxs_snapCl
          if (!empty($nxGpS)) { uasort($nxGpS, array($this, 'pgCmp')); $pgs .= '<option disabled>'.__('Secret Groups', 'social-networks-auto-poster-facebook-twitter-g').'</option>';
            foreach ($nxGpS as $pg) $pgs .= '<option class="nxsDarkOrange" '.($options['pgID']==$pg['id'] ? 'selected="selected"':'').' value="'.$pg['id'].'">&nbsp;&nbsp;&nbsp;'.$pg['nm'].' ('.$pg['id'].')</option>'; 
          }
-       }        
-       
-       $opVal['pageListArr'] = $nxPgL; // $opVal['pageList'] = $pgs;   
-       
+       }
+       $opVal['pageListArr'] = $nxPgL; // $opVal['pageList'] = $pgs;
      } $pgCust = (!empty($pgs) && !empty($currPstAs) && stripos($pgs,$currPstAs)===false)?'<option selected="selected" value="'.$currPstAs.'">'.$currPstAs.'</option>':'';     
-     if (!empty($_POST['isOut'])) echo $pgCust.$pgs.'<option style="color:#BD5200" value="a">'.__('...enter the Page ID').'</option>'; // .'<option style="color:#BD5200" value="a">'.__('...enter the SubReddit ID').'</option>';
+     if ($isOut) echo $pgCust.$pgs.'<option style="color:#BD5200" value="a">'.__('...enter the Page ID').'</option>'; // .'<option style="color:#BD5200" value="a">'.__('...enter the SubReddit ID').'</option>';
      $opVal['pageList'] = $pgs; array_walk_recursive($opVal,'nxs_uarr_string'); nxs_saveOption($opNm, $opVal); return $opVal;
   }
   

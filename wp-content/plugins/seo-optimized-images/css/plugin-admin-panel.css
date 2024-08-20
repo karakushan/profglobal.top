@@ -3744,3 +3744,6 @@ td.wff-att-name, td.wff-att-uses {background: #eee; border-bottom:1px solid #ddd
     color: #707070;
     line-height: 1.8;
 }
+a.prolinkbtn {
+    margin-left: 10px;
+}

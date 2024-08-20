@@ -1,23 +1,45 @@
 (function ($) {
-    /* global tinymce */
-    /* global wpdObject */
-    tinymce.PluginManager.add('wpDiscuz', function (ed, url) {
-        if (ed.id === "content") {
-            ed.addButton('wpDiscuz', {
-                image: wpdObject.image,
-                tooltip: wpdObject.tooltip,
-                onclick: function () {
-                    var w = $(window).width();
-                    var dialogWidth = 600;
-                    var W = (dialogWidth < w) ? dialogWidth : w;
-                    $('#wpd-inline-question').val('');
-                    var text = tinymce.activeEditor.selection.getContent();
-                    $('#wpd-inline-content').html(text ? text : '<span class="wpd-text-error">' + wpdObject.no_text_selected + '</span>');
-                    tb_show(wpdObject.popup_title, '#TB_inline?width=' + W + '&height=400&inlineId=wpdiscuz_feedback_dialog');
-                }
-            });
-        }
-    });
+
+    if(typeof wpdObject !== 'undefined'){
+        tinymce.create( 'tinymce.plugins.wpDiscuz',{
+
+            init : function (ed, url) {
+                // if (ed.id === "content" || ed.id === "main_content_content_vb_tiny_mce") {
+                ed.addButton('wpDiscuz', {
+                        image: wpdObject.image,
+                        tooltip: wpdObject.tooltip,
+                        onclick: function () {
+                            var w = $(window).width();
+                            var dialogWidth = 600;
+                            var W = (dialogWidth < w) ? dialogWidth : w;
+                            $('#wpd-inline-question').val('');
+                            tinymce.activeEditor = ed;
+                            var text = tinymce.activeEditor.selection.getContent();
+                            $('#wpd-inline-content').html(text ? text : '<span class="wpd-text-error">' + wpdObject.no_text_selected + '</span>');
+                            tb_show(wpdObject.popup_title, '#TB_inline?width=' + W + '&height=400&inlineId=wpdiscuz_feedback_dialog');
+                        }
+                    });
+                // }
+            },
+
+            getInfo : function(){
+                return {
+                    longname : 'wpDiscuz',
+                    author : 'gVectors Team',
+                    authorurl : 'https://gvectors.com/',
+                    infourl : 'https://gvectors.com/',
+                    version : '1.1'
+                };
+            }
+
+        });
+
+
+
+        /* global tinymce */
+        /* global wpdObject */
+        tinymce.PluginManager.add('wpDiscuz', tinymce.plugins.wpDiscuz);
+    }
 
     $('body').on('mousedown', '#wpd-put-shortcode', function () {
         var question = $('#wpd-inline-question').val();

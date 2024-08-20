@@ -287,6 +287,9 @@
 						</tr>
 						</tbody>
 					</table>
+					<p class="submit">
+						<input style="margin-left:8px" type="submit" name="save" class="button button-primary" value="<?php _e("Save Changes", 'super-socializer'); ?>" />
+					</p>
 					</div>
 				</div>
 
@@ -558,6 +561,9 @@
 						</tr>
 						</tbody>
 					</table>
+					<p class="submit">
+						<input style="margin-left:8px" type="submit" name="save" class="button button-primary" value="<?php _e("Save Changes", 'super-socializer'); ?>" />
+					</p>
 					</div>
 				</div>
 				
@@ -691,24 +697,10 @@
 							</div>
 							</td>
 						</tr>
-
-						<tr>
-							<th>
-							<label for="the_champ_sc_buffer_username"><?php _e("Twitter username for Buffer sharing (without @)", 'super-socializer'); ?></label><img id="the_champ_sc_buffer_username_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__) ?>" />
-							</th>
-							<td>
-							<input id="the_champ_sc_buffer_username" name="the_champ_counter[buffer_username]" type="text" value="<?php echo isset($theChampCounterOptions['buffer_username']) ? $theChampCounterOptions['buffer_username'] : '' ?>" />
-							</td>
-						</tr>
-						
-						<tr class="the_champ_help_content" id="the_champ_sc_buffer_username_help_cont">
-							<td colspan="2">
-							<div>
-							<?php _e('Provided username will be appended after the content in Buffer sharing as "via @USERNAME". Leave empty if you do not want any username.', 'super-socializer') ?>
-							</div>
-							</td>
-						</tr>
 					</table>
+					<p class="submit">
+						<input style="margin-left:8px" type="submit" name="save" class="button button-primary" value="<?php _e("Save Changes", 'super-socializer'); ?>" />
+					</p>
 					</div>
 				</div>
 				
@@ -735,6 +727,9 @@
 								</td>
 							</tr>
 						</table>
+						<p class="submit">
+							<input style="margin-left:8px" type="submit" name="save" class="button button-primary" value="<?php _e("Save Changes", 'super-socializer'); ?>" />
+						</p>
 						</div>
 					</div>
 					</div>

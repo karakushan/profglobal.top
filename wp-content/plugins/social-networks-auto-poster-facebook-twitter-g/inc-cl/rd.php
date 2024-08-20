@@ -128,8 +128,9 @@ if (!class_exists("nxs_snapClassRD")) { class nxs_snapClassRD extends nxs_snapCl
       
   } 
    //## RD Specific
-  function getListOfSubReddits($networks){ $opVal = array(); $pass = 'g9c1a'.nsx_doEncode($_POST['p']); $opNm = 'nxs_snap_rd_'.sha1('nxs_snap_rd'.sanitize_user($_POST['u']).$pass); $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']); $nt = new nxsAPI_RD();  // prr($opVal);
-     $currPstAs = !empty($_POST['rdSR'])?$_POST['rdSR']:(!empty($networks['rd'][$ii])?$networks['rd'][$ii]['rdSubReddit']:'');
+  function getListOfSubReddits($networks){ $opVal = array(); $pass = 'g9c1a'.nsx_doEncode(sanitize_text_field($_POST['p'])); $opNm = 'nxs_snap_rd_'.sha1('nxs_snap_rd'.sanitize_user(sanitize_text_field($_POST['u'])).$pass);
+     $opVal = nxs_getOption($opNm); $ii = sanitize_key($_POST['ii']); $nt = new nxsAPI_RD();  // prr($opVal);
+     $currPstAs = !empty($_POST['rdSR'])?sanitize_text_field($_POST['rdSR']):(!empty($networks['rd'][$ii])?$networks['rd'][$ii]['rdSubReddit']:'');
      if (empty($_POST['force']) && !empty($opVal['ck']) && !empty($opVal['rdSubRedditsList']) ) $pgs = $opVal['rdSubRedditsList']; else { if (!empty($opVal['ck'])) $nt->ck = $opVal['ck']; 
        if (!empty($networks['rd'][$ii]['proxy'])&&!empty($networks['rd'][$ii]['proxyOn'])){ $nt->proxy['proxy'] = $networks['rd'][$ii]['proxy']['proxy']; if (!empty($networks['rd'][$ii]['proxy']['up'])) $nt->proxy['up'] = $networks['rd'][$ii]['proxy']['up']; } $loginError=$nt->connect(sanitize_user($_POST['u']),$_POST['p']);// var_dump($loginError);
        if (!$loginError){ $opVal['ck'] = $nt->ck; $nt->getSubReddits($currPstAs); $pgs = $nt->srList; }

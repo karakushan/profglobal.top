@@ -22,12 +22,14 @@ class WGZ_Assets_Manager_Public {
 
 	public $template_rendered = false;
 
+	protected $plugin;
+
 	private $deregistered = [];
 
 	/**
-	 * @param Wbcr_Factory463_Plugin $plugin
+	 * @param Wbcr_Factory475_Plugin $plugin
 	 */
-	public function __construct(Wbcr_Factory463_Plugin $plugin)
+	public function __construct(Wbcr_Factory475_Plugin $plugin)
 	{
 		$this->plugin = $plugin;
 

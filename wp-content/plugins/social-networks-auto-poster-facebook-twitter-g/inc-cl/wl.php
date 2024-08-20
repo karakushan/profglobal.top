@@ -490,8 +490,8 @@ if (!class_exists("nxs_snapClassWL")) { class nxs_snapClassWL {
   }  
 }}
 if (!function_exists("nxs_rePostToWL_ajax")) {
-  function nxs_rePostToWL_ajax() { check_ajax_referer('nxsSsPageWPN');  $postID = $_POST['id']; $options = get_option('NS_SNAutoPoster');  
-    foreach ($options['wl'] as $ii=>$two) if ($ii==$_POST['nid']) {    $two['ii'] = $ii; $two['pType'] = 'aj'; //if ($two['gpPageID'].$two['gpUName']==$_POST['nid']) {  
+  function nxs_rePostToWL_ajax() { check_ajax_referer('nxsSsPageWPN');  $postID = sanitize_key($_POST['id']); $options = get_option('NS_SNAutoPoster');
+    foreach ($options['wl'] as $ii=>$two) if ($ii==sanitize_key($_POST['nid'])) {    $two['ii'] = $ii; $two['pType'] = 'aj'; //if ($two['gpPageID'].$two['gpUName']==$_POST['nid']) {
       $po =  get_post_meta($postID, 'snapWL', true); $po =  maybe_unserialize($po);// prr($gppo);
       if (is_array($po) && isset($po[$ii]) && is_array($po[$ii])){ $ntClInst = new nxs_snapClassWL(); $two = $ntClInst->adjMetaOpt($two, $po[$ii]); }
       $result = nxs_doPublishToWL($postID, $two); if ($result == 200) die("Successfully sent your post to WaNeLo."); else die($result);        

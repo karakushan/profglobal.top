@@ -5,7 +5,8 @@ namespace wpdFormAttr\Field;
 use wpdFormAttr\FormConst\wpdFormConst;
 use wpdFormAttr\Tools\Sanitizer;
 
-abstract class Field {
+abstract class Field
+{
 
     private static $instance = [];
     protected $isDefault;
@@ -19,13 +20,15 @@ abstract class Field {
     protected $fieldDefaultData;
     protected $commenter;
 
-    private function __construct() {
+    private function __construct()
+    {
         $this->initType();
         $this->initDefaultData();
         $this->commenter = wp_get_current_commenter();
     }
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
         $currenClass = get_called_class();
         if (!isset(self::$instance[$currenClass])) {
             self::$instance[$currenClass] = new $currenClass;
@@ -43,14 +46,16 @@ abstract class Field {
 
     abstract public function frontHtml($value, $args);
 
-    public function drawContent($value, $args) {
+    public function drawContent($value, $args)
+    {
         if ($args["is_show_on_comment"] || (is_admin() && !wp_doing_ajax())) {
             return $this->frontHtml($value, $args);
         }
         return "";
     }
 
-    public function dashboardFormHtml($row, $col, $name, $args) {
+    public function dashboardFormHtml($row, $col, $name, $args)
+    {
         $this->display = "none";
         $this->setName($name);
         $this->setFieldData($args);
@@ -85,7 +90,8 @@ abstract class Field {
         <?php
     }
 
-    public function dashboardFormDialogHtml($row, $col) {
+    public function dashboardFormDialogHtml($row, $col)
+    {
         $this->fieldData = wp_parse_args($this->fieldData, $this->fieldDefaultData);
         ?>
         <form id="TB_ajaxContent_form">
@@ -96,21 +102,25 @@ abstract class Field {
             $this->dashboardForm();
             ?>
             <div class="add-to-form-button-cont">
-                <input type="submit" id="wpd-add-field-button" class="button button-primary button-large" value="<?php esc_attr_e("Add To Form", "wpdiscuz"); ?>">
+                <input type="submit" id="wpd-add-field-button" class="button button-primary button-large"
+                       value="<?php esc_attr_e("Add To Form", "wpdiscuz"); ?>">
             </div>
         </form>
         <?php
     }
 
-    private function generateCustomName() {
+    private function generateCustomName()
+    {
         $this->name = "custom_field_" . uniqid();
     }
 
-    private function initType() {
+    private function initType()
+    {
         $this->type = get_called_class();
     }
 
-    public function setName($name) {
+    public function setName($name)
+    {
         if (trim($name)) {
             $this->name = $name;
         } else {
@@ -118,37 +128,40 @@ abstract class Field {
         }
     }
 
-    public function setFieldData($args) {
+    public function setFieldData($args)
+    {
         $this->fieldData = wp_parse_args($args, $this->fieldDefaultData);
     }
 
-    private function initIputsNames($row, $col) {
+    private function initIputsNames($row, $col)
+    {
         $this->fieldInputName = wpdFormConst::WPDISCUZ_META_FORMS_STRUCTURE . "[$row][$col][{$this->name}]";
     }
 
-    public function sanitizeFieldData($data) {
+    public function sanitizeFieldData($data)
+    {
         $cleanData = [];
-        $cleanData["type"] = $data["type"];
+        $cleanData["type"] = sanitize_text_field($data["type"]);
         if (isset($data["name"])) {
-            $name = trim(strip_tags($data["name"]));
+            $name = sanitize_text_field(trim(strip_tags($data["name"])));
             $cleanData["name"] = $name ? $name : $this->fieldDefaultData["name"];
         }
         if (isset($data["nameForTotal"])) {
-            $nameForTotal = trim(strip_tags($data["nameForTotal"]));
+            $nameForTotal = sanitize_text_field(trim(strip_tags($data["nameForTotal"])));
             $cleanData["nameForTotal"] = $nameForTotal ? $nameForTotal : $this->fieldDefaultData["nameForTotal"];
         }
         if (isset($data["desc"])) {
-            $cleanData["desc"] = trim($data["desc"]);
+            $cleanData["desc"] = sanitize_text_field(trim($data["desc"]));
         }
 
         if (isset($data["values"])) {
             $values = array_filter(explode("\n", trim(strip_tags($data["values"]))));
             foreach ($values as $k => $value) {
-                $cleanData["values"][] = trim($value);
+                $cleanData["values"][] = sanitize_text_field(trim($value));
             }
         }
         if (isset($data["icon"])) {
-            $cleanData["icon"] = trim(strip_tags($data["icon"]));
+            $cleanData["icon"] = sanitize_text_field(trim(strip_tags($data["icon"])));
         }
         if (isset($data["required"])) {
             $cleanData["required"] = intval($data["required"]);
@@ -176,18 +189,19 @@ abstract class Field {
         return wp_parse_args($cleanData, $this->fieldDefaultData);
     }
 
-    protected function isShowForUser($args, $currentUser = null) {
+    protected function isShowForUser($args, $currentUser = null)
+    {
         $isShowForUser = true;
-        if(is_admin() && !wp_doing_ajax() && current_user_can("manage_options")){
+        if (is_admin() && !wp_doing_ajax() && current_user_can("manage_options")) {
             return $isShowForUser;
         }
         if (is_null($currentUser)) {
             $currentUser = wp_get_current_user();
         }
-        if(!isset($args["show_for_users"])){
+        if (!isset($args["show_for_users"])) {
             $args["show_for_users"] = 1;
         }
-        if(!isset($args["show_for_guests"])){
+        if (!isset($args["show_for_guests"])) {
             $args["show_for_guests"] = 1;
         }
         if ($currentUser->exists() && !$args["show_for_users"]) {
@@ -200,14 +214,16 @@ abstract class Field {
         return apply_filters("wpdiscuz_show_field_for_user", $isShowForUser, $currentUser, $args);
     }
 
-    protected function isValidateRequired($args, $currentUser = null) {
+    protected function isValidateRequired($args, $currentUser = null)
+    {
         if (!$args["required"] || !$this->isShowForUser($args, $currentUser) || (!$this->isCommentParentZero() && !$args["is_show_sform"]) || (is_admin() && !wp_doing_ajax() && current_user_can("manage_options"))) {
             return false;
         }
         return true;
     }
 
-    protected function isCommentParentZero() {
+    protected function isCommentParentZero()
+    {
         $isParent = false;
         $uniqueID = Sanitizer::sanitize(INPUT_POST, "wpdiscuz_unique_id", "FILTER_SANITIZE_STRING");
         $action = Sanitizer::sanitize(INPUT_POST, "action", "FILTER_SANITIZE_STRING");
@@ -218,7 +234,8 @@ abstract class Field {
         return $isParent;
     }
 
-    protected function initDefaultData() {
+    protected function initDefaultData()
+    {
         $this->fieldDefaultData = [
             "name" => "",
             "desc" => "",

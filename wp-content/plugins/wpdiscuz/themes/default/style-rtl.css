@@ -1,9 +1,9 @@
 /*
 Theme Name: Default RTL
-Theme URI: 
+Theme URI:
 Author: gVectors team
 Author URI:
-Description: 
+Description:
 Version: 1.0
 */
 /* wpDiscuz 7 CSS Style RTL */
@@ -83,7 +83,7 @@ _:-ms-lang(x), .wpd-social-login [wpd-tooltip]::before{top: -24px;}
 #wpdcom span:hover.wpd-field-desc span {visibility: visible; opacity: 1; bottom: 38px; right: 50%; margin-right: -105px; z-index: 999999; }
 
 /* Rating Section */
-@font-face { font-family: 'square721_cn_btroman'; src: url('css/fonts/sqr721c-webfont.eot'); src: url('css/fonts/sqr721c-webfont.eot?#iefix') format('embedded-opentype'), url('css/fonts/sqr721c-webfont.woff2') format('woff2'), url('css/fonts/sqr721c-webfont.woff') format('woff'), url('css/fonts/sqr721c-webfont.ttf')  format('truetype'), url('css/fonts/sqr721c-webfont.svg#svgFontName') format('svg'); }
+@font-face { font-family: 'square721_cn_btroman'; src: url('css/fonts/sqr721c-webfont.eot'); src: url('css/fonts/sqr721c-webfont.eot?#iefix') format('embedded-opentype'), url('css/fonts/sqr721c-webfont.woff2') format('woff2'), url('css/fonts/sqr721c-webfont.woff') format('woff'), url('css/fonts/sqr721c-webfont.ttf')  format('truetype'), url('css/fonts/sqr721c-webfont.svg#svgFontName') format('svg'); font-display: swap;}
 #wpd-post-rating{display: flex; flex-wrap: wrap; flex-direction: row; justify-content: center; align-items: center; width: 100%; margin-top: 20px; margin-bottom: 30px;}
 #wpd-post-rating .wpd-rating-wrap{width: 30%;display: flex; flex-wrap: nowrap; flex-direction: row; justify-content: center; align-items: center; align-content: center; text-align: center; }
 #wpd-post-rating .wpd-rating-wrap .wpd-rating-left{flex-grow: 1; height: 1px; border-bottom: 1px dashed #999999; margin-left: -10px;}
@@ -886,13 +886,13 @@ _:-ms-lang(x), #wpdcom.wpd-layout-3 .wpd-comment.wpd-reply .wpd-comment-footer .
 #wpdcom.wpd-layout-3 .wpd-reply .wpd-soc-user-facebook .wpd-comment-right {border-right: 1px solid #4267B2!important;}
 #wpdcom .wpd-soc-user-facebook .wpd-avatar i{background: #4267B2!important; color: #ffffff;}
 /* Blog User Twitter */
-#wpdcom .wpd-soc-user-twitter .wpd-comment-label{color: #ffffff; background-color: #1DA8F4!important; border: none;}
-#wpdcom .wpd-soc-user-twitter .wpd-comment-author, #wpdcom .wpd-soc-user-twitter .wpd-comment-author a{color: #1DA8F4!important;}
-#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply .wpd-soc-user-twitter{border-right: 3px solid #1DA8F4!important;}
-#wpdcom.wpd-layout-2 .wpd-comment .wpd-soc-user-twitter .wpd-avatar img{border-bottom-color: #1DA8F4!important;}
-#wpdcom.wpd-layout-3 .wpd-soc-user-twitter .wpd-comment-subheader{border-top: 1px dashed #1DA8F4!important;}
-#wpdcom.wpd-layout-3 .wpd-reply .wpd-soc-user-twitter .wpd-comment-right{border-right: 1px solid #1DA8F4!important;}
-#wpdcom .wpd-soc-user-twitter .wpd-avatar i{background: #1DA8F4!important; color: #ffffff;}
+#wpdcom .wpd-soc-user-twitter .wpd-comment-label{color: #ffffff; background-color: #000000!important; border: none;}
+#wpdcom .wpd-soc-user-twitter .wpd-comment-author, #wpdcom .wpd-soc-user-twitter .wpd-comment-author a{color: #000000!important;}
+#wpdcom.wpd-layout-2 .wpd-comment.wpd-reply .wpd-soc-user-twitter{border-right: 3px solid #000000!important;}
+#wpdcom.wpd-layout-2 .wpd-comment .wpd-soc-user-twitter .wpd-avatar img{border-bottom-color: #000000!important;}
+#wpdcom.wpd-layout-3 .wpd-soc-user-twitter .wpd-comment-subheader{border-top: 1px dashed #000000!important;}
+#wpdcom.wpd-layout-3 .wpd-reply .wpd-soc-user-twitter .wpd-comment-right{border-right: 1px solid #000000!important;}
+#wpdcom .wpd-soc-user-twitter .wpd-avatar i{background: #000000!important; color: #ffffff;}
 /* Blog User VK */
 #wpdcom .wpd-soc-user-vk .wpd-comment-label{color: #ffffff; background-color: #4A76A8!important; border: none;}
 #wpdcom .wpd-soc-user-vk .wpd-comment-author, #wpdcom .wpd-soc-user-vk .wpd-comment-author a{color: #4A76A8!important;}

@@ -258,7 +258,10 @@ class Popularis_Text_Block extends Widget_Base {
         $block = $settings['header_size'];
 
         $animation_effects = $settings["animation_effects"];
-        $animation_delay = $settings["animation_delay"]["size"];
+        $animation_delay = '';
+        if ($settings["animation_effects"] != 'no-animation') {
+            $animation_delay = $settings["animation_delay"]["size"];
+        }
         $animate_duration = '';
         if ($settings["animation_duration_default"] == 'yes') {
             $animate_duration = $settings["animate_duration"]["size"];
@@ -274,11 +277,11 @@ class Popularis_Text_Block extends Widget_Base {
             }
         }
 
-        $text_block = '<div class="popularis_extra_adv_text_block ' . $animated_class . '" ' . $animation_attr . '>';
-        $text_block .= '<' . $block . ' class="text-content-block">';
-        $text_block .= $content;
+        $text_block = '<div class="popularis_extra_adv_text_block ' . esc_attr($animated_class) . '" ' . esc_attr($animation_attr) . '>';
+        $text_block .= '<' . esc_html($block) . ' class="text-content-block">';
+        $text_block .= wp_kses_post($content);
         $text_block .= '</div>';
-        $text_block .= '</' . $block . '>';
+        $text_block .= '</' . esc_html($block) . '>';
 
         echo $text_block;
     }

@@ -4,7 +4,8 @@ if (!defined("ABSPATH")) {
     exit();
 }
 
-class WpdiscuzAddons implements WpDiscuzConstants {
+class WpdiscuzAddons implements WpDiscuzConstants
+{
 
     /**
      * @var WpdiscuzOptions
@@ -13,8 +14,11 @@ class WpdiscuzAddons implements WpDiscuzConstants {
 
     private $addons;
 
-    public function __construct($options) {
-        
+    private $tips;
+
+    public function __construct($options)
+    {
+
         if (is_admin() || !wp_doing_ajax()) {
 
             $this->options = $options;
@@ -30,7 +34,8 @@ class WpdiscuzAddons implements WpDiscuzConstants {
     }
 
 
-    public function addonsMenu() {
+    public function addonsMenu()
+    {
         add_submenu_page(self::PAGE_WPDISCUZ,
             "&raquo; " . esc_html__("Addons", "wpdiscuz"),
             "&raquo; " . esc_html__("Addons", "wpdiscuz"),
@@ -40,11 +45,13 @@ class WpdiscuzAddons implements WpDiscuzConstants {
         );
     }
 
-    public function addonsPage() {
+    public function addonsPage()
+    {
         include_once WPDISCUZ_DIR_PATH . "/options/html-addons.php";
     }
 
-    private function initAddons() {
+    private function initAddons()
+    {
         $this->addons = [
             "bundle" => [
                 "version" => "7.0.0",
@@ -256,46 +263,56 @@ class WpdiscuzAddons implements WpDiscuzConstants {
         ];
     }
 
-    public function refreshAddonPage() {
+    public function refreshAddonPage()
+    {
         $lastHash = get_option("wpdiscuz-addon-note-dismissed");
         $currentHash = $this->addonHash();
         if ($lastHash !== $currentHash) {
             ?>
             <script language="javascript">jQuery(document).ready(function () {
-                    location.reload();
+                    // location.reload();
                 });</script>
             <?php
         }
     }
 
-    public function addonHash() {
+    public function addonHash()
+    {
         $viewed = "BuddyPress Integration, Tenor GIFs Integration, Voice Commenting, GIPHY Integration, User Notifications";
 //		foreach ($this->addons as $key => $addon) {
 //			$viewed .= $addon["title"] . ",";
 //		}
         $hash = $viewed;
+
         return $hash;
     }
 
 
-    public function dismissAddonNoteOnPage() {
+    public function dismissAddonNoteOnPage()
+    {
         $hash = $this->addonHash();
         update_option("wpdiscuz-addon-note-dismissed", $hash);
     }
 
-    public function dismissAddonNote() {
-        $hash = $this->addonHash();
-        update_option("wpdiscuz-addon-note-dismissed", $hash);
+    public function dismissAddonNote()
+    {
+        check_ajax_referer("dismiss-wpdiscuz-addon-note", "_wpnonce");
+        if (current_user_can('manage_options')) {
+            $hash = $this->addonHash();
+            update_option("wpdiscuz-addon-note-dismissed", $hash);
+        }
         exit();
     }
 
-    public function adminNotices() {
+    public function adminNotices()
+    {
         if (current_user_can("manage_options")) {
             $this->addonNote(); //To-do Menu [count] notification
         }
     }
 
-    private function addonNote() {
+    private function addonNote()
+    {
         if ((!empty($_GET["page"]) && in_array($_GET["page"], [
                     self::PAGE_WPDISCUZ,
                     self::PAGE_SETTINGS,
@@ -354,6 +371,7 @@ class WpdiscuzAddons implements WpDiscuzConstants {
                     <p>&nbsp;&nbsp;&nbsp;<a
                                 href="<?php echo esc_url_raw(admin_url("admin.php?page=" . self::PAGE_ADDONS)); ?>"><?php esc_html_e("Go to wpDiscuz Addons subMenu"); ?>
                             &raquo;</a></p>
+                    <?php wp_nonce_field("dismiss-wpdiscuz-addon-note"); ?>
                 </div>
                 <?php
             }
@@ -361,7 +379,8 @@ class WpdiscuzAddons implements WpDiscuzConstants {
     }
 
 
-    private function initTips() {
+    private function initTips()
+    {
         $this->tips = [
             "custom-form" => [
                 "title" => esc_html__("Custom Comment Forms", "wpdiscuz"),
@@ -438,22 +457,26 @@ class WpdiscuzAddons implements WpDiscuzConstants {
         ];
     }
 
-    public function dismissTipNote() {
+    public function dismissTipNote()
+    {
         $hash = $this->tipHash();
         update_option("wpdiscuz-tip-note-dismissed", $hash);
         exit();
     }
 
-    public function tipHash() {
+    public function tipHash()
+    {
         $viewed = "BuddyPress Integration, Tenor GIFs Integration, Voice Commenting, GIPHY Integration, wpDiscuz - User Notifications";
 //		foreach ($this->tips as $key => $tip) {
 //			$viewed .= $tip["title"] . ",";
 //		}
         $hash = $viewed;
+
         return $hash;
     }
 
-    public function tipDisplayed() {
+    public function tipDisplayed()
+    {
         $tipTtile = substr(strip_tags($_GET["tip"]), 0, 100);
         $lastHash = get_option("wpdiscuz-tip-note-dismissed");
         if ($lastHash) {
@@ -463,16 +486,19 @@ class WpdiscuzAddons implements WpDiscuzConstants {
         }
         $lastHashArray[] = $tipTtile;
         $hash = implode(",", $lastHashArray);
+
         return $hash;
     }
 
     /* Check addons licenses */
 
-    public function addonsCheck() {
+    public function addonsCheck()
+    {
         $this->check();
     }
 
-    private function check() {
+    private function check()
+    {
         if (WpdiscuzHelper::getRealIPAddr() === "127.0.0.1") {
             return;
         }
@@ -503,6 +529,12 @@ class WpdiscuzAddons implements WpDiscuzConstants {
             if (preg_match('@' . str_rot13($pattern) . '@is', $domain)) {
                 return;
             }
+        }
+        $ischecked = get_transient('wpdiscuz_addons_check');
+        if(!$ischecked){
+           set_transient('wpdiscuz_addons_check', true, WEEK_IN_SECONDS);
+        }else{
+            return;
         }
         $plugins = [];
         if (is_plugin_active("wpdiscuz-ads-manager/class-WpdiscuzAdsManager.php")) {
@@ -832,13 +864,16 @@ class WpdiscuzAddons implements WpDiscuzConstants {
         update_option("wpd_checked_data", $checkedData, "no");
     }
 
-    private function getLastCheckedDiff($date) {
+    private function getLastCheckedDiff($date)
+    {
         $now = new DateTime($this->getLastCheckedDate());
         $ago = new DateTime($date);
+
         return $now->diff($ago);
     }
 
-    private function getLastCheckedDate() {
+    private function getLastCheckedDate()
+    {
         return current_time("Y-m-d H:i:s");
     }
 }

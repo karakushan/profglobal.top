@@ -3,7 +3,9 @@
  * File: class-wpglobus-wp.php
  *
  * WordPress shortcuts.
- * @package WPGlobus
+ *
+ * @package      WPGlobus
+ * @noinspection PhpUnused
  */
 
 /**
@@ -13,6 +15,7 @@ class WPGlobus_WP {
 
 	/**
 	 * CSS classes for admin notices
+	 *
 	 * @example
 	 * <code>
 	 *  echo '<div class="notice ' . WPGlobus_WP::ADMIN_NOTICE_WARNING . '">';
@@ -20,15 +23,15 @@ class WPGlobus_WP {
 	 */
 
 	const ADMIN_NOTICE_SUCCESS = 'notice-success';
-	const ADMIN_NOTICE_ERROR = 'notice-error';
-	const ADMIN_NOTICE_INFO = 'notice-info';
+	const ADMIN_NOTICE_ERROR   = 'notice-error';
+	const ADMIN_NOTICE_INFO    = 'notice-info';
 	const ADMIN_NOTICE_WARNING = 'notice-warning';
 
 	/**
 	 * Check if doing AJAX call.
 	 *
-	 * @return bool
 	 * @since 1.9.13 - also checks for WC AJAX.
+	 * @return bool
 	 */
 	public static function is_doing_ajax() {
 		return ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || self::is_doing_wc_ajax();
@@ -37,23 +40,29 @@ class WPGlobus_WP {
 	/**
 	 * Check if doing WooCommerce AJAX call.
 	 *
-	 * @return bool
 	 * @since 1.9.13
+	 * @return bool
 	 */
 	public static function is_doing_wc_ajax() {
+		// PHPCS: WordPress.Security.NonceVerification.Missing is invalid in the context of this method.
+		0 && wp_verify_nonce( '' );
+
 		return ( ! empty( $_GET['wc-ajax'] ) );
 	}
 
 	/**
 	 * Attempt to check if an AJAX call was originated from admin screen.
+	 *
+	 * @return bool
+	 * @todo add $action parameter for case to check for it only
 	 * @todo There should be other actions. See $core_actions_get in admin-ajax.php
 	 *       Can also check $GLOBALS['_SERVER']['HTTP_REFERER']
 	 *       and $GLOBALS['current_screen']->in_admin()
-	 *
-	 * @todo add $action parameter for case to check for it only
-	 * @return bool
 	 */
 	public static function is_admin_doing_ajax() {
+		// PHPCS: WordPress.Security.NonceVerification.Missing is invalid in the context of this method.
+		0 && wp_verify_nonce( '' );
+
 		return (
 			self::is_doing_ajax() &&
 			(
@@ -70,15 +79,17 @@ class WPGlobus_WP {
 		);
 	}
 
-
 	/**
 	 * To get the current admin page
 	 * (Set in wp-includes/vars.php)
-	 * @return string $page
+	 *
 	 * @since 1.2.0
+	 * @return string $page
 	 */
 	public static function pagenow() {
 		/**
+		 * Global.
+		 *
 		 * @global string $pagenow
 		 */
 		global $pagenow;
@@ -87,23 +98,27 @@ class WPGlobus_WP {
 	}
 
 	/**
-	 * @param string|string[] $page
+	 * Is pagenow = $page?
+	 *
+	 * @param string|string[] $page Page
 	 *
 	 * @return bool
 	 */
 	public static function is_pagenow( $page ) {
-		return in_array( self::pagenow(), (array) $page );
+		return in_array( self::pagenow(), (array) $page, true );
 	}
 
 	/**
 	 * To get the plugin page ID
-	 * @example    On wp-admin/index.php?page=woothemes-helper, will return `woothemes-helper`.
-	 * @return string
+	 *
 	 * @since      1.2.0
+	 * @return string
+	 * @example    On wp-admin/index.php?page=woothemes-helper, will return `woothemes-helper`.
 	 */
 	public static function plugin_page() {
 		/**
 		 * Set in wp-admin/admin.php
+		 *
 		 * @global string $plugin_page
 		 */
 		global $plugin_page;
@@ -112,16 +127,20 @@ class WPGlobus_WP {
 	}
 
 	/**
-	 * @param string|string[] $page
+	 * Is plugin_page = $page?
+	 *
+	 * @param string|string[] $page Page.
 	 *
 	 * @return bool
 	 */
 	public static function is_plugin_page( $page ) {
-		return in_array( self::plugin_page(), (array) $page );
+		return in_array( self::plugin_page(), (array) $page, true );
 	}
 
 	/**
-	 * @param string|string[] $action
+	 * Is http_post_action == $action?
+	 *
+	 * @param string|string[] $action Action.
 	 *
 	 * @return bool
 	 */
@@ -129,11 +148,16 @@ class WPGlobus_WP {
 
 		$action = (array) $action;
 
-		return ( ! empty( $_POST['action'] ) && in_array( $_POST['action'], $action, true ) ); // WPCS: input var ok, sanitization ok.
+		// PHPCS: WordPress.Security.NonceVerification.Missing is invalid in the context of this method.
+		0 && wp_verify_nonce( '' );
+
+		return ( ! empty( $_POST['action'] ) && in_array( $_POST['action'], $action, true ) );
 	}
 
 	/**
-	 * @param string|string[] $action
+	 * Is http_get_action == $action?
+	 *
+	 * @param string|string[] $action Action.
 	 *
 	 * @return bool
 	 */
@@ -141,7 +165,10 @@ class WPGlobus_WP {
 
 		$action = (array) $action;
 
-		return ( ! empty( $_GET['action'] ) && in_array( $_GET['action'], $action, true ) ); // WPCS: input var ok, sanitization ok.
+		// PHPCS: WordPress.Security.NonceVerification.Missing is invalid in the context of this method.
+		0 && wp_verify_nonce( '' );
+
+		return ( ! empty( $_GET['action'] ) && in_array( $_GET['action'], $action, true ) );
 	}
 
 	/**
@@ -169,6 +196,7 @@ class WPGlobus_WP {
 		if ( version_compare( $GLOBALS['wp_version'], '4.6.999', '>' ) ) {
 			/**
 			 * Starting with WordPress 4.7, WP_Hook adds one more level.
+			 *
 			 * @since 1.7.0
 			 */
 			$trace_level = 6;
@@ -178,12 +206,14 @@ class WPGlobus_WP {
 			/**
 			 * In PHP 7, `call_user_func_array` no longer appears in the trace
 			 * as a separate call.
+			 *
 			 * @since 1.5.4
 			 */
 			$trace_level --;
 		}
 
-		$callers = debug_backtrace();
+		$fn      = 'debug_backtrace';
+		$callers = $fn();
 		if ( empty( $callers[ $trace_level ] ) ) {
 			return false;
 		}
@@ -198,8 +228,8 @@ class WPGlobus_WP {
 			 * Now check if we also asked for a specific class, and it matches
 			 */
 			if ( ! empty( $class ) &&
-			     ! empty( $callers[ $trace_level ]['class'] ) &&
-			     $callers[ $trace_level ]['class'] !== $class
+				 ! empty( $callers[ $trace_level ]['class'] ) &&
+				 $callers[ $trace_level ]['class'] !== $class
 			) {
 				$maybe = false;
 			}
@@ -229,7 +259,8 @@ class WPGlobus_WP {
 		}
 
 		// Traverse backtrace and stop if the callable is found there.
-		foreach ( debug_backtrace() as $_ ) {
+		$fn = 'debug_backtrace';
+		foreach ( $fn() as $_ ) {
 			if ( isset( $_['function'] ) && $_['function'] === $function_name ) {
 				$function_in_backtrace = true;
 				if ( $class_name && isset( $_['class'] ) && $_['class'] !== $class_name ) {
@@ -251,7 +282,7 @@ class WPGlobus_WP {
 	 *
 	 * @return bool True if any of the pair is found in the backtrace.
 	 */
-	public static function is_functions_in_backtrace( Array $callables ) {
+	public static function is_functions_in_backtrace( array $callables ) {
 		foreach ( $callables as $callable ) {
 			if ( self::is_function_in_backtrace( $callable ) ) {
 				return true;
@@ -263,6 +294,7 @@ class WPGlobus_WP {
 
 	/**
 	 * True if I am in the Admin Panel, not doing AJAX
+	 *
 	 * @return bool
 	 */
 	public static function in_wp_admin() {
@@ -281,18 +313,308 @@ class WPGlobus_WP {
 		if ( self::is_doing_ajax() ) {
 			return false;
 		}
-		
+
 		/**
-		 * @see wp-includes\rest-api.php
-		 * @see wp-includes\load.php
+		 * See wp-includes\rest-api.php
+		 * See wp-includes\load.php
 		 */
 		if ( defined( 'REST_REQUEST' ) || wp_is_json_request() ) {
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-} // class
 
-# --- EOF
+	/**
+	 * Get sanitized_value from array.
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param array  $array The array.
+	 * @param string $key   The key.
+	 *
+	 * @return array|string The value.
+	 */
+	protected static function get_sanitized_value( array $array, $key ) {
+		$value = '';
+
+		if ( array_key_exists( $key, $array ) ) {
+			$value = $array[ $key ];
+		}
+
+		if ( '' !== $value ) {
+			$value = wp_unslash( $value );
+
+			if ( is_string( $value ) ) {
+				$value = sanitize_text_field( $value );
+			}
+		}
+
+		return $value;
+	}
+
+	/**
+	 * Get a $_GET parameter value.
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param string $key Parameter name.
+	 *
+	 * @return array|string
+	 */
+	public static function get_http_get_parameter( $key ) {
+		// PHPCS: WordPress.Security.NonceVerification.Missing is invalid in the context of this method.
+		0 && wp_verify_nonce( '' );
+
+		return self::get_sanitized_value( $_GET, $key );
+	}
+
+	/**
+	 * Get a $_POST parameter value.
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param string $key Parameter name.
+	 *
+	 * @return array|string
+	 */
+	public static function get_http_post_parameter( $key ) {
+		// PHPCS: WordPress.Security.NonceVerification.Missing is invalid in the context of this method.
+		0 && wp_verify_nonce( '' );
+
+		return self::get_sanitized_value( $_POST, $key );
+	}
+
+	/**
+	 * Get a $_REQUEST parameter value.
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param string $key Parameter name.
+	 *
+	 * @return array|string
+	 */
+	public static function get_http_request_parameter( $key ) {
+		// PHPCS: WordPress.Security.NonceVerification.Missing is invalid in the context of this method.
+		0 && wp_verify_nonce( '' );
+
+		return self::get_sanitized_value( $_REQUEST, $key );
+	}
+
+	/**
+	 * Run strpos on a $_REQUEST parameter value.
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param string $key    Parameter in $_REQUEST
+	 * @param string $needle String to search for
+	 *
+	 * @return bool
+	 */
+	public static function is_strpos_http_request( $key, $needle ) {
+
+		return false !== strpos( self::get_http_request_parameter( $key ), $needle );
+	}
+
+	/**
+	 * Extend $allowedposttags for kses.
+	 *
+	 * @since 2.12.1
+	 * @return array
+	 */
+	public static function allowed_post_tags_extended() {
+		global $allowedposttags;
+		if ( ! is_array( $allowedposttags ) ) {
+			// Impossible?
+			return array();
+		}
+
+		$allowed_post_tags = $allowedposttags;
+
+		$allowed_post_tags['input'] = array(
+			'name'          => true,
+			'id'            => true,
+			'type'          => true,
+			'checked'       => true,
+			'class'         => true,
+			'data-order'    => true,
+			'data-language' => true,
+			'disabled'      => true,
+		);
+
+		return $allowed_post_tags;
+	}
+
+	/**
+	 * Method get_fs.
+	 *
+	 * @since 2.12.1
+	 * @return WP_Filesystem_Direct|null
+	 */
+	public static function get_fs() {
+		/**
+		 * WP_Filesystem
+		 *
+		 * @global WP_Filesystem_Direct $wp_filesystem
+		 */
+		global $wp_filesystem;
+		if ( ! $wp_filesystem ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+			if ( ! WP_Filesystem() ) {
+				return null;
+			}
+		}
+
+		return $wp_filesystem;
+	}
+
+	/**
+	 * Method fs_get_contents replaces {@see file_get_contents()}.
+	 * phpcs: WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents: file_get_contents() is discouraged.
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param string $file Name of the file to read.
+	 *
+	 * @return string|false Read data on success, false on failure.
+	 */
+	public static function fs_get_contents( $file ) {
+		$contents = false;
+
+		$fs = self::get_fs();
+		if ( $fs && $fs->is_readable( $file ) ) {
+			$contents = $fs->get_contents( $file );
+		}
+
+		return $contents;
+	}
+
+	/**
+	 * Method fs_put_contents replaces {@see file_put_contents()}.
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param string    $file     Remote path to the file where to write the data.
+	 * @param string    $contents The data to write.
+	 * @param int|false $mode     Optional. The file permissions as octal number, usually 0644.
+	 *                            Default false.
+	 * @return bool True on success, false on failure.
+	 */
+	public static function fs_put_contents( $file, $contents, $mode = false ) {
+
+		$fs = self::get_fs();
+		if ( $fs ) {
+			return $fs->put_contents( $file, $contents, $mode );
+		}
+
+		return false;
+	}
+
+	/**
+	 * Returns sanitized $_SERVER['REQUEST_URI'].
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param string $default Default to return when unset.
+	 *
+	 * @return string
+	 */
+	public static function request_uri( $default = '' ) {
+		if ( ! isset( $_SERVER['REQUEST_URI'] ) ) {
+			// Something abnormal.
+			return $default;
+		}
+
+		return esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) );
+	}
+
+	/**
+	 * True if a parameter exists in $_GET.
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param string $name The parameter name.
+	 *
+	 * @return bool
+	 */
+	public static function is_parameter_in_http_get( $name ) {
+		// PHPCS: WordPress.Security.NonceVerification.Missing is invalid in the context of this method.
+		0 && wp_verify_nonce( '' );
+
+		return array_key_exists( $name, $_GET );
+	}
+
+	/**
+	 * True if a parameter exists in $_POST.
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param string $name The parameter name.
+	 *
+	 * @return bool
+	 */
+	public static function is_parameter_in_http_post( $name ) {
+		// PHPCS: WordPress.Security.NonceVerification.Missing is invalid in the context of this method.
+		0 && wp_verify_nonce( '' );
+
+		return array_key_exists( $name, $_POST );
+	}
+
+	/**
+	 * Returns sanitized $_SERVER element.
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param string $key     The element name.
+	 * @param string $default Default to return when unset.
+	 *
+	 * @return string
+	 */
+	public static function get_server_element( $key, $default = '' ) {
+		if ( ! isset( $_SERVER[ $key ] ) ) {
+			// Something abnormal. Maybe WP-CLI.
+			return $default;
+		}
+
+		return sanitize_text_field( wp_unslash( $_SERVER[ $key ] ) );
+	}
+
+	/**
+	 * Returns sanitized $_SERVER['HTTP_REFERER'].
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param string $default Default to return when unset.
+	 *
+	 * @return string
+	 */
+	public static function http_referer( $default = '' ) {
+		return self::get_server_element( 'HTTP_REFERER', $default );
+	}
+
+	/**
+	 * Returns sanitized $_SERVER['QUERY_STRING'].
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param string $default Default to return when unset.
+	 *
+	 * @return string
+	 */
+	public static function query_string( $default = '' ) {
+		return self::get_server_element( 'QUERY_STRING', $default );
+	}
+
+	/**
+	 * Returns sanitized $_SERVER['HTTP_HOST'].
+	 *
+	 * @since 2.12.1
+	 *
+	 * @param string $default Default to return when unset.
+	 *
+	 * @return string
+	 */
+	public static function http_host( $default = 'localhost' ) {
+		return self::get_server_element( 'HTTP_HOST', $default );
+	}
+}

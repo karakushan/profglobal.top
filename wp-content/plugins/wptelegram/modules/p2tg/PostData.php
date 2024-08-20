@@ -165,10 +165,10 @@ class PostData {
 
 				} else {
 
-					$field  = 'post_content' === $excerpt_source ? 'post_content' : 'post_excerpt';
-					$filter = 'post_content' === $excerpt_source ? 'the_content' : 'the_excerpt';
+					$post_field = 'post_content' === $excerpt_source ? 'post_content' : 'post_excerpt';
+					$filter     = 'post_content' === $excerpt_source ? 'the_content' : 'the_excerpt';
 
-					$excerpt = get_post_field( $field, $this->post );
+					$excerpt = get_post_field( $post_field, $this->post );
 
 					self::remove_autoembed_filter();
 
@@ -177,6 +177,9 @@ class PostData {
 
 					self::restore_autoembed_filter();
 				}
+
+				// Remove shortcodes.
+				$excerpt = trim( strip_shortcodes( $excerpt ) );
 
 				$value = Utils::prepare_content(
 					$excerpt,
@@ -188,6 +191,13 @@ class PostData {
 						'preserve_eol' => $preserve_eol,
 					]
 				);
+
+				$plain_excerpt = apply_filters( 'wptelegram_p2tg_post_data_plain_excerpt', false, $value, $excerpt, $this->post, $options );
+
+				if ( $plain_excerpt ) {
+					$value = trim( wp_strip_all_tags( $value ) );
+				}
+
 				// If the excerpt is not empty.
 				if ( $value ) {
 					// Add custom tags for smart trimming.
@@ -206,6 +216,9 @@ class PostData {
 				self::remove_autoembed_filter();
 				$content = apply_filters( 'the_content', $content );
 				self::restore_autoembed_filter();
+
+				// Remove shortcodes.
+				$content = trim( strip_shortcodes( $content ) );
 
 				$value = Utils::prepare_content(
 					$content,
@@ -229,14 +242,14 @@ class PostData {
 				// post thumbnail ID.
 				$thumbnail_id = get_post_thumbnail_id( $this->post->ID );
 
-				$value = wp_get_attachment_url( $thumbnail_id );
+				$value = Utils::get_attachment_by_filesize( $thumbnail_id, Utils::IMAGE_BY_URL_SIZE_LIMIT );
 				break;
 
 			case 'featured_image_path':
 				// post thumbnail ID.
 				$thumbnail_id = get_post_thumbnail_id( $this->post->ID );
 
-				$value = get_attached_file( $thumbnail_id );
+				$value = Utils::get_attachment_by_filesize( $thumbnail_id, Utils::IMAGE_BY_FILE_SIZE_LIMIT, 'path' );
 				break;
 
 			default:

@@ -15,7 +15,7 @@ if (!class_exists("nxs_snapClassMD")) { class nxs_snapClassMD extends nxs_snapCl
         if ( isset($_GET['auth']) && $_GET['auth']==$ntInfo['lcode']){
           //if(stripos($nxs_snapSetPgURL, 'page=NextScripts_SNAP.php')===false) { $newURL = explode('?', $nxs_snapSetPgURL); $nxs_snapSetPgURL = $newURL[0]; }
           $url = 'https://medium.com/m/oauth/authorize?client_id='.nxs_gak($options['appKey']).'&scope=basicProfile,publishPost,listPublications&state=nxsmdauth-'. sanitize_text_field($_GET['auth']).'-'.$acc.'&response_type=code&redirect_uri='.urlencode($nxs_snapSetPgURL);
-          echo '<br/><br/>All good?! Redirecting ..... <script type="text/javascript">window.location = "'.$url.'"</script>';
+          echo '<br/><br/>All good?! Redirecting ..... <script type="text/javascript">window.location = "'.esc_url($url).'"</script>';
           die();
         }
         if ( isset($_GET['state']) && strlen($_GET['state'])>13 && substr($_GET['state'],0,12)=='nxsmdauth-md'){ $ii = explode('-',sanitize_text_field($_GET['state'])); $ii = $ii[2]; $options = $this->nt[$ii];

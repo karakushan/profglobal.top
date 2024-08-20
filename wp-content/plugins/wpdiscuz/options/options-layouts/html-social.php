@@ -6,11 +6,15 @@ if (!defined("ABSPATH")) {
 <!-- Option start -->
 <div class="wpd-opt-row">
     <div class="wpd-opt-intro">
-        <img class="wpd-opt-img" src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/dashboard/" . $setting["icon"])); ?>" style="height: 90px; padding-top: 5px;"/>
-        <?php esc_html_e("wpDiscuz comes with built-in social login and share buttons. It includes Facebook, Twitter, Google, Disqus, WordPress.com, VK and OK Social Networks. Here you can configure App IDs and Keys to enable those. Once IDs and Keys are configured you'll see social login buttons on top of the main comment form. Social Login buttons are only available for guests, so make sure you're logged-out before checking those.", "wpdiscuz"); ?>
+        <img class="wpd-opt-img"
+             src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/dashboard/" . $setting["icon"])); ?>"
+             style="height: 90px; padding-top: 5px;"/>
+        <?php esc_html_e("wpDiscuz comes with built-in social login and share buttons. It includes Facebook, X, Google, Disqus, WordPress.com, VK and OK Social Networks. Here you can configure App IDs and Keys to enable those. Once IDs and Keys are configured you'll see social login buttons on top of the main comment form. Social Login buttons are only available for guests, so make sure you're logged-out before checking those.", "wpdiscuz"); ?>
     </div>
     <div class="wpd-opt-doc" style="padding-top: 10px;">
-        <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/facebook-app-configuration/" title="<?php esc_attr_e("Read the documentation", "wpdiscuz") ?>" target="_blank"><i class="far fa-question-circle"></i></a>
+        <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/facebook-app-configuration/"
+           title="<?php esc_attr_e("Read the documentation", "wpdiscuz") ?>" target="_blank"><i
+                    class="far fa-question-circle"></i></a>
     </div>
 </div>
 <!-- Option end -->
@@ -23,7 +27,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["socialLoginAgreementCheckbox"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[socialLoginAgreementCheckbox]" id="socialLoginAgreementCheckbox">
+            <input type="checkbox" <?php checked($this->social["socialLoginAgreementCheckbox"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[socialLoginAgreementCheckbox]"
+                   id="socialLoginAgreementCheckbox">
             <label for="socialLoginAgreementCheckbox"></label>
         </div>
     </div>
@@ -41,7 +47,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["socialLoginInSecondaryForm"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[socialLoginInSecondaryForm]" id="socialLoginInSecondaryForm">
+            <input type="checkbox" <?php checked($this->social["socialLoginInSecondaryForm"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[socialLoginInSecondaryForm]"
+                   id="socialLoginInSecondaryForm">
             <label for="socialLoginInSecondaryForm"></label>
         </div>
     </div>
@@ -59,7 +67,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["displaySocialAvatar"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[displaySocialAvatar]" id="displaySocialAvatar">
+            <input type="checkbox" <?php checked($this->social["displaySocialAvatar"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[displaySocialAvatar]"
+                   id="displaySocialAvatar">
             <label for="displaySocialAvatar"></label>
         </div>
     </div>
@@ -77,7 +87,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["displayIconOnAvatar"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[displayIconOnAvatar]" id="displayIconOnAvatar">
+            <input type="checkbox" <?php checked($this->social["displayIconOnAvatar"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[displayIconOnAvatar]"
+                   id="displayIconOnAvatar">
             <label for="displayIconOnAvatar"></label>
         </div>
     </div>
@@ -95,7 +107,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["rememberLoggedinUser"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[rememberLoggedinUser]" id="rememberLoggedinUser">
+            <input type="checkbox" <?php checked($this->social["rememberLoggedinUser"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[rememberLoggedinUser]"
+                   id="rememberLoggedinUser">
             <label for="rememberLoggedinUser"></label>
         </div>
     </div>
@@ -106,10 +120,14 @@ if (!defined("ABSPATH")) {
 <!-- Option end -->
 
 <div class="wpd-social-label wpd-facebook" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/fb-m.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; Facebook
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/fb-m.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    Facebook
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using Facebook Login and Share Buttons you should get Facebook Application Key and Secret for your website. Please follow to this", "wpdiscuz"); ?> <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/facebook-app-configuration/" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To start using Facebook Login and Share Buttons you should get Facebook Application Key and Secret for your website. Please follow to this", "wpdiscuz"); ?>
+    <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/facebook-app-configuration/"
+       target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Valid OAuth Redirect URI", "wpdiscuz") . " : <code>" . esc_url_raw(admin_url("admin-ajax.php?action=wpd_login_callback&provider=facebook")) . "</code>"; ?>
 </p>
 
@@ -121,7 +139,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["enableFbLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableFbLogin]" id="enableFbLogin">
+            <input type="checkbox" <?php checked($this->social["enableFbLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableFbLogin]" id="enableFbLogin">
             <label for="enableFbLogin"></label>
         </div>
     </div>
@@ -140,7 +159,8 @@ if (!defined("ABSPATH")) {
         </div>
         <div class="wpd-opt-input">
             <div class="wpd-switcher">
-                <input type="checkbox" <?php checked($this->social["fbUseOAuth2"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[fbUseOAuth2]" id="fbUseOAuth2">
+                <input type="checkbox" <?php checked($this->social["fbUseOAuth2"] == 1); ?> value="1"
+                       name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[fbUseOAuth2]" id="fbUseOAuth2">
                 <label for="fbUseOAuth2"></label>
             </div>
         </div>
@@ -159,7 +179,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["enableFbShare"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableFbShare]" id="enableFbShare">
+            <input type="checkbox" <?php checked($this->social["enableFbShare"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableFbShare]" id="enableFbShare">
             <label for="enableFbShare"></label>
         </div>
     </div>
@@ -176,7 +197,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["fbAppID"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Application ID", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["fbAppID"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[fbAppID]" id="wpd-fb-app-id" />
+        <input placeholder="<?php esc_attr_e("Application ID", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["fbAppID"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[fbAppID]" id="wpd-fb-app-id"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["fbAppID"]["docurl"]) ?>
@@ -191,7 +214,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["fbAppSecret"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Application Secret", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["fbAppSecret"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[fbAppSecret]" id="wpd-fb-app-secret" />
+        <input placeholder="<?php esc_attr_e("Application Secret", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["fbAppSecret"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[fbAppSecret]" id="wpd-fb-app-secret"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["fbAppSecret"]["docurl"]) ?>
@@ -201,11 +226,15 @@ if (!defined("ABSPATH")) {
 
 
 <div class="wpd-social-label wpd-twitter" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/tw-m.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; Twitter
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/x-m.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    X
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using Twitter Login Button you should get Consumer Key and Secret for your website. Please follow to this", "wpdiscuz"); ?> <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/twitter-app-configuration/" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
-    <?php echo esc_html__("Twitter Callback URL", "wpdiscuz") . " : <code>" . esc_url_raw(admin_url("admin-ajax.php")) . "</code>"; ?>
+    <?php esc_html_e("To start using X Login Button you should get Consumer Key and Secret for your website. Please follow to this", "wpdiscuz"); ?>
+    <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/twitter-app-configuration/"
+       target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php echo esc_html__("X Callback URL", "wpdiscuz") . " : <code>" . esc_url_raw(admin_url("admin-ajax.php")) . "</code>"; ?>
 </p>
 
 
@@ -217,7 +246,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["enableTwitterLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableTwitterLogin]" id="enableTwitterLogin">
+            <input type="checkbox" <?php checked($this->social["enableTwitterLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableTwitterLogin]" id="enableTwitterLogin">
             <label for="enableTwitterLogin"></label>
         </div>
     </div>
@@ -235,7 +265,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["enableTwitterShare"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableTwitterShare]" id="enableTwitterShare">
+            <input type="checkbox" <?php checked($this->social["enableTwitterShare"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableTwitterShare]" id="enableTwitterShare">
             <label for="enableTwitterShare"></label>
         </div>
     </div>
@@ -252,7 +283,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["twitterAppID"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Consumer Key (API Key)", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["twitterAppID"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[twitterAppID]" id="wpd-twitter-app-id" />
+        <input placeholder="<?php esc_attr_e("Consumer Key (API Key)", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["twitterAppID"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[twitterAppID]" id="wpd-twitter-app-id"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["twitterAppID"]["docurl"]) ?>
@@ -267,7 +300,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["twitterAppSecret"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Consumer Secret (API Secret)", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["twitterAppSecret"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[twitterAppSecret]" id="wpd-twitter-app-secret" />
+        <input placeholder="<?php esc_attr_e("Consumer Secret (API Secret)", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["twitterAppSecret"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[twitterAppSecret]" id="wpd-twitter-app-secret"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["twitterAppSecret"]["docurl"]) ?>
@@ -277,10 +312,14 @@ if (!defined("ABSPATH")) {
 
 
 <div class="wpd-social-label wpd-google" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/gg-m.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; Google
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/g-m.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    Google
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using Google Login Button you should get Client ID and  Client Secret for your website. Please follow to this", "wpdiscuz"); ?> <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/google-app-configuration/" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To start using Google Login Button you should get Client ID and  Client Secret for your website. Please follow to this", "wpdiscuz"); ?>
+    <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/google-app-configuration/"
+       target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Permitted URI redirects", "wpdiscuz") . " : <code>" . esc_url_raw(admin_url("admin-ajax.php")) . "?action=wpd_login_callback&provider=google</code>"; ?>
 </p>
 
@@ -292,7 +331,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox"<?php checked($this->social["enableGoogleLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableGoogleLogin]" id="enableGoogleLogin">
+            <input type="checkbox"<?php checked($this->social["enableGoogleLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableGoogleLogin]" id="enableGoogleLogin">
             <label for="enableGoogleLogin"></label>
         </div>
     </div>
@@ -309,7 +349,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["googleClientID"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Client ID", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["googleClientID"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[googleClientID]" id="wpd-google-client-id" />
+        <input placeholder="<?php esc_attr_e("Client ID", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["googleClientID"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[googleClientID]" id="wpd-google-client-id"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["googleClientID"]["docurl"]) ?>
@@ -324,7 +366,10 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["googleClientSecret"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Client Secret", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["googleClientSecret"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[googleClientSecret]" id="wpd-google-client-secret" />
+        <input placeholder="<?php esc_attr_e("Client Secret", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["googleClientSecret"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[googleClientSecret]"
+               id="wpd-google-client-secret"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["googleClientSecret"]["docurl"]) ?>
@@ -333,12 +378,64 @@ if (!defined("ABSPATH")) {
 <!-- Option end -->
 
 
-
-<div class="wpd-social-label wpd-disqus" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/dq-m.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; Disqus
+<div class="wpd-social-label wpd-telegram" style="padding: 25px 0px 10px 0px;">
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/telegram.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    Telegram
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using Disqus Login Button you should get Public Key and Secret Key. Please follow to this ", "wpdiscuz"); ?> <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/disqus-app-configuration/" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To start using Telegram Login Button you should get Telegram API Token for your website. Please follow to this", "wpdiscuz"); ?>
+    <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/telegram-bot-configuration/"
+       target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php echo esc_html__("Origin URL", "wpdiscuz") . " : <code>" . get_home_url() . "</code>"; ?>
+</p>
+
+<!-- Option start -->
+<div class="wpd-opt-row wpd-opt-row-tight" data-wpd-opt="enableTelegramLogin">
+    <div class="wpd-opt-name">
+        <label for="enableTelegramLogin"><?php echo esc_html($setting["options"]["enableTelegramLogin"]["label"]) ?></label>
+        <p class="wpd-desc"><?php echo esc_html($setting["options"]["enableTelegramLogin"]["description"]) ?></p>
+    </div>
+    <div class="wpd-opt-input">
+        <div class="wpd-switcher">
+            <input type="checkbox"<?php checked($this->social["enableTelegramLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableTelegramLogin]"
+                   id="enableTelegramLogin">
+            <label for="enableTelegramLogin"></label>
+        </div>
+    </div>
+    <div class="wpd-opt-doc">
+        <?php $this->printDocLink($setting["options"]["enableTelegramLogin"]["docurl"]) ?>
+    </div>
+</div>
+<!-- Option end -->
+
+<!-- Option start -->
+<div class="wpd-opt-row wpd-opt-row-tight" data-wpd-opt="telegramToken">
+    <div class="wpd-opt-name">
+        <label for="telegramAPIToken"><?php echo esc_html($setting["options"]["telegramToken"]["label"]) ?></label>
+        <p class="wpd-desc"><?php echo esc_html($setting["options"]["telegramToken"]["description"]) ?></p>
+    </div>
+    <div class="wpd-opt-input">
+        <input placeholder="<?php esc_attr_e("API Token", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["telegramToken"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[telegramToken]" id="wpd-telegram-token"/>
+    </div>
+    <div class="wpd-opt-doc">
+        <?php $this->printDocLink($setting["options"]["telegramToken"]["docurl"]) ?>
+    </div>
+</div>
+<!-- Option end -->
+
+<div class="wpd-social-label wpd-disqus" style="padding: 25px 0px 10px 0px;">
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/dq-m.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    Disqus
+</div>
+<p style="font-size: 14px; font-style: italic; margin-top: 5px;">
+    <?php esc_html_e("To start using Disqus Login Button you should get Public Key and Secret Key. Please follow to this ", "wpdiscuz"); ?>
+    <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/disqus-app-configuration/"
+       target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Redirect URI", "wpdiscuz") . " : <code>" . esc_url_raw(admin_url("admin-ajax.php")) . "?action=wpd_login_callback&provider=disqus</code>"; ?>
 </p>
 
@@ -350,7 +447,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["enableDisqusLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableDisqusLogin]" id="enableDisqusLogin">
+            <input type="checkbox" <?php checked($this->social["enableDisqusLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableDisqusLogin]" id="enableDisqusLogin">
             <label for="enableDisqusLogin"></label>
         </div>
     </div>
@@ -367,7 +465,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["disqusPublicKey"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Public Key", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["disqusPublicKey"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[disqusPublicKey]" id="wpd-disqus-public-key" />
+        <input placeholder="<?php esc_attr_e("Public Key", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["disqusPublicKey"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[disqusPublicKey]" id="wpd-disqus-public-key"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["disqusPublicKey"]["docurl"]) ?>
@@ -382,7 +482,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["disqusSecretKey"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Secure Key", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["disqusSecretKey"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[disqusSecretKey]" id="wpd-disqus-secret-key" />
+        <input placeholder="<?php esc_attr_e("Secure Key", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["disqusSecretKey"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[disqusSecretKey]" id="wpd-disqus-secret-key"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["disqusSecretKey"]["docurl"]) ?>
@@ -392,10 +494,14 @@ if (!defined("ABSPATH")) {
 
 
 <div class="wpd-social-label wpd-wordpress" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/wp-m.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; WordPress.com
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/wp-m.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    WordPress.com
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using Wordpress.com Login Button you should get Client ID and Client Secret. Please follow to this ", "wpdiscuz"); ?> <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/wordpress-com-app-configuration/" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To start using Wordpress.com Login Button you should get Client ID and Client Secret. Please follow to this ", "wpdiscuz"); ?>
+    <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/wordpress-com-app-configuration/"
+       target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Redirect URI", "wpdiscuz") . " : <code>" . esc_url_raw(home_url("/")) . "</code>"; ?>
 </p>
 
@@ -407,7 +513,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["enableWordpressLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableWordpressLogin]" id="enableWordpressLogin">
+            <input type="checkbox" <?php checked($this->social["enableWordpressLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableWordpressLogin]"
+                   id="enableWordpressLogin">
             <label for="enableWordpressLogin"></label>
         </div>
     </div>
@@ -424,7 +532,10 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["wordpressClientID"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Client ID", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["wordpressClientID"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[wordpressClientID]" id="wpd-wordpress-client-id" />
+        <input placeholder="<?php esc_attr_e("Client ID", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["wordpressClientID"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[wordpressClientID]"
+               id="wpd-wordpress-client-id"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["wordpressClientID"]["docurl"]) ?>
@@ -439,7 +550,10 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["wordpressClientSecret"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Client Secret", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["wordpressClientSecret"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[wordpressClientSecret]" id="wpd-wordpress-client-secret" />
+        <input placeholder="<?php esc_attr_e("Client Secret", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["wordpressClientSecret"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[wordpressClientSecret]"
+               id="wpd-wordpress-client-secret"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["wordpressClientSecret"]["docurl"]) ?>
@@ -447,10 +561,14 @@ if (!defined("ABSPATH")) {
 </div>
 <!-- Option end -->
 <div class="wpd-social-label wpd-instagram" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/ig-m.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; Instagram
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/ig-m.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    Instagram
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using Instagram Login Button you should get Client ID and Client Secret. Please follow to this ", "wpdiscuz"); ?> <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/instagram-app-configuration/" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To start using Instagram Login Button you should get Client ID and Client Secret. Please follow to this ", "wpdiscuz"); ?>
+    <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/instagram-app-configuration/"
+       target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Redirect URI", "wpdiscuz") . " : <code>" . esc_url_raw(site_url('/wpdiscuz_auth/instagram/')) . "</code>"; ?>
 </p>
 
@@ -462,7 +580,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox"<?php checked($this->social["enableInstagramLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableInstagramLogin]" id="enableInstagramLogin">
+            <input type="checkbox"<?php checked($this->social["enableInstagramLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableInstagramLogin]"
+                   id="enableInstagramLogin">
             <label for="enableInstagramLogin"></label>
         </div>
     </div>
@@ -479,7 +599,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["instagramAppID"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("App ID", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["instagramAppID"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[instagramAppID]" id="wpd-google-client-id" />
+        <input placeholder="<?php esc_attr_e("App ID", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["instagramAppID"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[instagramAppID]" id="instagramAppID"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["instagramAppID"]["docurl"]) ?>
@@ -494,7 +616,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["instagramAppSecret"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("App Secret", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["instagramAppSecret"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[instagramAppSecret]" id="wpd-google-client-secret" />
+        <input placeholder="<?php esc_attr_e("App Secret", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["instagramAppSecret"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[instagramAppSecret]" id="instagramAppSecret"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["instagramAppSecret"]["docurl"]) ?>
@@ -503,10 +627,14 @@ if (!defined("ABSPATH")) {
 <!-- Option end -->
 
 <div class="wpd-social-label wpd-linkedin" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/in-m.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; LinkedIn
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/in-m.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    LinkedIn
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using Linkedin Login Button you should get Client ID and Client Secret. Please follow to this ", "wpdiscuz"); ?> <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/linkedin-app-configuration/" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To start using Linkedin Login Button you should get Client ID and Client Secret. Please follow to this ", "wpdiscuz"); ?>
+    <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/linkedin-app-configuration/"
+       target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Redirect URI", "wpdiscuz") . " : <code>" . esc_url_raw(site_url('/wpdiscuz_auth/linkedin/')) . "</code>"; ?>
 </p>
 
@@ -518,12 +646,34 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox"<?php checked($this->social["enableLinkedinLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableLinkedinLogin]" id="enableLinkedinLogin">
+            <input type="checkbox"<?php checked($this->social["enableLinkedinLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableLinkedinLogin]"
+                   id="enableLinkedinLogin">
             <label for="enableLinkedinLogin"></label>
         </div>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["enableLinkedinLogin"]["docurl"]) ?>
+    </div>
+</div>
+<!-- Option end -->
+
+<!-- Option start -->
+<div class="wpd-opt-row wpd-opt-row-tight" data-wpd-opt="enableLinkedinLoginOpenID">
+    <div class="wpd-opt-name">
+        <label for="enableLinkedinLoginOpenID"><?php echo esc_html($setting["options"]["enableLinkedinLoginOpenID"]["label"]) ?></label>
+        <p class="wpd-desc"><?php echo esc_html($setting["options"]["enableLinkedinLoginOpenID"]["description"]) ?></p>
+    </div>
+    <div class="wpd-opt-input">
+        <div class="wpd-switcher">
+            <input type="checkbox"<?php checked($this->social["enableLinkedinLoginOpenID"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableLinkedinLoginOpenID]"
+                   id="enableLinkedinLoginOpenID">
+            <label for="enableLinkedinLoginOpenID"></label>
+        </div>
+    </div>
+    <div class="wpd-opt-doc">
+        <?php $this->printDocLink($setting["options"]["enableLinkedinLoginOpenID"]["docurl"]) ?>
     </div>
 </div>
 <!-- Option end -->
@@ -535,7 +685,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["linkedinClientID"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Client ID", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["linkedinClientID"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[linkedinClientID]" id="wpd-google-client-id" />
+        <input placeholder="<?php esc_attr_e("Client ID", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["linkedinClientID"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[linkedinClientID]" id="linkedinClientID"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["linkedinClientID"]["docurl"]) ?>
@@ -550,7 +702,10 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["linkedinClientSecret"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Client Secret", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["linkedinClientSecret"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[linkedinClientSecret]" id="wpd-google-client-secret" />
+        <input placeholder="<?php esc_attr_e("Client Secret", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["linkedinClientSecret"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[linkedinClientSecret]"
+               id="linkedinClientSecret"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["linkedinClientSecret"]["docurl"]) ?>
@@ -559,7 +714,9 @@ if (!defined("ABSPATH")) {
 <!-- Option end -->
 
 <div class="wpd-social-label wpd-wapp" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/wapp-m.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; WhatsApp
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/wapp-m.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    WhatsApp
 </div>
 
 <!-- Option start -->
@@ -570,7 +727,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox"<?php checked($this->social["enableWhatsappShare"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableWhatsappShare]" id="enableWhatsappShare">
+            <input type="checkbox"<?php checked($this->social["enableWhatsappShare"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableWhatsappShare]"
+                   id="enableWhatsappShare">
             <label for="enableWhatsappShare"></label>
         </div>
     </div>
@@ -581,10 +740,14 @@ if (!defined("ABSPATH")) {
 <!-- Option end -->
 
 <div class="wpd-social-label wpd-yandex" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/ya-m.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; Yandex
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/ya-m.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    Yandex
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using Yandex Login Button you should get Client ID and Client Secret. Please follow to this ", "wpdiscuz"); ?> <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/yandex-app-configuration/" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To start using Yandex Login Button you should get Client ID and Client Secret. Please follow to this ", "wpdiscuz"); ?>
+    <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/yandex-app-configuration/"
+       target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Redirect URI", "wpdiscuz") . " : <code>" . esc_url_raw(admin_url("admin-ajax.php?action=wpd_login_callback&provider=yandex")) . "</code>"; ?>
 </p>
 
@@ -596,7 +759,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox"<?php checked($this->social["enableYandexLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableYandexLogin]" id="enableYandexLogin">
+            <input type="checkbox"<?php checked($this->social["enableYandexLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableYandexLogin]" id="enableYandexLogin">
             <label for="enableYandexLogin"></label>
         </div>
     </div>
@@ -613,7 +777,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["yandexID"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("ID", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["yandexID"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[yandexID]" id="wpd-google-client-id" />
+        <input placeholder="<?php esc_attr_e("ID", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["yandexID"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[yandexID]" id="yandexID"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["yandexID"]["docurl"]) ?>
@@ -628,7 +794,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["yandexPassword"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Password", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["yandexPassword"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[yandexPassword]" id="wpd-google-client-secret" />
+        <input placeholder="<?php esc_attr_e("Password", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["yandexPassword"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[yandexPassword]" id="yandexPassword"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["yandexPassword"]["docurl"]) ?>
@@ -637,10 +805,14 @@ if (!defined("ABSPATH")) {
 <!-- Option end -->
 
 <div class="wpd-social-label wpd-vk" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/vk-m.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; VK
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/vk-m.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    VK
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using VK Login Button you should get Application ID and Secure Key. Please follow to this ", "wpdiscuz"); ?> <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/vk-app-configuration/" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To start using VK Login Button you should get Application ID and Secure Key. Please follow to this ", "wpdiscuz"); ?>
+    <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/vk-app-configuration/"
+       target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Redirect URI", "wpdiscuz") . " : <code>" . esc_url_raw(admin_url("admin-ajax.php")) . "</code>"; ?>
 </p>
 
@@ -653,7 +825,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["enableVkLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableVkLogin]" id="enableVkLogin">
+            <input type="checkbox" <?php checked($this->social["enableVkLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableVkLogin]" id="enableVkLogin">
             <label for="enableVkLogin"></label>
         </div>
     </div>
@@ -671,7 +844,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["enableVkShare"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableVkShare]" id="enableVkShare">
+            <input type="checkbox" <?php checked($this->social["enableVkShare"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableVkShare]" id="enableVkShare">
             <label for="enableVkShare"></label>
         </div>
     </div>
@@ -688,7 +862,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["vkAppID"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Application ID", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["vkAppID"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[vkAppID]" id="wpd-vk-app-id" />
+        <input placeholder="<?php esc_attr_e("Application ID", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["vkAppID"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[vkAppID]" id="wpd-vk-app-id"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["vkAppID"]["docurl"]) ?>
@@ -703,7 +879,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["vkAppSecret"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Secure Key", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["vkAppSecret"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[vkAppSecret]" id="wpd-vk-app-secret" />
+        <input placeholder="<?php esc_attr_e("Secure Key", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["vkAppSecret"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[vkAppSecret]" id="wpd-vk-app-secret"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["vkAppSecret"]["docurl"]) ?>
@@ -712,10 +890,14 @@ if (!defined("ABSPATH")) {
 <!-- Option end -->
 
 <div class="wpd-social-label wpd-mailru" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/mr-m.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; Mail.ru
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/mr-m.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    Mail.ru
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using Mail.ru Login Button you should get Client ID and Client Secret. Please follow to this ", "wpdiscuz"); ?> <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/mail-ru-app-configuration/" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To start using Mail.ru Login Button you should get Client ID and Client Secret. Please follow to this ", "wpdiscuz"); ?>
+    <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/social-login-and-share/mail-ru-app-configuration/"
+       target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Redirect URI", "wpdiscuz") . " : <code>" . esc_url_raw(admin_url("admin-ajax.php?action=wpd_login_callback&provider=mailru")) . "</code>"; ?>
 </p>
 
@@ -727,7 +909,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox"<?php checked($this->social["enableMailruLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableMailruLogin]" id="enableMailruLogin">
+            <input type="checkbox"<?php checked($this->social["enableMailruLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableMailruLogin]" id="enableMailruLogin">
             <label for="enableMailruLogin"></label>
         </div>
     </div>
@@ -744,7 +927,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["mailruClientID"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("ID", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["mailruClientID"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[mailruClientID]" id="wpd-google-client-id" />
+        <input placeholder="<?php esc_attr_e("ID", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["mailruClientID"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[mailruClientID]" id="mailruClientID"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["mailruClientID"]["docurl"]) ?>
@@ -759,7 +944,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["mailruClientSecret"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Secret Key", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["mailruClientSecret"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[mailruClientSecret]" id="wpd-google-client-secret" />
+        <input placeholder="<?php esc_attr_e("Secret Key", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["mailruClientSecret"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[mailruClientSecret]" id="mailruClientSecret"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["mailruClientSecret"]["docurl"]) ?>
@@ -768,11 +955,15 @@ if (!defined("ABSPATH")) {
 <!-- Option end -->
 
 <div class="wpd-social-label wpd-ok" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/ok-m.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; OK
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/ok-m.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    OK
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
     <?php esc_html_e("Getting started with", "wpdiscuz"); ?> <a href="https://apiok.ru/en/ext/oauth/">OK API</a><br>
-    <?php esc_html_e("To get the Application ID, Key and Secret, you should create an app using one of the supported types (external, Android, iOS), use this", "wpdiscuz"); ?> <a href="https://apiok.ru/en/dev/app/create" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To get the Application ID, Key and Secret, you should create an app using one of the supported types (external, Android, iOS), use this", "wpdiscuz"); ?>
+    <a href="https://apiok.ru/en/dev/app/create" target="_blank"
+       style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Redirect URI", "wpdiscuz") . " : <code>" . esc_url_raw(admin_url("admin-ajax.php")) . "</code>"; ?>
 </p>
 
@@ -785,7 +976,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["enableOkLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableOkLogin]" id="enableOkLogin">
+            <input type="checkbox" <?php checked($this->social["enableOkLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableOkLogin]" id="enableOkLogin">
             <label for="enableOkLogin"></label>
         </div>
     </div>
@@ -803,7 +995,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->social["enableOkShare"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableOkShare]" id="enableOkShare">
+            <input type="checkbox" <?php checked($this->social["enableOkShare"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableOkShare]" id="enableOkShare">
             <label for="enableOkShare"></label>
         </div>
     </div>
@@ -820,7 +1013,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["okAppID"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Application ID", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["okAppID"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[okAppID]" id="wpd-ok-app-id" />
+        <input placeholder="<?php esc_attr_e("Application ID", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["okAppID"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[okAppID]" id="wpd-ok-app-id"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["okAppID"]["docurl"]) ?>
@@ -835,7 +1030,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["okAppKey"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Application Key", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["okAppKey"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[okAppKey]" id="wpd-ok-app-key" />
+        <input placeholder="<?php esc_attr_e("Application Key", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["okAppKey"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[okAppKey]" id="wpd-ok-app-key"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["okAppKey"]["docurl"]) ?>
@@ -850,7 +1047,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["okAppSecret"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Application Secret", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["okAppSecret"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[okAppSecret]" id="wpd-ok-app-secret" />
+        <input placeholder="<?php esc_attr_e("Application Secret", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["okAppSecret"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[okAppSecret]" id="wpd-ok-app-secret"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["okAppSecret"]["docurl"]) ?>
@@ -858,10 +1057,14 @@ if (!defined("ABSPATH")) {
 </div>
 <!-- Option end -->
 <div class="wpd-social-label wpd-wechat" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/wechat.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; WeChat
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/wechat.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    WeChat
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using WeChat Login Button you should get AppID and Secret. Please follow to this ", "wpdiscuz"); ?> <a href="https://janrain-education-center.knowledgeowl.com/home/wechat-social-login-configuration-guide" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To start using WeChat Login Button you should get AppID and Secret. Please follow to this ", "wpdiscuz"); ?>
+    <a href="https://janrain-education-center.knowledgeowl.com/home/wechat-social-login-configuration-guide"
+       target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Redirect URI", "wpdiscuz") . " : <code>" . esc_url_raw(admin_url("admin-ajax.php?action=wpd_login_callback&provider=wechat")) . "</code>"; ?>
 </p>
 
@@ -873,7 +1076,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox"<?php checked($this->social["enableWechatLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableWechatLogin]" id="enableWechatLogin">
+            <input type="checkbox"<?php checked($this->social["enableWechatLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableWechatLogin]" id="enableWechatLogin">
             <label for="enableWechatLogin"></label>
         </div>
     </div>
@@ -890,7 +1094,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["wechatAppID"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("App ID", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["wechatAppID"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[wechatAppID]" id="wpd-google-client-id" />
+        <input placeholder="<?php esc_attr_e("App ID", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["wechatAppID"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[wechatAppID]" id="wechatAppID"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["wechatAppID"]["docurl"]) ?>
@@ -905,7 +1111,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["wechatSecret"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Secret", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["wechatSecret"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[wechatSecret]" id="wpd-google-client-secret" />
+        <input placeholder="<?php esc_attr_e("Secret", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["wechatSecret"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[wechatSecret]" id="wechatSecret"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["wechatSecret"]["docurl"]) ?>
@@ -914,10 +1122,14 @@ if (!defined("ABSPATH")) {
 <!-- Option end -->
 
 <div class="wpd-social-label wpd-weibo" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/weibo.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; Sina Weibo
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/weibo.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    Sina Weibo
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using Weibo Login Button you should get App Key and App Secret. Please follow to this ", "wpdiscuz"); ?> <a href="https://janrain-education-center.knowledgeowl.com/home/sina-weibo-social-login-configuration-guide" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To start using Weibo Login Button you should get App Key and App Secret. Please follow to this ", "wpdiscuz"); ?>
+    <a href="https://janrain-education-center.knowledgeowl.com/home/sina-weibo-social-login-configuration-guide"
+       target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Redirect URI", "wpdiscuz") . " : <code>" . esc_url_raw(admin_url("admin-ajax.php?action=wpd_login_callback&provider=weibo")) . "</code>"; ?>
 </p>
 
@@ -929,7 +1141,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox"<?php checked($this->social["enableWeiboLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableWeiboLogin]" id="enableWeiboLogin">
+            <input type="checkbox"<?php checked($this->social["enableWeiboLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableWeiboLogin]" id="enableWeiboLogin">
             <label for="enableWeiboLogin"></label>
         </div>
     </div>
@@ -946,7 +1159,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["weiboKey"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Key", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["weiboKey"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[weiboKey]" id="wpd-google-client-id" />
+        <input placeholder="<?php esc_attr_e("Key", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["weiboKey"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[weiboKey]" id="weiboKey"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["weiboKey"]["docurl"]) ?>
@@ -961,7 +1176,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["weiboSecret"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Secret", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["weiboSecret"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[weiboSecret]" id="wpd-google-client-secret" />
+        <input placeholder="<?php esc_attr_e("Secret", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["weiboSecret"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[weiboSecret]" id="weiboSecret"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["weiboSecret"]["docurl"]) ?>
@@ -970,10 +1187,14 @@ if (!defined("ABSPATH")) {
 <!-- Option end -->
 
 <div class="wpd-social-label wpd-qq" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/qq.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; Tencent QQ
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/qq.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    Tencent QQ
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using Tencent QQ Login Button you should get AppID and AppKey. Please follow to this ", "wpdiscuz"); ?> <a href="https://janrain-education-center.knowledgeowl.com/home/qq-social-login-configuration-guide" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To start using Tencent QQ Login Button you should get AppID and AppKey. Please follow to this ", "wpdiscuz"); ?>
+    <a href="https://janrain-education-center.knowledgeowl.com/home/qq-social-login-configuration-guide" target="_blank"
+       style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Redirect URI", "wpdiscuz") . " : <code>" . esc_url_raw(admin_url("admin-ajax.php?action=wpd_login_callback&provider=qq")) . "</code>"; ?>
 </p>
 
@@ -985,7 +1206,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox"<?php checked($this->social["enableQQLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableQQLogin]" id="enableQQLogin">
+            <input type="checkbox"<?php checked($this->social["enableQQLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableQQLogin]" id="enableQQLogin">
             <label for="enableQQLogin"></label>
         </div>
     </div>
@@ -1002,7 +1224,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["qqAppID"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("App ID", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["qqAppID"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[qqAppID]" id="wpd-google-client-id" />
+        <input placeholder="<?php esc_attr_e("App ID", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["qqAppID"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[qqAppID]" id="qqAppID"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["qqAppID"]["docurl"]) ?>
@@ -1017,7 +1241,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["qqSecret"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Secret", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["qqSecret"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[qqSecret]" id="wpd-google-client-secret" />
+        <input placeholder="<?php esc_attr_e("Secret", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["qqSecret"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[qqSecret]" id="qqSecret"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["qqSecret"]["docurl"]) ?>
@@ -1026,10 +1252,14 @@ if (!defined("ABSPATH")) {
 <!-- Option end -->
 
 <div class="wpd-social-label wpd-baidu" style="padding: 25px 0px 10px 0px;">
-    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/baidu.png")); ?>" style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp; Baidu
+    <img src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/social-icons/baidu.png")); ?>"
+         style="vertical-align:bottom; height: 24px; margin-bottom: -2px; position: relative; border-radius: 50%;">&nbsp;
+    Baidu
 </div>
 <p style="font-size: 14px; font-style: italic; margin-top: 5px;">
-    <?php esc_html_e("To start using Baidu Login Button you should get Client Id and Client Secret. Please follow to this ", "wpdiscuz"); ?> <a href="https://auth0.com/docs/connections/social/baidu" target="_blank" style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
+    <?php esc_html_e("To start using Baidu Login Button you should get Client Id and Client Secret. Please follow to this ", "wpdiscuz"); ?>
+    <a href="https://auth0.com/docs/connections/social/baidu" target="_blank"
+       style="font-weight: 600;"><?php esc_html_e("instruction &raquo;", "wpdiscuz"); ?></a> &nbsp;
     <?php echo esc_html__("Redirect URI", "wpdiscuz") . " : <code>" . esc_url_raw(admin_url("admin-ajax.php?action=wpd_login_callback&provider=baidu")) . "</code>"; ?>
 </p>
 
@@ -1041,7 +1271,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox"<?php checked($this->social["enableBaiduLogin"] == 1); ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableBaiduLogin]" id="enableBaiduLogin">
+            <input type="checkbox"<?php checked($this->social["enableBaiduLogin"] == 1); ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[enableBaiduLogin]" id="enableBaiduLogin">
             <label for="enableBaiduLogin"></label>
         </div>
     </div>
@@ -1058,7 +1289,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["baiduAppID"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("App ID", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["baiduAppID"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[baiduAppID]" id="wpd-google-client-id" />
+        <input placeholder="<?php esc_attr_e("App ID", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["baiduAppID"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[baiduAppID]" id="baiduAppID"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["baiduAppID"]["docurl"]) ?>
@@ -1073,7 +1306,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["baiduSecret"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input placeholder="<?php esc_attr_e("Secret", "wpdiscuz"); ?>" type="text" value="<?php echo esc_attr($this->social["baiduSecret"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[baiduSecret]" id="wpd-google-client-secret" />
+        <input placeholder="<?php esc_attr_e("Secret", "wpdiscuz"); ?>" type="text"
+               value="<?php echo esc_attr($this->social["baiduSecret"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_SOCIAL); ?>[baiduSecret]" id="baiduSecret"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["baiduSecret"]["docurl"]) ?>

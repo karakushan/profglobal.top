@@ -439,7 +439,7 @@ if (!class_exists('nxs_snapClassNT')) { class nxs_snapClassNT {
     
     public function adjMetaOpt($optMt, $pMeta) { return $this->adjMetaOptG($optMt, $pMeta); }
     
-    public function ajaxPost($options) { check_ajax_referer('nxsSsPageWPN');  $postID = $_POST['id'];  $nt = $this->ntInfo['lcode']; $ntU = $this->ntInfo['code']; $ntName = $this->ntInfo['name']; 
+    public function ajaxPost($options) { check_ajax_referer('nxsSsPageWPN');  $postID = sanitize_key($_POST['id']);  $nt = $this->ntInfo['lcode']; $ntU = $this->ntInfo['code']; $ntName = $this->ntInfo['name'];
       foreach ($options[$nt] as $ii=>$nto) if ($ii==$_POST['nid']) {  $nto['ii'] = $ii; $nto['pType'] = 'aj';  $po =  get_post_meta($postID, 'snap'.$ntU, true); $po =  maybe_unserialize($po); $clName = 'nxs_snapClass'.$ntU; $ntClInst = new $clName(); 
         if (is_array($po) && isset($po[$ii]) && is_array($po[$ii])){ $nto = $ntClInst->adjMetaOpt($nto, $po[$ii]); }
         $result = $this->publish($postID, $nto); if ($result == '200') die("Your post has been successfully sent to ".$ntName); else die($result);        

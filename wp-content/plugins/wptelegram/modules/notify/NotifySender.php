@@ -176,22 +176,15 @@ class NotifySender extends BaseClass {
 
 		if ( ! empty( $text ) ) {
 
-			$parse_mode = Utils::valid_parse_mode( $this->module->options()->get( 'parse_mode', 'HTML' ) );
-
-			$options = [
-				'format_to' => $parse_mode,
-				'id'        => 'p2tg',
-				'limit'     => Utils::get_max_text_length( 'text' ),
-				'limit_by'  => 'chars',
-			];
-
-			$text = Utils::prepare_content( $text, $options );
-
-			$disable_web_page_preview = true;
+			$options = $this->get_prepare_content_options( Utils::get_max_text_length( 'text' ) );
 
 			$this->responses = [
 				[
-					'sendMessage' => compact( 'text', 'parse_mode', 'disable_web_page_preview' ),
+					'sendMessage' => [
+						'text'                 => Utils::prepare_content( $text, $options ),
+						'parse_mode'           => $options['format_to'],
+						'link_preview_options' => [ 'is_disabled' => true ],
+					],
 				],
 			];
 		}
@@ -260,26 +253,54 @@ class NotifySender extends BaseClass {
 	 * @return string The text for the given macro.
 	 */
 	private function get_macro_value( $macro ) {
-		$parse_mode = Utils::valid_parse_mode( $this->module->options()->get( 'parse_mode', 'HTML' ) );
-
-		$converter = Utils::get_html_converter( [ 'format_to' => $parse_mode ], 'notify' );
 
 		$value = '';
 
+		$options = $this->get_prepare_content_options();
+
 		switch ( $macro ) {
 			case 'email_message':
-				$message = $this->prepare_email_message( $this->wp_mail_args['message'], $this->wp_mail_args['headers'] );
-				$value   = $converter->convert( $message );
+				$value = $this->prepare_email_message( $this->wp_mail_args['message'], $this->wp_mail_args['headers'] );
+				$value = Utils::prepare_content( $value, $options );
 				break;
 
 			case 'email_subject':
-				$value = $converter->convert( wp_strip_all_tags( $this->wp_mail_args['subject'], true ) );
+				$value = wp_strip_all_tags( $this->wp_mail_args['subject'], true );
+				$value = Utils::prepare_content( $value, $options );
 				break;
 		}
 
 		$value = apply_filters( 'wptelegram_notify_macro_value', $value, $macro, $this->wp_mail_args, $this->module->options() );
 
 		return apply_filters( "wptelegram_notify_macro_{$macro}_value", $value, $this->wp_mail_args, $this->module->options() );
+	}
+
+
+	/**
+	 * Get the options for prepare_content
+	 *
+	 * @since 4.0.7
+	 *
+	 * @param int $limit The limit.
+	 *
+	 * @return array
+	 */
+	private function get_prepare_content_options( $limit = 0 ) {
+		$parse_mode = Utils::valid_parse_mode( $this->module->options()->get( 'parse_mode', 'HTML' ) );
+
+		$options = [
+			'format_to'       => $parse_mode,
+			'id'              => 'notify',
+			'limit'           => $limit,
+			'limit_by'        => 'chars',
+			'text_hyperlinks' => 'retain',
+			'images_in_links' => [
+				'title_or_alt'    => 'retain',
+				'lone_image_link' => 'retain',
+			],
+		];
+
+		return apply_filters( 'wptelegram_notify_prepare_content_options', $options, $limit, $this->wp_mail_args, $this->chats2emails, $this->module->options() );
 	}
 
 	/**
@@ -327,7 +348,14 @@ class NotifySender extends BaseClass {
 				$params = reset( $response );
 				$method = key( $response );
 
-				$params['chat_id'] = $chat_id;
+				// Remove note added to the chat id after "|".
+				$chat_id = preg_replace( '/\s*\|.*?$/u', '', $chat_id );
+
+				list( $params['chat_id'], $params['message_thread_id'] ) = array_pad( explode( ':', $chat_id ), 2, '' );
+
+				if ( ! $params['message_thread_id'] ) {
+					unset( $params['message_thread_id'] );
+				}
 
 				$params = apply_filters( 'wptelegram_notify_api_method_params', $params, $method, $this->wp_mail_args, $this->chats2emails, $this->module->options() );
 

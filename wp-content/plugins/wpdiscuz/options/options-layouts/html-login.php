@@ -6,11 +6,15 @@ if (!defined("ABSPATH")) {
 <!-- Option start -->
 <div class="wpd-opt-row">
     <div class="wpd-opt-intro">
-        <img class="wpd-opt-img" src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/dashboard/" . $setting["icon"])); ?>" style="height: 80px; padding-top: 5px;"/>
+        <img class="wpd-opt-img"
+             src="<?php echo esc_url_raw(plugins_url(WPDISCUZ_DIR_NAME . "/assets/img/dashboard/" . $setting["icon"])); ?>"
+             style="height: 80px; padding-top: 5px;"/>
         <?php echo sprintf(esc_html__("Here you can manage commenters authorization and data control related settings. wpDiscuz is focused on user engagement and community building ideas, therefore it's integrated with community builder plugins like wpForo Forum, BuddyPress, etc... With these plugins comment authors are linked to their profile pages. In case you want to display commenters profile and activity information directly on comment list, please be sure to check out the %s addon.", "wpdiscuz"), "<a href='https://gvectors.com/product/wpdiscuz-comment-author-info/'  target='_blank' style='color:#07B290;'>wpDiscuz Comemnt Author Info</a>"); ?>
     </div>
     <div class="wpd-opt-doc" style="padding-top: 10px;">
-        <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/user-authorization-and-profile-data/" title="<?php esc_attr_e("Read the documentation", "wpdiscuz") ?>" target="_blank"><i class="far fa-question-circle"></i></a>
+        <a href="https://wpdiscuz.com/docs/wpdiscuz-7/plugin-settings/user-authorization-and-profile-data/"
+           title="<?php esc_attr_e("Read the documentation", "wpdiscuz") ?>" target="_blank"><i
+                    class="far fa-question-circle"></i></a>
     </div>
 </div>
 <!-- Option end -->
@@ -23,7 +27,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->login["showLoggedInUsername"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[showLoggedInUsername]" id="showLoggedInUsername">
+            <input type="checkbox" <?php checked($this->login["showLoggedInUsername"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[showLoggedInUsername]"
+                   id="showLoggedInUsername">
             <label for="showLoggedInUsername"></label>
         </div>
     </div>
@@ -41,7 +47,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->login["showLoginLinkForGuests"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[showLoginLinkForGuests]" id="showLoginLinkForGuests">
+            <input type="checkbox" <?php checked($this->login["showLoginLinkForGuests"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[showLoginLinkForGuests]"
+                   id="showLoginLinkForGuests">
             <label for="showLoginLinkForGuests"></label>
         </div>
     </div>
@@ -58,7 +66,9 @@ if (!defined("ABSPATH")) {
         <p class="wpd-desc"><?php echo esc_html($setting["options"]["loginUrl"]["description"]) ?></p>
     </div>
     <div class="wpd-opt-input">
-        <input type="url" value="<?php echo esc_attr($this->login["loginUrl"]); ?>" name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[loginUrl]" id="loginUrl" placeholder="<?php echo esc_url_raw(home_url("/my-login-page/")) ?>" />
+        <input type="url" value="<?php echo esc_attr($this->login["loginUrl"]); ?>"
+               name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[loginUrl]" id="loginUrl"
+               placeholder="<?php echo esc_url_raw(home_url("/my-login-page/")) ?>"/>
     </div>
     <div class="wpd-opt-doc">
         <?php $this->printDocLink($setting["options"]["loginUrl"]["docurl"]) ?>
@@ -84,7 +94,8 @@ if (!defined("ABSPATH")) {
         </div>
         <div class="wpd-optset">
             <div class="wpd-switcher">
-                <input type="checkbox" <?php checked($this->login["showActivityTab"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[showActivityTab]" id="showActivityTab">
+                <input type="checkbox" <?php checked($this->login["showActivityTab"] == 1) ?> value="1"
+                       name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[showActivityTab]" id="showActivityTab">
                 <label for="showActivityTab"></label>
             </div>
             <div class="wpd-optset-label">
@@ -93,7 +104,9 @@ if (!defined("ABSPATH")) {
         </div>
         <div class="wpd-optset">
             <div class="wpd-switcher">
-                <input type="checkbox" <?php checked($this->login["showSubscriptionsTab"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[showSubscriptionsTab]" id="showSubscriptionsTab">
+                <input type="checkbox" <?php checked($this->login["showSubscriptionsTab"] == 1) ?> value="1"
+                       name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[showSubscriptionsTab]"
+                       id="showSubscriptionsTab">
                 <label for="showSubscriptionsTab"></label>
             </div>
             <div class="wpd-optset-label">
@@ -102,7 +115,8 @@ if (!defined("ABSPATH")) {
         </div>
         <div class="wpd-optset">
             <div class="wpd-switcher">
-                <input type="checkbox" <?php checked($this->login["showFollowsTab"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[showFollowsTab]" id="showFollowsTab">
+                <input type="checkbox" <?php checked($this->login["showFollowsTab"] == 1) ?> value="1"
+                       name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[showFollowsTab]" id="showFollowsTab">
                 <label for="showFollowsTab"></label>
             </div>
             <div class="wpd-optset-label">
@@ -124,7 +138,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->login["enableProfileURLs"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[enableProfileURLs]" id="enableProfileURLs">
+            <input type="checkbox" <?php checked($this->login["enableProfileURLs"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[enableProfileURLs]" id="enableProfileURLs">
             <label for="enableProfileURLs"></label>
         </div>
     </div>
@@ -142,7 +157,9 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->login["websiteAsProfileUrl"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[websiteAsProfileUrl]" id="websiteAsProfileUrl">
+            <input type="checkbox" <?php checked($this->login["websiteAsProfileUrl"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[websiteAsProfileUrl]"
+                   id="websiteAsProfileUrl">
             <label for="websiteAsProfileUrl"></label>
         </div>
     </div>
@@ -160,7 +177,8 @@ if (!defined("ABSPATH")) {
     </div>
     <div class="wpd-opt-input">
         <div class="wpd-switcher">
-            <input type="checkbox" <?php checked($this->login["isUserByEmail"] == 1) ?> value="1" name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[isUserByEmail]" id="isUserByEmail">
+            <input type="checkbox" <?php checked($this->login["isUserByEmail"] == 1) ?> value="1"
+                   name="<?php echo esc_attr(WpdiscuzCore::TAB_LOGIN); ?>[isUserByEmail]" id="isUserByEmail">
             <label for="isUserByEmail"></label>
         </div>
     </div>

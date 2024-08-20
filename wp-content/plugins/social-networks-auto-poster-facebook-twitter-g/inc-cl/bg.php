@@ -24,7 +24,8 @@ if (!class_exists("nxs_snapClassBG")) { class nxs_snapClassBG extends nxs_snapCl
   //#### Show Unit  Settings  
   function checkIfSetupFinished($options) { return !empty($options['accessToken']) || !empty($options['uPass']); }
   public function doAuth() { $ntInfo = $this->ntInfo; global $nxs_snapSetPgURL;     
-    if ( isset($_GET['code']) && $_GET['code']!='' && isset($_GET['state']) && substr($_GET['state'], 0, 7) == 'nxs-bg-'){  $at = sanitize_text_field($_GET['code']);  $ii = str_replace('nxs-bg-','',sanitize_text_field($_GET['state']));
+    if ( isset($_GET['code']) && $_GET['code']!='' && isset($_GET['state']) && substr($_GET['state'], 0, 7) == 'nxs-bg-'){
+      $at = sanitize_text_field($_GET['code']);  $ii = sanitize_text_field(str_replace('nxs-bg-','',sanitize_text_field($_GET['state'])));
       echo "----=={ oAuth 2.0 Wordflow }==----<br/>-= This is normal technical authorization info that will dissapear (Unless you get some errors) =- <br/><br/><br/>"; 
       $gGet = $_GET; unset($gGet['code']); unset($gGet['state']); unset($gGet['scope']); unset($gGet['post_type']); unset($gGet['post']); //prr($nxs_snapSetPgURL);
       $sturl = explode('?',$nxs_snapSetPgURL); $nxs_snapSetPgURL = $sturl[0].((!empty($gGet))?'?'.http_build_query($gGet):'');

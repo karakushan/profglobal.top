@@ -1,42 +1,41 @@
-<?php return array (
-  'root' => 
-  array (
-    'pretty_version' => 'dev-develop',
-    'version' => 'dev-develop',
-    'aliases' => 
-    array (
+<?php return array(
+    'root' => array(
+        'name' => 'wpglobus/wpglobus',
+        'pretty_version' => 'dev-develop',
+        'version' => 'dev-develop',
+        'reference' => 'f61882f66165bd9d4d90e7c51c699aa6e7a62458',
+        'type' => 'wordpress-plugin',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => false,
     ),
-    'reference' => '8be7f5ab873c73ea567597fdd26f07e620363071',
-    'name' => 'wpglobus/wpglobus',
-  ),
-  'versions' => 
-  array (
-    'bemailr/wp-requirements' => 
-    array (
-      'pretty_version' => '2.0.3',
-      'version' => '2.0.3.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'e903973b0dfc1178f89c757bd205327811ea4658',
+    'versions' => array(
+        'bemailr/wp-requirements' => array(
+            'pretty_version' => '2.0.3',
+            'version' => '2.0.3.0',
+            'reference' => 'e903973b0dfc1178f89c757bd205327811ea4658',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../bemailr/wp-requirements',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'tivwp/updater' => array(
+            'pretty_version' => '1.0.10',
+            'version' => '1.0.10.0',
+            'reference' => 'c380367c0e30359c16dde53d023208e349257be2',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../tivwp/updater',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'wpglobus/wpglobus' => array(
+            'pretty_version' => 'dev-develop',
+            'version' => 'dev-develop',
+            'reference' => 'f61882f66165bd9d4d90e7c51c699aa6e7a62458',
+            'type' => 'wordpress-plugin',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
     ),
-    'tivwp/updater' => 
-    array (
-      'pretty_version' => '1.0.10',
-      'version' => '1.0.10.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'c380367c0e30359c16dde53d023208e349257be2',
-    ),
-    'wpglobus/wpglobus' => 
-    array (
-      'pretty_version' => 'dev-develop',
-      'version' => 'dev-develop',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '8be7f5ab873c73ea567597fdd26f07e620363071',
-    ),
-  ),
 );

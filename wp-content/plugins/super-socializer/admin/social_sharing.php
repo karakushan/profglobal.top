@@ -2,7 +2,7 @@
 <div id="fb-root"></div>
 <div>
 	<?php
-	echo sprintf( __( 'You can appreciate the effort put in this free plugin by rating it <a href="%s" target="_blank">here</a> and help us continue the development of this plugin by purchasing the premium add-ons and plugins <a href="%s" target="_blank">here</a>', 'super-socializer' ), 'https://wordpress.org/support/view/plugin-reviews/super-socializer', 'https://www.heateor.com/add-ons' );
+	echo sprintf( __('You can appreciate the effort put in this free plugin by rating it <a href="%s" target="_blank">here</a> and help us continue the development of this plugin by purchasing the premium add-ons and plugins <a href="%s" target="_blank">here</a>', 'super-socializer'), 'https://wordpress.org/support/view/plugin-reviews/super-socializer', 'https://www.heateor.com/add-ons');
 	?>
 </div>
 <div class="metabox-holder columns-2" style="padding-bottom:8px" id="post-body">
@@ -103,7 +103,7 @@
 											<div id="the_champ_preview" style="cursor:pointer;float:left">
 												<div class="theChampCounterPreviewInnertop">44</div>
 												<div class="theChampCounterPreviewInnerleft">44</div>
-												<div id="horizontal_svg" style="float:left;width:100%;height:100%;background:url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%22-4%20-4%2040%2040%22%3E%3Cpath%20d%3D%22M17.78%2027.5V17.008h3.522l.527-4.09h-4.05v-2.61c0-1.182.33-1.99%202.023-1.99h2.166V4.66c-.375-.05-1.66-.16-3.155-.16-3.123%200-5.26%201.905-5.26%205.405v3.016h-3.53v4.09h3.53V27.5h4.223z%22%20fill%3D%22<?php echo $sharing_color ? esc_attr(str_replace( '#', '%23', $sharing_color)) : "%23fff" ?>%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E') no-repeat center center; margin: auto"></div>
+												<div id="horizontal_svg" style="float:left;width:100%;height:100%;background:url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%22-4%20-4%2040%2040%22%3E%3Cpath%20d%3D%22M17.78%2027.5V17.008h3.522l.527-4.09h-4.05v-2.61c0-1.182.33-1.99%202.023-1.99h2.166V4.66c-.375-.05-1.66-.16-3.155-.16-3.123%200-5.26%201.905-5.26%205.405v3.016h-3.53v4.09h3.53V27.5h4.223z%22%20fill%3D%22<?php echo $sharing_color ? esc_attr(str_replace('#', '%23', $sharing_color)) : "%23fff" ?>%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E') no-repeat center center; margin: auto"></div>
 												<div class="theChampCounterPreviewInnerright">44</div>
 												<div class="theChampCounterPreviewInnerbottom">44</div>
 											</div>
@@ -402,7 +402,7 @@
 											<div id="the_champ_vertical_preview" style="cursor:pointer;float:left">
 												<div class="theChampCounterVerticalPreviewInnertop">44</div>
 												<div class="theChampCounterVerticalPreviewInnerleft">44</div>
-												<div id="vertical_svg" style="float:left;width:100%;height:100%;background:url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%22-4%20-4%2040%2040%22%3E%3Cpath%20d%3D%22M17.78%2027.5V17.008h3.522l.527-4.09h-4.05v-2.61c0-1.182.33-1.99%202.023-1.99h2.166V4.66c-.375-.05-1.66-.16-3.155-.16-3.123%200-5.26%201.905-5.26%205.405v3.016h-3.53v4.09h3.53V27.5h4.223z%22%20fill%3D%22<?php echo $vertical_sharing_color ? esc_attr(str_replace( '#', '%23', $vertical_sharing_color)) : "%23fff" ?>%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E') no-repeat center center; margin: auto"></div>
+												<div id="vertical_svg" style="float:left;width:100%;height:100%;background:url('data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%22-4%20-4%2040%2040%22%3E%3Cpath%20d%3D%22M17.78%2027.5V17.008h3.522l.527-4.09h-4.05v-2.61c0-1.182.33-1.99%202.023-1.99h2.166V4.66c-.375-.05-1.66-.16-3.155-.16-3.123%200-5.26%201.905-5.26%205.405v3.016h-3.53v4.09h3.53V27.5h4.223z%22%20fill%3D%22<?php echo $vertical_sharing_color ? esc_attr(str_replace('#', '%23', $vertical_sharing_color)) : "%23fff" ?>%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E') no-repeat center center; margin: auto"></div>
 												<div class="theChampCounterVerticalPreviewInnerright">44</div>
 												<div class="theChampCounterVerticalPreviewInnerbottom">44</div>
 											</div>
@@ -657,6 +657,9 @@
 									</td>
 								</tr>
 							</table>
+							<p class="submit">
+								<input style="margin-left:8px" type="submit" name="save" class="button button-primary" value="<?php _e("Save Changes", 'super-socializer'); ?>" />
+							</p>
 						</div>
 					</div>
 				</div>
@@ -736,6 +739,12 @@
 						}elseif(isset($theChampSharingOptions['vertical_youtube_username'])){
 							$youtubeUsername = $theChampSharingOptions['vertical_youtube_username'];
 						}
+						$googleNewsUrl = '';
+						if(isset($theChampSharingOptions['google_news_url']) && $theChampSharingOptions['google_news_url']){
+							$googleNewsUrl = $theChampSharingOptions['google_news_url'];
+						}elseif(isset($theChampSharingOptions['vertical_google_news_url'])){
+							$googleNewsUrl = $theChampSharingOptions['vertical_google_news_url'];
+						}
 						$rutubeUsername = '';
 						if(isset($theChampSharingOptions['rutube_url'])){
 							$rutubeUsername = $theChampSharingOptions['rutube_url'];
@@ -811,11 +820,29 @@
 								</td>
 							</tr>
 						</tbody>
-
-						<tbody id="the_champ_comment_options" <?php echo !isset($theChampSharingOptions['horizontal_re_providers']) || ! in_array( 'Comment', $theChampSharingOptions['horizontal_re_providers'] ) ? 'style = "display: none"' : '';?> >
+						<tbody id="the_champ_google_news_options" <?php echo ! in_array('Google_News', $theChampSharingOptions['horizontal_re_providers'] ) ? 'style="display:none"' : '';?>>
 							<tr>
 								<th>
-								<label for="the_champ_comment_container_id"><?php _e( "HTML ID of container element of comment form", 'super-socializer'); ?></label><img id="the_champ_comment_container_id_help" class="the_champ_help_bubble" src="<?php echo plugins_url( '../images/info.png', __FILE__) ?>" />
+								<label for="the_champ_google_news_url"><?php _e("Google News URL", 'super-socializer'); ?></label>
+								<img id="the_champ_google_news_url_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__ ) ?>" />
+								</th>
+								<td>
+								<input id="the_champ_google_news_url" name="the_champ_sharing[google_news_url]" type="text" value="<?php echo esc_attr( $googleNewsUrl ) ?>" />
+								</td>
+							</tr>
+							<tr class="the_champ_help_content" id="the_champ_google_news_url_help_cont">
+								<td colspan="2">
+								<div>
+								<?php _e('URL of the Google News page where you want the website-visitors to get redirected on click of the icon', 'super-socializer') ?>
+								</div>
+								</td>
+							</tr>
+						</tbody>
+
+						<tbody id="the_champ_comment_options" <?php echo !isset($theChampSharingOptions['horizontal_re_providers']) || ! in_array('Comment', $theChampSharingOptions['horizontal_re_providers'] ) ? 'style = "display: none"' : '';?> >
+							<tr>
+								<th>
+								<label for="the_champ_comment_container_id"><?php _e("HTML ID of container element of comment form", 'super-socializer'); ?></label><img id="the_champ_comment_container_id_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__) ?>" />
 								</th>
 								<td>
 								<input id="the_champ_comment_container_id" name="the_champ_sharing[comment_container_id]" type="text" value="<?php echo esc_attr($commentFormContainerId) ?>" />
@@ -825,7 +852,7 @@
 							<tr class="the_champ_help_content" id="the_champ_comment_container_id_help_cont">
 								<td colspan="2">
 								<div>
-								<?php _e( 'HTML ID of the element you want to focus on the webpage, on click of Comment icon.', 'super-socializer') ?>
+								<?php _e('HTML ID of the element you want to focus on the webpage, on click of Comment icon.', 'super-socializer') ?>
 								</div>
 								</td>
 							</tr>
@@ -833,7 +860,7 @@
 
 						<?php
 						$likeButtons = array('facebook_share', 'facebook_like', 'facebook_recommend', 'twitter_tweet', 'linkedin_share', 'pinterest_pin', 'buffer_share', 'xing_share', 'yummly_share', 'reddit_badge');
-						$sharingNetworks = array('facebook','youtube','rutube', 'gettr', 'gab','mastodon', 'twitter', 'Parler' , 'linkedin', 'print', 'email', 'reddit', 'digg', 'float_it', 'tumblr', 'vkontakte', 'pinterest', 'xing', 'whatsapp', 'instagram', 'yummly', 'buffer', 'AIM', 'Amazon_Wish_List', 'AOL_Mail', 'App.net', 'Balatarin', 'BibSonomy', 'Bitty_Browser', 'Blinklist', 'Blogger_Post', 'BlogMarks', 'Bookmarks.fr', 'Box.net', 'BuddyMarks', 'Care2_News', 'Comment', 'Copy_Link', 'Diary.Ru', 'Diaspora', 'Diigo', 'Douban', 'Draugiem', 'Evernote', 'Facebook_Messenger', 'Fark', 'Fintel', 'Flipboard', 'Folkd', 'GentleReader', 'Google_Bookmarks', 'Google_Classroom', 'Google_Gmail', 'Hacker_News', 'Hatena', 'Instapaper', 'Jamespot', 'Kakao', 'Kik', 'Kindle_It', 'Known', 'Line', 'LiveJournal', 'Mail.Ru', 'Mendeley', 'Meneame', 'MeWe', 'mix', 'Mixi', 'MySpace', 'Netvouz', 'Odnoklassniki', 'Outlook.com', 'Papaly', 'Pinboard', 'Plurk', 'Pocket', 'PrintFriendly', 'Protopage_Bookmarks', 'Pusha', 'Qzone', 'Rediff MyPage', 'Refind', 'Renren', 'Sina Weibo', 'SiteJot', 'Skype', 'Slashdot', 'SMS', 'StockTwits', 'Svejo', 'Symbaloo_Feeds', 'Telegram', 'Threema', 'Trello', 'Tuenti', 'Twiddla', 'TypePad_Post', 'Viadeo', 'Viber', 'Webnews', 'WordPress', 'Wykop', 'Yahoo_Mail', 'Yoolink');
+						$sharingNetworks = array('facebook','youtube','rutube', 'gettr', 'gab','mastodon', 'twitter', 'Parler' , 'linkedin', 'print', 'email', 'reddit', 'digg', 'float_it', 'tumblr', 'vkontakte', 'pinterest', 'xing', 'whatsapp', 'instagram', 'yummly', 'buffer', 'AIM', 'Amazon_Wish_List', 'AOL_Mail', 'App.net', 'Balatarin', 'BibSonomy', 'Bitty_Browser', 'Blinklist', 'Blogger_Post', 'BlogMarks', 'Bookmarks.fr', 'Box.net', 'BuddyMarks', 'Care2_News', 'Comment', 'Copy_Link', 'Diary.Ru', 'Diaspora', 'Diigo', 'Douban', 'Draugiem', 'Evernote', 'Facebook_Messenger', 'Fark', 'Fintel', 'Flipboard', 'Folkd', 'GentleReader', 'Google_Bookmarks', 'Google_Classroom', 'Google_Gmail', 'Hacker_News', 'Hatena', 'Instapaper', 'Jamespot', 'Kakao', 'Kik', 'Kindle_It', 'Known', 'Line', 'LiveJournal', 'Mail.Ru', 'Mendeley', 'Meneame', 'MeWe', 'mix', 'Mixi', 'MySpace', 'Netvouz', 'Odnoklassniki', 'Outlook.com', 'Papaly', 'Pinboard', 'Plurk', 'Pocket', 'PrintFriendly', 'Protopage_Bookmarks', 'Pusha', 'Qzone', 'Rediff MyPage', 'Refind', 'Renren', 'Sina Weibo', 'SiteJot', 'Skype', 'Slashdot', 'SMS', 'StockTwits', 'Svejo', 'Symbaloo_Feeds', 'Telegram', 'Threema', 'Trello', 'Tuenti', 'Twiddla', 'TypePad_Post', 'Viadeo', 'Viber', 'Webnews', 'WordPress', 'Wykop', 'Yahoo_Mail', 'Yoolink', 'Google_News', 'rss', 'truth_social', 'snapchat', 'Goodreads', 'Google_Translate', 'X', 'teams', 'minds');
 						?>
 						
 						<tr>
@@ -853,7 +880,7 @@
 							if($theChampSharingOptions['horizontal_sharing_shape'] == 'round'){
 								$horSharingStyle .= 'border-radius:999px;';
 								$horDeliciousRadius = 'border-radius:999px;';
-							} elseif ( isset( $theChampSharingOptions['horizontal_border_radius'] ) && $theChampSharingOptions['horizontal_border_radius'] != '' ) {
+							} elseif ( isset( $theChampSharingOptions['horizontal_border_radius'] ) && $theChampSharingOptions['horizontal_border_radius'] != '') {
 								$horSharingStyle .= 'border-radius:' . $theChampSharingOptions['horizontal_border_radius'] . 'px;';
 							}
 							?>
@@ -884,7 +911,7 @@
 								if ( isset( $theChampSharingOptions['horizontal_re_providers'] ) ) {
 									foreach ( $theChampSharingOptions['horizontal_re_providers'] as $rearrange ) {
 										?>
-										<li title="<?php echo esc_attr(ucfirst( str_replace( '_', ' ', $rearrange ) )) ?>" id="the_champ_re_horizontal_<?php echo esc_attr(str_replace(array(' ', '.'), '_', $rearrange)) ?>" >
+										<li title="<?php echo esc_attr(ucfirst( str_replace('_', ' ', $rearrange ) )) ?>" id="the_champ_re_horizontal_<?php echo esc_attr(str_replace(array(' ', '.'), '_', $rearrange)) ?>" >
 										<i style="display:block;<?php echo esc_attr($horSharingStyle) ?>" class="<?php echo in_array($rearrange, $likeButtons) ? '' : 'theChampSharingBackground' ?> theChamp<?php echo esc_attr(ucfirst(str_replace(array('_', '.', ' '), '', $rearrange))) ?>Background"><div class="theChampSharingSvg theChamp<?php echo esc_attr(ucfirst(str_replace(array('_', ' ', '.'), '', $rearrange))) ?>Svg" style="<?php echo esc_attr($horDeliciousRadius) ?>"></div></i>
 										<input type="hidden" name="the_champ_sharing[horizontal_re_providers][]" value="<?php echo esc_attr($rearrange) ?>">
 										</li>
@@ -931,15 +958,15 @@
 							}
 							?>
 							<div style="clear:both"></div>
-							<div style="width:100%; margin: 10px 0"><input type="text" onkeyup="theChampSearchSharingNetworks(this.value.trim())" placeholder="<?php _e( 'Search social network', 'super-socializer') ?>" class="search" /></div>
+							<div style="width:100%; margin: 10px 0"><input type="text" onkeyup="theChampSearchSharingNetworks(this.value.trim())" placeholder="<?php _e('Search social network', 'super-socializer') ?>" class="search" /></div>
 							<div style="clear:both"></div>
 							<?php
 							foreach($sharingNetworks as $sharingNetwork){
 								?>
 								<div class="theChampHorizontalSharingProviderContainer">
-								<input id="the_champ_<?php echo esc_attr($sharingNetwork) ?>" type="checkbox" <?php echo isset( $theChampSharingOptions['horizontal_re_providers'] ) && in_array($sharingNetwork, $theChampSharingOptions['horizontal_re_providers'] ) ? 'checked="checked"' : '';?> value="<?php echo esc_attr($sharingNetwork) ?>" />
+								<input id="the_champ_<?php echo esc_attr($sharingNetwork) ?>" type="checkbox" <?php echo isset( $theChampSharingOptions['horizontal_re_providers'] ) && in_array($sharingNetwork, $theChampSharingOptions['horizontal_re_providers'] ) ? 'checked="checked"' : '';?> <?php echo in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds')) ? 'disabled' : ''; ?> value="<?php echo esc_attr($sharingNetwork) ?>" />
 								<label for="the_champ_<?php echo esc_attr($sharingNetwork) ?>"><i style="display:block;width:18px;height:18px;" class="theChampSharing theChamp<?php echo esc_attr(str_replace(array('_', '.', ' '), '', ucfirst($sharingNetwork))) ?>Background"><ss style="display:block;" class="theChampSharingSvg theChamp<?php echo str_replace(array('_', '.', ' '), '', ucfirst($sharingNetwork)) ?>Svg"></ss></i></label>
-								<label for="the_champ_<?php echo esc_attr($sharingNetwork) ?>" class="lblSocialNetwork"><?php echo esc_html(str_replace('_', ' ', ucfirst($sharingNetwork))) ?></label>
+								<label for="the_champ_<?php echo esc_attr($sharingNetwork) ?>" class="lblSocialNetwork"><?php echo (in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds')) ? '<a href="https://www.heateor.com/comparison-between-sassy-social-share-pro-and-premium/" target="_blank">' : '') . esc_html(str_replace('_', ' ', ucfirst($sharingNetwork))) . (in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds') ) ? '</a>' : '') ?></label>
 								</div>
 								<?php
 							}
@@ -1006,8 +1033,8 @@
 							<input id="the_champ_archive" name="the_champ_sharing[archive]" type="checkbox" <?php echo isset( $theChampSharingOptions['archive'] ) ? 'checked="checked"' : '';?> value="1" />
 							<label for="the_champ_archive"><?php _e('Archive Pages (Category, Tag, Author or Date based pages)', 'super-socializer') ?></label><br/>
 							<?php
-							$post_types = get_post_types( array( 'public' => true ), 'names', 'and' );
-							$post_types = array_diff( $post_types, array( 'post', 'page' ) );
+							$post_types = get_post_types( array('public' => true ), 'names', 'and');
+							$post_types = array_diff( $post_types, array('post', 'page') );
 							if( count( $post_types ) ) {	
 								foreach ( $post_types as $post_type ) {
 									?>
@@ -1070,8 +1097,8 @@
 							<td>
 							<input id="the_champ_counts" name="the_champ_sharing[horizontal_counts]" type="checkbox" <?php echo isset( $theChampSharingOptions['horizontal_counts'] ) ? 'checked="checked"' : '';?> value="1" />
 							<br/>
-							<span style="font-size:12px"><?php _e( 'Share counts are supported for Twitter, Buffer, Reddit, Pinterest, Odnoklassniki, Fintel and Vkontakte', 'super-socializer') ?></span>
-							<span class="the_champ_help_content" style="display:block"><strong><?php echo sprintf( __( 'To show Twitter share count, you have to click "Give me my Twitter counts back" button at <a href="%s" target="_blank">TwitCount.com</a> and register your website %s with them. No need to copy-paste any code from their website.', 'super-socializer'), 'http://twitcount.com', home_url() ) ?></strong></span>
+							<span style="font-size:12px"><?php _e('Share counts are supported for Twitter, Buffer, Reddit, Pinterest, Odnoklassniki, Fintel and Vkontakte', 'super-socializer') ?></span>
+							<span class="the_champ_help_content" style="display:block"><strong><?php echo sprintf( __('To show Twitter share count, you have to click "Give me my Twitter counts back" button at <a href="%s" target="_blank">TwitCount.com</a> and register your website %s with them. No need to copy-paste any code from their website.', 'super-socializer'), 'http://twitcount.com', home_url() ) ?></strong></span>
 							</td>
 						</tr>
 
@@ -1126,6 +1153,9 @@
 						</tr>
 						</tbody>
 					</table>
+					<p class="submit">
+						<input style="margin-left:8px" type="submit" name="save" class="button button-primary" value="<?php _e("Save Changes", 'super-socializer'); ?>" />
+					</p>
 					</div>
 				</div>
 				
@@ -1237,10 +1267,29 @@
 							</tr>
 						</tbody>
 
+						<tbody id="the_champ_vertical_google_news_options" <?php echo ! in_array('Google_News', $theChampSharingOptions['vertical_re_providers'] ) ? 'style="display:none"' : '';?>>
+							<tr>
+								<th>
+								<label for="the_champ_vertical_google_news_url"><?php _e("Google News URL", 'super-socializer'); ?></label>
+								<img id="the_champ_vertical_google_news_url_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__ ) ?>" />
+								</th>
+								<td>
+								<input id="the_champ_vertical_google_news_url" name="the_champ_sharing[vertical_google_news_url]" type="text" value="<?php echo esc_attr( $googleNewsUrl ) ?>" />
+								</td>
+							</tr>
+							<tr class="the_champ_help_content" id="the_champ_vertical_google_news_url_help_cont">
+								<td colspan="2">
+								<div>
+								<?php _e('URL of the Google News page where you want the website-visitors to get redirected on click of the icon', 'super-socializer') ?>
+								</div>
+								</td>
+							</tr>
+						</tbody>
+
 						<tbody id="the_champ_vertical_comment_options" <?php echo !isset($theChampSharingOptions['vertical_re_providers']) || !in_array('Comment', $theChampSharingOptions['vertical_re_providers']) ? 'style = "display: none"' : '';?> >
 							<tr>
 								<th>
-								<label for="the_champ_vertical_comment_container_id"><?php _e("HTML ID of container element of comment form", 'super-socializer'); ?></label><img id="the_champ_vertical_comment_container_id_help" class="the_champ_help_bubble" src="<?php echo plugins_url( '../images/info.png', __FILE__) ?>" />
+								<label for="the_champ_vertical_comment_container_id"><?php _e("HTML ID of container element of comment form", 'super-socializer'); ?></label><img id="the_champ_vertical_comment_container_id_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__) ?>" />
 								</th>
 								<td>
 								<input id="the_champ_vertical_comment_container_id" name="the_champ_sharing[vertical_comment_container_id]" type="text" value="<?php echo esc_attr($commentFormContainerId) ?>" />
@@ -1250,7 +1299,7 @@
 							<tr class="the_champ_help_content" id="the_champ_vertical_comment_container_id_help_cont">
 								<td colspan="2">
 								<div>
-								<?php _e( 'HTML ID of the element you want to focus on the webpage, on click of Comment icon.', 'super-socializer') ?>
+								<?php _e('HTML ID of the element you want to focus on the webpage, on click of Comment icon.', 'super-socializer') ?>
 								</div>
 								</td>
 							</tr>
@@ -1271,7 +1320,7 @@
 							if($theChampSharingOptions['vertical_sharing_shape'] == 'round'){
 								$verticalSharingStyle .= 'border-radius:999px;';
 								$verticalDeliciousRadius = 'border-radius:999px;';
-							} elseif ( isset( $theChampSharingOptions['vertical_border_radius'] ) && $theChampSharingOptions['vertical_border_radius'] != '' ) {
+							} elseif ( isset( $theChampSharingOptions['vertical_border_radius'] ) && $theChampSharingOptions['vertical_border_radius'] != '') {
 								$verticalSharingStyle .= 'border-radius:' . $theChampSharingOptions['vertical_border_radius'] . 'px;';
 							}
 							?>
@@ -1302,7 +1351,7 @@
 								if ( isset( $theChampSharingOptions['vertical_re_providers'] ) ) {
 									foreach ( $theChampSharingOptions['vertical_re_providers'] as $rearrange ) {
 										?>
-										<li title="<?php echo esc_attr(ucfirst( str_replace( '_', ' ', $rearrange ) )) ?>" id="the_champ_re_vertical_<?php echo str_replace( array( ' ', '.' ), '_', $rearrange) ?>" >
+										<li title="<?php echo esc_attr(ucfirst( str_replace('_', ' ', $rearrange ) )) ?>" id="the_champ_re_vertical_<?php echo str_replace( array(' ', '.'), '_', $rearrange) ?>" >
 										<i style="display:block;<?php echo esc_attr($verticalSharingStyle) ?>" class="<?php echo in_array($rearrange, $likeButtons) ? '' : 'theChampVerticalSharingBackground' ?> theChamp<?php echo esc_attr(ucfirst(str_replace( array('_', '.', ' '), '', $rearrange))) ?>Background"><div class="theChampSharingSvg theChamp<?php echo esc_attr(ucfirst(str_replace( array('_', '.', ' '), '', $rearrange ) )) ?>Svg" style="<?php echo esc_attr($verticalDeliciousRadius) ?>"></div></i>
 										<input type="hidden" name="the_champ_sharing[vertical_re_providers][]" value="<?php echo esc_attr($rearrange) ?>">
 										</li>
@@ -1349,15 +1398,15 @@
 							}
 							?>
 							<div style="clear:both"></div>
-							<div style="width:100%; margin: 10px 0"><input type="text" onkeyup="theChampSearchSharingNetworks(this.value.trim())" placeholder="<?php _e( 'Search social network', 'super-socializer') ?>" class="search" /></div>
+							<div style="width:100%; margin: 10px 0"><input type="text" onkeyup="theChampSearchSharingNetworks(this.value.trim())" placeholder="<?php _e('Search social network', 'super-socializer') ?>" class="search" /></div>
 							<div style="clear:both"></div>
 							<?php
 							foreach($sharingNetworks as $sharingNetwork){
 								?>
 								<div class="theChampVerticalSharingProviderContainer">
-								<input id="the_champ_vertical_sharing_<?php echo esc_attr($sharingNetwork) ?>" type="checkbox" <?php echo isset( $theChampSharingOptions['vertical_re_providers'] ) && in_array($sharingNetwork, $theChampSharingOptions['vertical_re_providers'] ) ? 'checked="checked"' : '';?> value="<?php echo esc_attr($sharingNetwork) ?>" />
+								<input id="the_champ_vertical_sharing_<?php echo esc_attr($sharingNetwork) ?>" type="checkbox" <?php echo isset( $theChampSharingOptions['vertical_re_providers'] ) && in_array($sharingNetwork, $theChampSharingOptions['vertical_re_providers'] ) ? 'checked="checked"' : '';?> <?php echo in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds')) ? 'disabled' : ''; ?> value="<?php echo esc_attr($sharingNetwork) ?>" />
 								<label for="the_champ_vertical_sharing_<?php echo esc_attr($sharingNetwork) ?>"><i style="display:block;width:18px;height:18px;" class="theChampSharing theChamp<?php echo esc_attr(str_replace(array('_', '.', ' '), '', ucfirst($sharingNetwork))) ?>Background"><ss style="display:block;" class="theChampSharingSvg theChamp<?php echo esc_attr(str_replace(array('_', '.', ' '), '', ucfirst($sharingNetwork))) ?>Svg"></ss></i></label>
-								<label for="the_champ_vertical_sharing_<?php echo esc_attr($sharingNetwork) ?>" class="lblSocialNetwork"><?php echo esc_html(str_replace('_', ' ', ucfirst($sharingNetwork))) ?></label>
+								<label for="the_champ_vertical_sharing_<?php echo esc_attr($sharingNetwork) ?>" class="lblSocialNetwork"><?php echo (in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds')) ? '<a href="https://www.heateor.com/comparison-between-sassy-social-share-pro-and-premium/" target="_blank">' : '') . esc_html(str_replace('_', ' ', ucfirst($sharingNetwork))) . (in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds') ) ? '</a>' : '') ?></label>
 								</div>
 								<?php
 							}
@@ -1493,12 +1542,23 @@
 
 							if(function_exists('is_bbpress')){
 								?>
-								<br/>
 								<input id="the_champ_vertical_bb_forum" name="the_champ_sharing[vertical_bb_forum]" type="checkbox" <?php echo isset( $theChampSharingOptions['vertical_bb_forum'] ) ? 'checked="checked"' : '';?> value="1" />
 								<label for="the_champ_vertical_bb_forum"><?php _e('BBPress forum', 'super-socializer') ?></label>
 								<br/>
 								<input id="the_champ_vertical_bb_topic" name="the_champ_sharing[vertical_bb_topic]" type="checkbox" <?php echo isset( $theChampSharingOptions['vertical_bb_topic'] ) ? 'checked="checked"' : '';?> value="1" />
-								<label for="the_champ_vertical_bb_topic"><?php _e('BBPress topic', 'super-socializer') ?></label>
+								<label for="the_champ_vertical_bb_topic"><?php _e('BBPress topic', 'super-socializer') ?></label><br/>
+								<?php
+							}
+							if(heateor_ss_is_plugin_active('woocommerce/woocommerce.php')){
+								?>
+								<input id="the_champ_vertical_woocom_shop" name="the_champ_sharing[vertical_woocom_shop]" type="checkbox" <?php echo isset( $theChampSharingOptions['vertical_woocom_shop'] ) ? 'checked="checked"' : '';?> value="1" />
+								<label for="the_champ_vertical_woocom_shop"><?php _e('After individual product at WooCommerce Shop page', 'super-socializer') ?></label>
+								<br/>
+								<input id="the_champ_vertical_woocom_product" name="the_champ_sharing[vertical_woocom_product]" type="checkbox" <?php echo isset( $theChampSharingOptions['vertical_woocom_product'] ) ? 'checked="checked"' : '';?> value="1" />
+								<label for="the_champ_vertical_woocom_product"><?php _e('WooCommerce Product Page', 'super-socializer') ?></label>
+								<br/>
+								<input id="the_champ_vertical_woocom_thankyou" name="the_champ_sharing[vertical_woocom_thankyou]" type="checkbox" <?php echo isset( $theChampSharingOptions['vertical_woocom_thankyou'] ) ? 'checked="checked"' : '';?> value="1" />
+								<label for="the_champ_vertical_woocom_thankyou"><?php _e('WooCommerce Thankyou Page', 'super-socializer') ?></label>
 								<?php
 							}
 							?>
@@ -1520,8 +1580,8 @@
 							<td>
 							<input id="the_champ_vertical_counts" name="the_champ_sharing[vertical_counts]" type="checkbox" <?php echo isset( $theChampSharingOptions['vertical_counts'] ) ? 'checked="checked"' : '';?> value="1" />
 							<br/>
-							<span style="font-size:12px"><?php _e( 'Share counts are supported for Twitter, Buffer, Reddit, Pinterest, Odnoklassniki, Fintel and Vkontakte', 'super-socializer') ?></span>
-							<span class="the_champ_help_content" style="display:block"><strong><?php echo sprintf( __( 'To show Twitter share count, you have to click "Give me my Twitter counts back" button at <a href="%s" target="_blank">TwitCount.com</a> and register your website %s with them. No need to copy-paste any code from their website.', 'super-socializer'), 'http://twitcount.com', home_url() ) ?></strong></span>
+							<span style="font-size:12px"><?php _e('Share counts are supported for Twitter, Buffer, Reddit, Pinterest, Odnoklassniki, Fintel and Vkontakte', 'super-socializer') ?></span>
+							<span class="the_champ_help_content" style="display:block"><strong><?php echo sprintf( __('To show Twitter share count, you have to click "Give me my Twitter counts back" button at <a href="%s" target="_blank">TwitCount.com</a> and register your website %s with them. No need to copy-paste any code from their website.', 'super-socializer'), 'http://twitcount.com', home_url() ) ?></strong></span>
 							</td>
 						</tr>
 
@@ -1597,7 +1657,7 @@
 							<label for="the_champ_mobile_sharing"><?php _e("Vertical floating bar responsiveness", 'super-socializer'); ?></label><img id="the_champ_mobile_sharing_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__) ?>" />
 							</th>
 							<td>
-							<input id="the_champ_mobile_sharing" name="the_champ_sharing[hide_mobile_sharing]" type="checkbox" <?php echo isset( $theChampSharingOptions['hide_mobile_sharing'] ) ? 'checked="checked"' : '';?> value="1" /><label><?php echo sprintf( __( 'Display vertical interface only when screen is wider than %s pixels', 'super-socializer'), '<input style="width:46px" name="the_champ_sharing[vertical_screen_width]" type="text" value="' . ( isset( $theChampSharingOptions['vertical_screen_width'] ) ? $theChampSharingOptions['vertical_screen_width'] : '' ) . '" />' ) ?></label>
+							<input id="the_champ_mobile_sharing" name="the_champ_sharing[hide_mobile_sharing]" type="checkbox" <?php echo isset( $theChampSharingOptions['hide_mobile_sharing'] ) ? 'checked="checked"' : '';?> value="1" /><label><?php echo sprintf( __('Display vertical interface only when screen is wider than %s pixels', 'super-socializer'), '<input style="width:46px" name="the_champ_sharing[vertical_screen_width]" type="text" value="' . ( isset( $theChampSharingOptions['vertical_screen_width'] ) ? $theChampSharingOptions['vertical_screen_width'] : '') . '" />') ?></label>
 							</td>
 						</tr>
 						
@@ -1614,7 +1674,7 @@
 							<label for="the_champ_mobile_sharing_bottom"><?php _e("Horizontal floating bar responsiveness", 'super-socializer'); ?></label><img id="the_champ_mobile_sharing_bottom_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__) ?>" />
 							</th>
 							<td>
-							<input id="the_champ_mobile_sharing_bottom" name="the_champ_sharing[bottom_mobile_sharing]" type="checkbox" <?php echo isset( $theChampSharingOptions['bottom_mobile_sharing'] ) ? 'checked="checked"' : '';?> value="1" /><label><?php echo sprintf( __( 'Stick vertical floating interface horizontally at bottom only when screen is narrower than %s pixels', 'super-socializer'), '<input style="width:46px" name="the_champ_sharing[horizontal_screen_width]" type="text" value="' . ( isset( $theChampSharingOptions['horizontal_screen_width'] ) ? $theChampSharingOptions['horizontal_screen_width'] : '' ) . '" />' ) ?></label>
+							<input id="the_champ_mobile_sharing_bottom" name="the_champ_sharing[bottom_mobile_sharing]" type="checkbox" <?php echo isset( $theChampSharingOptions['bottom_mobile_sharing'] ) ? 'checked="checked"' : '';?> value="1" /><label><?php echo sprintf( __('Stick vertical floating interface horizontally at bottom only when screen is narrower than %s pixels', 'super-socializer'), '<input style="width:46px" name="the_champ_sharing[horizontal_screen_width]" type="text" value="' . ( isset( $theChampSharingOptions['horizontal_screen_width'] ) ? $theChampSharingOptions['horizontal_screen_width'] : '') . '" />') ?></label>
 							</td>
 						</tr>
 						
@@ -1633,8 +1693,8 @@
 								<label for="the_champ_mobile_sharing_position"><?php _e("Horizontal floating bar position", 'super-socializer'); ?></label><img id="the_champ_mobile_sharing_position_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__) ?>" />
 								</th>
 								<td>
-								<input type="radio" id="bottom_sharing_position_radio_nonresponsive" <?php echo $theChampSharingOptions['bottom_sharing_position_radio'] == 'nonresponsive' ? 'checked' : ''; ?> name="the_champ_sharing[bottom_sharing_position_radio]" value="nonresponsive" /><label for="bottom_sharing_position_radio_nonresponsive"><?php echo sprintf( __( '%s pixels from %s', 'super-socializer'), '<input id="the_champ_mobile_sharing_position" style="width:46px" name="the_champ_sharing[bottom_sharing_position]" type="text" value="' . ( isset( $theChampSharingOptions['bottom_sharing_position'] ) ? $theChampSharingOptions['bottom_sharing_position'] : '' ) . '" />', '<select style="width:63px" name="the_champ_sharing[bottom_sharing_alignment]"><option value="right" ' . ( ! isset( $theChampSharingOptions['bottom_sharing_alignment'] ) || $theChampSharingOptions['bottom_sharing_alignment'] == 'right' ? 'selected' : '' ) . '>right</option><option value="left" ' . ( isset( $theChampSharingOptions['bottom_sharing_alignment'] ) && $theChampSharingOptions['bottom_sharing_alignment'] == 'left' ? 'selected' : '' ) . '>left</option></select>' ) ?></label><br/>
-								<input type="radio" id="bottom_sharing_position_radio_responsive" <?php echo $theChampSharingOptions['bottom_sharing_position_radio'] == 'responsive' ? 'checked' : ''; ?> name="the_champ_sharing[bottom_sharing_position_radio]" value="responsive" /><label for="bottom_sharing_position_radio_responsive"><?php _e( 'Auto-adjust according to screen width (responsive)', 'super-socializer'); ?></label>
+								<input type="radio" id="bottom_sharing_position_radio_nonresponsive" <?php echo $theChampSharingOptions['bottom_sharing_position_radio'] == 'nonresponsive' ? 'checked' : ''; ?> name="the_champ_sharing[bottom_sharing_position_radio]" value="nonresponsive" /><label for="bottom_sharing_position_radio_nonresponsive"><?php echo sprintf( __('%s pixels from %s', 'super-socializer'), '<input id="the_champ_mobile_sharing_position" style="width:46px" name="the_champ_sharing[bottom_sharing_position]" type="text" value="' . ( isset( $theChampSharingOptions['bottom_sharing_position'] ) ? $theChampSharingOptions['bottom_sharing_position'] : '') . '" />', '<select style="width:63px" name="the_champ_sharing[bottom_sharing_alignment]"><option value="right" ' . ( ! isset( $theChampSharingOptions['bottom_sharing_alignment'] ) || $theChampSharingOptions['bottom_sharing_alignment'] == 'right' ? 'selected' : '') . '>right</option><option value="left" ' . ( isset( $theChampSharingOptions['bottom_sharing_alignment'] ) && $theChampSharingOptions['bottom_sharing_alignment'] == 'left' ? 'selected' : '') . '>left</option></select>') ?></label><br/>
+								<input type="radio" id="bottom_sharing_position_radio_responsive" <?php echo $theChampSharingOptions['bottom_sharing_position_radio'] == 'responsive' ? 'checked' : ''; ?> name="the_champ_sharing[bottom_sharing_position_radio]" value="responsive" /><label for="bottom_sharing_position_radio_responsive"><?php _e('Auto-adjust according to screen width (responsive)', 'super-socializer'); ?></label>
 								</td>
 							</tr>
 							
@@ -1650,6 +1710,9 @@
 
 						</tbody>
 					</table>
+					<p class="submit">
+						<input style="margin-left:8px" type="submit" name="save" class="button button-primary" value="<?php _e("Save Changes", 'super-socializer'); ?>" />
+					</p>
 					</div>
 				</div>
 				</div>
@@ -1733,7 +1796,7 @@
 						<tr class="the_champ_help_content" id="the_champ_bitly_token_help_cont">
 							<td colspan="2">
 							<div>
-							<?php echo sprintf( __( 'Login to your bit.ly account and navigate to <strong>Profile Settings > Generic Access Token</strong> (top-right corner) and authenticate to generate access token. More details at the <a href="%s" target="_blank">link</a>', 'super-socializer'), 'https://support.sendible.com/hc/en-us/articles/360021876751-How-To-Access-Your-Bit-ly-Key' ) ?>
+							<?php echo sprintf( __('Login to your bit.ly account and navigate to <strong>Profile Settings > Generic Access Token</strong> (top-right corner) and authenticate to generate access token. More details at the <a href="%s" target="_blank">link</a>', 'super-socializer'), 'https://support.sendible.com/hc/en-us/articles/360021876751-How-To-Access-Your-Bit-ly-Key') ?>
 							</div>
 							</td>
 						</tr>
@@ -1765,12 +1828,12 @@
 				<div style="clear:both">&nbsp;</div>
 
 				<div class="stuffbox">
-					<h3><label><?php _e( 'Share Count Cache', 'super-socializer') ?></label></h3>
+					<h3><label><?php _e('Share Count Cache', 'super-socializer') ?></label></h3>
 					<div class="inside">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="form-table editcomment menu_content_table">
 						<tr>
 							<th>
-							<label for="the_champ_share_count_cache"><?php _e( "Refresh Share Count cache every", 'super-socializer'); ?></label><img id="the_champ_share_count_cache_help" class="the_champ_help_bubble" src="<?php echo plugins_url( '../images/info.png', __FILE__) ?>" />
+							<label for="the_champ_share_count_cache"><?php _e("Refresh Share Count cache every", 'super-socializer'); ?></label><img id="the_champ_share_count_cache_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__) ?>" />
 							</th>
 							<td>
 							<input style="width: 50px;" id="the_champ_share_count_cache" name="the_champ_sharing[share_count_cache_refresh_count]" type="text" value="<?php echo esc_attr($theChampSharingOptions['share_count_cache_refresh_count']); ?>" />
@@ -1793,7 +1856,7 @@
 
 						<tr>
 							<th style="width:215px">
-							<input type="button" class="button-primary" value="<?php _e( 'Clear Share Counts Cache', 'super-socializer') ?>" onclick="heateorSsClearShareCountCache()" /><img id="the_champ_clear_share_count_cache_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__) ?>" />
+							<input type="button" class="button-primary" value="<?php _e('Clear Share Counts Cache', 'super-socializer') ?>" onclick="heateorSsClearShareCountCache()" /><img id="the_champ_clear_share_count_cache_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__) ?>" />
 							</th>
 							<td>
 							<img src="<?php echo plugins_url('../images/ajax_loader.gif', __FILE__) ?>" id="share_count_cache_loading" style="display:none" />
@@ -1804,7 +1867,7 @@
 						<tr class="the_champ_help_content" id="the_champ_clear_share_count_cache_help_cont">
 							<td colspan="2">
 							<div>
-							<?php _e( 'Use this to clear cached share counts', 'super-socializer') ?>
+							<?php _e('Use this to clear cached share counts', 'super-socializer') ?>
 							</div>
 							</td>
 						</tr>
@@ -1857,34 +1920,17 @@
 							</div>
 							</td>
 						</tr>
-
-						<tr>
-							<th>
-							<label for="the_champ_buffer_username"><?php _e("Buffer username (without @)", 'super-socializer'); ?></label><img id="the_champ_buffer_username_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__) ?>" />
-							</th>
-							<td>
-							<input id="the_champ_buffer_username" name="the_champ_sharing[buffer_username]" type="text" value="<?php echo isset( $theChampSharingOptions['buffer_username'] ) ? esc_attr($theChampSharingOptions['buffer_username']) : '' ?>" />
-							</td>
-						</tr>
-						
-						<tr class="the_champ_help_content" id="the_champ_buffer_username_help_cont">
-							<td colspan="2">
-							<div>
-							<?php _e('Provided username will be appended after the content being shared as "via @USERNAME". Leave empty if you do not want any username in the content being shared.', 'super-socializer') ?>
-							</div>
-							</td>
-						</tr>
 					</table>
 					</div>
 				</div>
 
 				<div class="stuffbox">
-					<h3><label><?php _e( 'AMP', 'super-socializer');?></label></h3>
+					<h3><label><?php _e('AMP', 'super-socializer');?></label></h3>
 					<div class="inside">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="form-table editcomment menu_content_table">
 						<tr>
 							<th>
-							<label for="the_champ_amp_enable"><?php _e("Enable sharing on AMP pages", 'super-socializer'); ?></label><img id="the_champ_amp_enable_help" class="the_champ_help_bubble" src="<?php echo plugins_url( '../images/info.png', __FILE__) ?>" />
+							<label for="the_champ_amp_enable"><?php _e("Enable sharing on AMP pages", 'super-socializer'); ?></label><img id="the_champ_amp_enable_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__) ?>" />
 							</th>
 							<td>
 							<input id="the_champ_amp_enable" name="the_champ_sharing[amp_enable]" type="checkbox" <?php echo isset( $theChampSharingOptions['amp_enable'] ) ? 'checked="checked"' : '';?> value="1" />
@@ -1894,11 +1940,14 @@
 						<tr class="the_champ_help_content" id="the_champ_amp_enable_help_cont">
 							<td colspan="2">
 							<div>
-							<?php _e( 'Enable this option to render sharing icons on AMP pages', 'super-socializer') ?>
+							<?php _e('Enable this option to render sharing icons on AMP pages', 'super-socializer') ?>
 							</div>
 							</td>
 						</tr>
 					</table>
+					<p class="submit">
+						<input style="margin-left:8px" type="submit" name="save" class="button button-primary" value="<?php _e("Save Changes", 'super-socializer'); ?>" />
+					</p>
 					</div>
 				</div>
 							
@@ -1918,13 +1967,16 @@
 						<table width="100%" border="0" cellspacing="0" cellpadding="0" class="form-table editcomment menu_content_table">
 							<tr>
 								<th>
-								<label for="the_champ_mycred_referral_id"><?php _e("Append myCRED referral ID to the urls being shared", 'super-socializer'); ?></label><img id="the_champ_mycred_referral_id_help" class="the_champ_help_bubble" src="<?php echo plugins_url( '../images/info.png', __FILE__ ) ?>" />
+								<label for="the_champ_mycred_referral_id"><?php _e("Append myCRED referral ID to the urls being shared", 'super-socializer'); ?></label><img id="the_champ_mycred_referral_id_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__ ) ?>" />
 								</th>
 								<td>
 								<input id="the_champ_mycred_referral_id" name="the_champ_sharing[mycred_referral]" type="checkbox" <?php echo isset($theChampSharingOptions['mycred_referral']) ? 'checked="checked"' : '';?> value="1" />
 								</td>
 							</tr>
 						</table>
+						<p class="submit">
+							<input style="margin-left:8px" type="submit" name="save" class="button button-primary" value="<?php _e("Save Changes", 'super-socializer'); ?>" />
+						</p>
 						</div>
 					</div>
 					</div>
@@ -1940,7 +1992,8 @@
 				<div class="stuffbox">
 					<h3><label><?php _e('Shortcode & Widget', 'super-socializer');?></label></h3>
 					<div class="inside" style="padding-left:7px">
-						<p><a style="text-decoration:none" href="http://support.heateor.com/social-sharing-shortcode-and-widget/" target="_blank"><?php _e('Shortcode & Widget', 'super-socializer') ?></a></p>
+						<p><a style="text-decoration:none" href="https://support.heateor.com/social-sharing-shortcode-and-widget/" target="_blank"><?php _e('Social Share Shortcode & Widget', 'super-socializer') ?></a></p>
+						<p><a style="text-decoration:none" href="https://support.heateor.com/social-follow-buttons-shortcode-and-widget/" target="_blank"><?php _e('Social Media Follow Shortcode & Widget', 'super-socializer') ?></a></p>
 					</div>
 				</div>
 				</div>
@@ -1951,13 +2004,19 @@
 				<div class="clear"></div>
 				<div class="the_champ_left_column">
 				<div class="stuffbox">
-					<h3><label><?php _e('Facebook Sharing Troubleshooter', 'super-socializer');?></label></h3>
+					<h3><label><?php _e('Social Share Troubleshooter', 'super-socializer');?></label></h3>
 					<div class="inside">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="form-table editcomment menu_content_table">
 						<tr>
 							<td>
-							<?php _e('If Facebook sharing is not working fine, click at the following link and enter the problematic url (where Facebook sharing is not working properly) of your website in the text field. Click "Debug" button.', 'super-socializer') ?><br/>
-							<a style="text-decoration: none" target="_blank" href="https://developers.facebook.com/tools/debug">https://developers.facebook.com/tools/debug</a>
+							<p>
+								<?php _e('If Facebook sharing is not working fine, click at the following link and enter the problematic URL (where Facebook sharing is not working properly) of your website in the text field. Click "Debug" button.', 'super-socializer') ?><br/>
+								<a style="text-decoration: none" target="_blank" href="https://developers.facebook.com/tools/debug">https://developers.facebook.com/tools/debug</a>
+							</p>
+							<p>
+								<?php _e('If Linkedin share is not showing correct title, image and description, click at the following link and enter the problematic URL (where Linkedin share is not working properly) of your website in the text field. Click "Inspect" button.', 'super-socializer') ?><br/>
+								<a style="text-decoration: none" target="_blank" href="https://www.linkedin.com/post-inspector/">https://www.linkedin.com/post-inspector/</a>
+							</p>
 							</td>
 						</tr>
 					</table>
@@ -1999,11 +2058,11 @@
 						<p><a href="http://support.heateor.com/how-to-customize-the-look-of-total-share-counts" target="_blank"><?php _e('How to customize the look of total share counts?', 'super-socializer') ?></a></p>
 						<p><a href="http://support.heateor.com/how-to-customize-the-look-of-individual-share-counts" target="_blank"><?php _e('How to customize the look of individual share counts?', 'super-socializer') ?></a></p>
 						<p><a href="http://support.heateor.com/how-to-show-whatsapp-icon-only-on-mobile-devices" target="_blank"><?php _e('How to show Whatsapp icon only on mobile devices?', 'super-socializer') ?></a></p>
-						<p><a href="http://support.heateor.com/how-to-hide-arrow-after-floating-sharing-bar" target="_blank"><?php _e( 'How to hide arrow after floating sharing bar?', 'super-socializer') ?></a></p>
-						<p><a href="http://support.heateor.com/why-is-share-count-not-getting-updated" target="_blank"><?php _e( 'Why is share count not getting updated?', 'super-socializer') ?></a></p>
-						<p><a href="http://support.heateor.com/why-is-there-so-much-space-between-like-buttons" target="_blank"><?php _e( 'Why is there so much space between like buttons?', 'super-socializer') ?></a></p>
-						<p><a href="http://support.heateor.com/why-is-floating-share-like-button-not-appearing-at-homepage" target="_blank"><?php _e( 'Why are floating sharing/like buttons not appearing at homepage?', 'super-socializer') ?></a></p>
-						<p><a href="https://wordpress.org/support/plugin/super-socializer" target="_blank"><?php _e( 'More', 'super-socializer' ) ?>...</a></p>
+						<p><a href="http://support.heateor.com/how-to-hide-arrow-after-floating-sharing-bar" target="_blank"><?php _e('How to hide arrow after floating sharing bar?', 'super-socializer') ?></a></p>
+						<p><a href="http://support.heateor.com/why-is-share-count-not-getting-updated" target="_blank"><?php _e('Why is share count not getting updated?', 'super-socializer') ?></a></p>
+						<p><a href="http://support.heateor.com/why-is-there-so-much-space-between-like-buttons" target="_blank"><?php _e('Why is there so much space between like buttons?', 'super-socializer') ?></a></p>
+						<p><a href="http://support.heateor.com/why-is-floating-share-like-button-not-appearing-at-homepage" target="_blank"><?php _e('Why are floating sharing/like buttons not appearing at homepage?', 'super-socializer') ?></a></p>
+						<p><a href="https://wordpress.org/support/plugin/super-socializer" target="_blank"><?php _e('More', 'super-socializer') ?>...</a></p>
 					</div>
 				</div>
 
@@ -2012,13 +2071,13 @@
 			</div>
 			
 		</div>
-		<div class="the_champ_clear"></div>
+		<div class="clear"></div>
 		<p class="submit">
 			<input style="margin-left:8px" type="submit" name="save" class="button button-primary" value="<?php _e("Save Changes", 'super-socializer'); ?>" />
 		</p>
 		<div>
 			<?php
-			echo sprintf( __( 'You can appreciate the effort put in this free plugin by rating it <a href="%s" target="_blank">here</a> and help us continue the development of this plugin by purchasing the premium add-ons and plugins <a href="%s" target="_blank">here</a>', 'super-socializer' ), 'https://wordpress.org/support/view/plugin-reviews/super-socializer', 'https://www.heateor.com/add-ons' );
+			echo sprintf( __('You can appreciate the effort put in this free plugin by rating it <a href="%s" target="_blank">here</a> and help us continue the development of this plugin by purchasing the premium add-ons and plugins <a href="%s" target="_blank">here</a>', 'super-socializer'), 'https://wordpress.org/support/view/plugin-reviews/super-socializer', 'https://www.heateor.com/add-ons');
 			?>
 		</div>
 	</form>
@@ -2026,7 +2085,7 @@
 	<div class="stuffbox">
 		<h3><label><?php _e("Instagram Shoutout", 'super-socializer'); ?></label></h3>
 		<div class="inside" style="padding-left:10px">
-		<p><?php _e( 'If you can send (to hello@heateor.com) how this plugin is helping your business, we would be glad to shoutout on Instagram. You can also send any relevant hashtags and people to mention in the Instagram post.', 'super-socializer') ?></p>
+		<p><?php _e('If you can send (to hello@heateor.com) how this plugin is helping your business, we would be glad to shoutout on Instagram. You can also send any relevant hashtags and people to mention in the Instagram post.', 'super-socializer') ?></p>
 		</div>
 	</div>
 </div>
