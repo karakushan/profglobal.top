@@ -1712,6 +1712,23 @@
 						
 						<tr>
 							<th>
+							<label for="the_champ_double_optin"><?php _e("Enable double opt-in", 'super-socializer'); ?></label><img id="the_champ_double_optin_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__) ?>" />
+							</th>
+							<td>
+							<input id="the_champ_double_optin" name="the_champ_login[double_optin]" type="checkbox" <?php echo isset($theChampLoginOptions['double_optin']) ? 'checked' : '';?> value="1" />
+							</td>
+						</tr>
+						
+						<tr class="the_champ_help_content" id="the_champ_double_optin_help_cont">
+							<td colspan="2">
+							<div>
+							<?php _e('If enabled, email having a verification link will be sent to the new user registering via social login. They need to click it before they can login via social login to the website.', 'super-socializer') ?>
+							</div>
+							</td>
+						</tr>
+
+						<tr>
+							<th>
 							<label for="the_champ_login_email_required"><?php _e("Email required", 'super-socializer'); ?></label><img id="the_champ_sl_emailreq_help" class="the_champ_help_bubble" src="<?php echo plugins_url('../images/info.png', __FILE__) ?>" />
 							</th>
 							<td>

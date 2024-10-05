@@ -11,8 +11,8 @@ function the_champ_prepare_sharing_html($postUrl, $shareCountUrl, $sharingType, 
 	
 	global $post, $theChampSharingOptions;
 
-	if(NULL === $post ||!is_object($post)){
-        $post = get_post($shareCountTransientId );
+	if(NULL === $post || !is_object($post)){
+        $post = get_post($shareCountTransientId);
 	}
 
 	if(!is_object($post)){

@@ -13,11 +13,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-class WHTM_Plugin extends Wbcr_Factory475_Plugin {
+class WHTM_Plugin extends Wbcr_Factory478_Plugin {
 
 	/**
 	 * @see self::app()
-	 * @var Wbcr_Factory475_Plugin
+	 * @var Wbcr_Factory478_Plugin
 	 */
 	private static $app;
 
@@ -53,7 +53,7 @@ class WHTM_Plugin extends Wbcr_Factory475_Plugin {
 	 * Используется для получения настроек плагина, информации о плагине, для доступа к вспомогательным
 	 * классам.
 	 *
-	 * @return \Wbcr_Factory475_Plugin|\WCM_Plugin
+	 * @return \Wbcr_Factory478_Plugin|\WCM_Plugin
 	 */
 	public static function app() {
 		return self::$app;

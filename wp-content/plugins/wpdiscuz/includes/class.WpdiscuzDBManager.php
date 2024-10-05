@@ -784,7 +784,7 @@ class WpdiscuzDBManager implements WpDiscuzConstants {
 //				 ORDER BY $ordering
 //				 LIMIT $limit OFFSET $offset;";
 
-		$sqlStatComments = "SELECT `c`.`comment_author_email`, `c`.`comment_author`, COUNT(`c`.`comment_ID`) AS `count`, MAX(`c`.`comment_date_gmt`) AS `last_date` FROM `wp_comments` AS `c` WHERE `c`.`comment_approved` = '1' $notIn GROUP BY `c`.`comment_author_email`, `c`.`comment_author` ORDER BY $ordering LIMIT $limit OFFSET $offset;";
+		$sqlStatComments = "SELECT `c`.`comment_author_email`, `c`.`comment_author`, COUNT(`c`.`comment_ID`) AS `count`, MAX(`c`.`comment_date_gmt`) AS `last_date` FROM `{$this->db->comments}` AS `c` WHERE `c`.`comment_approved` = '1' $notIn GROUP BY `c`.`comment_author_email`, `c`.`comment_author` ORDER BY $ordering LIMIT $limit OFFSET $offset;";
 
 		$statComments = $this->db->get_results( $sqlStatComments, ARRAY_A );
 

@@ -381,7 +381,7 @@ if (!class_exists('Popularis_Extra_Demo_Import_Theme_Wizard')):
                 </div>
                 <p><?php esc_attr_e("Thank you for choosing Popularis theme, in this quick setup wizard we'll take you through the 2 essential steps for you to get started building your dream website. Make sure to go through it to the end.", 'popularis-extra'); ?></p>
                 <div class="popularis-wizard-setup-actions">
-                    <a class="skip-btn continue" href="<?php echo $this->get_next_step_link(); ?>"><?php esc_attr_e("Get started", 'popularis-extra'); ?><i class="dashicons dashicons-arrow-<?php echo esc_attr($icon); ?>-alt"></i></a>
+                    <a class="skip-btn continue" href="<?php echo esc_url($this->get_next_step_link()); ?>"><?php esc_attr_e("Get started", 'popularis-extra'); ?><i class="dashicons dashicons-arrow-<?php echo esc_attr($icon); ?>-alt"></i></a>
                 </div>
                 <a class="popularis-setup-footer-links" href="<?php echo esc_url(( add_query_arg(array('popularis_wizard_hide_notice' => '2nd_notice'), admin_url()))); ?>"><?php esc_attr_e("Skip Setup Wizard", 'popularis-extra'); ?></a>
             </div>
@@ -468,15 +468,15 @@ if (!class_exists('Popularis_Extra_Demo_Import_Theme_Wizard')):
 
                         </div>
                         <div class="popularis-wizard-setup-actions">
-                            <button class="install-demos-button disabled" disabled data-next_step="<?php echo $this->get_next_step_link(); ?>"><?php esc_html_e("Install Demo", 'popularis-extra'); ?></button>
-                            <a class="skip-btn" href="<?php echo $this->get_next_step_link(); ?>"><?php esc_html_e("Skip Step", 'popularis-extra'); ?></a>
+                            <button class="install-demos-button disabled" disabled data-next_step="<?php echo esc_url($this->get_next_step_link()); ?>"><?php esc_html_e("Install Demo", 'popularis-extra'); ?></button>
+                            <a class="skip-btn" href="<?php echo esc_url($this->get_next_step_link()); ?>"><?php esc_html_e("Skip Step", 'popularis-extra'); ?></a>
                         </div>                
                     </div>
 
                 </div>
 
                 <div class="popularis-wizard-setup-actions wizard-install-demos-buttons-wrapper final-step">
-                    <a class="skip-btn continue" href="<?php echo $this->get_next_step_link(); ?>"><?php esc_html_e("Next Step", 'popularis-extra'); ?><i class="dashicons dashicons-arrow-<?php echo esc_attr($icon); ?>-alt"></i></a>
+                    <a class="skip-btn continue" href="<?php echo esc_url($this->get_next_step_link()); ?>"><?php esc_html_e("Next Step", 'popularis-extra'); ?><i class="dashicons dashicons-arrow-<?php echo esc_attr($icon); ?>-alt"></i></a>
                 </div>
             </div>
             <?php
@@ -573,7 +573,7 @@ if (!class_exists('Popularis_Extra_Demo_Import_Theme_Wizard')):
                     <div class="popularis-wizard-setup-actions">
                         <input type="hidden" name="save_step" value="save_step"/>
                         <button class="continue" type="submit" ><?php esc_html_e("Continue", 'popularis-extra'); ?><i class="dashicons dashicons-arrow-<?php echo esc_attr($icon); ?>-alt"></i></button>
-                        <a class="skip-btn" href="<?php echo $this->get_next_step_link(); ?>"><?php esc_html_e("Skip Step", 'popularis-extra'); ?></a>
+                        <a class="skip-btn" href="<?php echo esc_url($this->get_next_step_link()); ?>"><?php esc_html_e("Skip Step", 'popularis-extra'); ?></a>
                     </div> 
                 </form>
             </div>
@@ -598,7 +598,7 @@ if (!class_exists('Popularis_Extra_Demo_Import_Theme_Wizard')):
                 if (isset($_POST['popularis-favicon']))
                     update_option('site_icon', $_POST['popularis-favicon']);
 
-                wp_safe_redirect($this->get_next_step_link());
+                wp_safe_redirect(esc_url($this->get_next_step_link()));
                 exit;
             } else {
                 print 'Your are not authorized to submit this form';

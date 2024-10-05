@@ -27,9 +27,9 @@ class WGZ_Assets_Manager_Public {
 	private $deregistered = [];
 
 	/**
-	 * @param Wbcr_Factory475_Plugin $plugin
+	 * @param Wbcr_Factory478_Plugin $plugin
 	 */
-	public function __construct(Wbcr_Factory475_Plugin $plugin)
+	public function __construct(Wbcr_Factory478_Plugin $plugin)
 	{
 		$this->plugin = $plugin;
 

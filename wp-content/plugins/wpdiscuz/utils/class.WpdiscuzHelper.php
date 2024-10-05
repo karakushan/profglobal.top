@@ -733,7 +733,7 @@ class WpdiscuzHelper implements WpDiscuzConstants
         $commentCount = get_comments(["author_email" => $email, "count" => true]);
         if ($commentCount) {
             $html .= "<div class='wpd-user-settings-button-wrap'>";
-            $html .= "<div class='wpd-user-settings-button wpd-delete-all-comments wpd-not-clicked' data-wpd-delete-action='deleteComments'>";
+            $html .= "<div class='wpd-user-settings-button wpd-delete-all-comments wpd-not-clicked' data-wpd-delete-action='deletecomments'>";
             $html .= esc_html($this->options->getPhrase("wc_user_settings_request_deleting_comments"));
             $html .= "<span class='wpd-loading wpd-hide'><i class='fas fa-spinner fa-pulse'></i></span>";
             $html .= "</div>";

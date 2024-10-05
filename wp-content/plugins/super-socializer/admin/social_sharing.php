@@ -860,7 +860,7 @@
 
 						<?php
 						$likeButtons = array('facebook_share', 'facebook_like', 'facebook_recommend', 'twitter_tweet', 'linkedin_share', 'pinterest_pin', 'buffer_share', 'xing_share', 'yummly_share', 'reddit_badge');
-						$sharingNetworks = array('facebook','youtube','rutube', 'gettr', 'gab','mastodon', 'twitter', 'Parler' , 'linkedin', 'print', 'email', 'reddit', 'digg', 'float_it', 'tumblr', 'vkontakte', 'pinterest', 'xing', 'whatsapp', 'instagram', 'yummly', 'buffer', 'AIM', 'Amazon_Wish_List', 'AOL_Mail', 'App.net', 'Balatarin', 'BibSonomy', 'Bitty_Browser', 'Blinklist', 'Blogger_Post', 'BlogMarks', 'Bookmarks.fr', 'Box.net', 'BuddyMarks', 'Care2_News', 'Comment', 'Copy_Link', 'Diary.Ru', 'Diaspora', 'Diigo', 'Douban', 'Draugiem', 'Evernote', 'Facebook_Messenger', 'Fark', 'Fintel', 'Flipboard', 'Folkd', 'GentleReader', 'Google_Bookmarks', 'Google_Classroom', 'Google_Gmail', 'Hacker_News', 'Hatena', 'Instapaper', 'Jamespot', 'Kakao', 'Kik', 'Kindle_It', 'Known', 'Line', 'LiveJournal', 'Mail.Ru', 'Mendeley', 'Meneame', 'MeWe', 'mix', 'Mixi', 'MySpace', 'Netvouz', 'Odnoklassniki', 'Outlook.com', 'Papaly', 'Pinboard', 'Plurk', 'Pocket', 'PrintFriendly', 'Protopage_Bookmarks', 'Pusha', 'Qzone', 'Rediff MyPage', 'Refind', 'Renren', 'Sina Weibo', 'SiteJot', 'Skype', 'Slashdot', 'SMS', 'StockTwits', 'Svejo', 'Symbaloo_Feeds', 'Telegram', 'Threema', 'Trello', 'Tuenti', 'Twiddla', 'TypePad_Post', 'Viadeo', 'Viber', 'Webnews', 'WordPress', 'Wykop', 'Yahoo_Mail', 'Yoolink', 'Google_News', 'rss', 'truth_social', 'snapchat', 'Goodreads', 'Google_Translate', 'X', 'teams', 'minds');
+						$sharingNetworks = array('facebook','youtube','rutube', 'gettr', 'gab','mastodon', 'twitter', 'Parler' , 'linkedin', 'print', 'email', 'reddit', 'digg', 'float_it', 'tumblr', 'vkontakte', 'pinterest', 'xing', 'whatsapp', 'instagram', 'yummly', 'buffer', 'AIM', 'Amazon_Wish_List', 'AOL_Mail', 'App.net', 'Balatarin', 'BibSonomy', 'Bitty_Browser', 'Blinklist', 'Blogger_Post', 'BlogMarks', 'Bookmarks.fr', 'Box.net', 'BuddyMarks', 'Care2_News', 'Comment', 'Copy_Link', 'Diary.Ru', 'Diaspora', 'Diigo', 'Douban', 'Draugiem', 'Evernote', 'Facebook_Messenger', 'Fark', 'Fintel', 'Flipboard', 'Folkd', 'GentleReader', 'Google_Bookmarks', 'Google_Classroom', 'Google_Gmail', 'Hacker_News', 'Hatena', 'Instapaper', 'Jamespot', 'Kakao', 'Kik', 'Kindle_It', 'Known', 'Line', 'LiveJournal', 'Mail.Ru', 'Mendeley', 'Meneame', 'MeWe', 'mix', 'Mixi', 'MySpace', 'Netvouz', 'Odnoklassniki', 'Outlook.com', 'Papaly', 'Pinboard', 'Plurk', 'Pocket', 'PrintFriendly', 'Protopage_Bookmarks', 'Pusha', 'Qzone', 'Rediff MyPage', 'Refind', 'Renren', 'Sina Weibo', 'SiteJot', 'Skype', 'Slashdot', 'SMS', 'StockTwits', 'Svejo', 'Symbaloo_Feeds', 'Telegram', 'Threema', 'Trello', 'Tuenti', 'Twiddla', 'TypePad_Post', 'Viadeo', 'Viber', 'Webnews', 'WordPress', 'Wykop', 'Yahoo_Mail', 'Yoolink', 'Google_News', 'rss', 'truth_social', 'snapchat', 'Goodreads', 'Google_Translate', 'X', 'teams', 'minds', 'naver', 'band', 'bluesky', 'threads', 'raindrop.io', 'micro.blog');
 						?>
 						
 						<tr>
@@ -964,9 +964,9 @@
 							foreach($sharingNetworks as $sharingNetwork){
 								?>
 								<div class="theChampHorizontalSharingProviderContainer">
-								<input id="the_champ_<?php echo esc_attr($sharingNetwork) ?>" type="checkbox" <?php echo isset( $theChampSharingOptions['horizontal_re_providers'] ) && in_array($sharingNetwork, $theChampSharingOptions['horizontal_re_providers'] ) ? 'checked="checked"' : '';?> <?php echo in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds')) ? 'disabled' : ''; ?> value="<?php echo esc_attr($sharingNetwork) ?>" />
+								<input id="the_champ_<?php echo esc_attr($sharingNetwork) ?>" type="checkbox" <?php echo isset( $theChampSharingOptions['horizontal_re_providers'] ) && in_array($sharingNetwork, $theChampSharingOptions['horizontal_re_providers'] ) ? 'checked="checked"' : '';?> <?php echo in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds', 'naver', 'band')) ? 'disabled' : ''; ?> value="<?php echo esc_attr($sharingNetwork) ?>" />
 								<label for="the_champ_<?php echo esc_attr($sharingNetwork) ?>"><i style="display:block;width:18px;height:18px;" class="theChampSharing theChamp<?php echo esc_attr(str_replace(array('_', '.', ' '), '', ucfirst($sharingNetwork))) ?>Background"><ss style="display:block;" class="theChampSharingSvg theChamp<?php echo str_replace(array('_', '.', ' '), '', ucfirst($sharingNetwork)) ?>Svg"></ss></i></label>
-								<label for="the_champ_<?php echo esc_attr($sharingNetwork) ?>" class="lblSocialNetwork"><?php echo (in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds')) ? '<a href="https://www.heateor.com/comparison-between-sassy-social-share-pro-and-premium/" target="_blank">' : '') . esc_html(str_replace('_', ' ', ucfirst($sharingNetwork))) . (in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds') ) ? '</a>' : '') ?></label>
+								<label for="the_champ_<?php echo esc_attr($sharingNetwork) ?>" class="lblSocialNetwork"><?php echo (in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds', 'naver', 'band')) ? '<a href="https://www.heateor.com/comparison-between-sassy-social-share-pro-and-premium/" target="_blank">' : '') . esc_html(str_replace('_', ' ', ucfirst($sharingNetwork))) . (in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds', 'naver', 'band') ) ? '</a>' : '') ?></label>
 								</div>
 								<?php
 							}
@@ -1404,9 +1404,9 @@
 							foreach($sharingNetworks as $sharingNetwork){
 								?>
 								<div class="theChampVerticalSharingProviderContainer">
-								<input id="the_champ_vertical_sharing_<?php echo esc_attr($sharingNetwork) ?>" type="checkbox" <?php echo isset( $theChampSharingOptions['vertical_re_providers'] ) && in_array($sharingNetwork, $theChampSharingOptions['vertical_re_providers'] ) ? 'checked="checked"' : '';?> <?php echo in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds')) ? 'disabled' : ''; ?> value="<?php echo esc_attr($sharingNetwork) ?>" />
+								<input id="the_champ_vertical_sharing_<?php echo esc_attr($sharingNetwork) ?>" type="checkbox" <?php echo isset( $theChampSharingOptions['vertical_re_providers'] ) && in_array($sharingNetwork, $theChampSharingOptions['vertical_re_providers'] ) ? 'checked="checked"' : '';?> <?php echo in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds', 'naver', 'band')) ? 'disabled' : ''; ?> value="<?php echo esc_attr($sharingNetwork) ?>" />
 								<label for="the_champ_vertical_sharing_<?php echo esc_attr($sharingNetwork) ?>"><i style="display:block;width:18px;height:18px;" class="theChampSharing theChamp<?php echo esc_attr(str_replace(array('_', '.', ' '), '', ucfirst($sharingNetwork))) ?>Background"><ss style="display:block;" class="theChampSharingSvg theChamp<?php echo esc_attr(str_replace(array('_', '.', ' '), '', ucfirst($sharingNetwork))) ?>Svg"></ss></i></label>
-								<label for="the_champ_vertical_sharing_<?php echo esc_attr($sharingNetwork) ?>" class="lblSocialNetwork"><?php echo (in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds')) ? '<a href="https://www.heateor.com/comparison-between-sassy-social-share-pro-and-premium/" target="_blank">' : '') . esc_html(str_replace('_', ' ', ucfirst($sharingNetwork))) . (in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds') ) ? '</a>' : '') ?></label>
+								<label for="the_champ_vertical_sharing_<?php echo esc_attr($sharingNetwork) ?>" class="lblSocialNetwork"><?php echo (in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds', 'naver', 'band')) ? '<a href="https://www.heateor.com/comparison-between-sassy-social-share-pro-and-premium/" target="_blank">' : '') . esc_html(str_replace('_', ' ', ucfirst($sharingNetwork))) . (in_array($sharingNetwork, array('truth_social', 'snapchat', 'Goodreads', 'minds', 'naver', 'band') ) ? '</a>' : '') ?></label>
 								</div>
 								<?php
 							}
@@ -1740,6 +1740,24 @@
 							<td colspan="2">
 							<div>
 							<?php _e('Uses plain background for Instagram icon instead of multicolored background', 'super-socializer') ?>
+							</div>
+							</td>
+						</tr>
+
+						<tr>
+							<th>
+							<label for="the_champ_native_sharing"><?php _e("Trigger device specific social sharing on click of More icon", 'super-socializer' ); ?></label>
+							<img id="the_champ_native_sharing_help" class="the_champ_help_bubble" src="<?php echo plugins_url( '../images/info.png', __FILE__ ) ?>" />
+							</th>
+							<td>
+							<input id="the_champ_native_sharing" name="the_champ_sharing[native_sharing]" type="checkbox" <?php echo isset( $theChampSharingOptions['native_sharing'] ) ? 'checked = "checked"' : '';?> value="1" />
+							</td>
+						</tr>
+						
+						<tr class="the_champ_help_content" id="the_champ_native_sharing_help_cont">
+							<td colspan="2">
+							<div>
+							<?php _e( 'Triggers device specific native social share dialogue on click of the More icon instead of showing all the social networks in a layover popup.', 'super-socializer' ) ?>
 							</div>
 							</td>
 						</tr>

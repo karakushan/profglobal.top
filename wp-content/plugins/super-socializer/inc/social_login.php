@@ -373,8 +373,10 @@ function the_champ_create_user($profileData, $verification = false){
 			update_user_meta($userId, 'thechamp_provider', $profileData['provider']);
 		}
 
-		// send notification email
-		heateor_ss_new_user_notification($userId);
+		if(!isset($theChampLoginOptions['double_optin'])){
+			// send notification email
+			heateor_ss_new_user_notification($userId);
+		}
 		
 		// insert Name in BP XProfile table
 		global $theChampIsBpActive;
@@ -385,6 +387,22 @@ function the_champ_create_user($profileData, $verification = false){
 		// hook - user successfully created
 		do_action('the_champ_user_successfully_created', $userId, $userdata, $profileData);
 		do_action('user_register', $userId, $userdata);
+
+		// double opt-in
+		if(isset($theChampLoginOptions['double_optin'])){
+			$verificationKey = $userId.time().mt_rand();
+			update_user_meta($userId, 'thechamp_key', $verificationKey);
+			update_user_meta($userId, 'thechamp_social_registration', 1);
+			
+			// send email
+			$subject = "[".wp_specialchars_decode(trim(get_option('blogname')), ENT_QUOTES)."] " . __('Account Verification', 'super-socializer');
+			$url = esc_url_raw(home_url())."?SuperSocializerKey=".$verificationKey;
+			$message = __("Please click on the following link or paste it in browser to verify your account", 'super-socializer') . "\r\n" . $url;
+			wp_mail($profileData['email'], $subject, $message);
+			wp_redirect(esc_url(home_url()).'?SuperSocializerUnverified=1');
+			die;
+		}
+
 		return $userId;
 	}
 	return false;

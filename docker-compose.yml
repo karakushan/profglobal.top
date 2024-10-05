@@ -43,10 +43,17 @@ services:
     volumes:
       - .:/var/www/html
       - ./docker/apache/logs:/var/log/apache2
-  wpcli:
-    image: wordpress:cli
-    volumes:
-      - .:/var/www/html
-      - ./wp-cli:/var/www/html/wp-cli
+#  nginx:
+#    image: nginx:latest
+#    ports:
+#      - "80:8080"
+#    restart: always
+#    volumes:
+#      - .:/var/www/html
+#      - ./docker/nginx/logs:/var/log/nginx
+#      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+#    depends_on:
+#      - wordpress
+#      - db
 volumes:
   db_data:

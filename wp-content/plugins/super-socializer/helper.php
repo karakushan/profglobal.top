@@ -309,8 +309,9 @@ function the_champ_ajax_response($response){
  */
 function the_champ_notify(){
 	if(isset($_GET['message'])){
+		$message = $_GET['message'] == 0 ? __('Please verify your email address to login.', 'super-socializer') : __('Your email has been verified. Now you can login to your account', 'super-socializer');
 		?>
-		<div><?php echo esc_html($_GET['message']) ?></div>
+		<div><?php echo $message ?></div>
 		<?php
 	}
 	die;
@@ -584,7 +585,7 @@ function the_champ_account_linking(){
 							$linkedAccounts = get_user_meta($user_ID, 'thechamp_linked_accounts', true);
 							if($linkedAccounts){
 								$linkedAccounts = maybe_unserialize($linkedAccounts);
-								$linkedProviders = array_keys($linkedAccounts);
+								$linkedProviders = is_array($linkedAccounts) ? array_keys($linkedAccounts) : array();
 								$existingProviders = array_merge($existingProviders, $linkedProviders);
 							}
 							
@@ -1028,7 +1029,13 @@ function heateor_ss_is_plugin_active($pluginFile){
  * Add column in the user list to delete social profile data
  */
 function heateor_ss_add_custom_column($columns){
-	$columns['heateor_ss_delete_profile_data'] = 'Delete Social Profile';
+	global $theChampLoginOptions;
+	if(isset($theChampLoginOptions['enable'])){
+		if(isset($theChampLoginOptions['double_optin'])){
+			$columns['heateor_ss_doi'] = 'DOI';
+		}
+		$columns['heateor_ss_delete_profile_data'] = 'Delete Social Profile';
+	}
 	return $columns;
 }
 add_filter('manage_users_columns', 'heateor_ss_add_custom_column');
@@ -1037,15 +1044,25 @@ add_filter('manage_users_columns', 'heateor_ss_add_custom_column');
  * Show option to delete social profile in the custom column
  */
 function heateor_ss_delete_profile_column($value, $columnName, $userId){
-	if('heateor_ss_delete_profile_data' == $columnName){
-		global $wpdb;
-		$socialUser = $wpdb->get_var($wpdb->prepare('SELECT user_id FROM '.$wpdb->prefix.'usermeta WHERE user_id = %d and meta_key LIKE "thechamp%"', $userId));
-		if($socialUser > 0){
-			return '<a href="javascript:void(0)" title="'.__('Click to delete social profile data', 'super-socializer').'" alt="'.__('Click to delete social profile data', 'super-socializer').'" onclick="javascript:heateorSsDeleteSocialProfile(this, '.$userId .')">Delete</a>';
+	global $theChampLoginOptions;
+	if(isset($theChampLoginOptions['enable'])){
+		if('heateor_ss_delete_profile_data' == $columnName){
+			global $wpdb;
+			$socialUser = $wpdb->get_var($wpdb->prepare('SELECT user_id FROM '.$wpdb->prefix.'usermeta WHERE user_id = %d and meta_key LIKE "thechamp%"', $userId));
+			if($socialUser > 0){
+				return '<a href="javascript:void(0)" title="'.__('Click to delete social profile data', 'super-socializer').'" alt="'.__('Click to delete social profile data', 'super-socializer').'" onclick="javascript:heateorSsDeleteSocialProfile(this, '.$userId .')">Delete</a>';
+			}
+		}
+		if(isset($theChampLoginOptions['double_optin']) && 'heateor_ss_doi' == $columnName){
+			if(get_user_meta($userId, 'thechamp_key', true) != ''){
+				return __('No', 'super-socializer');
+			}else{
+				return __('Yes', 'super-socializer');
+			}
 		}
 	}
 }
-add_action('manage_users_custom_column', 'heateor_ss_delete_profile_column', 1, 3);
+add_filter('manage_users_custom_column', 'heateor_ss_delete_profile_column', 1, 3);
 
 /**
  * Include thickbox js and css

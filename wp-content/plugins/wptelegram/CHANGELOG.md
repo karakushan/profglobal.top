@@ -1,5 +1,23 @@
 # Changelog
 
+## 4.1.16
+
+### Patch Changes
+
+- [#165](https://github.com/wpsocio/wp-projects/pull/165) [`314648d`](https://github.com/wpsocio/wp-projects/commit/314648dc5d9cdfad2f532f70733addb2ec5f8245) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed load_plugin_textdomain warning in dependent package
+
+## 4.1.15
+
+### Patch Changes
+
+- [#163](https://github.com/wpsocio/wp-projects/pull/163) [`75bab6b`](https://github.com/wpsocio/wp-projects/commit/75bab6b20f0cc0eccc07750d4e50bcd0b65e486d) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed load_plugin_textdomain warning
+
+## 4.1.14
+
+### Patch Changes
+
+- [#161](https://github.com/wpsocio/wp-projects/pull/161) [`116db7b`](https://github.com/wpsocio/wp-projects/commit/116db7b7bbf374f080b123a428ff33fbb39e56e8) Thanks [@irshadahmad21](https://github.com/irshadahmad21)! - Fixed the fatal error during upgrade
+
 ## 4.1.13
 
 ### Patch Changes

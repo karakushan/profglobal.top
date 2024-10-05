@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Super Socializer\n"
-"POT-Creation-Date: 2023-11-09 15:37+0530\n"
-"PO-Revision-Date: 2023-11-09 15:37+0530\n"
+"POT-Creation-Date: 2024-09-06 17:51+0530\n"
+"PO-Revision-Date: 2024-09-06 17:51+0530\n"
 "Last-Translator: Heateor <hello@heateor.com>\n"
 "Language-Team: 汤小贤 <calmsmile@aliyun.com>\n"
 "Language: zh_CN\n"
@@ -24,8 +24,8 @@ msgstr ""
 #: admin/general_options.php:7 admin/general_options.php:93
 #: admin/like_buttons.php:6 admin/like_buttons.php:780
 #: admin/social_commenting.php:5 admin/social_commenting.php:405
-#: admin/social_login.php:5 admin/social_login.php:2188
-#: admin/social_sharing.php:5 admin/social_sharing.php:2069
+#: admin/social_login.php:5 admin/social_login.php:2243
+#: admin/social_sharing.php:5 admin/social_sharing.php:2098
 #, fuzzy, php-format
 msgid ""
 "You can appreciate the effort put in this free plugin by rating it <a href="
@@ -37,7 +37,7 @@ msgstr ""
 "件所付出的努力"
 
 #: admin/general_options.php:15 admin/social_commenting.php:47
-#: super_socializer.php:2628
+#: super_socializer.php:2634
 msgid "General Options"
 msgstr "常规选项"
 
@@ -82,23 +82,23 @@ msgstr "您可以指定任何额外的 CSS 规则(无需 &lt;style&gt; tag)"
 #: admin/like_buttons.php:565 admin/like_buttons.php:702
 #: admin/like_buttons.php:731 admin/like_buttons.php:776
 #: admin/social_commenting.php:401 admin/social_login.php:1422
-#: admin/social_login.php:2000 admin/social_login.php:2139
-#: admin/social_login.php:2184 admin/social_sharing.php:661
-#: admin/social_sharing.php:1157 admin/social_sharing.php:1703
-#: admin/social_sharing.php:1938 admin/social_sharing.php:1967
-#: admin/social_sharing.php:2065 helper.php:947
+#: admin/social_login.php:2051 admin/social_login.php:2190
+#: admin/social_login.php:2239 admin/social_sharing.php:661
+#: admin/social_sharing.php:1157 admin/social_sharing.php:1714
+#: admin/social_sharing.php:1967 admin/social_sharing.php:1996
+#: admin/social_sharing.php:2094 helper.php:948
 msgid "Save Changes"
 msgstr "保存更改"
 
 #: admin/general_options.php:103 admin/like_buttons.php:786
-#: admin/social_commenting.php:411 admin/social_login.php:2194
-#: admin/social_sharing.php:2075
+#: admin/social_commenting.php:411 admin/social_login.php:2249
+#: admin/social_sharing.php:2104
 msgid "Instagram Shoutout"
 msgstr ""
 
 #: admin/general_options.php:105 admin/like_buttons.php:788
-#: admin/social_commenting.php:413 admin/social_login.php:2196
-#: admin/social_sharing.php:2077
+#: admin/social_commenting.php:413 admin/social_login.php:2251
+#: admin/social_sharing.php:2106
 msgid ""
 "If you can send (to hello@heateor.com) how this plugin is helping your "
 "business, we would be glad to shoutout on Instagram. You can also send any "
@@ -205,7 +205,7 @@ msgid "Floating Interface"
 msgstr "浮动接口"
 
 #: admin/like_buttons.php:42 admin/social_sharing.php:51
-#: admin/social_sharing.php:1716
+#: admin/social_sharing.php:1727
 msgid "Miscellaneous"
 msgstr "其他"
 
@@ -214,15 +214,15 @@ msgid "3rd Party Integration"
 msgstr "第三方集成"
 
 #: admin/like_buttons.php:50 admin/like_buttons.php:746
-#: admin/social_login.php:42 admin/social_login.php:2151
-#: admin/social_sharing.php:59 admin/social_sharing.php:1982
+#: admin/social_login.php:42 admin/social_login.php:2202
+#: admin/social_sharing.php:59 admin/social_sharing.php:2011
 msgid "Shortcode & Widget"
 msgstr "简码＆小工具"
 
 #: admin/like_buttons.php:51 admin/like_buttons.php:759
 #: admin/social_commenting.php:40 admin/social_commenting.php:384
-#: admin/social_login.php:43 admin/social_login.php:2165
-#: admin/social_sharing.php:61 admin/social_sharing.php:2022
+#: admin/social_login.php:43 admin/social_login.php:2216
+#: admin/social_sharing.php:61 admin/social_sharing.php:2051
 msgid "FAQ"
 msgstr "常见问题解答"
 
@@ -265,7 +265,7 @@ msgid "Url to like/share/tweet and display like/share/tweet counts"
 msgstr "链接到喜欢/分享/tweet和显示喜欢/分享/tweet计数"
 
 #: admin/like_buttons.php:105 admin/social_login.php:1439
-#: admin/social_login.php:1870 admin/social_sharing.php:720 inc/widget.php:1062
+#: admin/social_login.php:1921 admin/social_sharing.php:720 inc/widget.php:1122
 msgid "Title"
 msgstr "标题"
 
@@ -289,20 +289,20 @@ msgstr "水平对齐"
 #: admin/like_buttons.php:177 admin/like_buttons.php:422
 #: admin/social_sharing.php:335 admin/social_sharing.php:633
 #: admin/social_sharing.php:983 admin/social_sharing.php:1440
-#: inc/widget.php:449 inc/widget.php:762 inc/widget.php:1066
-#: inc/widget.php:1092
+#: inc/widget.php:449 inc/widget.php:762 inc/widget.php:1126
+#: inc/widget.php:1152
 msgid "Left"
 msgstr "左边"
 
-#: admin/like_buttons.php:178 admin/social_sharing.php:984 inc/widget.php:1067
+#: admin/like_buttons.php:178 admin/social_sharing.php:984 inc/widget.php:1127
 msgid "Center"
 msgstr "居中"
 
 #: admin/like_buttons.php:179 admin/like_buttons.php:423
 #: admin/social_sharing.php:339 admin/social_sharing.php:637
 #: admin/social_sharing.php:985 admin/social_sharing.php:1441
-#: inc/widget.php:450 inc/widget.php:763 inc/widget.php:1068
-#: inc/widget.php:1099
+#: inc/widget.php:450 inc/widget.php:763 inc/widget.php:1128
+#: inc/widget.php:1159
 msgid "Right"
 msgstr "右侧"
 
@@ -331,7 +331,7 @@ msgid "Interface location"
 msgstr "界面位置"
 
 #: admin/like_buttons.php:218 admin/like_buttons.php:497
-#: admin/social_login.php:1756 admin/social_login.php:1785
+#: admin/social_login.php:1790 admin/social_login.php:1819
 #: admin/social_sharing.php:1024 admin/social_sharing.php:1515
 msgid "Homepage"
 msgstr "主页"
@@ -370,12 +370,12 @@ msgid "BuddyPress group (only at top of content)"
 msgstr "BuddyPress 组 (只有顶部的内容)"
 
 #: admin/like_buttons.php:254 admin/like_buttons.php:528
-#: admin/social_sharing.php:1058 admin/social_sharing.php:1547
+#: admin/social_sharing.php:1058 admin/social_sharing.php:1546
 msgid "BBPress forum"
 msgstr "BBPress 论坛"
 
 #: admin/like_buttons.php:257 admin/like_buttons.php:531
-#: admin/social_sharing.php:1061 admin/social_sharing.php:1550
+#: admin/social_sharing.php:1061 admin/social_sharing.php:1549
 msgid "BBPress topic"
 msgstr "BBPress 主题"
 
@@ -384,14 +384,17 @@ msgid "BBPress reply"
 msgstr "BBPress 答复"
 
 #: admin/like_buttons.php:267 admin/social_sharing.php:1071
+#: admin/social_sharing.php:1555
 msgid "After individual product at WooCommerce Shop page"
 msgstr "在 WooCommerce 商店页面上单独的商品后"
 
 #: admin/like_buttons.php:270 admin/social_sharing.php:1074
+#: admin/social_sharing.php:1558
 msgid "WooCommerce Product Page"
 msgstr "Woocommerce商品页"
 
 #: admin/like_buttons.php:273 admin/social_sharing.php:1077
+#: admin/social_sharing.php:1561
 msgid "WooCommerce Thankyou Page"
 msgstr "WooCommerce 致谢页面"
 
@@ -478,7 +481,7 @@ msgstr "隐藏在移动设备上的Like按钮"
 msgid "If enabled, vertical like buttons will not appear on mobile devices"
 msgstr "如果启用，垂直Like按钮不会显示在移动设备上"
 
-#: admin/like_buttons.php:580 admin/social_sharing.php:1739
+#: admin/like_buttons.php:580 admin/social_sharing.php:1768
 msgid "Url shortener"
 msgstr "短网址"
 
@@ -496,15 +499,15 @@ msgstr "如果安装了缩短插件，则允许在共享内容时使用缩短的
 msgid "Enable bit.ly url shortener for tweet button"
 msgstr "启用 bit.ly 网址缩短器用于推文按钮"
 
-#: admin/like_buttons.php:612 admin/social_sharing.php:1771
+#: admin/like_buttons.php:612 admin/social_sharing.php:1800
 msgid "Master control to enable bit.ly url shortening for sharing"
 msgstr "主控件以启用 bit.ly url 短链共享"
 
-#: admin/like_buttons.php:619 admin/social_sharing.php:1778
+#: admin/like_buttons.php:619 admin/social_sharing.php:1807
 msgid "Bit.ly generic access token"
 msgstr ""
 
-#: admin/like_buttons.php:629 admin/social_sharing.php:1788
+#: admin/like_buttons.php:629 admin/social_sharing.php:1817
 #, php-format
 msgid ""
 "Login to your bit.ly account and navigate to <strong>Profile Settings > "
@@ -513,15 +516,15 @@ msgid ""
 "\">link</a>"
 msgstr ""
 
-#: admin/like_buttons.php:636 admin/social_sharing.php:1795
+#: admin/like_buttons.php:636 admin/social_sharing.php:1824
 msgid "Clear Bitly Cache"
 msgstr "清除 Bitly 缓存"
 
-#: admin/like_buttons.php:640 admin/social_sharing.php:1799
+#: admin/like_buttons.php:640 admin/social_sharing.php:1828
 msgid "ShortUrl cache cleared successfully."
 msgstr "ShortUrl 缓存成功清除。"
 
-#: admin/like_buttons.php:647 admin/social_sharing.php:1806
+#: admin/like_buttons.php:647 admin/social_sharing.php:1835
 msgid ""
 "Use this to delete short urls saved in database. Handy, if urls of your "
 "website have been changed but short urls are still being generated for old "
@@ -531,8 +534,8 @@ msgstr ""
 "仍为旧网址，手动处理。"
 
 #: admin/like_buttons.php:656 admin/like_buttons.php:661
-#: admin/social_commenting.php:304 admin/social_sharing.php:1868
-#: admin/social_sharing.php:1873
+#: admin/social_commenting.php:304 admin/social_sharing.php:1897
+#: admin/social_sharing.php:1902
 msgid "Language"
 msgstr "语言"
 
@@ -562,11 +565,11 @@ msgstr ""
 "所提供的用户名将在内容被推为\"通过@USERNAME\"后附加。如果您不想要任何用户名，"
 "请留下空。"
 
-#: admin/like_buttons.php:718 admin/social_sharing.php:1954
+#: admin/like_buttons.php:718 admin/social_sharing.php:1983
 msgid "myCRED"
 msgstr "myCRED"
 
-#: admin/like_buttons.php:723 admin/social_sharing.php:1959
+#: admin/like_buttons.php:723 admin/social_sharing.php:1988
 msgid "Append myCRED referral ID to the urls being shared"
 msgstr "将myCRED推荐ID追加到分享的URL"
 
@@ -574,20 +577,20 @@ msgstr "将myCRED推荐ID追加到分享的URL"
 msgid "Like Buttons Shortcode & Widget"
 msgstr "喜欢按钮简码 & 小部件"
 
-#: admin/like_buttons.php:761 admin/social_sharing.php:2052
+#: admin/like_buttons.php:761 admin/social_sharing.php:2081
 msgid "Why is there so much space between like buttons?"
 msgstr "为什么像按钮之间有这么多的空间？"
 
-#: admin/like_buttons.php:762 admin/social_sharing.php:2053
+#: admin/like_buttons.php:762 admin/social_sharing.php:2082
 msgid "Why are floating sharing/like buttons not appearing at homepage?"
 msgstr "为什么在主页上没有显示浮动分享/喜欢按钮？"
 
-#: admin/like_buttons.php:763 admin/social_sharing.php:2037
+#: admin/like_buttons.php:763 admin/social_sharing.php:2066
 msgid "How to Place Title and Social Share Icons in the Same Row?"
 msgstr "如何在同一行中放置标题和社交分享图标？"
 
 #: admin/like_buttons.php:764 admin/social_commenting.php:392
-#: admin/social_login.php:2173 admin/social_sharing.php:2054
+#: admin/social_login.php:2228 admin/social_sharing.php:2083
 msgid "More"
 msgstr "更多"
 
@@ -782,8 +785,8 @@ msgstr ""
 msgid "Social Commenting Shortcode"
 msgstr "社会化评论简码"
 
-#: admin/social_commenting.php:386 admin/social_login.php:2167
-#: admin/social_sharing.php:2024
+#: admin/social_commenting.php:386 admin/social_login.php:2218
+#: admin/social_sharing.php:2053
 msgid ""
 "<strong>Note:</strong> Plugin will not work on local server. You should have "
 "an online website for the plugin to function properly."
@@ -802,8 +805,8 @@ msgid ""
 "Https?"
 msgstr "如何恢复在将我的网站转移到SSL/https之后丢失的Facebook 评论？"
 
-#: admin/social_commenting.php:389 admin/social_login.php:2172
-#: admin/social_sharing.php:2039
+#: admin/social_commenting.php:389 admin/social_login.php:2223
+#: admin/social_sharing.php:2068
 msgid "Why is my browser blocking some features of the plugin?"
 msgstr "为什么我的浏览器会阻止插件的某些功能？"
 
@@ -833,8 +836,8 @@ msgstr "基本配置"
 msgid "Advanced Configuration"
 msgstr "高级配置"
 
-#: admin/social_login.php:41 admin/social_login.php:2012
-#: super_socializer.php:2696
+#: admin/social_login.php:41 admin/social_login.php:2063
+#: super_socializer.php:2702
 msgid "GDPR"
 msgstr "GDPR"
 
@@ -1911,12 +1914,24 @@ msgstr "最好"
 msgid "Choose avatar quality"
 msgstr "选择头像质量"
 
-#: admin/social_login.php:1678
+#: admin/social_login.php:1677
+#, fuzzy
+#| msgid "Choose avatar quality"
+msgid "Save avatar locally"
+msgstr "选择头像质量"
+
+#: admin/social_login.php:1687
+msgid ""
+"Save and serve avatar from your website server instead of serving from the "
+"social network"
+msgstr ""
+
+#: admin/social_login.php:1695
 msgid ""
 "Show option for users to update social avatar at BuddyPress profile page"
 msgstr "显示选项供用户在 BuddyPress 个人资料页面更新社交头像"
 
-#: admin/social_login.php:1688
+#: admin/social_login.php:1705
 msgid ""
 "If enabled, users would be able to update their social avatar from \"Profile "
 "photo\" section in BuddyPress profile at front-end"
@@ -1924,11 +1939,24 @@ msgstr ""
 "如果启用，用户将能够从前端的BuddyPress配置文件中的“个人资料照片”部分更新他们"
 "的社交头像"
 
-#: admin/social_login.php:1698 super_socializer.php:2302
+#: admin/social_login.php:1715
+#, fuzzy
+#| msgid "Enable GDPR opt-in"
+msgid "Enable double opt-in"
+msgstr "启用 GDPR opt-in"
+
+#: admin/social_login.php:1725
+msgid ""
+"If enabled, email having a verification link will be sent to the new user "
+"registering via social login. They need to click it before they can login "
+"via social login to the website."
+msgstr ""
+
+#: admin/social_login.php:1732 super_socializer.php:2308
 msgid "Email required"
 msgstr "邮件地址（比选）"
 
-#: admin/social_login.php:1708
+#: admin/social_login.php:1742
 msgid ""
 "If enabled and Social ID provider does not provide user's email address on "
 "login, user will be asked to provide his/her email address. Otherwise, a "
@@ -1937,11 +1965,11 @@ msgstr ""
 "如果启用，当登录时如果第三方登录用户不提供电子邮件地址，用户将被要求提供他/她"
 "的电子邮件地址。否则，将生成一个虚拟电子邮件地址"
 
-#: admin/social_login.php:1716
+#: admin/social_login.php:1750
 msgid "Send post-registration email to user to set account password"
 msgstr "向用户发送注册后电子邮件以设置帐户密码"
 
-#: admin/social_login.php:1726
+#: admin/social_login.php:1760
 msgid ""
 "If enabled, an email will be sent to user after registration through Social "
 "Login, regarding his/her login credentials (username-password to be able to "
@@ -1950,11 +1978,11 @@ msgstr ""
 "如果启用，通过第三方登录的用户注册登录后，将给用户发送一封电子邮件; 包括他/她"
 "的登录凭据（用户名，密码，能够通过传统的登录表单登录）"
 
-#: admin/social_login.php:1733
+#: admin/social_login.php:1767
 msgid "Send new user registration notification email to admin"
 msgstr "向管理员发送新的用户注册通知电子邮件"
 
-#: admin/social_login.php:1743
+#: admin/social_login.php:1777
 msgid ""
 "If enabled, an email will be sent to admin after new user registers through "
 "Social Login, notifying admin about the new user registration"
@@ -1962,111 +1990,122 @@ msgstr ""
 "如果启用，将在新用户通过社交登录注册后向管理员发送电子邮件，通知管理员有关新"
 "用户注册"
 
-#: admin/social_login.php:1750
+#: admin/social_login.php:1784
 msgid "Login redirection"
 msgstr "登录重定向"
 
-#: admin/social_login.php:1754
+#: admin/social_login.php:1788
 msgid "Same page where user logged in"
 msgstr "用户登录的同一页面"
 
-#: admin/social_login.php:1758 admin/social_login.php:1787
+#: admin/social_login.php:1792 admin/social_login.php:1821
 msgid "Account dashboard"
 msgstr "我的帐户仪表板"
 
-#: admin/social_login.php:1761 admin/social_login.php:1790
+#: admin/social_login.php:1795 admin/social_login.php:1824
 msgid "BuddyPress profile page"
 msgstr "BuddyPress 档案"
 
-#: admin/social_login.php:1764 admin/social_login.php:1793 inc/widget.php:265
+#: admin/social_login.php:1798 admin/social_login.php:1827 inc/widget.php:265
 #: inc/widget.php:444 inc/widget.php:608 inc/widget.php:757
 msgid "Custom Url"
 msgstr "自定义 URL"
 
-#: admin/social_login.php:1772
+#: admin/social_login.php:1806
 msgid "User will be redirected to the selected page after Social Login"
 msgstr "用户通过社交登录后会被重定向到选择的页面"
 
-#: admin/social_login.php:1779
+#: admin/social_login.php:1813
 msgid "Registration redirection"
 msgstr "注册重定向"
 
-#: admin/social_login.php:1783
+#: admin/social_login.php:1817
 msgid "Same page from where user registered"
 msgstr "用户注册同样的页面"
 
-#: admin/social_login.php:1799
+#: admin/social_login.php:1833
 #, fuzzy
 msgid "Username Separator"
 msgstr "用户名： %s"
 
-#: admin/social_login.php:1803
+#: admin/social_login.php:1837
 msgid "Dash (-)"
 msgstr ""
 
-#: admin/social_login.php:1805
+#: admin/social_login.php:1839
 msgid "Underscore (_)"
 msgstr ""
 
-#: admin/social_login.php:1807
+#: admin/social_login.php:1841
 msgid "Dot (.)"
 msgstr ""
 
-#: admin/social_login.php:1809
+#: admin/social_login.php:1843
 msgid "None"
 msgstr ""
 
-#: admin/social_login.php:1817
+#: admin/social_login.php:1851
 msgid ""
 "Choose one of the underscore, dot or dash to use to join first and last "
 "names in the usernames of the new users"
 msgstr ""
 
-#: admin/social_login.php:1824
+#: admin/social_login.php:1858
+msgid "Use Domain as the Callback URL"
+msgstr ""
+
+#: admin/social_login.php:1868
+msgid ""
+"Enable this option if you have a multilingual website that has different "
+"versions as the different language codes appended to the domain. For "
+"example, yourwebsite.com/es, yourwebsite.com/de etc"
+msgstr ""
+
+#: admin/social_login.php:1875
 msgid "Generate Username from Email address"
 msgstr ""
 
-#: admin/social_login.php:1834
+#: admin/social_login.php:1885
 msgid ""
 "Username of the new user will be the part before the @ in their email address"
 msgstr ""
 
-#: admin/social_login.php:1841
+#: admin/social_login.php:1892
 msgid "Allow cyrillic characters in the name"
 msgstr ""
 
-#: admin/social_login.php:1845
+#: admin/social_login.php:1896
 msgid "Allow cyrillic"
 msgstr ""
 
-#: admin/social_login.php:1847
+#: admin/social_login.php:1898
 msgid "Allow Arabic"
 msgstr ""
 
-#: admin/social_login.php:1849
+#: admin/social_login.php:1900
 msgid "Allow Chinese"
 msgstr ""
 
-#: admin/social_login.php:1856
+#: admin/social_login.php:1907
 msgid ""
 "Allow cyrillic, Arabic and Chinese characters in the names of the new users "
 "registering via social login"
 msgstr ""
 
-#: admin/social_login.php:1865
+#: admin/social_login.php:1916
 msgid "Social Account Linking Options"
 msgstr "社交帐户链接选项"
 
-#: admin/social_login.php:1880
+#: admin/social_login.php:1931
 msgid "Text to display above the Social Account Linking interface"
 msgstr "显示在社交帐户链接界面上方的文本"
 
-#: admin/social_login.php:1887
+#: admin/social_login.php:1938
 msgid ""
 "Link social account to already existing account, if email address matches"
 msgstr "如果电子邮件地址匹配, 将社交帐户链接到已存在的帐户"
 
-#: admin/social_login.php:1897
+#: admin/social_login.php:1948
 msgid ""
 "If email address of the user's Social Account matches with an already "
 "existing account at your website, that social account will be linked to "
@@ -2076,45 +2115,45 @@ msgstr ""
 "如果用户社交帐户的电子邮件地址与您网站上已有的帐户匹配，则该社交帐户将链接到"
 "现有帐户。用户将能够在其个人资料页面上从社交帐户链接界面管理此问题。"
 
-#: admin/social_login.php:1905
+#: admin/social_login.php:1956
 msgid "Enable social account linking at BuddyPress profile page"
 msgstr "在BuddyPress的个人资料页面启用社交帐户链接"
 
-#: admin/social_login.php:1915
+#: admin/social_login.php:1966
 msgid ""
 "Enable this option to show social account linking interface at BuddyPress "
 "profile page"
 msgstr "启用此选项以显示 BuddyPress 个人资料页面的社交帐户链接界面"
 
-#: admin/social_login.php:1926
+#: admin/social_login.php:1977
 msgid "Email popup options"
 msgstr "电子邮件弹出选项"
 
-#: admin/social_login.php:1931
+#: admin/social_login.php:1982
 msgid "Text on 'Email required' popup"
 msgstr "\"需要电子邮件\"弹出窗口上的文本"
 
-#: admin/social_login.php:1941
+#: admin/social_login.php:1992
 msgid ""
 "This text will be displayed on email required popup. Leave empty if not "
 "required."
 msgstr "此文本将显示在所需的电子邮件弹出窗口中。如果不需要，请留下空。"
 
-#: admin/social_login.php:1949
+#: admin/social_login.php:2000
 msgid "Error message for 'Email required' popup"
 msgstr "\"需要电子邮件\"弹出窗口的错误消息"
 
-#: admin/social_login.php:1959
+#: admin/social_login.php:2010
 msgid ""
 "This message will be displayed to user if it provides invalid or already "
 "registered email"
 msgstr "如果此消息提供无效或已注册的电子邮件，则该消息将显示给用户"
 
-#: admin/social_login.php:1967
+#: admin/social_login.php:2018
 msgid "Email popup height"
 msgstr "电子邮件弹出高度"
 
-#: admin/social_login.php:1977
+#: admin/social_login.php:2028
 msgid ""
 "If you are seeing vertical scrollbar in the \"Email required\" popup, you "
 "can increase the height of popup by specifying in this option. Leave empty "
@@ -2123,11 +2162,11 @@ msgstr ""
 "如果您在\"需要的电子邮件\"弹出窗口中看到垂直滚动栏，则可以通过在此选项中指定"
 "来增加弹出窗口的高度。留下空的默认。"
 
-#: admin/social_login.php:1984
+#: admin/social_login.php:2035
 msgid "Enable email verification"
 msgstr "启用电子邮件验证"
 
-#: admin/social_login.php:1994
+#: admin/social_login.php:2045
 msgid ""
 "If enabled, email provided by the user will be verified by sending a "
 "confirmation link to that email. User would not be able to login without "
@@ -2135,89 +2174,101 @@ msgid ""
 msgstr ""
 "如果启用，将向用户的email地址发送一个确认链接进行验证。不验证，用户将无法登录"
 
-#: admin/social_login.php:2017
+#: admin/social_login.php:2068
 msgid "Enable GDPR opt-in"
 msgstr "启用 GDPR opt-in"
 
-#: admin/social_login.php:2027
+#: admin/social_login.php:2078
 msgid ""
 "Enable it to show GDPR opt-in for social login and social account linking"
 msgstr "使其能够显示 GDPR 选择加入的社交登录和社交帐户链接"
 
-#: admin/social_login.php:2035
+#: admin/social_login.php:2086
 msgid "Placement of GDPR opt-in"
 msgstr "GDPR 选择加入的放置"
 
-#: admin/social_login.php:2039
+#: admin/social_login.php:2090
 msgid "Above Social Login icons"
 msgstr "在社交登录图标之上"
 
-#: admin/social_login.php:2041
+#: admin/social_login.php:2092
 msgid "Below Social Login icons"
 msgstr "在社交登录图标之下"
 
-#: admin/social_login.php:2047
+#: admin/social_login.php:2098
 msgid "Placement of GDPR opt-in above or below the social login icons"
 msgstr "在第三方登录图标的上方或下方放置GDPR"
 
-#: admin/social_login.php:2054
+#: admin/social_login.php:2105
 msgid "Opt-in text"
 msgstr ""
 
-#: admin/social_login.php:2064
+#: admin/social_login.php:2115
 msgid "Text for the GDPR opt-in"
 msgstr "GDPR opt-in的文本"
 
-#: admin/social_login.php:2071
+#: admin/social_login.php:2122
 msgid "Text to link to Terms-Conditions page"
 msgstr "链接到条款条件页面的文本"
 
-#: admin/social_login.php:2081
+#: admin/social_login.php:2132
 msgid "Word(s) in the opt-in text to be linked to terms-conditions page"
 msgstr "选择加入文本中的 Word（s） 链接到条款条件页面"
 
-#: admin/social_login.php:2088
+#: admin/social_login.php:2139
 msgid "Terms-Conditions Url"
 msgstr "条款条件页面的网址"
 
-#: admin/social_login.php:2098
+#: admin/social_login.php:2149
 msgid "Url of the terms-conditions page of your website"
 msgstr "您网站条款条件页面的网址"
 
-#: admin/social_login.php:2105
+#: admin/social_login.php:2156
 msgid "Text to link to Privacy Policy page"
 msgstr "链接到隐私政策页面的文本"
 
-#: admin/social_login.php:2115
+#: admin/social_login.php:2166
 msgid "Word(s) in the opt-in text to be linked to privacy policy page"
 msgstr "要链接到隐私策略页的选入文本中的单词"
 
-#: admin/social_login.php:2122
+#: admin/social_login.php:2173
 msgid "Privacy Policy Url"
 msgstr "隐私政策网址"
 
-#: admin/social_login.php:2132
+#: admin/social_login.php:2183
 msgid "Url of the privacy policy page of your website"
 msgstr "您网站隐私政策页面的网址"
 
-#: admin/social_login.php:2153
+#: admin/social_login.php:2204
 msgid "Social Login Shortcode & Widget"
 msgstr "社会登录短代码＆小工具"
 
-#: admin/social_login.php:2154
+#: admin/social_login.php:2205
 msgid "Social Linking Shortcode"
 msgstr "社交链接简码"
 
-#: admin/social_login.php:2169
+#: admin/social_login.php:2220
 msgid "Why is social login not working?"
 msgstr "为什么社交登录不起作用？"
 
-#: admin/social_login.php:2170
+#: admin/social_login.php:2221
 msgid ""
 "Make sure that App ID and Secret (Client ID and Secret) keys you have saved, "
 "belong to the same app"
 msgstr ""
 "确保已保存的App ID 和Secret  keys (Client ID and Secret)属于同一应用程序"
+
+#: admin/social_login.php:2225
+msgid "How to make social login work on a multilingual website?"
+msgstr ""
+
+#: admin/social_login.php:2226
+msgid ""
+"If your website supports different languages. For example, yourwebsite.com/"
+"es, yourwebsite.com/de etc, enable \"Use Domain as the Callback URL\" option "
+"in the Advanced Configuration section at the Super Socializer > Social Login "
+"configuration page"
+msgstr ""
 
 #: admin/social_sharing.php:18
 msgid "Enable Social Sharing"
@@ -2254,12 +2305,12 @@ msgid "Shape"
 msgstr "形状"
 
 #: admin/social_sharing.php:156 admin/social_sharing.php:455
-#: inc/widget.php:1128
+#: inc/widget.php:1188
 msgid "Round"
 msgstr "圆"
 
 #: admin/social_sharing.php:158 admin/social_sharing.php:457
-#: inc/widget.php:1129
+#: inc/widget.php:1189
 msgid "Square"
 msgstr "正方形"
 
@@ -2514,11 +2565,11 @@ msgstr "放置"
 msgid "Specify the pages where you want to enable Sharing interface"
 msgstr "指定要启用共享界面的页面"
 
-#: admin/social_sharing.php:1095 admin/social_sharing.php:1567
+#: admin/social_sharing.php:1095 admin/social_sharing.php:1578
 msgid "Show share counts"
 msgstr "显示共享计数"
 
-#: admin/social_sharing.php:1100 admin/social_sharing.php:1572
+#: admin/social_sharing.php:1100 admin/social_sharing.php:1583
 #, fuzzy
 msgid ""
 "Share counts are supported for Twitter, Buffer, Reddit, Pinterest, "
@@ -2527,7 +2578,7 @@ msgstr ""
 "Facebook，Twitter，Linkedin，Buffer，Reddit，Pinterest，Odnoklassniki，Fintel"
 "和Vkontakte支持分享计数"
 
-#: admin/social_sharing.php:1101 admin/social_sharing.php:1573
+#: admin/social_sharing.php:1101 admin/social_sharing.php:1584
 #, php-format
 msgid ""
 "To show Twitter share count, you have to click \"Give me my Twitter counts "
@@ -2536,28 +2587,28 @@ msgid ""
 "their website."
 msgstr ""
 
-#: admin/social_sharing.php:1108 admin/social_sharing.php:1580
+#: admin/social_sharing.php:1108 admin/social_sharing.php:1591
 msgid "If enabled, share counts are displayed above sharing icons."
 msgstr "如果启用，共享计数在共享图标上面显示。"
 
-#: admin/social_sharing.php:1116 admin/social_sharing.php:1588
-#: admin/social_sharing.php:1815
+#: admin/social_sharing.php:1116 admin/social_sharing.php:1599
+#: admin/social_sharing.php:1844
 msgid "Track Social Shares for Every Social Network"
 msgstr ""
 
-#: admin/social_sharing.php:1122 admin/social_sharing.php:1594
+#: admin/social_sharing.php:1122 admin/social_sharing.php:1605
 msgid "Show total shares"
 msgstr "分享总数"
 
-#: admin/social_sharing.php:1132 admin/social_sharing.php:1604
+#: admin/social_sharing.php:1132 admin/social_sharing.php:1615
 msgid "If enabled, total shares will be displayed with sharing icons"
 msgstr "如果启用，总分享数将显示为带有分享图标"
 
-#: admin/social_sharing.php:1140 admin/social_sharing.php:1612
+#: admin/social_sharing.php:1140 admin/social_sharing.php:1623
 msgid "Enable 'More' icon"
 msgstr "启用“更多”图标"
 
-#: admin/social_sharing.php:1150 admin/social_sharing.php:1622
+#: admin/social_sharing.php:1150 admin/social_sharing.php:1633
 msgid ""
 "If enabled, \"More\" icon will be displayed after selected sharing icons "
 "which shows additional sharing networks in popup"
@@ -2605,113 +2656,123 @@ msgid ""
 "bottom and decrease will shift it towards top."
 msgstr "指定一个数字。增加数目将朝底部移动和减少则为向顶部。"
 
-#: admin/social_sharing.php:1560
+#: admin/social_sharing.php:1571
 msgid "Specify the pages where you want to enable vertical Sharing interface"
 msgstr "指定要实现垂直共享界面的网页"
 
-#: admin/social_sharing.php:1629
+#: admin/social_sharing.php:1640
 msgid "Hide floating slider"
 msgstr "隐藏浮动滑块"
 
-#: admin/social_sharing.php:1639
+#: admin/social_sharing.php:1650
 msgid "Hides the slider arrow present below the floating share bar"
 msgstr "隐藏浮动共享栏下方的滑块箭头"
 
-#: admin/social_sharing.php:1646
+#: admin/social_sharing.php:1657
 msgid "Vertical floating bar responsiveness"
 msgstr "立式浮栏响应能力"
 
-#: admin/social_sharing.php:1649 inc/widget.php:1107
+#: admin/social_sharing.php:1660 inc/widget.php:1167
 #, php-format
 msgid "Display vertical interface only when screen is wider than %s pixels"
 msgstr "只有屏幕宽度超过 %s 像素时显示垂直界面"
 
-#: admin/social_sharing.php:1656
+#: admin/social_sharing.php:1667
 msgid ""
 "Display vertical interface only when screen is wider than the width "
 "specified."
 msgstr "只有在指定的宽度比宽屏幕时显示垂直界面。"
 
-#: admin/social_sharing.php:1663
+#: admin/social_sharing.php:1674
 msgid "Horizontal floating bar responsiveness"
 msgstr "水平浮动栏响应"
 
-#: admin/social_sharing.php:1666 inc/widget.php:1111
+#: admin/social_sharing.php:1677 inc/widget.php:1171
 #, php-format
 msgid ""
 "Stick vertical floating interface horizontally at bottom only when screen is "
 "narrower than %s pixels"
 msgstr "只有当屏幕小于 %s 像素时，粘性垂直浮动界面底部的水平位置"
 
-#: admin/social_sharing.php:1673
+#: admin/social_sharing.php:1684
 msgid ""
 "Stick vertical floating interface horizontally at bottom only when screen is "
 "narrower than the width specified"
 msgstr "只有当屏幕小于指定的宽度时，粘性垂直浮动界面底部的水平位置"
 
-#: admin/social_sharing.php:1682
+#: admin/social_sharing.php:1693
 msgid "Horizontal floating bar position"
 msgstr "水平浮动栏位置"
 
-#: admin/social_sharing.php:1685 inc/widget.php:1117
+#: admin/social_sharing.php:1696 inc/widget.php:1177
 #, php-format
 msgid "%s pixels from %s"
 msgstr "%s像素来自%s"
 
-#: admin/social_sharing.php:1686
+#: admin/social_sharing.php:1697
 msgid "Auto-adjust according to screen width (responsive)"
 msgstr "根据屏幕宽度自动调整 (自响应)"
 
-#: admin/social_sharing.php:1693
+#: admin/social_sharing.php:1704
 msgid "Alignment of horizontal floating interface. Number can be negative too."
 msgstr "对齐方式的水平浮动界面。数值可以为负。"
 
-#: admin/social_sharing.php:1721
+#: admin/social_sharing.php:1732
 msgid "Use plain background for Instagram icon"
 msgstr ""
 
-#: admin/social_sharing.php:1731
+#: admin/social_sharing.php:1742
 msgid ""
 "Uses plain background for Instagram icon instead of multicolored background"
 msgstr ""
 
-#: admin/social_sharing.php:1744
+#: admin/social_sharing.php:1749
+msgid "Trigger device specific social sharing on click of More icon"
+msgstr ""
+
+#: admin/social_sharing.php:1760
+msgid ""
+"Triggers device specific native social share dialogue on click of the More "
+"icon instead of showing all the social networks in a layover popup."
+msgstr ""
+
+#: admin/social_sharing.php:1773
 msgid "Use shortlinks already installed"
 msgstr "短网址已安装，发推按钮"
 
-#: admin/social_sharing.php:1754
+#: admin/social_sharing.php:1783
 msgid "Uses default short url permalinks without using any additional plugin"
 msgstr "使用默认的短网址永久链接, 而无需使用任何额外的插件"
 
-#: admin/social_sharing.php:1761
+#: admin/social_sharing.php:1790
 msgid "Enable bit.ly url shortener for sharing"
 msgstr "用于使用bit.ly url短链共享"
 
-#: admin/social_sharing.php:1820
+#: admin/social_sharing.php:1849
 msgid "Share Count Cache"
 msgstr "共享计数缓存"
 
-#: admin/social_sharing.php:1825
+#: admin/social_sharing.php:1854
 msgid "Refresh Share Count cache every"
 msgstr "清空每个计数器缓存"
 
-#: admin/social_sharing.php:1830
+#: admin/social_sharing.php:1859
 msgid "Second(s)"
 msgstr "秒(s)"
 
-#: admin/social_sharing.php:1831
+#: admin/social_sharing.php:1860
 msgid "Minute(s)"
 msgstr "分钟"
 
-#: admin/social_sharing.php:1832
+#: admin/social_sharing.php:1861
 msgid "Hour(s)"
 msgstr "小时"
 
-#: admin/social_sharing.php:1833
+#: admin/social_sharing.php:1862
 msgid "Day(s)"
 msgstr "天"
 
-#: admin/social_sharing.php:1841
+#: admin/social_sharing.php:1870
 #, php-format
 msgid ""
 "Frequent cache refreshing results in slower loading of pages with share "
@@ -2721,19 +2782,19 @@ msgstr ""
 "频繁的缓存刷新会导致启用共享计数的页面加载速度变慢。 保留为空以禁用缓存。 相"
 "关信息 <a href=\"%s\" target=\"_blank\"> 在这里 </a>"
 
-#: admin/social_sharing.php:1848
+#: admin/social_sharing.php:1877
 msgid "Clear Share Counts Cache"
 msgstr "清除共享计数缓存"
 
-#: admin/social_sharing.php:1852
+#: admin/social_sharing.php:1881
 msgid "Share Counts cache cleared successfully."
 msgstr "分享计数缓存成功清除。"
 
-#: admin/social_sharing.php:1859
+#: admin/social_sharing.php:1888
 msgid "Use this to clear cached share counts"
 msgstr "使用这个清除计数的缓存"
 
-#: admin/social_sharing.php:1883
+#: admin/social_sharing.php:1912
 #, php-format
 msgid ""
 "Enter the code of the language you want to use for like buttons. You can "
@@ -2743,15 +2804,15 @@ msgstr ""
 "输入你想要为喜欢按钮指定的语言代码。你可以在<a href=“%s” target=“_blank”>这个"
 "链接</a>找到语言代码。留空为默认 (英语)"
 
-#: admin/social_sharing.php:1892
+#: admin/social_sharing.php:1921
 msgid "Username in sharing"
 msgstr "共享的用户名"
 
-#: admin/social_sharing.php:1897
+#: admin/social_sharing.php:1926
 msgid "Twitter username (without @)"
 msgstr "Twitter账号(无@)"
 
-#: admin/social_sharing.php:1907
+#: admin/social_sharing.php:1936
 msgid ""
 "Provided username will be appended after the content being shared as \"via "
 "@USERNAME\". Leave empty if you do not want any username in the content "
@@ -2760,36 +2821,36 @@ msgstr ""
 "提供的用户名将在”通过 @USERNAME”的内容共享后。如果你不想用户名在共享内容中，"
 "请留空。"
 
-#: admin/social_sharing.php:1917
+#: admin/social_sharing.php:1946
 #, fuzzy
 msgid "AMP"
 msgstr "启用此选项可在AMP页面上呈现分享图标"
 
-#: admin/social_sharing.php:1922
+#: admin/social_sharing.php:1951
 msgid "Enable sharing on AMP pages"
 msgstr "在 AMP 页面上启用分享"
 
-#: admin/social_sharing.php:1932
+#: admin/social_sharing.php:1961
 msgid "Enable this option to render sharing icons on AMP pages"
 msgstr "启用此选项可在AMP页面上呈现分享图标"
 
-#: admin/social_sharing.php:1984
+#: admin/social_sharing.php:2013
 #, fuzzy
 msgid "Social Share Shortcode & Widget"
 msgstr "社会登录短代码＆小工具"
 
-#: admin/social_sharing.php:1985
+#: admin/social_sharing.php:2014
 #, fuzzy
 msgid "Social Media Follow Shortcode & Widget"
 msgstr "社会登录短代码＆小工具"
 
-#: admin/social_sharing.php:1996
+#: admin/social_sharing.php:2025
 #, fuzzy
 #| msgid "Facebook Sharing Troubleshooter"
 msgid "Social Share Troubleshooter"
 msgstr "Facebook 分享疑难解答"
 
-#: admin/social_sharing.php:2002
+#: admin/social_sharing.php:2031
 #, fuzzy
 #| msgid ""
 #| "If Facebook sharing is not working fine, click at the following link and "
@@ -2803,7 +2864,7 @@ msgstr ""
 "如果 Facebook 共享工作不正常，请单击以下链接，并在文本字段中输入您网站有问题"
 "的网址（Facebook 共享无法正常工作）。单击\"调试\"按钮。"
 
-#: admin/social_sharing.php:2006
+#: admin/social_sharing.php:2035
 #, fuzzy
 #| msgid ""
 #| "If Facebook sharing is not working fine, click at the following link and "
@@ -2818,17 +2879,17 @@ msgstr ""
 "如果 Facebook 共享工作不正常，请单击以下链接，并在文本字段中输入您网站有问题"
 "的网址（Facebook 共享无法正常工作）。单击\"调试\"按钮。"
 
-#: admin/social_sharing.php:2025
+#: admin/social_sharing.php:2054
 msgid ""
 "Why is sharer not showing the correct image, title and other meta tags "
 "content?"
 msgstr "为什么分享者没有显示正确的图像，标题和其他元标记内容？"
 
-#: admin/social_sharing.php:2026
+#: admin/social_sharing.php:2055
 msgid "Why is Facebook share count not working?"
 msgstr "为什么Facebook分享计数不起作用？"
 
-#: admin/social_sharing.php:2027 super_socializer.php:3494
+#: admin/social_sharing.php:2056 super_socializer.php:3500
 #, php-format
 msgid ""
 "After the recent changes introduced in the Facebook graph API, it's not "
@@ -2837,11 +2898,11 @@ msgid ""
 "not just for Facebook but for all the social networks"
 msgstr ""
 
-#: admin/social_sharing.php:2029
+#: admin/social_sharing.php:2058
 msgid "Why is Instagram icon redirecting to Instagram website?"
 msgstr "为什么 instagram 图标重定向到 instagram 网站？"
 
-#: admin/social_sharing.php:2030
+#: admin/social_sharing.php:2059
 msgid ""
 "Instagram icon is there to send website visitors to the Instagram page of "
 "your choice. You can save the desired Instagram handle in \"Instagram "
@@ -2851,74 +2912,74 @@ msgstr ""
 "Instagram图标可以将网站访问者发送到您选择的Instagram页面。 您可以在“标准界"
 "面”和“浮动界面”部分的“Instagram用户名”选项中保存所需的Instagram句柄。"
 
-#: admin/social_sharing.php:2033
+#: admin/social_sharing.php:2062
 msgid "How to customize the url being shared?"
 msgstr "如何自定义正在共享的网址？"
 
-#: admin/social_sharing.php:2034
+#: admin/social_sharing.php:2063
 msgid ""
 "Why are Twitter shares not appearing even after registering at Twitcount.com?"
 msgstr ""
 
-#: admin/social_sharing.php:2035
+#: admin/social_sharing.php:2064
 msgid ""
 "It takes some time for their service to track the shares made on Twitter "
 "from your website. If you still feel it's taking too long you can contact "
 "their support directly from their website."
 msgstr ""
 
-#: admin/social_sharing.php:2038
+#: admin/social_sharing.php:2067
 msgid ""
 "How to restore Social Share counts lost after moving my website to SSL/Https?"
 msgstr "如何恢复在将我的网站转移到SSL/https之后丢失的社交分享数？"
 
-#: admin/social_sharing.php:2040
+#: admin/social_sharing.php:2069
 msgid "Why the color of share icons is not being updated?"
 msgstr "为什么分享图标的颜色未更新？"
 
-#: admin/social_sharing.php:2041
+#: admin/social_sharing.php:2070
 msgid "Why Facebook share counts are not appearing?"
 msgstr "为什么Facebook 分享数量没有出现？"
 
-#: admin/social_sharing.php:2042
+#: admin/social_sharing.php:2071
 msgid ""
 "How can I show share counts of my website rather than of individual pages/"
 "posts?"
 msgstr "怎样表示我网站的共享计数，而不是个别网页/文章?"
 
-#: admin/social_sharing.php:2043
+#: admin/social_sharing.php:2072
 msgid "How can I disable sharing on particular page/post?"
 msgstr "如何在特定的页面文章上禁用共享？"
 
-#: admin/social_sharing.php:2044
+#: admin/social_sharing.php:2073
 msgid "How can I specify minimum sharing count for sharing networks?"
 msgstr "如何为共享网络共享指定最少数目?"
 
-#: admin/social_sharing.php:2045
+#: admin/social_sharing.php:2074
 msgid "How to share specific page?"
 msgstr "如何共享特定页面?"
 
-#: admin/social_sharing.php:2046
+#: admin/social_sharing.php:2075
 msgid "How to integrate Google Analytics with sharing?"
 msgstr "如何将Google Analytics与分享集成？"
 
-#: admin/social_sharing.php:2047
+#: admin/social_sharing.php:2076
 msgid "How to customize the look of total share counts?"
 msgstr "如何自定义总共享计数的外观?"
 
-#: admin/social_sharing.php:2048
+#: admin/social_sharing.php:2077
 msgid "How to customize the look of individual share counts?"
 msgstr "如何自定义个人共享计数的外观?"
 
-#: admin/social_sharing.php:2049
+#: admin/social_sharing.php:2078
 msgid "How to show Whatsapp icon only on mobile devices?"
 msgstr "如何仅在移动设备上显示 Whatsapp 图标?"
 
-#: admin/social_sharing.php:2050
+#: admin/social_sharing.php:2079
 msgid "How to hide arrow after floating sharing bar?"
 msgstr "如何在浮动共享栏后隐藏箭头？"
 
-#: admin/social_sharing.php:2051
+#: admin/social_sharing.php:2080
 msgid "Why is share count not getting updated?"
 msgstr "为什么共享计数没有得到更新？"
 
@@ -2942,106 +3003,118 @@ msgstr "支持文档"
 msgid "Settings"
 msgstr "设置"
 
-#: helper.php:565
+#: helper.php:312 helper.php:1008
+msgid "Please verify your email address to login."
+msgstr "请验证您的电子邮件地址以便登录。"
+
+#: helper.php:312
+msgid "Your email has been verified. Now you can login to your account"
+msgstr "您的电子邮件已验证。现在你可以登录到您的帐户"
+
+#: helper.php:566
 msgid "Account linked successfully"
 msgstr "成功关联帐户"
 
-#: helper.php:569
+#: helper.php:570
 msgid "Account already exists or linked"
 msgstr "帐户已经存在或被链接"
 
-#: helper.php:605 helper.php:607
+#: helper.php:606 helper.php:608
 #, fuzzy
 msgid "Login with"
 msgstr "自定义社交登录图标"
 
-#: helper.php:642 helper.php:648
+#: helper.php:643 helper.php:649
 msgid "Currently"
 msgstr "目前"
 
-#: helper.php:642 helper.php:648
+#: helper.php:643 helper.php:649
 msgid "Connected with"
 msgstr "连接与"
 
-#: helper.php:642 helper.php:648
+#: helper.php:643 helper.php:649
 msgid "Remove"
 msgstr "删除"
 
-#: helper.php:721
+#: helper.php:722
 msgid "Social Account Linking"
 msgstr "社交账户链接"
 
-#: helper.php:772
+#: helper.php:773
 msgid "Disable Standard Social Sharing on this "
 msgstr "此处禁用标准社交分享 "
 
-#: helper.php:777
+#: helper.php:778
 msgid "Disable Floating Social Sharing on this "
 msgstr "此处禁用悬浮社交分享 "
 
-#: helper.php:782
+#: helper.php:783
 msgid "Disable Standard like buttons on this "
 msgstr "此处禁用标准Like按钮 "
 
-#: helper.php:787
+#: helper.php:788
 msgid "Disable Floating like buttons on this "
 msgstr "此处禁用悬浮Like按钮 "
 
-#: helper.php:792
+#: helper.php:793
 msgid "Disable Social Commenting on this "
 msgstr "此处禁用第三方登录用户的评论 "
 
-#: helper.php:801
+#: helper.php:802
 msgid "Standard Sharing Interface"
 msgstr "标准共享界面"
 
-#: helper.php:807 helper.php:826
+#: helper.php:808 helper.php:827
 msgid "Starting share count for "
 msgstr "起始共享计数 "
 
-#: helper.php:820
+#: helper.php:821
 msgid "Floating Sharing Interface"
 msgstr "浮动共享界面"
 
-#: helper.php:932 super_socializer.php:2712
+#: helper.php:933 super_socializer.php:2718
 msgid "Social Avatar"
 msgstr "社会化头像"
 
-#: helper.php:935 super_socializer.php:2723
+#: helper.php:936 super_socializer.php:2729
 msgid ""
 "Do not fetch and update social avatar from my profile, next time I Social "
 "Login"
 msgstr "不从我的个人资料里获取及更新社会化头像，下次社会化登录"
 
-#: helper.php:936 super_socializer.php:2727
+#: helper.php:937 super_socializer.php:2733
 msgid "Update social avatar, next time I Social Login"
 msgstr "更新社会化头像，下次社会化登录"
 
-#: helper.php:939
+#: helper.php:940
 msgid "Small Avatar"
 msgstr "小头像"
 
-#: helper.php:943
+#: helper.php:944
 msgid "Large Avatar"
 msgstr "大头像"
 
-#: helper.php:1007 super_socializer.php:2280
-msgid "Please verify your email address to login."
-msgstr "请验证您的电子邮件地址以便登录。"
-
-#: helper.php:1044
+#: helper.php:1053
 msgid "Click to delete social profile data"
 msgstr "点击删除社交个人资料数据"
 
-#: helper.php:1073
+#: helper.php:1058 inc/widget.php:1193
+msgid "No"
+msgstr ""
+
+#: helper.php:1060
+msgid "Yes"
+msgstr ""
+
+#: helper.php:1090
 msgid "Deleting"
 msgstr "删除"
 
-#: helper.php:1084
+#: helper.php:1101
 msgid "Deleted"
 msgstr "已删除"
 
-#: helper.php:1086
+#: helper.php:1103
 msgid "Something bad happened"
 msgstr "发生了一些不好的事情"
 
@@ -3057,38 +3130,54 @@ msgstr ""
 "在管理员控制面板中的”Super Socializer > 社交登录”页，从”基本配置”启用社交化登"
 "录"
 
-#: inc/social_login.php:1127
+#: inc/social_login.php:398
+#, fuzzy
+#| msgid "Notification"
+msgid "Account Verification"
+msgstr "通知"
+
+#: inc/social_login.php:400
+#, fuzzy
+#| msgid ""
+#| "Please click on the following link or paste it in browser to verify your "
+#| "email"
+msgid ""
+"Please click on the following link or paste it in browser to verify your "
+"account"
+msgstr "请点击下面的链接或粘贴在浏览器中, 以验证您的电子邮件"
+
+#: inc/social_login.php:1157
 msgid "Email"
 msgstr "邮箱"
 
-#: inc/social_login.php:1128
+#: inc/social_login.php:1158
 msgid "Confirm email"
 msgstr "确认邮箱"
 
-#: inc/social_login.php:1130
+#: inc/social_login.php:1160
 msgid "Save"
 msgstr "保存"
 
-#: inc/social_login.php:1131
+#: inc/social_login.php:1161
 msgid "Cancel"
 msgstr "取消"
 
-#: inc/social_login.php:1207
+#: inc/social_login.php:1237
 msgid "Email Verification"
 msgstr "电子邮件验证"
 
-#: inc/social_login.php:1209
+#: inc/social_login.php:1239
 msgid ""
 "Please click on the following link or paste it in browser to verify your "
 "email"
 msgstr "请点击下面的链接或粘贴在浏览器中, 以验证您的电子邮件"
 
-#: inc/social_login.php:1256
+#: inc/social_login.php:1286
 msgid ""
 "<strong>ERROR</strong>: Your account has been denied access to this site."
 msgstr ""
 
-#: inc/social_login.php:1260
+#: inc/social_login.php:1290
 msgid "<strong>ERROR</strong>: Your account is still pending approval."
 msgstr ""
 
@@ -3107,11 +3196,11 @@ msgstr "归档"
 msgid "Total Shares"
 msgstr "分享总数"
 
-#: inc/social_sharing.php:270 super_socializer.php:2390
+#: inc/social_sharing.php:270 super_socializer.php:2396
 msgid "Share"
 msgstr "分享"
 
-#: inc/social_sharing.php:270 super_socializer.php:2390
+#: inc/social_sharing.php:270 super_socializer.php:2396
 msgid "Shares"
 msgstr "分享"
 
@@ -3154,11 +3243,11 @@ msgstr "标题 (登录前):"
 msgid "Title (after login):"
 msgstr "标题 (登录后):"
 
-#: inc/widget.php:88 inc/widget.php:268 inc/widget.php:611 inc/widget.php:1060
+#: inc/widget.php:88 inc/widget.php:268 inc/widget.php:611 inc/widget.php:1120
 msgid "Before widget content:"
 msgstr "小工具内容之前:"
 
-#: inc/widget.php:90 inc/widget.php:270 inc/widget.php:613 inc/widget.php:1231
+#: inc/widget.php:90 inc/widget.php:270 inc/widget.php:613 inc/widget.php:1301
 msgid "After widget content:"
 msgstr "小工具内容之后:"
 
@@ -3225,7 +3314,7 @@ msgid ""
 msgstr ""
 "确保在 \"Super Socializer  > 社交共享\" 页面上启用了 \"浮动社交共享\"。"
 
-#: inc/widget.php:447 inc/widget.php:760 inc/widget.php:1064
+#: inc/widget.php:447 inc/widget.php:760 inc/widget.php:1124
 msgid "Alignment"
 msgstr "对齐"
 
@@ -3278,217 +3367,230 @@ msgstr "Super Socializer - 关注图标"
 msgid "These icons link to your Social Media accounts"
 msgstr "这些图标链接到您的社交媒体帐户"
 
-#: inc/widget.php:1070
+#: inc/widget.php:1130
 msgid "Type:"
 msgstr ""
 
-#: inc/widget.php:1073
+#: inc/widget.php:1133
 #, fuzzy
 msgid "Standard"
 msgstr "标准接口选项"
 
-#: inc/widget.php:1076
+#: inc/widget.php:1136
 #, fuzzy
 msgid "Floating"
 msgstr "启用浮动Like按钮"
 
-#: inc/widget.php:1081
+#: inc/widget.php:1141
 #, fuzzy
 msgid "Top offset:"
 msgstr "顶部偏移"
 
-#: inc/widget.php:1085
+#: inc/widget.php:1145
 #, fuzzy
 msgid "Alignment:"
 msgstr "对齐"
 
-#: inc/widget.php:1103
+#: inc/widget.php:1163
 #, fuzzy
 msgid "Offset"
 msgstr "顶部偏移"
 
-#: inc/widget.php:1117
+#: inc/widget.php:1177
 #, fuzzy
 msgid "right"
 msgstr "右侧"
 
-#: inc/widget.php:1117
+#: inc/widget.php:1177
 #, fuzzy
 msgid "left"
 msgstr "左边"
 
-#: inc/widget.php:1120
+#: inc/widget.php:1180
 #, fuzzy
 msgid "Auto-adjust according to the screen-width (responsive)"
 msgstr "根据屏幕宽度自动调整 (自响应)"
 
-#: inc/widget.php:1124
+#: inc/widget.php:1184
 msgid "Size of icons"
 msgstr "图标大小"
 
-#: inc/widget.php:1126
+#: inc/widget.php:1186
 msgid "Icon Shape"
 msgstr "图标形状"
 
-#: inc/widget.php:1131
+#: inc/widget.php:1191
 msgid "Apply icon color and background color from Theme Selection section:"
 msgstr ""
 
-#: inc/widget.php:1133
-msgid "No"
-msgstr ""
-
-#: inc/widget.php:1134
+#: inc/widget.php:1194
 #, fuzzy
 msgid "Yes, Standard Interface Theme"
 msgstr "标准接口主题"
 
-#: inc/widget.php:1135
+#: inc/widget.php:1195
 #, fuzzy
 msgid "Yes, Floating Interface Theme"
 msgstr "浮动的界面主题"
 
-#: inc/widget.php:1137
-msgid "Facebook URL:"
-msgstr ""
-
-#: inc/widget.php:1140
-msgid "Twitter URL:"
-msgstr ""
-
-#: inc/widget.php:1143
-msgid "Parler URL:"
-msgstr ""
-
-#: inc/widget.php:1146
-msgid "Instagram URL:"
-msgstr ""
-
-#: inc/widget.php:1149
-msgid "Pinterest URL:"
-msgstr ""
-
-#: inc/widget.php:1152
+#: inc/widget.php:1197
 msgid "Behance URL:"
 msgstr ""
 
-#: inc/widget.php:1155
-msgid "Flickr URL:"
-msgstr ""
-
-#: inc/widget.php:1158
-msgid "Foursquare URL:"
-msgstr ""
-
-#: inc/widget.php:1161
-msgid "Github URL:"
-msgstr ""
-
-#: inc/widget.php:1164
-msgid "LinkedIn URL:"
-msgstr ""
-
-#: inc/widget.php:1167
-msgid "LinkedIn Company URL:"
-msgstr ""
-
-#: inc/widget.php:1170
-msgid "Medium URL:"
-msgstr ""
-
-#: inc/widget.php:1173
-msgid "MeWe URL:"
-msgstr ""
-
-#: inc/widget.php:1176
-msgid "Odnoklassniki URL:"
-msgstr ""
-
-#: inc/widget.php:1179
-msgid "Snapchat URL:"
-msgstr ""
-
-#: inc/widget.php:1182
-msgid "Telegram URL:"
-msgstr ""
-
-#: inc/widget.php:1185
-msgid "Threads URL:"
-msgstr ""
-
-#: inc/widget.php:1188
-msgid "TikTok URL:"
-msgstr ""
-
-#: inc/widget.php:1191
-msgid "Tumblr URL:"
-msgstr ""
-
-#: inc/widget.php:1194
-msgid "Vimeo URL:"
-msgstr ""
-
-#: inc/widget.php:1197
-msgid "Vkontakte URL:"
-msgstr ""
-
 #: inc/widget.php:1200
-msgid "Whatsapp URL:"
+msgid "Bluesky URL:"
 msgstr ""
 
 #: inc/widget.php:1203
-msgid "X URL:"
+msgid "Facebook URL:"
 msgstr ""
 
 #: inc/widget.php:1206
-msgid "Xing URL:"
+msgid "Flickr URL:"
 msgstr ""
 
 #: inc/widget.php:1209
-msgid "Youtube URL:"
+msgid "Foursquare URL:"
 msgstr ""
 
 #: inc/widget.php:1212
-msgid "Youtube Channel URL:"
+msgid "Gab URL:"
 msgstr ""
 
 #: inc/widget.php:1215
-msgid "RSS Feed URL:"
+msgid "Gettr URL:"
 msgstr ""
 
 #: inc/widget.php:1218
-msgid "Gab.com URL:"
+msgid "Github URL:"
 msgstr ""
 
 #: inc/widget.php:1221
-msgid "Gettr.com URL:"
-msgstr ""
-
-#: inc/widget.php:1224
 #, fuzzy
 msgid "Google Maps URL:"
 msgstr "Google+网址："
 
-#: inc/widget.php:1226
+#: inc/widget.php:1223
 #, fuzzy
 msgid "Google News URL:"
 msgstr "Google+网址："
 
+#: inc/widget.php:1225
+msgid "Instagram URL:"
+msgstr ""
+
 #: inc/widget.php:1228
+msgid "Line URL:"
+msgstr ""
+
+#: inc/widget.php:1230
+msgid "LinkedIn URL:"
+msgstr ""
+
+#: inc/widget.php:1233
+msgid "LinkedIn Company URL:"
+msgstr ""
+
+#: inc/widget.php:1236
+#, fuzzy
+msgid "Mastodon URL:"
+msgstr "自定义 URL"
+
+#: inc/widget.php:1238
+msgid "Medium URL:"
+msgstr ""
+
+#: inc/widget.php:1241
+msgid "MeWe URL:"
+msgstr ""
+
+#: inc/widget.php:1244
+msgid "Micro.blog URL:"
+msgstr ""
+
+#: inc/widget.php:1247
+msgid "Odnoklassniki URL:"
+msgstr ""
+
+#: inc/widget.php:1250
+msgid "Parler URL:"
+msgstr ""
+
+#: inc/widget.php:1253
+msgid "Pinterest URL:"
+msgstr ""
+
+#: inc/widget.php:1256
+msgid "RSS Feed URL:"
+msgstr ""
+
+#: inc/widget.php:1259
+msgid "Snapchat URL:"
+msgstr ""
+
+#: inc/widget.php:1262
+msgid "Telegram URL:"
+msgstr ""
+
+#: inc/widget.php:1265
+msgid "Threads URL:"
+msgstr ""
+
+#: inc/widget.php:1268
+msgid "TikTok URL:"
+msgstr ""
+
+#: inc/widget.php:1271
+msgid "Tumblr URL:"
+msgstr ""
+
+#: inc/widget.php:1274
+msgid "Twitter URL:"
+msgstr ""
+
+#: inc/widget.php:1277
+msgid "Vimeo URL:"
+msgstr ""
+
+#: inc/widget.php:1280
+msgid "Vkontakte URL:"
+msgstr ""
+
+#: inc/widget.php:1283
+msgid "Whatsapp URL:"
+msgstr ""
+
+#: inc/widget.php:1286
+msgid "X URL:"
+msgstr ""
+
+#: inc/widget.php:1289
+msgid "Xing URL:"
+msgstr ""
+
+#: inc/widget.php:1292
+msgid "Youtube URL:"
+msgstr ""
+
+#: inc/widget.php:1295
+msgid "Youtube Channel URL:"
+msgstr ""
+
+#: inc/widget.php:1298
 msgid "Yelp URL:"
 msgstr ""
 
-#: super_socializer.php:458
+#: super_socializer.php:462
 msgid "Enable CURL at your website server to use Mail.ru Social Login."
 msgstr ""
 
-#: super_socializer.php:670
+#: super_socializer.php:674
 msgid ""
 "cURL is not enabled at your website server. Please contact your website "
 "server administrator to enable it."
 msgstr "在您的网站服务器上未启用 curl。请与您的网站服务器管理员联系以启用它。"
 
-#: super_socializer.php:702
+#: super_socializer.php:706
 #, php-format
 msgid ""
 "Enter exactly the following url in <strong>Website</strong> option in your "
@@ -3497,7 +3599,7 @@ msgstr ""
 "在 twitter 应用中的 <strong> 网站 </strong> 选项中输入以下 url (请参阅步骤 3 "
 "%s)"
 
-#: super_socializer.php:705
+#: super_socializer.php:709
 #, php-format
 msgid ""
 "Enter exactly the following url in <strong>Callback URLs</strong> option in "
@@ -3506,92 +3608,88 @@ msgstr ""
 "在 twitter 应用中 <strong> 回调 url </strong> 选项中输入以下 url (请参阅步骤 "
 "3 %s)"
 
-#: super_socializer.php:708
+#: super_socializer.php:712
 msgid ""
 "Make sure cURL is enabled at your website server. You may need to contact "
 "the server administrator of your website to verify this"
 msgstr ""
 "请确保在您的网站服务器上启用了cURL。对此，请您与您的网站的服务器管理员核实"
 
-#: super_socializer.php:2258
+#: super_socializer.php:2264
 msgid "Search"
 msgstr "搜索"
 
-#: super_socializer.php:2280
-msgid "Your email has been verified. Now you can login to your account"
-msgstr "您的电子邮件已验证。现在你可以登录到您的帐户"
-
-#: super_socializer.php:2284
+#: super_socializer.php:2290
 msgid "Notification"
 msgstr "通知"
 
-#: super_socializer.php:2305
+#: super_socializer.php:2311
 msgid "Please check your email inbox to complete the registration."
 msgstr "请检查您的电子邮件收件箱以完成注册。"
 
-#: super_socializer.php:2374
+#: super_socializer.php:2380
 msgid "Leave a reply"
 msgstr "回复"
 
-#: super_socializer.php:2390
+#: super_socializer.php:2396
 msgid "Link copied."
 msgstr "链接已复制。"
 
-#: super_socializer.php:2628
+#: super_socializer.php:2634
 msgid "Super Socializer - General Options"
 msgstr "Super Socializer-常规选项"
 
-#: super_socializer.php:2699
+#: super_socializer.php:2705
 msgid ""
 "I agree to my personal data being stored and used as per Privacy Policy and "
 "Terms and Conditions"
 msgstr "我同意根据隐私政策和条款和条件存储和使用我的个人数据"
 
-#: super_socializer.php:2703
+#: super_socializer.php:2709
 msgid ""
 "I revoke my consent to store and use my personal data. Kindly delete my "
 "personal data saved in this website."
 msgstr "我撤销了存储和使用个人数据的同意。请删除保存在此网站的个人数据。"
 
-#: super_socializer.php:2715
+#: super_socializer.php:2721
 msgid "Small Avatar Url"
 msgstr "小头像 Url"
 
-#: super_socializer.php:2719
+#: super_socializer.php:2725
 msgid "Large Avatar Url"
 msgstr "大头像 Url"
 
-#: super_socializer.php:2822
+#: super_socializer.php:2828
 msgid "Login with your Social ID"
 msgstr "使用您的社交 ID登录"
 
-#: super_socializer.php:2823
+#: super_socializer.php:2829
 msgid "Email you entered is already registered or invalid"
 msgstr "您输入的电子邮件已经注册或无效"
 
-#: super_socializer.php:2830
+#: super_socializer.php:2836
 msgid "Please enter a valid email address. You might be required to verify it"
 msgstr "请输入一个有效的电子邮件地址。您可能需要验证它"
 
-#: super_socializer.php:2835 super_socializer.php:3721
+#: super_socializer.php:2841 super_socializer.php:3727
 msgid "Link your social account to login to your account at this website"
 msgstr "链接你的社会化媒体帐户登录您本站账号"
 
-#: super_socializer.php:3126
+#: super_socializer.php:3132
 msgid "Thanks for installing Super Socializer plugin"
 msgstr ""
 
-#: super_socializer.php:3128
+#: super_socializer.php:3134
 msgid "Configure the Plugin"
 msgstr ""
 
-#: super_socializer.php:3139
+#: super_socializer.php:3145
 msgid ""
 "Update \"Facebook Comments Moderation\" add-on for compatibility with "
 "current version of Super Socializer"
 msgstr "更新\"脸谱评论适度\"附加组件，以与当前版本的超级社交者兼容"
 
-#: super_socializer.php:3148
+#: super_socializer.php:3154
 #, fuzzy
 msgid ""
 "Update \"Social Shares Tracker\" add-on to version 1.1 or above for "
@@ -3600,7 +3698,7 @@ msgstr ""
 "将\"社交登录按钮\"附加组件更新到版本 1.2.7 或以上，以便与当前版本的超级社交用"
 "户兼容"
 
-#: super_socializer.php:3157
+#: super_socializer.php:3163
 #, fuzzy
 msgid ""
 "Update \"Social Sharing Analytics\" add-on to version 1.1.8 or above for "
@@ -3609,13 +3707,13 @@ msgstr ""
 "将\"社交登录按钮\"附加组件更新到版本 1.2.7 或以上，以便与当前版本的超级社交用"
 "户兼容"
 
-#: super_socializer.php:3166
+#: super_socializer.php:3172
 msgid ""
 "Update \"Facebook Comments Notifier\" add-on for compatibility with current "
 "version of Super Socializer"
 msgstr "更新\"脸谱评论通知器\"附加组件，以与当前版本的超级社交者兼容"
 
-#: super_socializer.php:3175
+#: super_socializer.php:3181
 #, fuzzy
 msgid ""
 "Update \"Social Login Buttons\" add-on to version 1.2.14 or above for "
@@ -3624,7 +3722,7 @@ msgstr ""
 "将\"社交登录按钮\"附加组件更新到版本 1.2.7 或以上，以便与当前版本的超级社交用"
 "户兼容"
 
-#: super_socializer.php:3184
+#: super_socializer.php:3190
 #, fuzzy
 msgid ""
 "Update \"Social Share myCRED Integration\" add-on to version 1.3.13 or above "
@@ -3633,14 +3731,14 @@ msgstr ""
 "将\"社交登录按钮\"附加组件更新到版本 1.2.7 或以上，以便与当前版本的超级社交用"
 "户兼容"
 
-#: super_socializer.php:3193
+#: super_socializer.php:3199
 msgid ""
 "Update \"Social Login myCRED Integration\" add-on for maximum compatibility "
 "with current version of Super Socializer"
 msgstr ""
 "更新\"社交登录 myCRED 集成\"附加组件，以最大限度地兼容当前版本的超级社交"
 
-#: super_socializer.php:3204
+#: super_socializer.php:3210
 #, php-format
 msgid ""
 "To continue using Steam login save Steam API key <a href=\"%s\">here</a>"
@@ -3648,7 +3746,7 @@ msgstr ""
 "要继续使用 steam 登录, 请保存 steam api 密钥 < a href = \" %s\" >, 请点击此"
 "处 </a>"
 
-#: super_socializer.php:3213
+#: super_socializer.php:3219
 #, php-format
 msgid ""
 "To continue using Instagram login create a new Instagram App as described <a "
@@ -3656,7 +3754,7 @@ msgid ""
 "Instagram App Secret <a href=\"%s\">here</a>"
 msgstr ""
 
-#: super_socializer.php:3222 super_socializer.php:3231
+#: super_socializer.php:3228 super_socializer.php:3237
 #, php-format
 msgid ""
 "To continue using bitly url shortener, login to your bit.ly account and "
@@ -3665,13 +3763,13 @@ msgid ""
 "\">here</a>. More details at the <a href=\"%s\" target=\"_blank\">link</a>"
 msgstr ""
 
-#: super_socializer.php:3247
+#: super_socializer.php:3253
 #, php-format
 msgid ""
 "To continue using Social Login, save the secret keys <a href=\"%s\">here</a>"
 msgstr "若要继续使用社交登录, 请在此处保存密钥 < ref = \" %s\" > </a>"
 
-#: super_socializer.php:3272
+#: super_socializer.php:3278
 #, php-format
 msgid ""
 "Add %s in \"Valid OAuth redirect URIs\" option in your Facebook app settings "
@@ -3682,14 +3780,14 @@ msgstr ""
 "facebook 登录正常工作。有关更多详细信息, 请在此处检查步骤 9 < ref = \" %s\" "
 "target = \"_ black\" > </a>"
 
-#: super_socializer.php:3272 super_socializer.php:3298
-#: super_socializer.php:3324 super_socializer.php:3350
-#: super_socializer.php:3384 super_socializer.php:3413
-#: super_socializer.php:3441
+#: super_socializer.php:3278 super_socializer.php:3304
+#: super_socializer.php:3330 super_socializer.php:3356
+#: super_socializer.php:3390 super_socializer.php:3419
+#: super_socializer.php:3447
 msgid "Okay"
 msgstr "好的"
 
-#: super_socializer.php:3298
+#: super_socializer.php:3304
 #, php-format
 msgid ""
 "Add %s in \"Callback URLs\" option in your Twitter app settings for Twitter "
@@ -3700,7 +3798,7 @@ msgstr ""
 "关更多详细信息, 请在此处检查步骤 4 < ref = \" %s\" target = \"_ black\" > </"
 "a>"
 
-#: super_socializer.php:3324
+#: super_socializer.php:3330
 #, php-format
 msgid ""
 "Add %s in \"Authorized Redirect URLs\" option in your Linkedin app settings "
@@ -3711,7 +3809,7 @@ msgstr ""
 "正常工作。有关更多详细信息, 请在此处检查步骤 4 < ref = \" %s\" target = \"_ "
 "black\" > </a>"
 
-#: super_socializer.php:3350
+#: super_socializer.php:3356
 #, php-format
 msgid ""
 "Add %s in \"Authorized redirect URIs\" option in your Google client settings "
@@ -3722,13 +3820,13 @@ msgstr ""
 "常工作。有关更多详细信息, 请在此处检查步骤 11 < ref = \" %s\" target = \"_ "
 "black\" > </a>"
 
-#: super_socializer.php:3361
+#: super_socializer.php:3367
 #, php-format
 msgid ""
 "Save the url of privacy policy page of your website <a href=\"%s\">here</a>"
 msgstr "保存您的网站 < reof = \" %s\" 的隐私政策页面的网址 </a>"
 
-#: super_socializer.php:3384
+#: super_socializer.php:3390
 #, php-format
 msgid ""
 "This plugin is GDPR compliant. You need to update the privacy policy of your "
@@ -3738,7 +3836,7 @@ msgstr ""
 "这个插件是符合GDPR的。您需要更新网站有关此插件保存的个人数据的隐私政策。如 "
 "<a href=\"%s\" target=\"_blank\">这里</a>所述"
 
-#: super_socializer.php:3413
+#: super_socializer.php:3419
 #, php-format
 msgid ""
 "Now plugin supports a new service Twitcount.com to show Twitter shares. To "
@@ -3747,7 +3845,7 @@ msgid ""
 "your website %s with them. No need to copy-paste any code from their website."
 msgstr ""
 
-#: super_socializer.php:3441
+#: super_socializer.php:3447
 #, php-format
 msgid ""
 "Replace url saved in \"Callback URLs\" option in your Twitter app settings "
@@ -3758,7 +3856,7 @@ msgstr ""
 "工作。有关更多详细信息, 请在此处检查步骤 4 < ref = \" %s\" target = \"_ black"
 "\" > </a>"
 
-#: super_socializer.php:3467
+#: super_socializer.php:3473
 #, php-format
 msgid ""
 "If you cannot get Linkedin login to work after updating the plugin, replace "
@@ -3769,11 +3867,11 @@ msgstr ""
 "替换为您的LinkedIn应用设置 %s 。有关详细信息，请<a href=\"%s\" target="
 "\"_blank\">在此处</a>查看第 6 步"
 
-#: super_socializer.php:3467 super_socializer.php:3495
+#: super_socializer.php:3473 super_socializer.php:3501
 msgid "Dismiss"
 msgstr ""
 
-#: super_socializer.php:3797
+#: super_socializer.php:3803
 msgid ""
 "Your browser is blocking some features of this website. Please follow the "
 "instructions at {support_url} to unblock these."

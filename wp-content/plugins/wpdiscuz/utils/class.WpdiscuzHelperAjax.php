@@ -307,8 +307,8 @@ class WpdiscuzHelperAjax implements WpDiscuzConstants
             $message = "";
             $siteUrl = get_site_url();
             $blogTitle = html_entity_decode(get_option("blogname"), ENT_QUOTES);
-            if ($guestAction === "deleteComments") {
-                $link = $mainUrl . "deleteComments/?key=$hashValue";
+            if ($guestAction === "deletecomments") {
+                $link = $mainUrl . "deletecomments/?key=$hashValue";
                 $subject = $this->options->getPhrase("wc_user_settings_delete_all_comments");
                 $message = $this->options->getPhrase("wc_user_settings_delete_all_comments_message");
                 if (strpos($message, "[DELETE_COMMENTS_URL]") !== false) {
